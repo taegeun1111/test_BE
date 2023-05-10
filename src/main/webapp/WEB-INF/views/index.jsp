@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <div>test입니다.</div>
+    <div>메인입니다.</div>
 </body>
 </html>
