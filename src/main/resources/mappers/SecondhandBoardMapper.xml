@@ -5,29 +5,28 @@
 <mapper namespace="com.mountain.doo.repository.SecondhandBoardMapper">
 
 <!--  전체조회  -->
-<select id="findAll" resultType="board">
-    SELECT board_no, account_id, issue_title, issue_content,
-    issue_like_count, issue_view_count, issue_reg_date, issue_modify_date
+<select id="findAll" resultType="secondhandBoard">
+    SELECT secondhand_board_no, account_id, secondhand_title,
+    secondhand_content,secondhand_view_count, secondhand_area,
+    secondhand_reg_date, secondhand_deal_type
     From secondhand
-
-    ORDER BY board_no DESC
 </select>
 
 <!--  하나조회  -->
-    <select id="findOne" resultType="board">
-        SELECT board_no, account_id, issue_title, issue_content,
-        issue_like_count, issue_view_count, issue_reg_date, issue_modify_date
+    <select id="findOne" resultType="secondhandBoard">
+        SELECT secondhand_board_no, account_id, secondhand_title,
+        secondhand_content,secondhand_view_count, secondhand_area,
+        secondhand_reg_date, secondhand_deal_type
         From secondhand
-        WHERE board_no=#{boardNo}
+        WHERE secondhand_board_no=#{boardNo}
 
     </select>
 
     <insert id="handWriteData">
 
         INSERT INTO secondhand
-        (secondhand_title,secondhand_content,secondhand_area,secondhand_deal_type)
-        VALUES (#{secondhandTitle},#{secondhandContent},#{secondhandArea},#{secondhandDealType})
-
+        (account_id,secondhand_title,secondhand_content,secondhand_area,secondhand_deal_type)
+        VALUES (#{accountId},#{secondhandTitle},#{secondhandContent},#{secondhandArea},#{secondhandDealType})
     </insert>
 
 

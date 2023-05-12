@@ -10,11 +10,12 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode
+
 public class SecondhandBoardWriteDTO {
+    private String accountId;
     private String secondhandTitle;
     private String secondhandContent;
     private String secondhandArea;
-    private LocalDateTime secondhandRegDate;
     private SecondhandType secondhandDealType;
 
 }

@@ -34,10 +34,12 @@ public class SecondhandBoardService {
 
     }
 
-    public SecondhandBoard handWriteData(SecondhandBoardWriteDTO dto){
-        SecondhandBoard writeData = mapper.handWriteData(dto);
+    public boolean handWriteData(SecondhandBoardWriteDTO dto){
+        boolean writeData = mapper.handWriteData(dto);
         return writeData;
 
 
     }
+
+
 }

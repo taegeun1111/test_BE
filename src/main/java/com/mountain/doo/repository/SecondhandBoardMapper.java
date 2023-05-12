@@ -16,6 +16,6 @@ public interface SecondhandBoardMapper {
     //게시판 하나 조회
     SecondhandBoard findOne(int secondHandBoardNo);
 
-    SecondhandBoard handWriteData(SecondhandBoardWriteDTO dto);
+    boolean handWriteData(SecondhandBoardWriteDTO dto);
 
 }

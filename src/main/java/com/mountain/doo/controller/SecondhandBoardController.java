@@ -48,10 +48,11 @@ public class SecondhandBoardController {
         return "";
     }
 
+
     //게시물 작성
     @PostMapping("/handWriteData")
     public String handWriteDate(Model model, SecondhandBoardWriteDTO dto){
-        SecondhandBoard wb = sc.handWriteData(dto);
+        boolean wb = sc.handWriteData(dto);
         model.addAttribute("writeBoard",wb);
 
         return "";
