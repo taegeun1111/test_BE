@@ -1,6 +1,7 @@
 package com.mountain.doo.service;
 
 import com.mountain.doo.dto.SecondhandBoardListDTO;
+import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.repository.SecondhandBoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,15 @@ public class SecondhandBoardService {
     }
 
     public SecondhandBoard findOne(int secondHandBoardNo){
-        return  mapper.findOne(secondHandBoardNo);
+        SecondhandBoard one = mapper.findOne(secondHandBoardNo);
+        return one;
+
+    }
+
+    public SecondhandBoard handWriteData(SecondhandBoardWriteDTO dto){
+        SecondhandBoard writeData = mapper.handWriteData(dto);
+        return writeData;
+
+
     }
 }

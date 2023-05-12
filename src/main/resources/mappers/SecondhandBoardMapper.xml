@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mountain.doo.repository.SecondhandBoardMapper">
 
+<!--  전체조회  -->
 <select id="findAll" resultType="board">
     SELECT board_no, account_id, issue_title, issue_content,
     issue_like_count, issue_view_count, issue_reg_date, issue_modify_date
@@ -12,6 +13,7 @@
     ORDER BY board_no DESC
 </select>
 
+<!--  하나조회  -->
     <select id="findOne" resultType="board">
         SELECT board_no, account_id, issue_title, issue_content,
         issue_like_count, issue_view_count, issue_reg_date, issue_modify_date
@@ -19,6 +21,19 @@
         WHERE board_no=#{boardNo}
 
     </select>
+
+    <insert id="handWriteData">
+
+        INSERT INTO secondhand
+        (secondhand_title,secondhand_content,secondhand_area,secondhand_deal_type)
+        VALUES (#{secondhandTitle},#{secondhandContent},#{secondhandArea},#{secondhandDealType})
+
+    </insert>
+
+
+
+
+
 
 
 </mapper>
