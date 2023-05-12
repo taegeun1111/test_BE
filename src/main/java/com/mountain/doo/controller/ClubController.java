@@ -1,0 +1,83 @@
+package com.mountain.doo.controller;
+
+import com.mountain.doo.dto.ClubListResponseDTO;
+import com.mountain.doo.dto.ClubWriteRequestDTO;
+import com.mountain.doo.service.ClubService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+@Controller
+@RequiredArgsConstructor
+@Slf4j
+@RequestMapping("/club")
+public class ClubController {
+
+    private final ClubService clubService;
+
+    //모집글(정기모임 + 소모임) 전체 조회 + 필터링
+    @GetMapping("/list")
+    public String list(
+            Search page, Model model, HttpServletRequest request) {
+
+        boolean flag=false;
+
+        //세션을 확인
+        Object login = request.getSession().getAttribute("login");
+
+        if(login!=null) flag=true;
+
+        if (!flag) return "redirect:/members/sign-in";
+
+        // Page : 기본 생성자 만들고, setter로 넣음
+        log.info("/board/list : GET");
+        log.info("page : {}",page);
+        List<ClubListResponseDTO> responseDTOS
+                = clubService.getList(page);
+
+        //페이징 알고리즘 작동
+        PageMaker maker = new PageMaker(page,clubService.getCount(page));
+
+        model.addAttribute("bList", responseDTOS);
+        model.addAttribute("maker",maker); //페이징 정보를 줌
+        model.addAttribute("s",page);  //키워드 검색후 입력한 검색어 계속 남아있도록
+        return "chap05/list";
+    }
+
+    // 글쓰기 화면 조회 요청
+    @GetMapping("/write")
+    public String write() {
+        System.out.println("/club/write : GET");
+        return "chap05/write";
+    }
+
+    // 글 등록 요청 처리
+    @PostMapping("/write")
+    public String write(ClubWriteRequestDTO dto) {
+        System.out.println("/club/write : POST");
+        clubService.register(dto);
+        return "redirect:/club/list";
+    }
+
+    //수정 요청/버튼클릭
+
+
+    //글 상세보기
+
+    //글 삭제
+    @PostMapping("/delete")
+    public String delete(int clubBoardNo ){
+        System.out.println("/club/delete : POST");
+        log.info(String.valueOf(clubBoardNo));
+        return "redirect:/club/list";
+    }
+
+}
