@@ -30,6 +30,7 @@ public class SecondhandBoardService {
 
     public SecondhandBoard findOne(int secondHandBoardNo){
         SecondhandBoard one = mapper.findOne(secondHandBoardNo);
+        mapper.plusViewCount(secondHandBoardNo);
         return one;
 
     }
@@ -40,6 +41,7 @@ public class SecondhandBoardService {
 
 
     }
+
 
 
 }

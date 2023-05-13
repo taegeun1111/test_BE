@@ -16,6 +16,9 @@ public interface SecondhandBoardMapper {
     //게시판 하나 조회
     SecondhandBoard findOne(int secondHandBoardNo);
 
+    //게시물 작성
     boolean handWriteData(SecondhandBoardWriteDTO dto);
 
+    //조회수 +1 증가
+    void plusViewCount(int secondHandBoardNo);
 }

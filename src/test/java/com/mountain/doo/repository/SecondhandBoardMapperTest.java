@@ -24,8 +24,13 @@ class SecondhandBoardMapperTest {
 
     void findAllTest(){
         List<SecondhandBoard> list = mapper.findAll();
+        SecondhandBoard board=new SecondhandBoard();
+        SecondhandType secondhandDealType = board.getSecondhandDealType();
         for (Object li : list) {
-            System.out.println("li = " + li);
+
+            if (secondhandDealType.equals(SecondhandType.BUY)) {
+                System.out.println("li = " + li);
+            }
         }
     }
     
@@ -33,7 +38,7 @@ class SecondhandBoardMapperTest {
     @DisplayName("boardNo가 들어오면 하나의 게시판이 출력되어야 한다")
 
     void findOne(){
-        int boardNo = 1;
+        int boardNo = 2;
         SecondhandBoard one = mapper.findOne(boardNo);
         System.out.println("one = " + one);
 
@@ -45,11 +50,11 @@ class SecondhandBoardMapperTest {
 
         SecondhandBoardWriteDTO sc=new SecondhandBoardWriteDTO();
 
-        sc.setAccountId("propess031");
-        sc.setSecondhandContent("나는 사람입니다");
-        sc.setSecondhandArea("내용이죠");
-        sc.setSecondhandTitle("서울") ;
-        sc.setSecondhandDealType(SecondhandType.BUY);
+        sc.setAccountId("wxws");
+        sc.setSecondhandContent("나는 로보트입니다");
+        sc.setSecondhandArea("달주이죠");
+        sc.setSecondhandTitle("부산") ;
+        sc.setSecondhandDealType(SecondhandType.SELL);
 
         mapper.handWriteData(sc);
 
