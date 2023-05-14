@@ -37,8 +37,8 @@ class SecondhandBoardServiceTest {
     @DisplayName("게시글 번호 입력하면 board 하나를 출력하고 조회수를 +1 시킨다")
     void findOneTest() {
 
-        SecondhandBoard one = mapper.findOne(3);
-        mapper.plusViewCount(3);
+        SecondhandBoard one = mapper.findOne(10);
+        mapper.plusViewCount(10);
 
         System.out.println("one = " + one);
         System.out.println("viewCount = "+one.getSecondhandView());
@@ -51,9 +51,9 @@ class SecondhandBoardServiceTest {
 
         SecondhandBoard sc = new SecondhandBoard();
 
-        sc.setAccountId("asdqweqwe");
-        sc.setSecondhandContent("나는 서비스");
-        sc.setSecondhandArea("서비스");
+        sc.setAccountId("asd");
+        sc.setSecondhandContent("나는 asdasdsa");
+        sc.setSecondhandArea("전라도");
         sc.setSecondhandTitle("서비스");
         sc.setSecondhandDealType(SecondhandType.SELL);
 

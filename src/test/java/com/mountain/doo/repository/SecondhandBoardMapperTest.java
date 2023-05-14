@@ -41,7 +41,7 @@ class SecondhandBoardMapperTest {
     @DisplayName("boardNo가 들어오면 하나의 게시판이 출력되어야 한다")
 
     void findOne(){
-        int boardNo = 2;
+        int boardNo = 10;
         SecondhandBoard one = mapper.findOne(boardNo);
         System.out.println("one = " + one);
 

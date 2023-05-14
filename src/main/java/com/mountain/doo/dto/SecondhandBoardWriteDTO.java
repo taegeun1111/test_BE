@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 
 public class SecondhandBoardWriteDTO {
+    private String accountId;
     private String secondhandTitle;
     private String secondhandContent;
     private String secondhandArea;
