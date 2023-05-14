@@ -41,13 +41,17 @@ public class SecondhandBoardService {
 
 
 
-
+    //게시물작성
     public boolean handWriteData(SecondhandBoardWriteDTO dto){
-        boolean writeData = mapper.handWriteData(dto);
-        return writeData;
-
+        return mapper.handWriteData(dto);
 
     }
+
+    //전체 게시물수 확인
+    public int count(Search search){
+        return mapper.count(search);
+    }
+
 
 
 

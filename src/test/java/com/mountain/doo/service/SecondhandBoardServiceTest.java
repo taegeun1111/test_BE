@@ -34,7 +34,7 @@ class SecondhandBoardServiceTest {
     }
 
     @Test
-    @DisplayName("게시글 번호 입력하면 board 하나를 출력한다")
+    @DisplayName("게시글 번호 입력하면 board 하나를 출력하고 조회수를 +1 시킨다")
     void findOneTest() {
 
         SecondhandBoard one = mapper.findOne(3);

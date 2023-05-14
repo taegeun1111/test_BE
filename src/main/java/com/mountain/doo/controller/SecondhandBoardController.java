@@ -1,11 +1,13 @@
 package com.mountain.doo.controller;
 
+import com.mountain.doo.dto.Page.PageMaker;
 import com.mountain.doo.dto.Page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.service.SecondhandBoardService;
+import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -28,10 +32,15 @@ public class SecondhandBoardController {
 
     //게시글 전체 조회
     @GetMapping("/handlist")
-    public String getList(Model model, Search search){
+    public String getList(Model model, Search search, HttpServletRequest request){
         List<SecondhandBoardListDTO> list = sc.findAll(search);
 
-        model.addAttribute("list",list);
+        //페이징 아록리즘 작동
+        PageMaker maker = new PageMaker(search,sc.count(search));
+
+        model.addAttribute("shblist",list);
+        model.addAttribute("maker",maker);
+        model.addAttribute("search",search);
         return "";
     }
 
@@ -46,8 +55,14 @@ public class SecondhandBoardController {
 
     //게시물 작성 페이지 열림
     @GetMapping("/handWrite")
-    public String handWrite(){
-        return "";
+    public String handWrite(HttpSession session){
+
+        if(!LoginUtil.isLogin(session)) {
+            //회원정보 없으면 회원가입 페이지로 이동
+            return "redirect/sign-up";
+        }
+        //회원정보있는 회원만 게시판 작성 가능
+        return "write";
     }
 
 

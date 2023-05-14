@@ -24,4 +24,7 @@ public interface SecondhandBoardMapper {
 
     //조회수 +1 증가
     void plusViewCount(int secondHandBoardNo);
+
+    //게시판 전체수 조회
+    int count(Search search);
 }

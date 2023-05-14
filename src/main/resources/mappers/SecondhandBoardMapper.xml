@@ -15,6 +15,7 @@
         WHERE secondhand_deal_type = #{secondhandDealType}
     </if>
     ORDER BY secondhand_board_no DESC
+    LIMIT #{pageStart},#{amount}
 </select>
 
 
@@ -43,7 +44,15 @@
 
     </update>
 
-<!-- 전테 게시물 수 확인-->
+<!-- 전체 게시물 수 확인-->
+    <select id="count" resultType="int">
+        SELECT count(*)
+        FROM secondhand
+        <if test="type=='secondhand_deal_type'">
+            WHERE secondhand_deal_type = #{secondhandDealType}
+        </if>
+
+    </select>
 
 
 

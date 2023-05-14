@@ -25,8 +25,12 @@ class SecondhandBoardMapperTest {
     void findAllTest(){
         Search search =new Search();
         SecondhandType type = SecondhandType.BUY;
-        List<SecondhandBoard> list = mapper.findAll(new Search());
 
+
+        List<SecondhandBoard> list = mapper.findAll(new Search());
+//        search.setPageNo(1);
+//        search.setAmount(10);
+//        search.getPageStart();
         for (SecondhandBoard board : list) {
             if (board.getSecondhandDealType()==type){
                 System.out.println("board = " + board);
