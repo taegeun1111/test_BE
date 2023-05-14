@@ -51,9 +51,9 @@ class SecondhandBoardMapperTest {
     @DisplayName("아이디,제목,글,지역,글타입을 입력하면 하나의 게시글이 저장되어야 한다")
     void boardWrite(){
 
-        SecondhandBoardWriteDTO sc=new SecondhandBoardWriteDTO();
+        SecondhandBoard sc=new SecondhandBoard();
 
-        sc.setAccountId("wxws");
+        sc.setAccountId("asdqwe");
         sc.setSecondhandContent("나는 로보트입니다");
         sc.setSecondhandArea("달주이죠");
         sc.setSecondhandTitle("부산") ;

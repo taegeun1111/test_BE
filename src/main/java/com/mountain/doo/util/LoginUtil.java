@@ -13,5 +13,9 @@ public class LoginUtil {
         return session.getAttribute(LOGIN_KEY)!=null;
     }
 
+    //로그인한 사람의 계정명을 반환하는 메서드
+//    public static String getcurrentLoginMemberAccount(HttpSession session){
+//
+//    }
 
 }

@@ -49,9 +49,9 @@ class SecondhandBoardServiceTest {
     @DisplayName("아이디,제목,글,지역,글타입을 입력하면 하나의 게시글이 저장되어야 한다")
     void boardWrite() {
 
-        SecondhandBoardWriteDTO sc = new SecondhandBoardWriteDTO();
+        SecondhandBoard sc = new SecondhandBoard();
 
-        sc.setAccountId("서비스테스트");
+        sc.setAccountId("asdqweqwe");
         sc.setSecondhandContent("나는 서비스");
         sc.setSecondhandArea("서비스");
         sc.setSecondhandTitle("서비스");

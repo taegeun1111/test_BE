@@ -41,7 +41,7 @@ public class SecondhandBoardController {
         model.addAttribute("shblist",list);
         model.addAttribute("maker",maker);
         model.addAttribute("search",search);
-        return "";
+        return "/handlist";
     }
 
     //게시물 하나 조회
@@ -50,7 +50,7 @@ public class SecondhandBoardController {
         SecondhandBoard one = sc.findOne(boardNo);
         model.addAttribute("one",one);
 
-        return "";
+        return "/handlistOne";
     }
 
     //게시물 작성 페이지 열림
@@ -59,17 +59,16 @@ public class SecondhandBoardController {
 
 
         //회원정보있는 회원만 게시판 작성 가능
-        return "write";
+        return "/write";
     }
 
 
     //게시물 작성
     @PostMapping("/handWriteData")
-    public String handWriteDate(Model model, SecondhandBoardWriteDTO dto){
-        boolean wb = sc.handWriteData(dto);
-        model.addAttribute("writeBoard",wb);
+    public String handWriteDate(SecondhandBoardWriteDTO dto,HttpSession session){
+         sc.handWriteData(dto,session);
 
-        return "";
+        return "redirect/List";
     }
 
 }

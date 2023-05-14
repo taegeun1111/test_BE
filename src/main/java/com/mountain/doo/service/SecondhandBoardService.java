@@ -6,10 +6,12 @@ import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.repository.SecondhandBoardMapper;
+import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -42,8 +44,13 @@ public class SecondhandBoardService {
 
 
     //게시물작성
-    public boolean handWriteData(SecondhandBoardWriteDTO dto){
-        return mapper.handWriteData(dto);
+    public boolean handWriteData(SecondhandBoardWriteDTO dto, HttpSession session){
+        SecondhandBoard board =new SecondhandBoard(dto);
+
+        //session에서 id 추가 필요
+//        board.setAccountId(LoginUtil.getCurrentLoginMemberAccount(session));;
+
+        return mapper.handWriteData(board);
 
     }
 

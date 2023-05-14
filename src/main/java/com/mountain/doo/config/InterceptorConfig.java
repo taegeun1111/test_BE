@@ -22,4 +22,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
         .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
         .excludePathPatterns("/board리스트","/board상세보기");     //실행하지 않을 경로
    }
+
+
 }

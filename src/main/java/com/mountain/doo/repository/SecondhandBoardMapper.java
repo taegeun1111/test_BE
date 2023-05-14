@@ -20,7 +20,7 @@ public interface SecondhandBoardMapper {
     SecondhandBoard findOne(int secondHandBoardNo);
 
     //게시물 작성
-    boolean handWriteData(SecondhandBoardWriteDTO dto);
+    boolean handWriteData(SecondhandBoard board);
 
     //조회수 +1 증가
     void plusViewCount(int secondHandBoardNo);
