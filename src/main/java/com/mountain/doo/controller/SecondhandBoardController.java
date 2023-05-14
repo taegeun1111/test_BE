@@ -57,10 +57,7 @@ public class SecondhandBoardController {
     @GetMapping("/handWrite")
     public String handWrite(HttpSession session){
 
-        if(!LoginUtil.isLogin(session)) {
-            //회원정보 없으면 회원가입 페이지로 이동
-            return "redirect/sign-up";
-        }
+
         //회원정보있는 회원만 게시판 작성 가능
         return "write";
     }
