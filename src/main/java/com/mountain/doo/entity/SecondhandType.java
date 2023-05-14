@@ -1,5 +1,5 @@
 package com.mountain.doo.entity;
 
 public enum SecondhandType {
-    BUY,SELL
+    BUY,SELL,BLANK
 }

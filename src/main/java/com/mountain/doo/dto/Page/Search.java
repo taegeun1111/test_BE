@@ -1,8 +1,7 @@
 package com.mountain.doo.dto.Page;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.mountain.doo.entity.SecondhandType;
+import lombok.*;
 
 @Setter
 @Getter @ToString

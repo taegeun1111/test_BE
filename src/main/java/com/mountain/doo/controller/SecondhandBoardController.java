@@ -1,8 +1,10 @@
 package com.mountain.doo.controller;
 
+import com.mountain.doo.dto.Page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
+import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.service.SecondhandBoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +28,8 @@ public class SecondhandBoardController {
 
     //게시글 전체 조회
     @GetMapping("/handlist")
-    public String getList(Model model){
-        List<SecondhandBoardListDTO> list = sc.findAll();
+    public String getList(Model model, Search search){
+        List<SecondhandBoardListDTO> list = sc.findAll(search);
 
         model.addAttribute("list",list);
         return "";

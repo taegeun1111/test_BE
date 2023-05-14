@@ -10,21 +10,13 @@
     secondhand_content,secondhand_view_count, secondhand_area,
     secondhand_reg_date, secondhand_deal_type
     From secondhand
+<!--    거래타입별 조회-->
+    <if test="type == 'secondhand_deal_type'">
+        WHERE secondhand_deal_type = #{secondhandDealType}
+    </if>
+    ORDER BY secondhand_board_no DESC
 </select>
 
-<!-- 거래 타입별 전체조회-->
-    <select id="findAllForDealType" resultType="secondhandBoard">
-        SELECT secondhand_board_no, account_id, secondhand_title,
-        secondhand_content,secondhand_view_count, secondhand_area,
-        secondhand_reg_date, secondhand_deal_type
-        From secondhand
-        <if test="type == 'secondhand_deal_type'">
-            WHERE secondhand_deal_type = #{secondhandDealType}
-        </if>
-        ORDER BY secondhand_board_no DESC
-
-
-    </select>
 
 <!--  하나조회  -->
     <select id="findOne" resultType="secondhandBoard">

@@ -1,5 +1,6 @@
 package com.mountain.doo.repository;
 
+import com.mountain.doo.dto.Page.Search;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
@@ -18,22 +19,20 @@ class SecondhandBoardMapperTest {
 
     @Autowired
     SecondhandBoardMapper mapper;
-    
+
     @Test
-    @DisplayName("게시물이 전체 출력되어야 한다")
-
+    @DisplayName("거래타입별 필터링 후 게시물이 전체 출력되어야 한다")
     void findAllTest(){
-        List<SecondhandBoard> list = mapper.findAll();
-        SecondhandBoard board=new SecondhandBoard();
-        SecondhandType secondhandDealType = board.getSecondhandDealType();
-        for (Object li : list) {
+        Search search =new Search();
+        SecondhandType type = SecondhandType.BUY;
+        List<SecondhandBoard> list = mapper.findAll(new Search());
 
-            if (secondhandDealType.equals(SecondhandType.BUY)) {
-                System.out.println("li = " + li);
+        for (SecondhandBoard board : list) {
+            if (board.getSecondhandDealType()==type){
+                System.out.println("board = " + board);
             }
         }
     }
-    
     @Test
     @DisplayName("boardNo가 들어오면 하나의 게시판이 출력되어야 한다")
 
