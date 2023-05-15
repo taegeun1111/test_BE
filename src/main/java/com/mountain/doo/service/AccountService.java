@@ -22,7 +22,8 @@ public class AccountService {
     public boolean modify(String accountId,AccountModifyDTO dto){
         AccountModifyDTO account = mapper.searchInfoById(accountId);
          account.changeAccount(dto);
-       return mapper.modifyInfo(accountId,account);
+         account.setAccountId(accountId);
+       return mapper.modifyInfo(account);
 
 
     }

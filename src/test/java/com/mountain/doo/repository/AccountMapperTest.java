@@ -50,8 +50,10 @@ class AccountMapperTest {
         build.setEmail("44");
         build.setPhoneNo("44");
         build.setAddress("444444444");
-        boolean b = mapper.modifyInfo("1", build);
+        build.setAccountId("1");
 
+        boolean b = mapper.modifyInfo(build);
+        System.out.println("b = " + b);
         assertTrue(b);
 
 

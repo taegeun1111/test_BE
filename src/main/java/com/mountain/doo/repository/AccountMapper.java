@@ -12,7 +12,7 @@ public interface AccountMapper {
     //아이디로 회원정보 조회
     AccountModifyDTO searchInfoById(String accountId);
 
-    boolean modifyInfo(String accountId,AccountModifyDTO dto);
+    boolean modifyInfo(AccountModifyDTO dto);
 
 
 }

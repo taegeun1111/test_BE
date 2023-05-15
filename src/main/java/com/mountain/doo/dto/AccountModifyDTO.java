@@ -10,6 +10,7 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 public class AccountModifyDTO {
+    private String accountId;
     private String password;
     private String email;
     private String phoneNo;
