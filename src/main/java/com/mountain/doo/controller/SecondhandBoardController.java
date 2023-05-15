@@ -33,6 +33,8 @@ public class SecondhandBoardController {
     //게시글 전체 조회
     @GetMapping("/handlist")
     public String getList(Model model, Search search, HttpServletRequest request){
+
+
         List<SecondhandBoardListDTO> list = sc.findAll(search);
 
         //페이징 아록리즘 작동
