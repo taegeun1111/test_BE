@@ -51,11 +51,11 @@ class SecondhandBoardServiceTest {
 
         SecondhandBoard sc = new SecondhandBoard();
 
-        sc.setAccountId("asd");
-        sc.setSecondhandContent("나는 asdasdsa");
-        sc.setSecondhandArea("전라도");
-        sc.setSecondhandTitle("서비스");
-        sc.setSecondhandDealType(SecondhandType.SELL);
+        sc.setAccountId("이동우");
+        sc.setSecondhandContent("콘텐트");
+        sc.setSecondhandArea("지역");
+        sc.setSecondhandTitle("타이틀");
+        sc.setSecondhandDealType(SecondhandType.BUY);
 
         mapper.handWriteData(sc);
 

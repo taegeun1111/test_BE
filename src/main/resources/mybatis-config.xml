@@ -12,12 +12,15 @@
         <!--  entity 클래스 별칭 설정      -->
          <typeAlias alias="test" type="com.mountain.doo.entity.test" />
         <typeAlias alias="secondhandBoard" type="com.mountain.doo.entity.SecondhandBoard" />
+        <typeAlias alias="Account" type="com.mountain.doo.entity.Account" />
+        <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
         <mapper resource="mappers/test.xml"/>
         <mapper resource="mappers/SecondhandBoardMapper.xml"/>
+        <mapper resource="mappers/AccountMapper.xml"/>
     </mappers>
 
 
