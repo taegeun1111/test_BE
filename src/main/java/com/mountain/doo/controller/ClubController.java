@@ -2,6 +2,8 @@ package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.ClubListResponseDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
+import com.mountain.doo.dto.page.PageMaker;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,13 +37,15 @@ public class ClubController {
 
         if(login!=null) flag=true;
 
-        if (!flag) return "redirect:/members/sign-in";
+        if (!flag) return "redirect:/club/sign-in";
 
         // Page : 기본 생성자 만들고, setter로 넣음
         log.info("/board/list : GET");
         log.info("page : {}",page);
         List<ClubListResponseDTO> responseDTOS
                 = clubService.getList(page);
+//        List<ClubListResponseDTO> responseDTOS
+//                = clubService.getList();
 
         //페이징 알고리즘 작동
         PageMaker maker = new PageMaker(page,clubService.getCount(page));
@@ -49,14 +53,14 @@ public class ClubController {
         model.addAttribute("bList", responseDTOS);
         model.addAttribute("maker",maker); //페이징 정보를 줌
         model.addAttribute("s",page);  //키워드 검색후 입력한 검색어 계속 남아있도록
-        return "chap05/list";
+        return "club/list";
     }
 
     // 글쓰기 화면 조회 요청
     @GetMapping("/write")
     public String write() {
         System.out.println("/club/write : GET");
-        return "chap05/write";
+        return "club/write";
     }
 
     // 글 등록 요청 처리

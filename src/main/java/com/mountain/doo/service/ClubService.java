@@ -3,6 +3,7 @@ package com.mountain.doo.service;
 import com.mountain.doo.dto.ClubDetailResponseDTO;
 import com.mountain.doo.dto.ClubListResponseDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Club;
 import com.mountain.doo.repository.ClubMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,43 +17,51 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class ClubService {
 
-    private final ClubMapper boardRepository; //mybatis 사용시
+    private final ClubMapper clubRepository; //mybatis 사용시
 
 
     // 중간처리 기능 자유롭게 사용
     // 목록 중간처리
     public List<ClubListResponseDTO> getList(Search page) {
 
-        return boardRepository.findAll(page)
+        return clubRepository.findAll(page)
                 .stream()
-                .map(board -> new ClubListResponseDTO(board))
+                .map(club -> new ClubListResponseDTO(club))
                 .collect(toList())
                 ;
     }
+//    public List<ClubListResponseDTO> getList() {
+//
+//        return clubRepository.findAll()
+//                .stream()
+//                .map(club -> new ClubListResponseDTO(club))
+//                .collect(toList())
+//                ;
+//    }
 
     // 글 등록 중간처리
     public boolean register(ClubWriteRequestDTO dto) {
-        return boardRepository.save(new Club(dto));
+        return clubRepository.save(new Club(dto));
     }
     
     // 글 삭제 중간처리
     public boolean delete(int bno) {
-        return boardRepository.deleteByNo(bno);
+        return clubRepository.deleteByNo(bno);
     }
 
     //글 상세조회 중간처리
     public ClubDetailResponseDTO getDetail(int bno) {
 
-        Club club = boardRepository.findOne(bno);
+        Club club = clubRepository.findOne(bno);
         // 조회수 상승 처리
-        boardRepository.upViewCount(bno); //mybatis-sql 사용시
+//        clubRepository.upViewCount(bno); //mybatis-sql 사용시
 
         return new ClubDetailResponseDTO(club);
     }
-
     //조회수 중간 처리
     public int getCount(Search search) {
-        return boardRepository.count(search);
+//        return clubRepository.count(search);
+        return clubRepository.count();
     }
 
 }
