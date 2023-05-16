@@ -32,7 +32,7 @@ public class Issue {
     private String accountId;
     private String issueTitle;
     private String issueContent;
-    private String issueLikeCount;
+    private int issueLikeCount;
     private long issueViewCount;
     private LocalDateTime issueRegDate;
     private LocalDateTime issueModify;

@@ -21,6 +21,7 @@ public class ReviewListResponseDTO {
     private final String date;
     private final long viewCount;
     private final String id;
+    private final int likeCount;
 
 
     public ReviewListResponseDTO(Review review) {
@@ -30,6 +31,7 @@ public class ReviewListResponseDTO {
         this.date = makePrettierDateString(review.getReviewRegDate());
         this.viewCount = review.getReviewViewCount();
         this.id = review.getAccountId();
+        this.likeCount = review.getReviewLikeCount();
     }
 
     static String makePrettierDateString(LocalDateTime regDateTime) {

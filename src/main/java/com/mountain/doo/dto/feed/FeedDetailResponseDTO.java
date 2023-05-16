@@ -17,6 +17,7 @@ public class FeedDetailResponseDTO {
     private final String content;
     private final String date;
     private final String writer;
+    private final int likeCount;
 
     public FeedDetailResponseDTO(Feed feed) {
         this.boardNo = feed.getFeedBoardNo();
@@ -24,5 +25,6 @@ public class FeedDetailResponseDTO {
         this.content = feed.getFeedContent();
         this.date = FeedListResponseDTO.makePrettierDateString(feed.getFeedRegDate());
         this.writer = feed.getAccountId();
+        this.likeCount = feed.getFeedLikeCount();
     }
 }
