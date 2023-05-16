@@ -14,5 +14,9 @@ public interface AccountMapper {
 
     boolean modifyInfo(AccountModifyDTO dto);
 
+    //회원정보 삭제
+    boolean deleteInfo(String accountId);
+
+
 
 }

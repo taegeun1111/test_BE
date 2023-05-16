@@ -50,7 +50,7 @@ class AccountMapperTest {
         build.setEmail("44");
         build.setPhoneNo("44");
         build.setAddress("444444444");
-        build.setAccountId("1");
+        build.setAccountId("id");
 
         boolean b = mapper.modifyInfo(build);
         System.out.println("b = " + b);

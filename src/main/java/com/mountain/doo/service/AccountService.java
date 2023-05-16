@@ -28,4 +28,8 @@ public class AccountService {
 
     }
 
+    public boolean deleteInfo(String accountId){
+        return mapper.deleteInfo(accountId);
+    }
+
 }
