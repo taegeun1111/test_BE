@@ -4,6 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mountain.doo.repository.AccountMapper">
 
+<!--   회원정보 전체보기(관리자) -->
+    <select id="allAccount" resultType="Account">
+        SELECT account_id, password, name, gender, email, phone_no, address
+        FROM account
+
+
+    </select>
+
 <!--    회원정보 저장-->
     <insert id="save">
         INSERT INTO account
@@ -13,12 +21,12 @@
     </insert>
 
 <!--    마이페이지  회원 정보-->
-<!--    <select id="" resultType="Account">-->
-<!--        SELECT account_id,password,name,gender,email,phone_no,address-->
-<!--        FROM account-->
-<!--        WHERE account_id = #{accountId}-->
+    <select id="myInfo" resultType="Account">
+        SELECT account_id,password,name,gender,email,phone_no,address
+        FROM account
+        WHERE account_id = #{accountId}
 
-<!--    </select>-->
+    </select>
 
 <!--    정보수정 dto 불러오기-->
     <select id="searchInfoById" resultType="AccountModifyDTO">

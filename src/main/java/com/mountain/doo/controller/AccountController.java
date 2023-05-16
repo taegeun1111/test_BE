@@ -7,6 +7,7 @@ import com.mountain.doo.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,17 @@ public class AccountController {
             return "redirect:/main";  //수정하면 메인페이지
         }
         return  ""; //수정 안되면 수정페이지
+    }
+
+    @GetMapping("/mypage")
+    public String mypage(Model model, String accountId){
+        //회원정보 마이페이지
+        Account account = accountService.myInfo(accountId);
+
+
+        model.addAttribute("mypage",account);
+
+        return "/mypage";
     }
 
 }

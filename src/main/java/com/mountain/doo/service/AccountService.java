@@ -8,11 +8,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class AccountService {
     private final AccountMapper mapper;
+
+    public List<Account> allAccount(){
+        return mapper.allAccount();
+    }
 
     public boolean save(Account account) {
        return mapper.save(account);
@@ -27,9 +33,11 @@ public class AccountService {
 
 
     }
-
     public boolean deleteInfo(String accountId){
         return mapper.deleteInfo(accountId);
     }
 
+    public Account myInfo(String accountId) {
+        return mapper.myInfo(accountId);
+    }
 }
