@@ -11,11 +11,17 @@
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
          <typeAlias alias="test" type="com.mountain.doo.entity.test" />
+         <typeAlias alias="feed" type="com.mountain.doo.entity.Feed" />
+         <typeAlias alias="issue" type="com.mountain.doo.entity.Issue" />
+         <typeAlias alias="review" type="com.mountain.doo.entity.Review" />
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
         <mapper resource="mappers/test.xml"/>
+        <mapper resource="mappers/FeedMapper.xml"/>
+        <mapper resource="mappers/IssueMapper.xml"/>
+        <mapper resource="mappers/ReviewMapper.xml"/>
     </mappers>
 
 
