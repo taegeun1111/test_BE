@@ -56,7 +56,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("아이디로 회원정보 전체 검색하기")
     void searchInfoById(){
-        AccountModifyDTO account = mapper.searchInfoById("id");
+        AccountModifyDTO account = mapper.searchInfoById("12");
         System.out.println("account = " + account);
 
 
@@ -91,6 +91,17 @@ class AccountMapperTest {
             System.out.println("accounts = " + account.getAccountId());
 
         }
+
+    }
+
+    @Test
+    @DisplayName("아이디와 이메일 중복이면 1, 아니면 0을 리턴한다")
+    void isDuplicate(){
+
+        String keyword = "admin";
+        int duplicate = mapper.isDuplicate("account_id", keyword);
+
+assertEquals(1,duplicate);
 
     }
 

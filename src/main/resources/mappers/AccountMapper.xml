@@ -56,5 +56,16 @@
 
     </delete>
 
+    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM account
+        <if test="account_id">
+            WHERE account_id = #{keyword}
+        </if>
+        <if test="email">
+            WHERE email = #{keyword}
+        </if>
+    </select>
+
 
 </mapper>
