@@ -1,20 +1,20 @@
 package com.mountain.doo.dto.page;
 
+
 import lombok.*;
 
 @Setter @Getter @ToString
 @AllArgsConstructor
 @Builder
-public class Search extends Page{
+public class ClubSearch extends Page{
 
     private String clubRecruitType;
 
 //    검색기능 할거면 사용
 //    private String keyword;
 
-    public Search(){
+    public ClubSearch(){
         this.clubRecruitType="";
 //        this.keyword="";
     }
-
 }

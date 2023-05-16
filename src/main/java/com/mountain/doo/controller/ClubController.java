@@ -3,7 +3,7 @@ package com.mountain.doo.controller;
 import com.mountain.doo.dto.ClubListResponseDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 import com.mountain.doo.dto.page.PageMaker;
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -28,7 +27,7 @@ public class ClubController {
     //모집글(정기모임 + 소모임) 전체 조회 + 필터링
     @GetMapping("/list")
     public String list(
-            Search page, Model model, HttpServletRequest request) {
+            ClubSearch page, Model model, HttpServletRequest request) {
 
         boolean flag=false;
 

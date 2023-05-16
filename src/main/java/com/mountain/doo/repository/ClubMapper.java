@@ -1,7 +1,7 @@
 package com.mountain.doo.repository;
 
 
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Club;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +12,7 @@ public interface ClubMapper {
 
     //게시물 목록 조회
 //    List<Club> findAll();
-    List<Club> findAll(Search page);
+    List<Club> findAll(ClubSearch page);
 
     //게시물 상세 조회
     Club findOne(int clubBoardNo);

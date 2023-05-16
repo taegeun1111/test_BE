@@ -1,14 +1,12 @@
 package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.ClubWriteRequestDTO;
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Club;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,7 +19,7 @@ class ClubMapperTest {
 
     @Test
     public void findAll(){
-        Search page= Search.builder()
+        ClubSearch page= ClubSearch.builder()
                 .clubRecruitType("소모임")
                 .build();
 
