@@ -73,16 +73,15 @@ class AccountMapperTest {
     @Test
     @DisplayName("해당 아이디 정보 삭제, db에서 하나의 정보가 삭제되어야 한다")
     void deleteInfo(){
+
+
+        String id="3";
+        mapper.deleteInfo(id);
         List<Account> accounts = mapper.allAccount();
         for (int i = 0; i <accounts.size() ; i++) {
             System.out.println("accounts = " + accounts.get(i).getAccountId());
 
         }
-
-        String id="3";
-        mapper.deleteInfo(id);
-        List<Account> accounts2 = mapper.allAccount();
-
 
     }
 
