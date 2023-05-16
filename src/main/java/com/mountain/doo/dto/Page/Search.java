@@ -1,4 +1,4 @@
-package com.mountain.doo.dto.Page;
+package com.mountain.doo.dto.page;
 
 import com.mountain.doo.entity.SecondhandType;
 import lombok.*;
