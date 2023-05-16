@@ -1,7 +1,7 @@
 package com.mountain.doo.repository;
 
 
-import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,7 +15,7 @@ public interface IssueMapper {
     // CRUD 기능을 명시
 
     // 전체 게시글 조회
-    List<Issue> findAll(ClubSearch page);
+    List<Issue> findAll(Search page);
 
     // 게시글 상세 조회
     Issue findOne(long issueBoardNo);
@@ -32,5 +32,5 @@ public interface IssueMapper {
     boolean deleteIssue(long issueBoardNo); // 게시물 번호로 찾아서 삭제
 
     // 게시물 세기
-    int issueCount(ClubSearch clubSearch);
+    int issueCount(Search Search);
 }
