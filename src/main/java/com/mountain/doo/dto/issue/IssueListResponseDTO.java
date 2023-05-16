@@ -21,14 +21,16 @@ public class IssueListResponseDTO {
     private final String date;
     private final long viewCount;
     private final String id;
+    private final int likeCount;
 
     public IssueListResponseDTO(Issue issue) {
         this.boardNo = issue.getIssueBoardNo();
         this.title = issue.getIssueTitle();
         this.content = issue.getIssueContent();
-        this.date = issue.getIssueContent();
+        this.date = makePrettierDateString(issue.getIssueRegDate());
         this.viewCount = issue.getIssueViewCount();
         this.id = issue.getAccountId();
+        this.likeCount = issue.getIssueLikeCount();
     }
 
     static String makePrettierDateString(LocalDateTime regDateTime) {
