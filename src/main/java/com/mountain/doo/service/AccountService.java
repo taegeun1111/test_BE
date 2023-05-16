@@ -20,6 +20,10 @@ public class AccountService {
         return mapper.allAccount();
     }
 
+    public boolean login(String accountId, String password){
+        return mapper.login(accountId,password);
+    }
+
     public boolean save(Account account) {
        return mapper.save(account);
     }

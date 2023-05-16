@@ -28,6 +28,15 @@ class AccountMapperTest {
     }
 
     @Test
+    @DisplayName("아이디 비밀번호 받아 맞는 정보 있으면 true 아니면 false")
+    void login(){
+        boolean a = mapper.login("admin", "admin");
+        assertTrue(a);
+        System.out.println(a);
+
+    }
+
+    @Test
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();

@@ -19,6 +19,14 @@
         VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo}, #{address})
 
     </insert>
+<!--    로그인-->
+    <select id="login" resultType="boolean">
+        SELECT account_id, password, name, gender, email, phone_no, address
+        FROM account
+        WHERE account_id = #{accountId} and password = #{password}
+
+    </select>
+
 
 <!--    마이페이지  회원 정보-->
     <select id="myInfo" resultType="Account">

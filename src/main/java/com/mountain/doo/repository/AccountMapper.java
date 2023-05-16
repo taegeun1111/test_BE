@@ -10,6 +10,8 @@ import java.util.List;
 public interface AccountMapper {
     List<Account> allAccount();
 
+    boolean login(String accountId, String password);
+
     boolean save(Account account);
 
     //아이디로 회원정보 조회

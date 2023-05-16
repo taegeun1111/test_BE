@@ -19,7 +19,6 @@
         <typeAlias alias="Account" type="com.mountain.doo.entity.Account" />
         <typeAlias alias="SecondhandBoard" type="com.mountain.doo.entity.SecondhandBoard" />
         <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
-        <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
     </typeAliases>
 
     <mappers>

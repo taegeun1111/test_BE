@@ -65,4 +65,23 @@ public class AccountController {
         return "/mypage";
     }
 
+
+    @GetMapping("/login")
+    public String login(){
+
+        return "/login";
+    }
+
+
+    @PostMapping("/login")
+    public String login(String accountId, String password){
+        boolean login = accountService.login(accountId, password);
+
+        if(login){
+            return "redirect:/main"; //로그인되면 메인페이지
+        }
+        return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
+
+    }
+
 }
