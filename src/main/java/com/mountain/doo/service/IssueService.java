@@ -5,7 +5,7 @@ import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
 import com.mountain.doo.dto.issue.IssueListResponseDTO;
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
-import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
 import com.mountain.doo.repository.IssueMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class IssueService {
 
 
     // 게시글 전체목록 처리
-    public List<IssueListResponseDTO> getList(ClubSearch page){
+    public List<IssueListResponseDTO> getList(Search page){
         return issueRepository.findAll(page)
                 .stream()
                 .map(IssueListResponseDTO::new)
@@ -55,5 +55,9 @@ public class IssueService {
         return issueRepository.modifyIssue(new Issue(dto));
     }
 
-    //
+    //페이징 처리 위한 count 처리
+    public int getCount(Search search) {
+        return issueRepository.issueCount(search);
+    }
+
 }
