@@ -1,7 +1,7 @@
 package com.mountain.doo.controller;
 
 
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
 import com.mountain.doo.dto.review.ReviewWriteRequestDTO;
 import com.mountain.doo.entity.Review;
@@ -36,7 +36,7 @@ public class ReviewController {
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int boardNo, @ModelAttribute("s")Search search, Model model){
+    public String detail(int boardNo, @ModelAttribute("s") ClubSearch clubSearch, Model model){
         log.info("review detail GET");
         model.addAttribute("review", reviewService.getDetail(boardNo));
         return "";
@@ -57,7 +57,7 @@ public class ReviewController {
 
     // 수정 요청
     @GetMapping("/modify")
-    public String modify(ReviewRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
+    public String modify(ReviewRewriteRequestDTO dto, @ModelAttribute("s") ClubSearch clubSearch, Model model){
         Review review = reviewMapper.findOne(dto.getBoardNo());
         model.addAttribute("bno", review.getReviewBoardNo());
         model.addAttribute("title", review.getReviewTitle());

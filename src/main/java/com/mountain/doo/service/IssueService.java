@@ -1,18 +1,12 @@
 package com.mountain.doo.service;
 
 
-import com.mountain.doo.dto.feed.FeedDetailResponseDTO;
-import com.mountain.doo.dto.feed.FeedListResponseDTO;
-import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
-import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
 import com.mountain.doo.dto.issue.IssueListResponseDTO;
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
-import com.mountain.doo.dto.page.Search;
-import com.mountain.doo.entity.Feed;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Issue;
-import com.mountain.doo.repository.FeedMapper;
 import com.mountain.doo.repository.IssueMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +26,7 @@ public class IssueService {
 
 
     // 게시글 전체목록 처리
-    public List<IssueListResponseDTO> getList(Search page){
+    public List<IssueListResponseDTO> getList(ClubSearch page){
         return issueRepository.findAll(page)
                 .stream()
                 .map(IssueListResponseDTO::new)

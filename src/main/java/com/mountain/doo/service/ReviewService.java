@@ -1,18 +1,12 @@
 package com.mountain.doo.service;
 
 
-import com.mountain.doo.dto.feed.FeedDetailResponseDTO;
-import com.mountain.doo.dto.feed.FeedListResponseDTO;
-import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
-import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
 import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
 import com.mountain.doo.dto.review.ReviewWriteRequestDTO;
-import com.mountain.doo.entity.Feed;
 import com.mountain.doo.entity.Review;
-import com.mountain.doo.repository.FeedMapper;
 import com.mountain.doo.repository.ReviewMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +26,7 @@ public class ReviewService {
 
 
     // 게시글 전체목록 처리
-    public List<ReviewListResponseDTO> getList(Search page){
+    public List<ReviewListResponseDTO> getList(ClubSearch page){
         return reviewRepository.findAll(page)
                 .stream()
                 .map(ReviewListResponseDTO::new)

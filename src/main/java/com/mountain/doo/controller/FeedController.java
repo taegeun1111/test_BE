@@ -3,7 +3,7 @@ package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Feed;
 import com.mountain.doo.repository.FeedMapper;
 import com.mountain.doo.service.FeedService;
@@ -36,7 +36,7 @@ public class FeedController {
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int boardNo, @ModelAttribute("s")Search search, Model model){
+    public String detail(int boardNo, @ModelAttribute("s") ClubSearch clubSearch, Model model){
         log.info("feed detail GET");
         model.addAttribute("feed", feedService.getDetail(boardNo));
         return "";
@@ -57,7 +57,7 @@ public class FeedController {
 
     // 수정 요청
     @GetMapping("/modify")
-    public String modify(FeedRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
+    public String modify(FeedRewriteRequestDTO dto, @ModelAttribute("s") ClubSearch clubSearch, Model model){
         Feed feed = feedMapper.findOne(dto.getBoardNo());
         model.addAttribute("bno",feed.getFeedBoardNo());
         model.addAttribute("title", feed.getFeedTitle());

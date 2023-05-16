@@ -1,8 +1,7 @@
 package com.mountain.doo.repository;
 
 
-import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
-import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Feed;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class FeedMapperTest {
     @Test
     @DisplayName("피드의 모든 게시물을 불러들여야 한다")
     void findAllTest(){
-        Search page = new Search();
+        ClubSearch page = new ClubSearch();
         page.setPageNo(1);
         page.setAmount(2);
 
