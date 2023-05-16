@@ -23,7 +23,7 @@ public class AccountController {
     @GetMapping("/sign-up")
     public String signUp(){
         log.info("회원가입페이지");
-        return "account/sign-up";
+        return "members/sign-up";
     }
 
     @PostMapping("/sign-up")
@@ -31,7 +31,7 @@ public class AccountController {
         log.info("가입처리요청");
         boolean save = accountService.save(account);
         if(save) {
-            return "redirect:/login";  //로그인페이지
+            return "redirect:/sign-in";  //로그인페이지
         }
         return "/sign-up"; // 회원가입페이지
     }
