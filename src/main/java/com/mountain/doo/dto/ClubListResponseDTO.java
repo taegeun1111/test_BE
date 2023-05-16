@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Setter @RequiredArgsConstructor
+@Getter
 public class ClubListResponseDTO {
     private final int clubBoardNo; //글번호
     private final String clubTitle; //제목

@@ -20,7 +20,7 @@ class ClubMapperTest {
     @Test
     public void findAll(){
         ClubSearch page= ClubSearch.builder()
-                .clubRecruitType("소모임")
+                .clubRecruitType("정기모임")
                 .build();
 
         //when
