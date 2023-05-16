@@ -78,8 +78,8 @@ class AccountMapperTest {
         String id="3";
         mapper.deleteInfo(id);
         List<Account> accounts = mapper.allAccount();
-        for (int i = 0; i <accounts.size() ; i++) {
-            System.out.println("accounts = " + accounts.get(i).getAccountId());
+        for (Account account : accounts) {
+            System.out.println("accounts = " + account.getAccountId());
 
         }
 
