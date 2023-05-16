@@ -1,5 +1,6 @@
 package com.mountain.doo.dto.page;
 
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -22,10 +23,9 @@ public class PageMaker {
     //총 게시물 수
     private int totalCount; //외부(db)에서 받아옴
 
-
-    public PageMaker(Page page, int totalCount) {
-        this.page = page;
-        this.totalCount = totalCount;
+    public PageMaker(Page page,int totalCount){
+        this.page=page;
+        this.totalCount=totalCount;
         makePageInfo();
     }
 

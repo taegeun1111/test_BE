@@ -1,6 +1,6 @@
 package com.mountain.doo.service;
 
-import com.mountain.doo.dto.Page.Search;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;

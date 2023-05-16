@@ -1,7 +1,7 @@
 package com.mountain.doo.controller;
 
-import com.mountain.doo.dto.Page.PageMaker;
-import com.mountain.doo.dto.Page.Search;
+import com.mountain.doo.dto.page.PageMaker;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;

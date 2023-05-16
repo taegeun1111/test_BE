@@ -7,41 +7,36 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@ToString
 @AllArgsConstructor
-public class Page {
+@ToString
 
+public class Page {
     private int pageNo; // 클라이언트가 보낸 페이지 번호
     private int amount; // 클라이언트가 보낸 목록게시물 수
 
     public Page() {
         this.pageNo = 1;
-        this.amount = 6;
+        this.amount = 10;
+
     }
 
+    //사용자가 다른 번호 입력하면 page는 1로
     public void setPageNo(int pageNo) {
-        if (pageNo < 1 || pageNo > Integer.MAX_VALUE) {
+        if (pageNo != this.pageNo) {
             this.pageNo = 1;
-            return;
         }
-        this.pageNo = pageNo;
     }
 
+    //사용자가 다른 번호 입력하면 amount 는 1로
     public void setAmount(int amount) {
-//        if (amount < 6 || amount > 10) {
-//            this.amount = 6;
-//            return;
-//        }
-        this.amount = amount;
+        if (this.amount != amount) {
+            this.amount = 10;
+        }
     }
 
-    public int getPageStart() {
-        /*
-            pageNo : 1 ->  return 0
-            pageNo : 2 ->  return 6
-            pageNo : 3 ->  return 12
-            pageNo : n ->  return (n - 1) * 6
-         */
-        return (pageNo - 1) * amount;
+    //페이지에 게시글 몇개씩 띄울지
+    public int getPageStart(){
+        return (pageNo-1)*amount;
     }
+
 }
