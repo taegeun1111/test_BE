@@ -1,6 +1,5 @@
 package com.mountain.doo.dto.page;
 
-
 import lombok.Getter;
 import lombok.ToString;
 
@@ -13,7 +12,7 @@ public class PageMaker {
 
     //화면 렌더링시 페이지의 시작값과 끝값
     private int begin, end, finalPage; //알고리즘에 의해 내부에서 만들어짐
-    
+
     //이전, 다음 버튼 활성화 여부
     private boolean prev, next; //알고리즘에 의해 내부에서 만들어짐
 
@@ -60,7 +59,7 @@ public class PageMaker {
         //이전 버튼 활성화 여부
         //1~5 : 이전 버튼 없어야 함 , 그 외에는 다 있어야 함.
         this.prev = begin > 1;
-        
+
         //다음 버튼 활성화 여부
         //마지막 페이지 보여주는 곳이면 필요없음. 그 외에는 다 필요
         this.next = end < finalPage;

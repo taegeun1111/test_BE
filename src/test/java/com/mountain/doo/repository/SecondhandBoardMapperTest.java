@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest

@@ -20,7 +20,7 @@ span[id] {
     padding: 5px 0 0 15px;
 }
 
-/* 로그인 상단부 */
+/* 회원가입 상단부 */
 .sign-up-header {
     padding: 30px 0;
     text-align: center;
@@ -42,7 +42,7 @@ span[id] {
     margin-bottom: 5px;
 }
 
-/* 로그인 중앙부 */
+/* 회원가입 중앙부 */
 .sign-up-body {
     padding: 50px 0;
     background-color: #ebebeb;
@@ -81,7 +81,7 @@ span[id] {
 }
 
 
-/* 로그인 하단부 */
+/* 회원가입 하단부 */
 .sign-up-btn {
     /* border: 1px solid #000; */
     padding: 30px 0;
