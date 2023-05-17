@@ -30,7 +30,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("아이디 비밀번호 받아 맞는 정보 있으면 true 아니면 false")
     void login(){
-        boolean a = mapper.login("admin", "admin");
+        boolean a = mapper.login("11", "11");
         assertTrue(a);
         System.out.println(a);
 
@@ -56,7 +56,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("아이디로 회원정보 전체 검색하기")
     void searchInfoById(){
-        AccountModifyDTO account = mapper.searchInfoById("12");
+        AccountModifyDTO account = mapper.searchInfoById("11");
         System.out.println("account = " + account);
 
 
@@ -70,7 +70,7 @@ class AccountMapperTest {
         build.setEmail("88");
         build.setPhoneNo("88");
         build.setAddress("88");
-        build.setAccountId("id");
+        build.setAccountId("33");
 
         boolean b = mapper.modifyInfo(build);
         System.out.println("b = " + b);
