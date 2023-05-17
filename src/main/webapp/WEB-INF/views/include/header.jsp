@@ -14,8 +14,8 @@
         <img src="/assets/jpg/logo(white).png" alt="" class="logo">
 
         <ul class="login-wrapper">
-            <li><a href="" class="signUp-btn">Sign up</a></li>
-            <li><a href="" class="signIn-btn">Sign in</a></li>
+            <li><a href="/account/sign-up" class="signUp-btn">Sign up</a></li>
+            <li><a href="/account/sign-up" class="signIn-btn">Sign in</a></li>
         </ul>
 
 

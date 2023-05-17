@@ -10,8 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="/assets/css/account-modify.css">
     <link rel="stylesheet" href="/assets/css/common.css">
-    <link rel="stylesheet" href="/assets/css/account-modify.css">
     <%@ include file="../include/static-head.jsp" %>
     <title>Mountain-Do</title>
 </head>
@@ -32,15 +32,11 @@
                         <ul>
                             <li>
                                 <div>아이디</div>
-                                <div>
-                                    <input type="text" name="account-id" id="account-id" class="form-control"
-                                        value="${a.accountId}" readonly>
-                    
-                                </div>
+                                    <span id="accound-id">"${a.account-id}"</span>
                             </li>
                             <li>
                                 <div>이름</div>
-                                <input type="text" name="name" id="user_name" class="form-control" value="${a.name}" readonly>              
+                                <span id="user_name">"${a.user-name}"</span>              
                             </li>
                             <li>
                                 <div>비밀번호</div>
