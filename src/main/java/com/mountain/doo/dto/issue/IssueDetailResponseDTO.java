@@ -18,6 +18,7 @@ public class IssueDetailResponseDTO {
     private final String content;
     private final String date;
     private final String writer;
+    private final int likeCount;
 
     public IssueDetailResponseDTO(Issue issue) {
         this.boardNo = issue.getIssueBoardNo();
@@ -25,5 +26,6 @@ public class IssueDetailResponseDTO {
         this.content = issue.getIssueContent();
         this.date = IssueListResponseDTO.makePrettierDateString(issue.getIssueRegDate());
         this.writer = issue.getAccountId();
+        this.likeCount = issue.getIssueLikeCount();
     }
 }

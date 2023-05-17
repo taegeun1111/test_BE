@@ -33,7 +33,7 @@ public class Review {
     private String accountId;
     private String reviewTitle;
     private String reviewContent;
-    private String reviewLikeCount;
+    private int reviewLikeCount;
     private long reviewViewCount;
     private LocalDateTime reviewRegDate;
     private LocalDateTime reviewModify;

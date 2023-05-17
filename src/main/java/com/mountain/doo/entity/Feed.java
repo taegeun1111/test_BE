@@ -34,7 +34,7 @@ public class Feed {
     private String accountId;
     private String feedTitle;
     private String feedContent;
-    private String feedLikeCount;
+    private int feedLikeCount;
     private long feedViewCount;
     private LocalDateTime feedRegDate;
     private LocalDateTime feedModify;

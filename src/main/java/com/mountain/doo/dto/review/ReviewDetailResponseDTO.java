@@ -18,12 +18,14 @@ public class ReviewDetailResponseDTO {
     private final String content;
     private final String date;
     private final String writer;
+    private final int likeCount;
 
     public ReviewDetailResponseDTO(Review review) {
         this.boardNo = review.getReviewBoardNo();
         this.title = review.getReviewTitle();
         this.content = review.getReviewContent();
         this.date = ReviewListResponseDTO.makePrettierDateString(review.getReviewRegDate());
-        this.writer = review.getReviewContent();
+        this.writer = review.getAccountId();
+        this.likeCount = review.getReviewLikeCount();
     }
 }

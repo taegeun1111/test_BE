@@ -21,6 +21,7 @@ public class FeedListResponseDTO {
     private final String date;
     private final long viewCount;
     private final String id;
+    private final int likeCount;
 
 
     public FeedListResponseDTO(Feed feed) {
@@ -30,6 +31,7 @@ public class FeedListResponseDTO {
         this.date = makePrettierDateString(feed.getFeedRegDate());
         this.viewCount = feed.getFeedViewCount();
         this.id = feed.getAccountId();
+        this.likeCount = feed.getFeedLikeCount();
     }
 
     static String makePrettierDateString(LocalDateTime regDateTime) {
