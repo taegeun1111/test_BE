@@ -21,7 +21,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("마이페이지 정보 조회")
     void mypage(){
-        String id="3";
+        String id="33";
         Account account = mapper.myInfo(id);
         System.out.println("account = " + account);
 
