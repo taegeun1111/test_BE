@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
 @AllArgsConstructor
 @ToString
@@ -16,21 +15,22 @@ public class Page {
 
     public Page() {
         this.pageNo = 1;
-        this.amount = 10;
+        this.amount = 6;
 
     }
 
     //사용자가 다른 번호 입력하면 page는 1로
     public void setPageNo(int pageNo) {
-        if (pageNo != this.pageNo) {
-            this.pageNo = 1;
-        }
+//        if (pageNo != this.pageNo) {
+//            this.pageNo = 1;
+//        }
+        this.pageNo = pageNo;
     }
 
     //사용자가 다른 번호 입력하면 amount 는 1로
     public void setAmount(int amount) {
         if (this.amount != amount) {
-            this.amount = 10;
+            this.amount = 6;
         }
     }
 
