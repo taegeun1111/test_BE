@@ -36,8 +36,12 @@ public class FeedService {
     }
 
     // 게시글 상세조회 처리
-    public FeedDetailResponseDTO getDetail(int boardNo){
-        Feed feed = feedRepository.findOne(boardNo);
+    public FeedDetailResponseDTO getDetail(int feedNo){
+        Feed feed = feedRepository.findOne(feedNo);
+
+        //조회수 상승 처리
+        feedRepository.upViewCount(feedNo);
+
         return new FeedDetailResponseDTO(feed);
     }
 
