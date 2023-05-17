@@ -27,7 +27,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("마이페이지 정보 조회")
     void mypage() {
-        String id = "33";
+        String id = "123";
         Account account = mapper.myInfo(id);
         System.out.println("account = " + account);
 
@@ -41,7 +41,7 @@ class AccountMapperTest {
     void save(){
         Account save = new Account();
         save.setAccountId("00");
-        save.setPassword(encoder.encode("123asd"));
+        save.setPassword(encoder.encode("ehddn1111"));
         save.setName("11");
         save.setGender(GENDER.M);
         save.setEmail("11");
@@ -56,7 +56,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("아이디로 회원정보 전체 검색하기")
     void searchInfoById(){
-        AccountModifyDTO account = mapper.searchInfoById("11");
+        AccountModifyDTO account = mapper.searchInfoById("123");
         System.out.println("account = " + account);
 
 
@@ -70,7 +70,7 @@ class AccountMapperTest {
         build.setEmail("88");
         build.setPhoneNo("88");
         build.setAddress("88");
-        build.setAccountId("33");
+        build.setAccountId("123");
 
         boolean b = mapper.modifyInfo(build);
         System.out.println("b = " + b);
@@ -84,7 +84,7 @@ class AccountMapperTest {
     void deleteInfo(){
 
 
-        String id="3";
+        String id="123";
         mapper.deleteInfo(id);
         List<Account> accounts = mapper.allAccount();
         for (Account account : accounts) {
@@ -98,9 +98,9 @@ class AccountMapperTest {
     @DisplayName("아이디와 이메일 중복이면 1, 아니면 0을 리턴한다")
     void isDuplicate(){
 
-        String keyword = "admin";
+        String keyword = "sss";
         int duplicate = mapper.isDuplicate("account_id", keyword);
-
+        System.out.println(duplicate);
 assertEquals(1,duplicate);
 
     }
