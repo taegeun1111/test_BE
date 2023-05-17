@@ -57,11 +57,11 @@ class AccountServiceTest {
     @DisplayName("해당 아이디로 회원정보를 찾고 dto 정보를 수정하여 db에 저장해야 한다")
     void modify(){
         AccountModifyDTO build = new AccountModifyDTO();
-        build.setPassword("3333");
-        build.setEmail("333");
-        build.setPhoneNo("33");
-        build.setAddress("33");
-        build.setAccountId("33");
+        build.setPassword("123");
+        build.setEmail("123");
+        build.setPhoneNo("123");
+        build.setAddress("123");
+        build.setAccountId("admin");
 
         boolean b = accountService.modify(build.getAccountId(), build);
         System.out.println("b = " + b);

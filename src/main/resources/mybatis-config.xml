@@ -31,6 +31,7 @@
         <mapper resource="mappers/ReviewMapper.xml"/>
         <mapper resource="mappers/SecondhandBoardMapper.xml"/>
         <mapper resource="mappers/AccountMapper.xml"/>
+        <mapper resource="mappers/StampMapper.xml"/>
     </mappers>
 
 
