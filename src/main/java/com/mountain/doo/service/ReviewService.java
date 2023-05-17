@@ -34,8 +34,13 @@ public class ReviewService {
     }
 
     // 게시글 상세조회 처리
-    public ReviewDetailResponseDTO getDetail(int boardNo){
-        Review review = reviewRepository.findOne(boardNo);
+    public ReviewDetailResponseDTO getDetail(int reviewNo){
+        Review review = reviewRepository.findOne(reviewNo);
+
+        //조회수 상승 처리
+        reviewRepository.upViewCount(reviewNo);
+
+
         return new ReviewDetailResponseDTO(review);
     }
 

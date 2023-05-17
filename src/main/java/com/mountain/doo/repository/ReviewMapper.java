@@ -33,4 +33,7 @@ public interface ReviewMapper {
 
     // 게시물 세기
     int reviewCount(Search search);
+
+    // 조회수 상승
+    void upViewCount(int reviewBoardNo);
 }
