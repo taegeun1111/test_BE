@@ -3,8 +3,7 @@ package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
-import com.mountain.doo.dto.page.ClubSearch;
-
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
 import com.mountain.doo.repository.IssueMapper;
 import com.mountain.doo.service.IssueService;
@@ -37,7 +36,7 @@ public class IssueController {
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int boardNo, @ModelAttribute("s") ClubSearch clubSearch, Model model){
+    public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
         log.info("issue detail GET");
         model.addAttribute("issue", issueService.getDetail(boardNo));
         return "";
@@ -58,7 +57,7 @@ public class IssueController {
 
     // 수정 요청
     @GetMapping("/modify")
-    public String modify(IssueRewriteRequestDTO dto, @ModelAttribute("s") ClubSearch clubSearch, Model model){
+    public String modify(IssueRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
         Issue issue = issueMapper.findOne(dto.getBoardNo());
         model.addAttribute("bno",issue.getIssueBoardNo());
         model.addAttribute("title", issue.getIssueTitle());

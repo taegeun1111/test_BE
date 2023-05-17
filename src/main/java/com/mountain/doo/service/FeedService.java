@@ -6,6 +6,8 @@ import com.mountain.doo.dto.feed.FeedListResponseDTO;
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
 import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Page;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Feed;
 import com.mountain.doo.repository.FeedMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +28,7 @@ public class FeedService {
 
 
     // 게시글 전체목록 처리
-    public List<FeedListResponseDTO> getList(ClubSearch page){
+    public List<FeedListResponseDTO> getList(Search page){
         return feedRepository.findAll(page)
                 .stream()
                 .map(FeedListResponseDTO::new)
@@ -56,9 +58,8 @@ public class FeedService {
     }
 
     //페이징 처리 위한 count 처리
-
-    public int getCount(ClubSearch clubSearch) {
-        return feedRepository.feedCount(clubSearch);
+    public int getCount(Search search) {
+        return feedRepository.feedCount(search);
     }
 
 }

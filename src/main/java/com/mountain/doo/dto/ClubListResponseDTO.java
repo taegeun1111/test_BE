@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Setter @RequiredArgsConstructor
+@Getter
 public class ClubListResponseDTO {
     private final int clubBoardNo; //글번호
     private final String clubTitle; //제목
@@ -20,6 +21,7 @@ public class ClubListResponseDTO {
     private final String clubArea; //모임 장소
     private final LocalDateTime clubRecruitDeadline; //마감 일자
     private  final String clubRecruitType; //모임 종류(정기모임인지 소모임인지)
+    private int clubRecruitCount; //모집 인원
 
     public ClubListResponseDTO(Club club){
         this.clubBoardNo = club.getClubBoardNo();
@@ -29,6 +31,7 @@ public class ClubListResponseDTO {
         this.clubArea = club.getClubArea();
         this.clubRecruitDeadline=club.getClubRecruitDeadline();
         this.clubRecruitType=club.getClubRecruitType();
+        this.clubRecruitCount=club.getClubRecruitCount();
     }
 
     static String makePrettierDateString(LocalDateTime regDateTime) {

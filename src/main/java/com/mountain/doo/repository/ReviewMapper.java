@@ -1,7 +1,7 @@
 package com.mountain.doo.repository;
 
 
-import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Review;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,10 +15,10 @@ public interface ReviewMapper {
     // CRUD 기능을 명시
 
     // 전체 게시글 조회
-    List<Review> findAll(ClubSearch page);
+    List<Review> findAll(Search page);
 
     // 게시글 상세 조회
-    Review findOne(long issueBoardNo);
+    Review findOne(long reviewBoardNo);
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가
@@ -32,5 +32,5 @@ public interface ReviewMapper {
     boolean deleteReview(long reviewBoardNo); // 게시물 번호로 찾아서 삭제
 
     // 게시물 세기
-    int reviewCount(ClubSearch clubSearch);
+    int reviewCount(Search search);
 }
