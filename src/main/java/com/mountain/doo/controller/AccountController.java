@@ -25,9 +25,7 @@ public class AccountController {
     //회원가입페이지
     @GetMapping("/sign-up")
     public String signUp(){
-        System.out.println();
-        System.out.println();
-        System.out.println();
+
         System.out.println("sing-up get mapping");
         log.info("회원가입페이지");
         return "account/sign-up";
@@ -38,9 +36,9 @@ public class AccountController {
         log.info("가입처리요청");
         boolean save = accountService.save(account);
         if(save) {
-            return "redirect:/login";  //로그인페이지
+            return "account/login";  //로그인페이지
         }
-        return "/sign-up"; // 회원가입페이지
+        return "account/sign-up"; // 회원가입페이지
     }
 
     @GetMapping("/modify")
@@ -68,14 +66,14 @@ public class AccountController {
 
         model.addAttribute("mypage",account);
 
-        return "/mypage";
+        return "account/mypage";
     }
 
 
     @GetMapping("/login")
     public String login(){
 
-        return "/login";
+        return "account/login";
     }
 
 
@@ -86,7 +84,7 @@ public class AccountController {
         if(login){
             return "redirect:/main"; //로그인되면 메인페이지
         }else {
-            return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
+            return "account/login"; //로그인 안되면 로그인 페이지 다시
         }
     }
 

@@ -27,7 +27,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("마이페이지 정보 조회")
     void mypage() {
-        String id = "123";
+        String id = "11";
         Account account = mapper.myInfo(id);
         System.out.println("account = " + account);
 
@@ -40,13 +40,13 @@ class AccountMapperTest {
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("00");
-        save.setPassword(encoder.encode("ehddn1111"));
-        save.setName("11");
+        save.setAccountId("33");
+        save.setPassword(encoder.encode("3123"));
+        save.setName("33");
         save.setGender(GENDER.M);
-        save.setEmail("11");
-        save.setPhoneNo("00");
-        save.setAddress("88");
+        save.setEmail("44");
+        save.setPhoneNo("55");
+        save.setAddress("55");
 
         boolean isSaved = mapper.save(save);
         assertTrue(isSaved);
@@ -66,11 +66,11 @@ class AccountMapperTest {
     @DisplayName("해당 아이디로 회원정보를 찾고 dto 정보를 수정하여 db에 저장해야 한다")
     void modify(){
        AccountModifyDTO build = new AccountModifyDTO();
-        build.setPassword("88");
-        build.setEmail("88");
-        build.setPhoneNo("88");
-        build.setAddress("88");
-        build.setAccountId("123");
+        build.setPassword(encoder.encode("1"));
+        build.setEmail("2123123");
+        build.setPhoneNo("123123");
+        build.setAddress("1231231");
+        build.setAccountId("11");
 
         boolean b = mapper.modifyInfo(build);
         System.out.println("b = " + b);
@@ -98,10 +98,9 @@ class AccountMapperTest {
     @DisplayName("아이디와 이메일 중복이면 1, 아니면 0을 리턴한다")
     void isDuplicate(){
 
-        String keyword = "sss";
-        int duplicate = mapper.isDuplicate("account_id", keyword);
-        System.out.println(duplicate);
-assertEquals(1,duplicate);
+
+        int duplicate = mapper.isDuplicate("account_id", "00");
+        assertEquals(1,duplicate);
 
     }
 
