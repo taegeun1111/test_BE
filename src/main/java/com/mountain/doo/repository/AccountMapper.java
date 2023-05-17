@@ -4,8 +4,13 @@ import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface AccountMapper {
+    List<Account> allAccount();
+
+    boolean login(String accountId, String password);
 
     boolean save(Account account);
 
@@ -18,5 +23,9 @@ public interface AccountMapper {
     boolean deleteInfo(String accountId);
 
 
+    Account myInfo(String accountId);
+
+    //아이디 중복검사
+    int isDuplicate(String type, String keyword);
 
 }

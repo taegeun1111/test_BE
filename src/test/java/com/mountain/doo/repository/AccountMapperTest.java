@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -17,16 +19,34 @@ class AccountMapperTest {
     AccountMapper mapper;
 
     @Test
+    @DisplayName("마이페이지 정보 조회")
+    void mypage(){
+        String id="33";
+        Account account = mapper.myInfo(id);
+        System.out.println("account = " + account);
+
+    }
+
+    @Test
+    @DisplayName("아이디 비밀번호 받아 맞는 정보 있으면 true 아니면 false")
+    void login(){
+        boolean a = mapper.login("11", "11");
+        assertTrue(a);
+        System.out.println(a);
+
+    }
+
+    @Test
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("3");
-        save.setPassword("4");
-        save.setName("5");
+        save.setAccountId("88");
+        save.setPassword("8");
+        save.setName("8");
         save.setGender(GENDER.M);
-        save.setEmail("5");
-        save.setPhoneNo("5");
-        save.setAddress("5");
+        save.setEmail("88");
+        save.setPhoneNo("88");
+        save.setAddress("88");
 
         boolean isSaved = mapper.save(save);
         assertTrue(isSaved);
@@ -36,7 +56,7 @@ class AccountMapperTest {
     @Test
     @DisplayName("아이디로 회원정보 전체 검색하기")
     void searchInfoById(){
-        AccountModifyDTO account = mapper.searchInfoById("id");
+        AccountModifyDTO account = mapper.searchInfoById("11");
         System.out.println("account = " + account);
 
 
@@ -46,11 +66,11 @@ class AccountMapperTest {
     @DisplayName("해당 아이디로 회원정보를 찾고 dto 정보를 수정하여 db에 저장해야 한다")
     void modify(){
        AccountModifyDTO build = new AccountModifyDTO();
-        build.setPassword("444");
-        build.setEmail("44");
-        build.setPhoneNo("44");
-        build.setAddress("444444444");
-        build.setAccountId("id");
+        build.setPassword("88");
+        build.setEmail("88");
+        build.setPhoneNo("88");
+        build.setAddress("88");
+        build.setAccountId("33");
 
         boolean b = mapper.modifyInfo(build);
         System.out.println("b = " + b);
@@ -58,5 +78,32 @@ class AccountMapperTest {
 
 
     }
+
+    @Test
+    @DisplayName("해당 아이디 정보 삭제, db에서 하나의 정보가 삭제되어야 한다")
+    void deleteInfo(){
+
+
+        String id="3";
+        mapper.deleteInfo(id);
+        List<Account> accounts = mapper.allAccount();
+        for (Account account : accounts) {
+            System.out.println("accounts = " + account.getAccountId());
+
+        }
+
+    }
+
+    @Test
+    @DisplayName("아이디와 이메일 중복이면 1, 아니면 0을 리턴한다")
+    void isDuplicate(){
+
+        String keyword = "admin";
+        int duplicate = mapper.isDuplicate("account_id", keyword);
+
+assertEquals(1,duplicate);
+
+    }
+
 
 }

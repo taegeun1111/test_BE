@@ -35,9 +35,17 @@ public class SecondhandBoardController {
     public String getList(Model model, Search search, HttpServletRequest request){
 
 
+        boolean flag=false;
+        request.getSession().getAttribute("login");
+
+//        if(login!=null) flag=true;
+
+        if (!flag) return "redirect:/club/sign-in";
+
+
         List<SecondhandBoardListDTO> list = sc.findAll(search);
 
-        //페이징 아록리즘 작동
+        //페이징 알고리즘 작동
         PageMaker maker = new PageMaker(search,sc.count(search));
 
         model.addAttribute("shblist",list);

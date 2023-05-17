@@ -16,6 +16,9 @@
          <typeAlias alias="feed" type="com.mountain.doo.entity.Feed" />
          <typeAlias alias="issue" type="com.mountain.doo.entity.Issue" />
          <typeAlias alias="review" type="com.mountain.doo.entity.Review" />
+        <typeAlias alias="Account" type="com.mountain.doo.entity.Account" />
+        <typeAlias alias="SecondhandBoard" type="com.mountain.doo.entity.SecondhandBoard" />
+        <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
     </typeAliases>
 
     <mappers>
@@ -26,6 +29,8 @@
         <mapper resource="mappers/FeedMapper.xml"/>
         <mapper resource="mappers/IssueMapper.xml"/>
         <mapper resource="mappers/ReviewMapper.xml"/>
+        <mapper resource="mappers/SecondhandBoardMapper.xml"/>
+        <mapper resource="mappers/AccountMapper.xml"/>
     </mappers>
 
 
