@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="modify-body">
-                    <form action="/account/sign-in" name="accountModify" id="accountModifyForm" method="post">
+                    <form action="/account/modify" name="accountModify" id="accountModifyForm" method="post">
                         <ul>
                             <li>
                                 <div>아이디</div>
