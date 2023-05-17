@@ -1,7 +1,7 @@
 package com.mountain.doo.service;
 
 
-import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
 import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
@@ -26,7 +26,7 @@ public class ReviewService {
 
 
     // 게시글 전체목록 처리
-    public List<ReviewListResponseDTO> getList(ClubSearch page){
+    public List<ReviewListResponseDTO> getList(Search page){
         return reviewRepository.findAll(page)
                 .stream()
                 .map(ReviewListResponseDTO::new)
@@ -55,5 +55,9 @@ public class ReviewService {
         return reviewRepository.modifyReview(new Review(dto));
     }
 
-    //
+    //페이징 처리 위한 count 처리
+    public int getCount(Search search) {
+        return reviewRepository.reviewCount(search);
+    }
+
 }
