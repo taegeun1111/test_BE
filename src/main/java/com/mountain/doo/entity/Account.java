@@ -24,5 +24,4 @@ public class Account {
     private String address;
     private LocalDateTime limitTime;
 
-
 }

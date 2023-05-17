@@ -24,6 +24,7 @@
         SELECT account_id, password, name, gender, email, phone_no, address
         FROM account
         WHERE account_id = #{accountId} and password = #{password}
+
     </select>
 
 

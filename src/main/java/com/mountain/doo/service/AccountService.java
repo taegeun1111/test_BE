@@ -2,18 +2,12 @@ package com.mountain.doo.service;
 
 
 import com.mountain.doo.dto.AccountModifyDTO;
-import com.mountain.doo.dto.AccountResponseDTOMinjung;
-import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.repository.AccountMapper;
-import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 import java.util.List;
 
 @Service
@@ -26,14 +20,42 @@ public class AccountService {
         return mapper.allAccount();
     }
 
-    public boolean login(
-            String accountId, String password){
+    public boolean login(LoginRequestDTO dto){
+        LoginBoolean loginBoolean = loginBoolean(dto);
 
-        return mapper.login(accountId,password);
+
+        if (loginBoolean.equals(SUCCESS)) {
+            log.info("로그인 성공");
+            return true;
+        }else if(loginBoolean.equals(FALSE_PW)){
+            log.info("비밀번호 틀림");
+            return false;
+        }else{
+            log.info("회원가입요망");
+            return false;
+        }
+    }
+
+    //계정확인여부
+    public LoginBoolean loginBoolean(LoginRequestDTO dto){
+        Account account = mapper.myInfo(dto.getAccount()); //아이디로 계정찾기
+
+        //비밀번호 확인
+        boolean matches = encoder.matches(dto.getPassword(), account.getPassword());
+
+        if(account==null) {
+            return NOT_FOUND;
+        }else if(!matches){
+            return FALSE_PW;
+        }else {
+            return SUCCESS;
+        }
     }
 
     public boolean save(Account account) {
-       return mapper.save(account);
+                account.setPassword(encoder.encode(account.getPassword()));
+
+        return mapper.save(account);
     }
 
 

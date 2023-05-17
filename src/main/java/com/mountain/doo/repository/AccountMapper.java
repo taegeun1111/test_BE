@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +11,6 @@ import java.util.List;
 public interface AccountMapper {
     List<Account> allAccount();
 
-    boolean login(String accountId, String password);
 
     boolean save(Account account);
 
