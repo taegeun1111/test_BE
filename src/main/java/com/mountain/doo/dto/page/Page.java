@@ -21,11 +21,11 @@ public class Page {
     }
 
     //사용자가 다른 번호 입력하면 page는 1로
-    public void setPageNo(int pageNo) {
-        if (pageNo != this.pageNo) {
-            this.pageNo = 1;
-        }
-    }
+//    public void setPageNo(int pageNo) {
+//        if (pageNo != this.pageNo) {
+//            this.pageNo = 1;
+//        }
+//    }
 
     //사용자가 다른 번호 입력하면 amount 는 1로
     public void setAmount(int amount) {

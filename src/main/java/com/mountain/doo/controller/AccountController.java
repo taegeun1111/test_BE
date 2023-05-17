@@ -16,17 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/account")
+@RequestMapping("/test")
 @Slf4j
 public class AccountController {
 
     private final AccountService accountService;
 
     //회원가입페이지
-    @GetMapping("/sign-up")
+    @GetMapping("/signUp")
     public String signUp(){
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("sing-up get mapping");
         log.info("회원가입페이지");
-        return "/sign-up";
+        return "index";
     }
 
     @PostMapping("/sign-up")
