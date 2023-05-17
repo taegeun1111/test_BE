@@ -2,7 +2,9 @@ package com.mountain.doo.controller;
 
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
+import com.mountain.doo.entity.LoginBoolean;
 import com.mountain.doo.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +26,7 @@ public class AccountController {
     @GetMapping("/sign-up")
     public String signUp(){
         log.info("회원가입페이지");
-        return "account/sign-up";
+        return "/sign-up";
     }
 
     @PostMapping("/sign-up")
@@ -74,14 +76,14 @@ public class AccountController {
 
 
     @PostMapping("/login")
-    public String login(String accountId, String password){
-        boolean login = accountService.login(accountId, password);
+    public String login(LoginRequestDTO dto){
+        boolean login = accountService.login(dto);
 
         if(login){
             return "redirect:/main"; //로그인되면 메인페이지
+        }else {
+            return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
         }
-        return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
-
     }
 
 }
