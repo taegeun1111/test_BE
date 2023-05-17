@@ -43,7 +43,7 @@
         <!-- 작성글 영역 -->
         <section class="board-wrapper">
 
-            
+
             <c:forEach var="is" items="${issueList}">
                 <!-- 공지글 영역 -->
                 <c:if test="${is.id == admin}">
@@ -76,22 +76,79 @@
         </section>
     </div>
 
-    <section class="pagination-container">
-        <div class="prev-btn"><img src="jpg/less.png" alt="" class="less-icon"> 이전</div>
-        <ul class="pagination-wrapper">
-            <li class="pagination button-active"><a href="">1</a></li>
-            <li class="pagination"><a href="">2</a></li>
-            <li class="pagination"><a href="">3</a></li>
-            <li class="pagination"><a href="">4</a></li>
-            <li class="pagination"><a href="">5</a></li>
-            <li class="pagination"><a href="">6</a></li>
-            <li class="pagination"><a href="">7</a></li>
-            <li class="pagination"><a href="">8</a></li>
-            <li class="pagination"><a href="">9</a></li>
-            <li class="pagination"><a href="">10</a></li>
+    <!-- 페이지 버튼 영역 -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-lg pagination-custom">
+
+
+            <c:if test="${maker.page.pageNo != 1}">
+                <li class="page-item"><a class="page-link"
+                        href="/board/list?pageNo=1&clubRecruitType=${s.clubRecruitType}">&lt;&lt;</a></li>
+            </c:if>
+
+            <c:if test="${maker.prev}">
+                <li class="page-item"><a class="page-link"
+                        href="/board/list?pageNo=${maker.begin - 1}&clubRecruitType=${s.clubRecruitType}">prev</a></li>
+            </c:if>
+
+            <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
+                <li data-page-num="${i}" class="page-item">
+                    <a class="page-link" href="/board/list?pageNo=${i}&clubRecruitType=${s.clubRecruitType}">${i}</a>
+                </li>
+            </c:forEach>
+
+
+            <c:if test="${maker.next}">
+                <li class="page-item"><a class="page-link"
+                        href="/board/list?pageNo=${maker.end + 1}&clubRecruitType=${s.clubRecruitType}">next</a></li>
+            </c:if>
+
+            <c:if test="${maker.page.pageNo != maker.finalPage}">
+                <li class="page-item"><a class="page-link"
+                        href="/board/list?pageNo=${maker.finalPage}&clubRecruitType=${s.clubRecruitType}">&gt;&gt;</a>
+                </li>
+            </c:if>
         </ul>
-        <div class="next-btn">다음<img src="jpg/than.png" alt="" class="than-icon"></div>
-    </section>
+    </nav>
+
+
+    <script>
+        //현재 위치한 페이지에 active 스타일 부여하기
+        function appendPageActive() {
+
+            // 현재 내가 보고 있는 페이지 넘버
+            const curPageNum = '${maker.page.pageNo}';
+            console.log("현재페이지: ", curPageNum);
+
+            // 페이지 li태그들을 전부 확인해서 
+            // 현재 위치한 페이지 넘버와 텍스트컨텐츠가 일치하는
+            // li를 찾아서 class active 부여
+            const $ul = document.querySelector('.pagination');
+
+            for (let $li of [...$ul.children]) {
+                if (curPageNum === $li.dataset.pageNum) {
+                    $li.classList.add('active');
+                    break;
+                }
+            }
+
+        }
+
+        // // 셀렉트옵션 검색타입 태그 고정
+        // function fixSearchOption() {
+        //     const $select = document.getElementById('search-type');
+
+        //     for (let $opt of [...$select.children]) {
+        //         if ($opt.value === '${s.type}') {
+        //             $opt.setAttribute('selected', 'selected');
+        //             break;
+        //         }
+        //     }
+        // }
+
+        appendPageActive();
+        // fixSearchOption();
+    </script>
 </body>
 
 </html>
