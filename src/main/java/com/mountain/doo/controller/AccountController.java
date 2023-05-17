@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/account")
@@ -74,10 +77,14 @@ public class AccountController {
 
 
     @PostMapping("/login")
-    public String login(String accountId, String password){
+    public String login(String accountId, String password,
+                        HttpServletResponse response,
+                        HttpServletRequest request){
         boolean login = accountService.login(accountId, password);
 
         if(login){
+            //service에 세션 보냄
+            accountService.maintainAccountState(request.getSession(),accountId);
             return "redirect:/main"; //로그인되면 메인페이지
         }
         return "redirect:/login"; //로그인 안되면 로그인 페이지 다시

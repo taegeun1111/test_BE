@@ -4,6 +4,8 @@ import com.mountain.doo.dto.AccountModifyDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @ToString
@@ -20,6 +22,7 @@ public class Account {
     private String email;
     private String phoneNo;
     private String address;
+    private LocalDateTime limitTime;
 
 
 }
