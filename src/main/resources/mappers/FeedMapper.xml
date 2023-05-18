@@ -7,7 +7,21 @@
 
 
     <select id="findAll" resultType="feed">
-        SELECT * FROM feed
+        SELECT
+        feed_board_no, account_id, feed_title, feed_content, feed_like_count, feed_view_count, feed_reg_date, feed_modify
+        FROM feed
+        <if test="type == 'title'">
+            WHERE feed_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE feed_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE feed_title LIKE CONCAT('%', #{keyword}, '%')
+            OR feed_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        ORDER BY feed_board_no DESC
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <insert id="save">
@@ -34,4 +48,24 @@
         where feed_board_no = #{feedBoardNo};
     </update>
 
+    <update id="upViewCount">
+        UPDATE feed
+        SET feed_view_count = feed_view_count + 1
+        WHERE feed_board_no = #{feedBoardNo};
+    </update>
+
+    <select id = "feedCount" resultType="int">
+        SELECT COUNT(*)
+        FROM feed
+        <if test="type == 'title'">
+            WHERE feed_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE feed_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE feed_title LIKE CONCAT('%', #{keyword}, '%')
+            OR feed_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
 </mapper>

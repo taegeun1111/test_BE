@@ -1,7 +1,9 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
 import com.mountain.doo.dto.review.ReviewWriteRequestDTO;
 import com.mountain.doo.entity.Review;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -29,9 +33,19 @@ public class ReviewController {
     // ==Review==
     // 전체 게시글 조회
     @GetMapping("/list")
-    public String list(Review review){
+    public String list(Search page, Model model){
         log.info("review list GET");
-        log.info(review.getReviewTitle());
+//        log.info(review.getReviewTitle());
+        List<ReviewListResponseDTO> responseDTO = reviewService.getList(page);
+
+        PageMaker maker = new PageMaker(page, reviewService.getCount(page));
+
+        // 페이징 알고리즘 작동
+        model.addAttribute("reviewList", responseDTO);
+        model.addAttribute("reviewMaker", maker);
+        model.addAttribute("r", page);
+
+
         return "";
     };
     // 게시글 상세 조회

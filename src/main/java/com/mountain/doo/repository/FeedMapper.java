@@ -33,4 +33,7 @@ public interface FeedMapper {
 
     // 게시물 세기
     int feedCount(Search search);
+
+    // 조회수 상승
+    void upViewCount(int feedBoardNo);
 }
