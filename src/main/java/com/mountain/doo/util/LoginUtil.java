@@ -18,4 +18,7 @@ public class LoginUtil {
 //
 //    }
 
+    //자동로그인 쿠키 이름
+    public static final String AUTO_LOGIN_COOKIE="auto";
+
 }

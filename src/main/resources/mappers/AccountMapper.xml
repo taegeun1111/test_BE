@@ -24,7 +24,6 @@
         SELECT account_id, password, name, gender, email, phone_no, address
         FROM account
         WHERE account_id = #{accountId} and password = #{password}
-
     </select>
 
 
@@ -66,6 +65,17 @@
             WHERE email = #{keyword}
         </if>
     </select>
+
+    <update id="saveAutoLogin">
+        UPDATE account
+        SET session_id = #{sessionId},limit_time=#{limitTime}
+        WHERE account_id=#{accountId}
+    </update>
+
+    <select id="findMemberByCookie" >
+    
+    </select>
+
 
 
 </mapper>
