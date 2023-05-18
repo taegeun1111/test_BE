@@ -62,5 +62,9 @@ public class SecondhandBoardService {
         return repository.modifySecondhand(new SecondhandBoard(dto));
     }
 
+    //게시물 삭제
+    public boolean delete(int boardNo){
+        return repository.deleteSecondhand(boardNo);
+    }
 
 }

@@ -27,4 +27,11 @@ public interface SecondhandBoardMapper {
 
     //게시판 전체수 조회
     int count(Search search);
+
+    // 게시물 수정
+    // 수정이 됐는가 안 됐는가
+    boolean modifySecondhand(SecondhandBoard secondhandBoard);
+
+    //삭제
+    boolean deleteSecondhand(int secondhandBoardNo);
 }
