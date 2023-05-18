@@ -5,11 +5,6 @@
 <header class="header-container">
     <div class="header-wrapper">
         <ul class="category-wrapper">
-            <li><a href="" class="">추천 정보</a></li>
-            <li><a href="" class="">커뮤니티</a></li>
-            <li><a href="/club/list" class="">모임</a></li>
-            <li><a href="" class="">중고거래</a></li>
-            <li><a href="" class="">스탬프</a></li>
             <li><a href="/account/offer-main" class="category-offer">추천 정보</a></li>
             <li><a href="" class="category-community">커뮤니티</a></li>
             <li><a href="/club/list" class="category-club">모임</a></li>

@@ -59,7 +59,7 @@ public class ClubController {
     @GetMapping("/write")
     public String write() {
         System.out.println("/club/write : GET");
-        return "club/write";
+        return "club/clubWrite";
     }
 
     // 글 등록 요청 처리
@@ -67,6 +67,7 @@ public class ClubController {
     public String write(ClubWriteRequestDTO dto) {
         System.out.println("/club/write : POST");
         clubService.register(dto);
+        log.info("dto의 값 : {}",dto);
         return "redirect:/club/clubList";
     }
 

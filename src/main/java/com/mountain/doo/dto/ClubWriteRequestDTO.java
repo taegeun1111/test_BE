@@ -1,6 +1,7 @@
 package com.mountain.doo.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ public class ClubWriteRequestDTO {
     private String clubTitle;
     private String clubContent;
     private String clubArea; //모임 장소
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime clubRecruitDeadline; //마감 일자
     private String clubRecruitType; //모임 종류(정기모임인지 소모임인지)
     private int clubRecruitCount; //모집 인원
