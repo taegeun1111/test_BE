@@ -2,7 +2,6 @@ package com.mountain.doo.controller;
 
 
 import com.mountain.doo.dto.AccountModifyDTO;
-import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -83,5 +82,3 @@ public class AccountController {
         return "/mypage";
     }
 
-
-}

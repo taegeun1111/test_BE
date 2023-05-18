@@ -2,6 +2,8 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Page;
+import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.entity.Club;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,19 @@ class ClubMapperTest {
 //        assertEquals(5,replyList.size());
 //        assertEquals("이민정",replyList.get(0).getAccountId());
     }
-    
+
+
+    @Test
+    void pageTest(){
+        Page page = new Page();
+        page.setPageNo(27);
+        page.setAmount(10);
+
+        PageMaker maker = new PageMaker(page, 284);
+        System.out.println("maker = " + maker);
+
+    }
+
     @Test
     //게시물 상세 조회
     public void findOneTest(){
@@ -77,7 +91,8 @@ class ClubMapperTest {
 
     @Test
     public void countTest(){
-        int listCount = mapper.count();
+        ClubSearch search = new ClubSearch();
+        int listCount = mapper.count(search);
         System.out.println("전체 개수 : "+listCount);
     }
 
