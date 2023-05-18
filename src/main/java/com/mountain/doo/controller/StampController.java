@@ -14,4 +14,5 @@ public class StampController {
 
     private final StampService stampService;
 
+
 }

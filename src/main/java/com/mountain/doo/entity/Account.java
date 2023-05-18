@@ -21,7 +21,6 @@ public class Account {
     private GENDER gender;
     private String email;
     private String phoneNo;
-    private String address;
     private LocalDateTime limitTime;
 
 }
