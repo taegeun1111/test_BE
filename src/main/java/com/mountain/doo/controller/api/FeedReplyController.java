@@ -1,4 +1,4 @@
-package com.mountain.doo.controller;
+package com.mountain.doo.controller.api;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
