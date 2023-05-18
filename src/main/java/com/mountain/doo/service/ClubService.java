@@ -61,7 +61,7 @@ public class ClubService {
     //조회수 중간 처리
     public int getCount(ClubSearch clubSearch) {
 //        return clubRepository.count(search);
-        return clubRepository.count();
+        return clubRepository.count(clubSearch);
     }
 
 }

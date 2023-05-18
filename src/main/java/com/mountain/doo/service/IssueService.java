@@ -34,8 +34,12 @@ public class IssueService {
     }
 
     // 게시글 상세조회 처리
-    public IssueDetailResponseDTO getDetail(int boardNo){
-        Issue issue = issueRepository.findOne(boardNo);
+    public IssueDetailResponseDTO getDetail(int issueNo){
+        Issue issue = issueRepository.findOne(issueNo);
+
+        //조회수 상승 처리
+        issueRepository.upViewCount(issueNo);
+
         return new IssueDetailResponseDTO(issue);
     }
 

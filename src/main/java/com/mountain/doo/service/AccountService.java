@@ -99,9 +99,10 @@ public class AccountService {
 
     public boolean modify(String accountId,AccountModifyDTO dto){
         AccountModifyDTO account = mapper.searchInfoById(accountId);
-         account.changeAccount(dto);
-         account.setAccountId(accountId);
-       return mapper.modifyInfo(account);
+        AccountModifyDTO accountModifyDTO = account.changeAccount(dto);
+        accountModifyDTO.setPassword(encoder.encode(dto.getPassword()));
+        accountModifyDTO.setAccountId(accountId);
+       return mapper.modifyInfo(accountModifyDTO);
 
 
     }

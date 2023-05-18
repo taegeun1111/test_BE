@@ -22,7 +22,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(boardInterceptor)
                 .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
                 .addPathPatterns("/mypage/*")
-                .excludePathPatterns("/board리스트", "/board상세보기");     //실행하지 않을 경로
+                .excludePathPatterns("/board리스트");     //실행하지 않을 경로
 
 
         //로그인 하면 로그인과 회원가입 페이지 유입 불가

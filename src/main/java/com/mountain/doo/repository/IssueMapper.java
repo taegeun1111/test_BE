@@ -33,4 +33,7 @@ public interface IssueMapper {
 
     // 게시물 세기
     int issueCount(Search Search);
+
+    // 조회수 상승
+    void upViewCount(int issueBoardNo);
 }

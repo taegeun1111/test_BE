@@ -1,9 +1,11 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.feed.FeedListResponseDTO;
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.entity.Feed;
 import com.mountain.doo.repository.FeedMapper;
 import com.mountain.doo.service.FeedService;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -29,9 +33,18 @@ public class FeedController {
     // ==Feed==
     // 전체 게시글 조회
     @GetMapping("/list")
-    public String list(Feed feed){
+    public String list(Search page, Model model){
         log.info("feed list GET");
-        log.info(feed.getFeedTitle());
+//        log.info(feed.getFeedTitle());
+        List<FeedListResponseDTO> responseDTO = feedService.getList(page);
+
+        PageMaker maker = new PageMaker(page, feedService.getCount(page));
+
+        // 페이징 알고리즘 작동
+        model.addAttribute("feedList", responseDTO);
+        model.addAttribute("feedMaker", maker);
+        model.addAttribute("f", page);
+
         return "";
     };
     // 게시글 상세 조회

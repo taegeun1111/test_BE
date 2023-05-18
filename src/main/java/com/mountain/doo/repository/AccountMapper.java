@@ -5,6 +5,7 @@ import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface AccountMapper {
     Account myInfo(String accountId);
 
     //아이디 중복검사
-    int isDuplicate(String type, String keyword);
+    int isDuplicate(@Param("type") String type,@Param("keyword") String keyword);
 
     void saveAutoLogin(AutoLoginDTO build);
 

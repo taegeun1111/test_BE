@@ -7,7 +7,21 @@
 
 
     <select id="findAll" resultType="review">
-        SELECT * FROM review
+        SELECT
+        review_board_no, account_id, review_title, review_content, review_like_count, review_view_count, review_reg_date, review_modify
+        FROM review
+        <if test="type == 'title'">
+            WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE review_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+            OR review_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        ORDER BY review_board_no DESC
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <insert id="save">

@@ -1,8 +1,10 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.issue.IssueListResponseDTO;
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
+import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
 import com.mountain.doo.repository.IssueMapper;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -29,9 +33,18 @@ public class IssueController {
     // ==Issue==
     // 전체 게시글 조회
     @GetMapping("/list")
-    public String list(Issue issue){
+    public String list(Search page, Model model){
         log.info("issue list GET");
-        log.info(issue.getIssueTitle());
+//        log.info(issue.getIssueTitle());
+        List<IssueListResponseDTO> responseDTO = issueService.getList(page);
+
+        PageMaker maker = new PageMaker(page, issueService.getCount(page));
+
+        // 페이징 알고리즘 작동
+        model.addAttribute("issueList", responseDTO);
+        model.addAttribute("issueMaker", maker);
+        model.addAttribute("i", page);
+
         return "";
     };
     // 게시글 상세 조회
