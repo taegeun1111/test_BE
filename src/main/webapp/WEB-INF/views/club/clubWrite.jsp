@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <%@ include file="../include/static-head.jsp" %>
-    <link rel="stylesheet" href="/assets/css/write-issue.css">
+    <link rel="stylesheet" href="/assets/css/clubWrite.css">
 </head>
 
-<body>
+<body id="body-color">
     <%@ include file="../include/header.jsp" %>
 
     <form action="/club/write" method="post">
@@ -51,7 +51,7 @@
 
                     <div class="button-wrapper">
                         <button class="submit-btn">작성하기</button>
-                        <button class="close-btn">취소하기</button>
+                        <a href="/club/list" class="close-btn">취소하기</a>
                     </div>
                 </div>
 

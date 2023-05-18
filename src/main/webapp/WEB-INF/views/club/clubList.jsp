@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <%@ include file="../include/static-head.jsp" %>
-    <link rel="stylesheet" href="/assets/css/club-list.css">
+    <link rel="stylesheet" href="/assets/css/clubList.css">
 </head>
 
 <body>
@@ -26,7 +26,8 @@
                             <option value="소모임">소모임</option>
                         </select>
                     </div>
-                    <button class="write-btn">글쓰기</button>
+                    <a href="/club/write" class="write-btn">글쓰기</a>
+                    <!-- <button ></button> -->
                 </div>
         </form>
         
@@ -37,7 +38,7 @@
                     <div class="icon-detail">
                         <div class="mountain-sec">
                             <img src="/assets/jpg/mountain.png" alt="" class="mountain-icon">
-                            <p class="mountain-text">4명</p>
+                            <p class="mountain-text">${b.clubRecruitCount}명</p>
                         </div>
                         <div class="mountain-sec">
                             <img src="/assets/jpg/people.png" alt="" class="people-icon">

@@ -136,8 +136,9 @@ body {
     /* width: 10%; */
     margin: 10px 15px 0px 0px;
     /* padding: 7px 20px; */
-    height: 33px;
-    width: 70px;
+    /* height: 33px; */
+    padding: 7px 25px;
+    /* width: 70px; */
     border: none;
     font-size: 15px;
     cursor: pointer;

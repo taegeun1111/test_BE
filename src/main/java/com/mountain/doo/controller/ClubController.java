@@ -68,7 +68,7 @@ public class ClubController {
         System.out.println("/club/write : POST");
         clubService.register(dto);
         log.info("dto의 값 : {}",dto);
-        return "redirect:/club/clubList";
+        return "redirect:/club/list";
     }
 
     //수정 요청/버튼클릭

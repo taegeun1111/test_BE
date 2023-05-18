@@ -1,17 +1,18 @@
-.write-container {
+#body-color {
     /* background-color: black; */
     /* background-color: rgb(240, 240, 240); */
     background-color: #1e1d21;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .title-wrapper {
     display: flex;
     flex-direction: column;
-    top: 50%;
+    margin: 120px auto;
+    /* top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: absolute; */
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -110,7 +111,7 @@
 /* 작성, 취소 버튼 */
 .write-wrapper {
     width: 1000px;
-    background-color: aqua;
+    /* background-color: aqua; */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -127,8 +128,9 @@
 
 .submit-btn,
 .close-btn {
-    height: 50px;
-    font-size: 17px;
+    padding: 5px 0;
+    width: 100%;
+    font-size: 15px;
     font-weight: 200;
     /* background-color: black; */
     background-color: rgb(240, 240, 240);
@@ -137,6 +139,11 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: 400;
+    color: black;
+}
+
+.close-btn{
+    text-align: center;
 }
 
 .submit-btn:hover,
