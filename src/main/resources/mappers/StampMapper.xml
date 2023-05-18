@@ -4,6 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mountain.doo.repository.StampMapper">
 
+    <select id="stampCount" resultType="int">
+        SELECT total_stamp_count
+        FROM stamp
+        WHERE account_id = #{accountId}
+
+    </select>
+
+<!--    <insert id=""-->
+
+
 
 
 

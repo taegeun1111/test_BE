@@ -4,6 +4,7 @@ import com.mountain.doo.service.StampService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,5 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StampController {
 
     private final StampService stampService;
+    public String myStampPage(String accountId, Model model){
+        //id가 가지고 있는 총 스탬프 수
+        int stampCount = stampService.stampCount(accountId);
+
+        model.addAttribute("sc",stampCount);
+
+        return "/stampMyPage";
+    }
+
+
 
 }

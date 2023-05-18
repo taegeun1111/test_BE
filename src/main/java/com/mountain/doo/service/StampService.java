@@ -11,4 +11,13 @@ import org.springframework.stereotype.Service;
 public class StampService {
     private final StampMapper mapper;
 
+    public int stampCount(String accountId) {
+
+            int stampCount = mapper.stampCount(accountId);
+
+        return stampCount(accountId);
+
+    }
+
+
 }
