@@ -19,6 +19,7 @@
         <typeAlias alias="Account" type="com.mountain.doo.entity.Account" />
         <typeAlias alias="SecondhandBoard" type="com.mountain.doo.entity.SecondhandBoard" />
         <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
+        <typeAlias alias="StampResponseDTO" type="com.mountain.doo.dto.stamp.StampResponseDTO" />
         <typeAlias alias="feedReply" type="com.mountain.doo.entity.reply.FeedReply" />
         <typeAlias alias="clubReply" type="com.mountain.doo.entity.reply.ClubReply" />
         <typeAlias alias="reviewReply" type="com.mountain.doo.entity.reply.ReviewReply" />
@@ -41,7 +42,7 @@
         <mapper resource="mappers/replies/ClubReplyMapper.xml"/>
         <mapper resource="mappers/replies/ReviewReplyMapper.xml"/>
         <mapper resource="mappers/replies/SecondhandReplyMapper.xml"/>
-        <mapper resource="mappers/StampMapper.xml"/>
+        <mapper resource="mappers/replies/StampMapper.xml"/>
     </mappers>
 
 

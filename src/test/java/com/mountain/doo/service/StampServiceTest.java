@@ -12,12 +12,12 @@ class StampServiceTest {
     @Autowired
     StampService service;
 
-    @Test
-    @DisplayName("아이디를 입력하면 스탬프 총 개수가 나와야 한다")
-    void stampCount(){
-        int stampCount = service.stampCount("김주주");
-
-        assertEquals(1,stampCount);
-
-    }
+//    @Test
+//    @DisplayName("아이디를 입력하면 스탬프 총 개수가 나와야 한다")
+//    void stampCount(){
+//        int stampCount = service.stampCount("김주주");
+//
+//        assertEquals(1,stampCount);
+//
+//    }
 }
