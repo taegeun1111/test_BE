@@ -26,17 +26,16 @@ public class ClubController {
 
     //모집글(정기모임 + 소모임) 전체 조회 + 필터링
     @GetMapping("/list")
-    public String list(
+    public String list(String clubRecruitType,
             ClubSearch page, Model model, HttpServletRequest request) {
-
-        boolean flag=false;
-
-        //세션을 확인
-        Object login = request.getSession().getAttribute("login");
-
-        if(login!=null) flag=true;
-
-        if (!flag) return "redirect:/club/sign-in";
+//        boolean flag=false;
+        System.out.println("clubRecruitType = " + clubRecruitType);
+//        //세션을 확인
+//        Object login = request.getSession().getAttribute("login");
+//
+//        if(login!=null) flag=true;
+//
+//        if (!flag) return "redirect:/club/sign-in";
 
         // Page : 기본 생성자 만들고, setter로 넣음
         log.info("/board/list : GET");
@@ -49,10 +48,11 @@ public class ClubController {
         //페이징 알고리즘 작동
         PageMaker maker = new PageMaker(page,clubService.getCount(page));
 
+        System.out.println("maker = " + maker);
         model.addAttribute("bList", responseDTOS);
         model.addAttribute("maker",maker); //페이징 정보를 줌
         model.addAttribute("s",page);  //키워드 검색후 입력한 검색어 계속 남아있도록
-        return "club/list";
+        return "club/clubList";
     }
 
     // 글쓰기 화면 조회 요청
@@ -67,7 +67,7 @@ public class ClubController {
     public String write(ClubWriteRequestDTO dto) {
         System.out.println("/club/write : POST");
         clubService.register(dto);
-        return "redirect:/club/list";
+        return "redirect:/club/clubList";
     }
 
     //수정 요청/버튼클릭
