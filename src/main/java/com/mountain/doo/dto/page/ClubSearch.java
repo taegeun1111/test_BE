@@ -5,7 +5,6 @@ import lombok.*;
 
 @Setter
 @Getter
-//@ToString
 @AllArgsConstructor
 @Builder
 public class ClubSearch extends Page {

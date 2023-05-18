@@ -35,5 +35,5 @@ public interface IssueMapper {
     int issueCount(Search Search);
 
     // 조회수 상승
-    void upViewCount(int issueBoardNo);
+//    void upViewCount(int issueBoardNo);
 }

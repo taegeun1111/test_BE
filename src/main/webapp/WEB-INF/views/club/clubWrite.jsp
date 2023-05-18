@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/assets/css/clubWrite.css">
 </head>
 
-<body id="body-color">
+<body id="body-color" >
     <%@ include file="../include/header.jsp" %>
 
     <form action="/club/write" method="post">

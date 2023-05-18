@@ -40,6 +40,7 @@ public class ClubController {
         // Page : 기본 생성자 만들고, setter로 넣음
         log.info("/board/list : GET");
         log.info("page : {}",page);
+        page.setAmount(6);
         List<ClubListResponseDTO> responseDTOS
                 = clubService.getList(page);
 //        List<ClubListResponseDTO> responseDTOS

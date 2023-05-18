@@ -4,7 +4,9 @@ import com.mountain.doo.entity.SecondhandType;
 import lombok.*;
 
 @Setter
-@Getter @ToString
+@Getter
+@AllArgsConstructor
+@Builder
 public class Search extends Page{
 
     // 검색 타입, 검색 키워드
@@ -14,5 +16,14 @@ public class Search extends Page{
     public Search() {
         this.type = "";
         this.keyword = "";
+        this.setAmount(10);
+    }
+
+    @Override
+    public String toString() {
+        return "Search{" +
+                "type='" + type + '\'' +
+                ", keyword='" + keyword + '\'' +
+                "} " + super.toString();
     }
 }
