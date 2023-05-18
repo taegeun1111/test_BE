@@ -2,6 +2,7 @@ package com.mountain.doo.controller;
 
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -47,18 +48,6 @@ public class AccountController {
         return "account/sign-in";
     }
 
-    @PostMapping("/sign-in")
-    public String login(LoginRequestDTO dto) {
-        log.info("Post요청 sing-in");
-        boolean login = accountService.login(dto);
-
-        if (login) {
-            return "redirect:/account/modify"; //로그인되면 메인페이지(메인 없어서 일단 수정페이지로 ㅎㅎ)
-        } else {
-            return "redirect:/account/sign-in"; //로그인 안되면 다시 로그인 페이지
-        }
-    }
-
     // 회원정보 수정페이지
     @GetMapping("/modify")
     public String modify(){
@@ -83,13 +72,6 @@ public class AccountController {
         Account account = accountService.myInfo(accountId);
         model.addAttribute("mypage",account);
         return "/mypage";
-    }
-
-
-    @GetMapping("/login")
-    public String login(){
-
-        return "/login";
     }
 
 
