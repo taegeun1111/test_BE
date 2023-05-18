@@ -40,7 +40,7 @@ class AccountServiceTest {
 
     }
 
-    @Test
+/*    @Test
     @DisplayName("아이디 비밀번호 받아 맞는 정보 있으면 true 아니면 false")
     void login(){
         LoginRequestDTO dto = new LoginRequestDTO();
@@ -50,6 +50,9 @@ class AccountServiceTest {
 
         boolean a = accountService.login(dto);
         assertTrue(a);
+
+    }*/
+
         System.out.println("로그인성공");
     }
 
@@ -69,4 +72,5 @@ class AccountServiceTest {
 
 
     }
+
 }

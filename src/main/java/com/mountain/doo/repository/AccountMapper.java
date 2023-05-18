@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,4 +30,7 @@ public interface AccountMapper {
     //아이디 중복검사
     int isDuplicate(@Param("type") String type,@Param("keyword") String keyword);
 
+    void saveAutoLogin(AutoLoginDTO build);
+
+    Account findMemberByCookie(String sessionId);
 }

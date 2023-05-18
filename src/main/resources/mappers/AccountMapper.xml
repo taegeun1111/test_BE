@@ -67,5 +67,16 @@
         </if>
     </select>
 
+    <update id="saveAutoLogin">
+        UPDATE account
+        SET session_id = #{sessionId},limit_time=#{limitTime}
+        WHERE account_id=#{accountId}
+    </update>
+
+    <select id="findMemberByCookie" >
+    
+    </select>
+
+
 
 </mapper>
