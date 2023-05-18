@@ -1,15 +1,23 @@
 package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.ClubListResponseDTO;
+import com.mountain.doo.dto.ClubRewriteRequestDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
+
+import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Search;
+
+import com.mountain.doo.entity.Club;
+import com.mountain.doo.repository.ClubMapper;
 import com.mountain.doo.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +31,7 @@ import java.util.List;
 public class ClubController {
 
     private final ClubService clubService;
+    private final ClubMapper clubMapper;
 
     //모집글(정기모임 + 소모임) 전체 조회 + 필터링
     @GetMapping("/list")
@@ -71,9 +80,24 @@ public class ClubController {
     }
 
     //수정 요청/버튼클릭
-
+    @GetMapping("/modify")
+    public String modify(ClubRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
+        Club club = clubMapper.findOne(dto.getBoardNo());
+        model.addAttribute("bno", club.getClubBoardNo());
+        model.addAttribute("title", club.getClubTitle());
+        model.addAttribute("content", club.getClubContent());
+        model.addAttribute("modifyTime", club.getClubModifyDate());
+        return "";
+    }
+    //수정 완료
+    @PostMapping("/modify")
+    public String modify(ClubRewriteRequestDTO dto){
+        clubService.modify(dto);
+        return "";
+    }
 
     //글 상세보기
+
 
     //글 삭제
     @PostMapping("/delete")

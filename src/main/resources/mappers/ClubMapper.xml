@@ -65,5 +65,10 @@
         </if>
     </select>
 
+    <update id="modifyClub">
+        UPDATE club
+        SET club_title = #{clubTitle}, club_content = #{clubContent}, club_modify = #{clubModify}
+        where club_board_no = #{clubBoardNo};
+    </update>
 
 </mapper>

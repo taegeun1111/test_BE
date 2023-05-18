@@ -2,9 +2,12 @@ package com.mountain.doo.service;
 
 import com.mountain.doo.dto.ClubDetailResponseDTO;
 import com.mountain.doo.dto.ClubListResponseDTO;
+import com.mountain.doo.dto.ClubRewriteRequestDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
+import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Club;
+import com.mountain.doo.entity.Feed;
 import com.mountain.doo.repository.ClubMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -62,6 +65,11 @@ public class ClubService {
     public int getCount(ClubSearch clubSearch) {
 //        return clubRepository.count(search);
         return clubRepository.count(clubSearch);
+    }
+
+    // 글 수정 처리
+    public boolean modify(ClubRewriteRequestDTO dto){
+        return clubRepository.modifyClub(new Club(dto));
     }
 
 }
