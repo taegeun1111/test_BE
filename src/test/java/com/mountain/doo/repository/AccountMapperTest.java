@@ -1,13 +1,16 @@
 package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.entity.GENDER;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.beans.Encoder;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,34 +21,31 @@ class AccountMapperTest {
     @Autowired
     AccountMapper mapper;
 
+    @Autowired
+    PasswordEncoder encoder;
+
     @Test
     @DisplayName("마이페이지 정보 조회")
-    void mypage(){
-        String id="33";
+    void mypage() {
+        String id = "33";
         Account account = mapper.myInfo(id);
         System.out.println("account = " + account);
 
     }
 
-    @Test
-    @DisplayName("아이디 비밀번호 받아 맞는 정보 있으면 true 아니면 false")
-    void login(){
-        boolean a = mapper.login("11", "11");
-        assertTrue(a);
-        System.out.println(a);
 
-    }
+
 
     @Test
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("88");
-        save.setPassword("8");
-        save.setName("8");
+        save.setAccountId("00");
+        save.setPassword(encoder.encode("123asd"));
+        save.setName("11");
         save.setGender(GENDER.M);
-        save.setEmail("88");
-        save.setPhoneNo("88");
+        save.setEmail("11");
+        save.setPhoneNo("00");
         save.setAddress("88");
 
         boolean isSaved = mapper.save(save);

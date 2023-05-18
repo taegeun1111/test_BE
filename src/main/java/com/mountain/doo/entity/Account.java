@@ -21,5 +21,4 @@ public class Account {
     private String phoneNo;
     private String address;
 
-
 }
