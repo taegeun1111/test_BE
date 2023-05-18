@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--   자동 카멜케이스 스네이크 케이스 변환 설정     -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <!--  entity 클래스 별칭 설정      -->
+         <typeAlias alias="test" type="com.mountain.doo.entity.test" />
+
+         <typeAlias alias="club" type="com.mountain.doo.entity.Club" />
+         <typeAlias alias="feed" type="com.mountain.doo.entity.Feed" />
+         <typeAlias alias="issue" type="com.mountain.doo.entity.Issue" />
+         <typeAlias alias="review" type="com.mountain.doo.entity.Review" />
+        <typeAlias alias="Account" type="com.mountain.doo.entity.Account" />
+        <typeAlias alias="SecondhandBoard" type="com.mountain.doo.entity.SecondhandBoard" />
+        <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
+        <typeAlias alias="feedReply" type="com.mountain.doo.entity.reply.FeedReply" />
+        <typeAlias alias="clubReply" type="com.mountain.doo.entity.reply.ClubReply" />
+        <typeAlias alias="reviewReply" type="com.mountain.doo.entity.reply.ReviewReply" />
+        <typeAlias alias="secondhandReply" type="com.mountain.doo.entity.reply.SecondhandReply" />
+
+    </typeAliases>
+
+    <mappers>
+        <!-- Mapper XML files -->
+        <mapper resource="mappers/test.xml"/>
+           
+        <mapper resource="mappers/ClubMapper.xml"/>
+        <mapper resource="mappers/FeedMapper.xml"/>
+        <mapper resource="mappers/IssueMapper.xml"/>
+        <mapper resource="mappers/ReviewMapper.xml"/>
+        <mapper resource="mappers/SecondhandBoardMapper.xml"/>
+        <mapper resource="mappers/AccountMapper.xml"/>
+
+        <mapper resource="mappers/replies/FeedReplyMapper.xml"/>
+        <mapper resource="mappers/replies/ClubReplyMapper.xml"/>
+        <mapper resource="mappers/replies/ReviewReplyMapper.xml"/>
+        <mapper resource="mappers/replies/SecondhandReplyMapper.xml"/>
+
+    </mappers>
+
+
+</configuration>
