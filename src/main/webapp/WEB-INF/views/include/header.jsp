@@ -5,17 +5,17 @@
 <header class="header-container">
     <div class="header-wrapper">
         <ul class="category-wrapper">
-            <li><a href="" class="">추천 정보</a></li>
-            <li><a href="" class="">커뮤니티</a></li>
-            <li><a href="/club/list?boarNo=1&amount=6" class="">모임</a></li>
-            <li><a href="" class="">중고거래</a></li>
-            <li><a href="" class="">스탬프</a></li>
+            <li><a href="/account/offer-main" class="category-offer">추천 정보</a></li>
+            <li><a href="" class="category-community">커뮤니티</a></li>
+            <li><a href="/club/list?boarNo=1&amount=6" class="category-club">모임</a></li>
+            <li><a href="" class="category-secondhand">중고거래</a></li>
+            <li><a href="" class="category-event">스탬프</a></li>
         </ul>
         <img src="/assets/jpg/logo(white).png" alt="" class="logo">
 
         <ul class="login-wrapper">
-            <li><a href="" class="signUp-btn">Sign up</a></li>
-            <li><a href="" class="signIn-btn">Sign in</a></li>
+            <li><a href="/account/sign-up" class="signUp-btn">Sign up</a></li>
+            <li><a href="/account/sign-in" class="signIn-btn">Sign in</a></li>
         </ul>
 
 

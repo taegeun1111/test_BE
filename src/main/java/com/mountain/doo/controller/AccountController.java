@@ -32,7 +32,7 @@ public class AccountController {
         log.info("가입처리요청");
         boolean save = accountService.save(account);
         if(save) {
-            return "redirect:/login";  //로그인페이지
+            return "redirect:/account/sign-in";  //로그인페이지
         }
         return "/sign-up"; // 회원가입페이지
     }
@@ -40,7 +40,7 @@ public class AccountController {
     @GetMapping("/modify")
     public String modify(){
         log.info("정보수정");
-        return "";
+        return "account/account-modify";
     }
 
 
@@ -49,9 +49,9 @@ public class AccountController {
     public String modify(String accountId,AccountModifyDTO dto){
         boolean modify = accountService.modify(accountId, dto);
         if(modify) {
-            return "redirect:/main";  //수정하면 메인페이지
+            return "redirect:/account/sign-in";  //수정하면 메인페이지
         }
-        return  ""; //수정 안되면 수정페이지
+        return  "account/account-modify"; //수정 안되면 수정페이지
     }
 
     @GetMapping("/mypage")
@@ -65,22 +65,22 @@ public class AccountController {
         return "/mypage";
     }
 
-
-    @GetMapping("/login")
+    // 로그인 요청 페이지
+    @GetMapping("/sign-in")
     public String login(){
 
-        return "/login";
+        return "account/sign-in";
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("/sign-in")
     public String login(String accountId, String password){
         boolean login = accountService.login(accountId, password);
 
         if(login){
-            return "redirect:/main"; //로그인되면 메인페이지
+            return "redirect:/account/sign-up"; //로그인되면 메인페이지
         }
-        return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
+        return "redirect:/account/sign-in"; //로그인 안되면 로그인 페이지 다시
 
     }
 
