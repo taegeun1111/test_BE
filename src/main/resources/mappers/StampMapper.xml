@@ -5,7 +5,7 @@
 <mapper namespace="com.mountain.doo.repository.StampMapper">
 
     <select id="stampCount" resultType="StampResponseDTO">
-        SELECT attend_count,board_count,banner_click_count,total_stamp_count
+        SELECT attend_count,board_count,banner_click_count
         FROM stamp
         WHERE account_id = #{accountId}
 

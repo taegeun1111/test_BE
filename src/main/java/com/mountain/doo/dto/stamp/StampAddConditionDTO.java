@@ -9,7 +9,7 @@ import lombok.*;
 @EqualsAndHashCode
 public class StampAddConditionDTO {
     private String accountId;
-    private boolean attendCount;
+    private int attendCount;
     private int boardCount;
     private int bannerClickCount;
 }
