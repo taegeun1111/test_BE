@@ -41,7 +41,7 @@
         <mapper resource="mappers/replies/ClubReplyMapper.xml"/>
         <mapper resource="mappers/replies/ReviewReplyMapper.xml"/>
         <mapper resource="mappers/replies/SecondhandReplyMapper.xml"/>
-
+        <mapper resource="mappers/StampMapper.xml"/>
     </mappers>
 
 

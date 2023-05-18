@@ -1,6 +1,9 @@
 package com.mountain.doo.dto;
 
+import com.mountain.doo.entity.Account;
+import com.mountain.doo.repository.AccountMapper;
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Setter
 @Getter
@@ -15,6 +18,8 @@ public class AccountModifyDTO {
     private String email;
     private String phoneNo;
     private String address;
+
+    PasswordEncoder encoder;
 
     public AccountModifyDTO changeAccount(AccountModifyDTO dto){
         AccountModifyDTO build = AccountModifyDTO.builder()
