@@ -97,7 +97,12 @@ public class ClubController {
     }
 
     //글 상세보기
-
+    @GetMapping("/detail")
+    public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
+        log.info("club detail GET");
+        model.addAttribute("club", clubService.getDetail(boardNo));
+        return "";
+    }
 
     //글 삭제
     @PostMapping("/delete")
