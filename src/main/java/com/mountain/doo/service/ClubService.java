@@ -57,7 +57,7 @@ public class ClubService {
 
         Club club = clubRepository.findOne(bno);
         // 조회수 상승 처리
-//        clubRepository.upViewCount(bno); //mybatis-sql 사용시
+        clubRepository.upViewCount(bno); //mybatis-sql 사용시
 
         return new ClubDetailResponseDTO(club);
     }

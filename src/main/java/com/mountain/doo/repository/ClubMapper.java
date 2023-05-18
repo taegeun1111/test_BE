@@ -32,6 +32,7 @@ public interface ClubMapper {
 
     //전체 글 개수 count
     int count(ClubSearch search);
-//    int count();
 
+    // 조회수 상승
+    void upViewCount(int clubBoardNo);
 }
