@@ -22,7 +22,7 @@
         <div class="main-informaiton">
             <div class="profile"></div>
             <div class="name-wrapper">
-                <div class="nickname">맹구</div>
+                <div class="nickname">${account.name}</div>
 
                 <div class="modify-btn">
                     <span style=cursor:hand onClick="location.href='/account/modify'">수정하기</span>

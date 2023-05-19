@@ -20,6 +20,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //게시판 인터셉터 설정
+
         registry.addInterceptor(boardInterceptor)
 //                .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
                 .addPathPatterns("/mypage/*")
@@ -33,6 +34,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         //자동 로그인 인터셉터
         registry.addInterceptor(autoLoginInterceptror)
                 .addPathPatterns("/**");
+
 
 
     }

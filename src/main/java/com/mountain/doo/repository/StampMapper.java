@@ -10,7 +10,7 @@ public interface StampMapper {
 
     StampResponseDTO stampCount (String accountId);
 
-    void stampUpdate(StampAddConditionDTO dto);
+    void suForBanner(StampAddConditionDTO dto);
 
     void bannerPlus(StampAddConditionDTO dto);
 
@@ -18,6 +18,7 @@ public interface StampMapper {
 
     void booleanLogin(StampAddConditionDTO dto);
 
+    StampAddConditionDTO stampAddCondition(StampAddConditionDTO dto);
 
 
 
