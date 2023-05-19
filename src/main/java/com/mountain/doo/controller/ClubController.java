@@ -52,6 +52,7 @@ public class ClubController {
         // Page : 기본 생성자 만들고, setter로 넣음
         log.info("/board/list : GET");
         log.info("page : {}",page);
+        page.setAmount(6);
         List<ClubListResponseDTO> responseDTOS
                 = clubService.getList(page);
 //        List<ClubListResponseDTO> responseDTOS
@@ -71,7 +72,7 @@ public class ClubController {
     @GetMapping("/write")
     public String write() {
         System.out.println("/club/write : GET");
-        return "club/write";
+        return "club/clubWrite";
     }
 
     // 글 등록 요청 처리
@@ -79,7 +80,8 @@ public class ClubController {
     public String write(ClubWriteRequestDTO dto) {
         System.out.println("/club/write : POST");
         clubService.register(dto);
-        return "redirect:/club/clubList";
+        log.info("dto의 값 : {}",dto);
+        return "redirect:/club/list";
     }
 
     //수정 요청/버튼클릭

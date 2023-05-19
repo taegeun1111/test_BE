@@ -1,5 +1,5 @@
 .header-container {
-    height: 80px;
+    height: 70px;
     color: white;
     background-color: black;
     width: 100%;
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 70px;
     padding: 0 40px;
 }
 

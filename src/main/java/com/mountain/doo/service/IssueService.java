@@ -38,7 +38,7 @@ public class IssueService {
         Issue issue = issueRepository.findOne(issueNo);
 
         //조회수 상승 처리
-        issueRepository.upViewCount(issueNo);
+//        issueRepository.upViewCount(issueNo);
 
         return new IssueDetailResponseDTO(issue);
     }

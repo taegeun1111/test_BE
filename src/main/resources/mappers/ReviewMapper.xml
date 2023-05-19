@@ -48,6 +48,7 @@
         where review_board_no = #{reviewBoardNo};
     </update>
 
+
     <update id="upViewCount">
         UPDATE review
         SET review_view_count = review_view_count + 1

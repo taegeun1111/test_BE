@@ -51,8 +51,6 @@ class AccountServiceTest {
         boolean a = accountService.login(dto);
         assertTrue(a);
 
-    }
-
 
 //        System.out.println("로그인성공");
 //    }

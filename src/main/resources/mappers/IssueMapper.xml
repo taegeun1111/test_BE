@@ -21,7 +21,7 @@
             OR issue_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
         ORDER BY issue_board_no DESC
-        LIMIT #{pageStart}, #{amount}
+        LIMIT #{pageStart},#{amount}
     </select>
 
     <insert id="save">
@@ -48,6 +48,7 @@
         where issue_board_no = #{issueBoardNo};
     </update>
 
+
     <update id="upViewCount">
         UPDATE issue
         SET issue_view_count = issue_view_count + 1
@@ -68,4 +69,5 @@
             OR issue_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
     </select>
+
 </mapper>

@@ -34,19 +34,19 @@ public class ReviewController {
     // 전체 게시글 조회
     @GetMapping("/list")
     public String list(Search page, Model model){
+        page.setAmount(15);
         log.info("review list GET");
 //        log.info(review.getReviewTitle());
         List<ReviewListResponseDTO> responseDTO = reviewService.getList(page);
 
         PageMaker maker = new PageMaker(page, reviewService.getCount(page));
-
         // 페이징 알고리즘 작동
-        model.addAttribute("reviewList", responseDTO);
-        model.addAttribute("reviewMaker", maker);
-        model.addAttribute("r", page);
+        model.addAttribute("rList", responseDTO);
+        model.addAttribute("maker", maker);
+        model.addAttribute("s", page);
 
 
-        return "";
+        return "review/reviewList";
     };
     // 게시글 상세 조회
     @GetMapping("/detail")

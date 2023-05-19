@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <%@ include file="../include/static-head.jsp" %>
-    <link rel="stylesheet" href="/assets/css/club-list.css">
+    <link rel="stylesheet" href="/assets/css/clubList.css">
 </head>
 
 <body>
@@ -26,10 +26,11 @@
                             <option value="소모임">소모임</option>
                         </select>
                     </div>
-                    <button class="write-btn">글쓰기</button>
+                    <a href="/club/write" class="write-btn">글쓰기</a>
+                    <!-- <button ></button> -->
                 </div>
         </form>
-        
+
         <div class="club-wrapper">
             <c:forEach var="b" items="${bList}">
                 <div class="club-list-container" data-bno="b.clubBoardNo">
@@ -37,7 +38,7 @@
                     <div class="icon-detail">
                         <div class="mountain-sec">
                             <img src="/assets/jpg/mountain.png" alt="" class="mountain-icon">
-                            <p class="mountain-text">4명</p>
+                            <p class="mountain-text">${b.clubRecruitCount}명</p>
                         </div>
                         <div class="mountain-sec">
                             <img src="/assets/jpg/people.png" alt="" class="people-icon">
@@ -93,16 +94,17 @@
                         href="/club/list?pageNo=${maker.finalPage}&clubRecruitType=${s.clubRecruitType}">&gt;&gt;</a>
                 </li>
             </c:if>
-
+        </ul>
     </section>
 
     <script>
         const $clubList = document.querySelector('.club-wrapper');
-        $clubList.addEventListener('click', e =>{
+        $clubList.addEventListener('click', e => {
             const bno = e.target.closest('div.club-list-container').dataset.bno;
             console.log(bno);
             // 상세조회 요청 보내기
-            window.location.href = '/club/clubDetail?bno=' + bno + '&pageNo=${s.pageNo}&clubRecruitType=${s.clubRecruitType}';
+            window.location.href = '/club/clubDetail?bno=' + bno +
+                '&pageNo=${s.pageNo}&clubRecruitType=${s.clubRecruitType}';
         });
 
         $clubList.addEventListener('click', e => {

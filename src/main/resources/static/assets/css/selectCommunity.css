@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+#bg-color {
+    background: rgb(240, 240, 240);
+}
+
+.select-btn {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -45%, 0);
+}
+
+.go-feed,
+.go-issue,
+.go-review {
+    height: 250px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: left;
+    background-color: #1e1d21;
+    cursor: pointer;
+}
+
+
+/* img영역 */
+.feed-img,
+.issue-img,
+.review-img {
+    width: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: black;
+}
+
+.feed-img {
+    background-image: url(jpg/feed1.jpg);
+    background-position: 0px 100%;
+}
+
+.issue-img {
+    background-image: url(jpg/issue1.jpg);
+    background-position: 0px 100%;
+}
+
+.review-img {
+    background-image: url(jpg/review1.jpg);
+    background-position: 0px 100%;
+}
+
+
+/* text영역 */
+.go-feed-text,
+.go-issue-text,
+.go-review-text {
+    padding: 30px 40px;
+}
+
+.feed-title,
+.issue-title,
+.review-title {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 3px;
+    color: #d5f462;
+}
+
+/* content 영역 */
+.feed-content,
+.issue-content,
+.review-content {
+    width: 470px;
+    font-size: 15px;
+    color: white;
+}
+
+.sub-title {
+    margin-top: 75px;
+    font-size: 17px;
+    color: rgb(150, 150, 150);
+    font-weight: 200;
+}

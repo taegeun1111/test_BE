@@ -32,8 +32,8 @@ public interface IssueMapper {
     boolean deleteIssue(long issueBoardNo); // 게시물 번호로 찾아서 삭제
 
     // 게시물 세기
-    int issueCount(Search Search);
+    int issueCount(Search search);
 
     // 조회수 상승
-    void upViewCount(int issueBoardNo);
+//    void upViewCount(int issueBoardNo);
 }

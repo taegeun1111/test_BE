@@ -1,6 +1,7 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
 import com.mountain.doo.dto.issue.IssueListResponseDTO;
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
@@ -34,38 +35,42 @@ public class IssueController {
     // 전체 게시글 조회
     @GetMapping("/list")
     public String list(Search page, Model model){
+        page.setAmount(15);
         log.info("issue list GET");
 //        log.info(issue.getIssueTitle());
         List<IssueListResponseDTO> responseDTO = issueService.getList(page);
 
         PageMaker maker = new PageMaker(page, issueService.getCount(page));
-
+        log.info("page : {}",page);
+        System.out.println("maker = " + maker);
         // 페이징 알고리즘 작동
-        model.addAttribute("issueList", responseDTO);
-        model.addAttribute("issueMaker", maker);
-        model.addAttribute("i", page);
+        model.addAttribute("iList", responseDTO);
+        model.addAttribute("maker", maker);
+        model.addAttribute("s", page);
 
-        return "";
+        return "issue/issueList";
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
+    public String detail(int bno, @ModelAttribute("s") Search search, Model model){
         log.info("issue detail GET");
-        model.addAttribute("issue", issueService.getDetail(boardNo));
-        return "";
+        IssueDetailResponseDTO detail = issueService.getDetail(bno);
+        model.addAttribute("is", detail);
+        return "issue/issueDetail";
     }
+
     // 게시물 등록 화면 요청
     @GetMapping("/write")
     public String write(){
         System.out.println("/issue/write : GET");
-        return "";
+        return "issue/issueWrite";
     }
     // 게시물 등록 완료 처리
     @PostMapping("/write")
     public String write(IssueWriteRequestDTO dto){
         System.out.println("/feed/write : POST");
        issueService.register(dto);
-        return "";
+        return "redirect:/issue/list";
     }
 
     // 수정 요청
