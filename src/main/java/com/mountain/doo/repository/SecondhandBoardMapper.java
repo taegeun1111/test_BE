@@ -2,6 +2,7 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
+import com.mountain.doo.dto.page.SecondhandSearch;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface SecondhandBoardMapper {
 
     //전체 게시판 조회
-    List<SecondhandBoard>findAll(Search search);
+    List<SecondhandBoard>findAll(SecondhandSearch page);
 
 
     //게시판 하나 조회
@@ -26,7 +27,7 @@ public interface SecondhandBoardMapper {
     void plusViewCount(int secondHandBoardNo);
 
     //게시판 전체수 조회
-    int count(Search search);
+    int count(SecondhandSearch search);
 
     // 게시물 수정
     // 수정이 됐는가 안 됐는가

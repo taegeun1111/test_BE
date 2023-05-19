@@ -4,6 +4,7 @@ import com.mountain.doo.dto.SecondhandRewriteRequestDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
+import com.mountain.doo.dto.page.SecondhandSearch;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.repository.SecondhandBoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,10 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 
 public class SecondhandBoardService {
-    SecondhandBoardMapper repository;
+   private final SecondhandBoardMapper repository;
 
     //게시판 전체 조회
-    public List<SecondhandBoardListDTO> findAll(Search search) {
+    public List<SecondhandBoardListDTO> findAll(SecondhandSearch search) {
         return repository.findAll(search)
                 .stream()
                 .map(SecondhandBoardListDTO::new)
@@ -53,7 +54,7 @@ public class SecondhandBoardService {
     }
 
     //전체 게시물수 확인
-    public int count(Search search){
+    public int count(SecondhandSearch search){
         return repository.count(search);
     }
 

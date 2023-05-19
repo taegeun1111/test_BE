@@ -30,8 +30,6 @@
 
     <mappers>
         <!-- Mapper XML files -->
-        <mapper resource="mappers/test.xml"/>
-           
         <mapper resource="mappers/ClubMapper.xml"/>
         <mapper resource="mappers/FeedMapper.xml"/>
         <mapper resource="mappers/IssueMapper.xml"/>

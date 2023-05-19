@@ -5,19 +5,69 @@
 <mapper namespace="com.mountain.doo.repository.SecondhandBoardMapper">
 
 <!--  전체조회  -->
-<select id="findAll" resultType="secondhandBoard">
+<select id="findAll" resultType="SecondhandBoard">
     SELECT secondhand_board_no, account_id, secondhand_title,
     secondhand_content,secondhand_view_count, secondhand_area,
     secondhand_reg_date, secondhand_deal_type
     From secondhand
-<!--    거래타입별 조회-->
-    <if test="type == 'secondhand_deal_type'">
-        WHERE secondhand_deal_type = #{secondhandDealType}
+    <if test="type == 'title' and secondhandType == 'buy'">
+        WHERE secondhand_title LIKE CONCAT('%', #{keyword}, '%')
+        AND secondhand_deal_type = 'BUY'
     </if>
+
+    <if test="type == 'title' and secondhandType == 'sell'">
+        WHERE secondhand_title LIKE CONCAT('%', #{keyword}, '%')
+        AND secondhand_deal_type = 'SELL'
+    </if>
+
+    <if test="type == 'content' and secondhandType == 'buy'">
+        WHERE secondhand_content LIKE CONCAT('%', #{keyword}, '%')
+        AND secondhand_deal_type = 'BUY'
+    </if>
+
+    <if test="type == 'content' and secondhandType == 'sell'">
+        WHERE secondhand_content LIKE CONCAT('%', #{keyword}, '%')
+        AND secondhand_deal_type = 'SELL'
+    </if>
+
+    <if test="type == 'tc' and secondhandType == 'buy'">
+        WHERE secondhand_title LIKE CONCAT('%', #{keyword}, '%')
+        OR secondhand_content LIKE CONCAT('%', #{keyword}, '%')
+        AND secondhand_deal_type = 'BUY'
+    </if>
+
+    <if test="type == 'tc' and secondhandType == 'sell'">
+        WHERE secondhand_title LIKE CONCAT('%', #{keyword}, '%')
+        OR secondhand_content LIKE CONCAT('%', #{keyword}, '%')
+        AND secondhand_deal_type = 'SELL'
+    </if>
+
+    <if test="type == 'title' and secondhandType == ''">
+        WHERE secondhand_title LIKE CONCAT('%', #{keyword}, '%')
+    </if>
+
+    <if test="type == 'content' and secondhandType == ''">
+        WHERE secondhand_content LIKE CONCAT('%', #{keyword}, '%')
+    </if>
+
+    <if test="type == '' and secondhandType == 'buy'">
+        WHERE secondhand_deal_type = 'BUY'
+    </if>
+
+    <if test="type == '' and secondhandType == 'sell'">
+        WHERE secondhand_deal_type = 'SELL'
+    </if>
+
     ORDER BY secondhand_board_no DESC
     LIMIT #{pageStart},#{amount}
 </select>
 
+
+<!--
+<if test="type == 'title' and secondhandType == 'st'">
+  WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
+</if>
+-->
 
 <!--  하나조회  -->
     <select id="findOne" resultType="secondhandBoard">

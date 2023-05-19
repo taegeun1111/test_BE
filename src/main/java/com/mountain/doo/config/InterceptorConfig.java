@@ -21,7 +21,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //게시판 인터셉터 설정
         registry.addInterceptor(boardInterceptor)
-                .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
+//                .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
                 .addPathPatterns("/mypage/*")
                 .excludePathPatterns("/board리스트");     //실행하지 않을 경로
 

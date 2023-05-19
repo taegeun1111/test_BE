@@ -19,6 +19,7 @@ public class ReviewDetailResponseDTO {
     private final String date;
     private final String writer;
     private final int likeCount;
+    private final long viewCount;
 
     public ReviewDetailResponseDTO(Review review) {
         this.boardNo = review.getReviewBoardNo();
@@ -27,5 +28,6 @@ public class ReviewDetailResponseDTO {
         this.date = ReviewListResponseDTO.makePrettierDateString(review.getReviewRegDate());
         this.writer = review.getAccountId();
         this.likeCount = review.getReviewLikeCount();
+        this.viewCount = review.getReviewViewCount();
     }
 }

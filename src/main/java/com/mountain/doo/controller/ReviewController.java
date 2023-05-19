@@ -3,6 +3,7 @@ package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
 import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
 import com.mountain.doo.dto.review.ReviewWriteRequestDTO;
@@ -50,10 +51,11 @@ public class ReviewController {
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
+    public String detail(int bno, @ModelAttribute("s") Search search, Model model){
         log.info("review detail GET");
-        model.addAttribute("review", reviewService.getDetail(boardNo));
-        return "";
+        ReviewDetailResponseDTO detail = reviewService.getDetail(bno);
+        model.addAttribute("is", detail);
+        return "review/reviewDetail";
     }
     // 게시물 등록 화면 요청
     @GetMapping("/write")
@@ -66,7 +68,7 @@ public class ReviewController {
     public String write(ReviewWriteRequestDTO dto){
         System.out.println("/review/write : POST");
         reviewService.register(dto);
-        return "";
+        return "redirect:/review/list";
     }
 
     // 수정 요청

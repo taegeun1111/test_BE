@@ -16,7 +16,7 @@
 
     <section id="issue-detail-container">
         <div class="top-wrapper">
-            <a href="/issue/list" class="category">산악 이슈<img src="/assets/jpg/than.png" alt="" class="than-btn"></a>
+            <a href="/review/list" class="category">중고 거래<img src="/assets/jpg/than.png" alt="" class="than-btn"></a>
 
             <div class="title">
                 ${is.title}
