@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -110,8 +112,24 @@ class ClubMapperTest {
 
         //then
         assertTrue(flag); //세이브가 성공했을 것이라고 단언
-
-
     }
+
+    @Test
+    public void test(){
+//        LocalDateTime a=LocalDateTime.now();
+//        SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");
+//        formatType.format(a);
+//        System.out.println("현재 날짜 : "+ b);
+        Date d = new Date();
+//        System.out.printf("d : " + d);
+        String s = d.toString();                    //Date 타입의 d 를 string 타입으려 변경
+        System.out.println("전체출력 : "+ s);        //Date 클래스 통제로 출력
+
+        SimpleDateFormat formatType = new SimpleDateFormat("yyyy-MM-dd");            //날짜 포멧형식(yyyy-MM-dd) 생성 및 지정
+        System.out.println("yyyy-MM-dd 형식의 현재날짜 : "+ formatType.format(d));
+    }
+
+
+
 
 }
