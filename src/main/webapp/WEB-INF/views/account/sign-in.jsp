@@ -34,7 +34,7 @@
                         <div class="signIn-input">
                             <li>
                                 <div>
-                                    <input type="text" name="account-id" id="accound-id" class="form-control"
+                                    <input type="text" name="accountId" id="accound-id" class="form-control"
                                         maxlength="15" required="required" aria-required="true"
                                         placeholder="아이디 입력">
                                     <span id="idChk"></span>

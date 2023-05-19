@@ -15,8 +15,8 @@
 <!--    회원정보 저장-->
     <insert id="save">
         INSERT INTO account
-        (account_id, password, name, gender, email, phone_no, address)
-        VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo}, #{address})
+        (account_id, password, name, gender, email, phone_no)
+        VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo})
 
     </insert>
 <!--    로그인-->
