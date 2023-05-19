@@ -65,11 +65,24 @@
         </if>
     </select>
 
-    <update id="modifyClub">
+<!--    <update id="modify">
         UPDATE club
-        SET club_title = #{clubTitle}, club_content = #{clubContent}, club_modify = #{clubModify}
+        SET club_title = #{clubTitle}, club_content = #{clubContent}, club_area = #{clubArea},
+        club_recruit_deadline= #{clubRecruitDeadline},club_recruit_type= #{clubRecruitType}
+        club_recruit_count= #{clubRecruitCount}, club_modify_date = #{clubModifyDate}
+        where club_board_no = #{clubBoardNo};
+    </update>-->
+
+    <update id="modify">
+        UPDATE club
+        SET club_area = #{clubArea},
+        club_recruit_type= #{clubRecruitType},
+        club_recruit_count= #{clubRecruitCount}
         where club_board_no = #{clubBoardNo};
     </update>
+
+
+
 
     <update id="upViewCount">
         UPDATE club

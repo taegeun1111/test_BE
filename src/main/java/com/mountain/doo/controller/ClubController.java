@@ -1,7 +1,9 @@
 package com.mountain.doo.controller;
 
+import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.dto.ClubListResponseDTO;
 import com.mountain.doo.dto.ClubRewriteRequestDTO;
+import com.mountain.doo.dto.ClubModifyDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
@@ -11,6 +13,7 @@ import com.mountain.doo.dto.page.Search;
 
 import com.mountain.doo.entity.Club;
 import com.mountain.doo.repository.ClubMapper;
+
 import com.mountain.doo.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -81,32 +84,34 @@ public class ClubController {
 
     //수정 요청/버튼클릭
     @GetMapping("/modify")
-    public String modify(ClubRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
-        Club club = clubMapper.findOne(dto.getBoardNo());
-        model.addAttribute("bno", club.getClubBoardNo());
-        model.addAttribute("title", club.getClubTitle());
-        model.addAttribute("content", club.getClubContent());
-        model.addAttribute("modifyTime", club.getClubModifyDate());
+    public String modify(){
+        log.info("정보수정");
         return "";
     }
-    //수정 완료
+
+
+    //정보수정
     @PostMapping("/modify")
-    public String modify(ClubRewriteRequestDTO dto){
-        clubService.modify(dto);
-        return "";
+    public String modify(ClubModifyDTO dto){
+        boolean modify = clubService.modify(dto);
+        if(modify) {
+            return "";  //수정 되었을 때
+        }
+        return  ""; //수정 안되면 다시 수정페이지
     }
 
     //글 상세보기
     @GetMapping("/detail")
-    public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
+    public String detail(int clubBoardNo, @ModelAttribute("s") Search search, Model model){
         log.info("club detail GET");
-        model.addAttribute("club", clubService.getDetail(boardNo));
+        model.addAttribute("club", clubService.getDetail(clubBoardNo));
         return "";
     }
 
+
     //글 삭제
     @PostMapping("/delete")
-    public String delete(int clubBoardNo ){
+    public String delete(int clubBoardNo){
         System.out.println("/club/delete : POST");
         log.info(String.valueOf(clubBoardNo));
         return "redirect:/club/list";
