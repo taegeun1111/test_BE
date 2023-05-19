@@ -48,12 +48,14 @@
                                 <input type="password" name="password" id="password" size="17" maxlength="20"
                                     class="form-control" maxlength="20" required="required" aria-required="true"
                                     placeholder="8자 이상 영문과 특수문자 조합">
+
                                 <span id="PWChk"></span>
                             </div>
                         </li>
                         <li>
                             <div>비밀번호 확인</div>
                             <div>
+
                                 <input type="password" name="passwordChk" id="re-password" size="17" maxlength="20"
                                     class="form-control" maxlength="20" required="required" aria-required="true"
                                     placeholder="다시 한 번 입력하세요">
