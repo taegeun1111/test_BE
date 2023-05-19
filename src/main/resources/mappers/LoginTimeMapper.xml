@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mountain.doo.repository.LoginTimeMapper">
+
+    <select id="findLoginTime" resultType="java.time.LocalDate">
+        SELECT login_time
+        FROM account_login_time
+        WHERE account_id=#{accountId}
+    </select>
+
+    <update id="updateLoginTime">
+        update account_login_time
+        SET login_time=#{currentLoginTime}
+        WHERE account_id = #{accountId}
+    </update>
+
+    <insert id="saveLoginTime">
+        insert  into account_login_time (account_id,login_time)
+        VALUES(#{accountId},#{currentLoginTime});
+    </insert>
+
+</mapper>
