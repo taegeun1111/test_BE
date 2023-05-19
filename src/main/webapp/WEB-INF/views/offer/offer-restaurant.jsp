@@ -57,8 +57,8 @@
             </div>
             <div class="offer-category-select">
                 <ul class="category">
-                    <li><a href="offer-menu.html">이달의 산행 추천</a></li>
-                    <li><a href="offer-restaurant.html">코스별 맛집 추천</a></li>
+                    <li><a href="/offer/offer-main">이달의 산행 추천</a></li>
+                    <li><a href="offer-restaurant.jsp">코스별 맛집 추천</a></li>
                     <li><a href="offer-top50.html">50대 명산 추천</a></li>
                 </ul>
             </div>

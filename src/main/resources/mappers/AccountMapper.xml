@@ -20,7 +20,7 @@
 
     </insert>
 <!--    로그인-->
-    <select id="login" resultType="boolean">
+    <select id="login" resultType="Account">
         SELECT account_id, password, name, gender, email, phone_no, address
         FROM account
         WHERE account_id = #{accountId}
