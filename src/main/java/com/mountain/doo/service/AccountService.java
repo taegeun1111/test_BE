@@ -13,11 +13,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,7 +32,7 @@ public class AccountService {
         return mapper.allAccount();
     }
 
-    //로그인 검증?
+    //로그인 검증
     public boolean login(LoginRequestDTO dto,
                          HttpSession session,
                          HttpServletResponse response){
@@ -62,6 +60,7 @@ public class AccountService {
                                 .build()
                 );
             }
+
             return true;
         }else if(loginBoolean.equals(FALSE_PW)){
             log.info("비밀번호 틀림");
@@ -70,9 +69,9 @@ public class AccountService {
             log.info("회원가입요망");
             return false;
         }
-        
-        
     }
+
+
 
     //계정확인여부
     public LoginBoolean loginBoolean(LoginRequestDTO dto){
@@ -91,6 +90,7 @@ public class AccountService {
     }
 
     public boolean save(Account account) {
+        log.info("account: {}", account);
                 account.setPassword(encoder.encode(account.getPassword()));
 
         return mapper.save(account);
@@ -120,12 +120,37 @@ public class AccountService {
 
         //현재 로그인한 사람의 화면에 보여줄 일부정보 -> dto
         AccountResponseDTOMinjung dto=AccountResponseDTOMinjung.builder()
-                .name(account.getAccountId())
+                .accountId(account.getAccountId())
                 .name(account.getName())
                 .build();
         //이 정보들을 세션에 저장
         session.setAttribute(LoginUtil.LOGIN_KEY,dto);
-        // 세션의 수명을 설정
-        session.setMaxInactiveInterval(60 * 60);
+
+        // 오늘 첫 로그인인지??
+//        로그인이력매퍼.saveLoginTime(LocalDateTime.now());
+        // 쿠폰 찍는 코드
+        
+        // 세션의 수명을 설정 -> 1시간
+        session.setMaxInactiveInterval(60 * 60); 
     }
+
+    //자동로그인 해제
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response){
+        //쿠키 가져오고
+        Cookie cookie = WebUtils.getCookie(request, LoginUtil.AUTO_LOGIN_COOKIE);
+        //쿠키 수명 0초로 = 쿠키 삭제
+        if(cookie!=null){
+            cookie.setMaxAge(0);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        }
+        mapper.saveAutoLogin(
+                AutoLoginDTO.builder()
+                        .sessionId("none")
+                        .limitTime(LocalDateTime.now())
+                        .accountId(LoginUtil.getcurrentLoginMemberAccount(request.getSession()))
+                        .build()
+        );
+    }
+
 }

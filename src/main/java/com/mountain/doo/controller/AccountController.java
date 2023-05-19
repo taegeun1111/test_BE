@@ -2,9 +2,11 @@ package com.mountain.doo.controller;
 
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.service.AccountService;
+import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import static com.mountain.doo.util.LoginUtil.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -47,6 +52,8 @@ public class AccountController {
 
         return "account/sign-in";
     }
+
+
 
     // 회원정보 수정페이지
     @GetMapping("/modify")
@@ -84,10 +91,36 @@ public class AccountController {
         if(login){
             //service에 세션 보냄
             accountService.maintainAccountState(request.getSession(), dto.getAccount());
+//            accountService.loginTime();
             return "redirect:/main"; //로그인되면 메인페이지
         }else {
             return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
         }
     }
+
+    //로그아웃 처리
+    @GetMapping("/log-out")
+    public String logOut(HttpServletRequest request,
+                         HttpServletResponse response){
+
+        HttpSession session = request.getSession();
+
+        if(isLogin(session)){ //로그인 되어있으면
+            if(isAutoLogin(request)){
+                //자동 로그인 해제
+                accountService.autoLoginClear(request, response);
+            }
+
+            session.removeAttribute("login");
+
+            session.invalidate();
+            return "redirect:/";
+        }
+//        로그인이 안되어 있다면
+        return "redirect:/account/login";
+    }
+
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 
+import com.mountain.doo.dto.ClubModifyDTO;
 import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Club;
@@ -28,6 +29,9 @@ public interface ClubMapper {
 
     //전체 글 개수 count
     int count(ClubSearch search);
+
+    //수정 처리
+    boolean modify(ClubModifyDTO dto);
 //    int count();
 
 }

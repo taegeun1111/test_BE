@@ -22,6 +22,7 @@ public class Account {
     private String email;
     private String phoneNo;
     private String address;
+    private String sessionId;
     private LocalDateTime limitTime;
 
 }
