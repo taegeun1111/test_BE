@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/stamp")
+@RequestMapping("/event")
 @Slf4j
 public class StampController {
 
     private final StampService stampService;
 
     // 내 스탬프 보기
-    @GetMapping("/myStamp")
+    @GetMapping("/stamp")
     public String myStampPage(){
-        return "/stampMyPage";
+        return "/event/stamp";
     }
 
-    @PostMapping("/myStamp")
+    @PostMapping("/stamp")
     public String myStampPage(StampAddConditionDTO dto, Model model){
 
         //id가 가지고 있는 총 스탬프 수
@@ -33,7 +33,7 @@ public class StampController {
 
         model.addAttribute("sc",stampCount);
 
-        return "/stampMyPage";
+        return "/event/stamp";
     }
 
 

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/sign-in.css">
+    <link rel="stylesheet" href="/assets/css/stamp.css">
     <link rel="stylesheet" href="/assets/css/common.css">
     <%@ include file="../include/static-head.jsp" %>
     <title>Mountain-Do stamp</title>
