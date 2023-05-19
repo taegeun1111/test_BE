@@ -6,7 +6,7 @@
     <div class="header-wrapper">
         <ul class="category-wrapper">
             <li><a href="/account/offer-main" class="category-offer">추천 정보</a></li>
-            <li><a href="" class="category-community">커뮤니티</a></li>
+            <li><a href="/account/community" class="category-community">커뮤니티</a></li>
             <li><a href="/club/list" class="category-club">모임</a></li>
             <li><a href="" class="category-secondhand">중고거래</a></li>
             <li><a href="/event/stamp" class="category-event">스탬프</a></li>
