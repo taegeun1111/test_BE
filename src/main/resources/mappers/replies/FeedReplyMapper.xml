@@ -38,4 +38,9 @@
         WHERE feed_reply_no = #{feedReplyNo}
     </select>
 
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM feed
+        WHERE feed_board_no = #{feedBoardNo}
+    </select>
 </mapper>
