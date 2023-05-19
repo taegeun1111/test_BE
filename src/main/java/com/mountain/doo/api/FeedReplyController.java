@@ -1,4 +1,4 @@
-package com.mountain.doo.controller.api;
+package com.mountain.doo.api;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,6 @@ public class FeedReplyController {
 //    public  list(Reply reply){
 //
 //    }
-
+//restcontroller는 jsp를 찾지 않는다
 
 }

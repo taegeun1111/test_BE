@@ -1,4 +1,4 @@
-package com.mountain.doo.controller.api;
+package com.mountain.doo.api;
 
 
 public class ReviewReplyController {
