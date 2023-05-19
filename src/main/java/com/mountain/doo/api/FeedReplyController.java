@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/rests")
+@RequestMapping("/feed-reply")
 @Slf4j
 public class FeedReplyController {
 

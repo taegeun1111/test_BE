@@ -26,6 +26,7 @@ public class FeedReplyService {
     }
 
     // 댓글 등록
+//    public register(feedReplyWriteRequestDTO dto);
 
     // 댓글 삭제
 

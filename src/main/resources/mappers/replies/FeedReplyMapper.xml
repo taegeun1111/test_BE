@@ -26,7 +26,7 @@
         SELECT
             A.feed_reply_no, A.feed_reply_content, A.feed_reply_writer, A.feed_reply_date, B.feed_board_no
         FROM feed_reply A, feed B
-        WHERE A.feed_board_no = B.feed_board_no
+        WHERE B.feed_board_no = A.feed_board_no
         ORDER BY feed_reply_no
         LIMIT #{p.pageStart}, #{p.amount}
     </select>
