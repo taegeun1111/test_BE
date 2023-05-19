@@ -22,7 +22,7 @@ public class Account {
     private String email;
     private String phoneNo;
     //나중에 오류 확인 
-    private String address;
+//    private String address;
     private String sessionId;
     private LocalDateTime limitTime;
 

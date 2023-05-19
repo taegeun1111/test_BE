@@ -14,16 +14,30 @@ class StampServiceTest {
     @Autowired
     StampService service;
 
-    @Test
-    @DisplayName("아이디를 입력하면 스탬프 총 개수가 나와야 한다")
-    void stampCount(){
-        StampAddConditionDTO stampAddConditionDTO=new StampAddConditionDTO();
-        stampAddConditionDTO.setAccountId("이동우");
-        stampAddConditionDTO.setAttendCount(1);
-        stampAddConditionDTO.setBoardCount(3);
-        stampAddConditionDTO.setBannerClickCount(6);
 
-        StampResponseDTO stampResponseDTO = service.stampCount(stampAddConditionDTO);
+    @Test
+    @DisplayName("배너, 게시물, 출석 db에 + 시키기")
+    void stampAddCondition() {
+        StampAddConditionDTO dto = new StampAddConditionDTO();
+        dto.setBannerClickCount(1);
+        dto.setAttendCount(1);
+        dto.setBoardCount(1);
+        dto.setAccountId("이동우");
+        StampAddConditionDTO stampAddConditionDTO = service.stampAddCondition(dto);
         System.out.println("stampAddConditionDTO = " + stampAddConditionDTO);
+
+    }
+
+    @Test
+    @DisplayName("사용자의 데이터를 가지고 도장개수 return")
+    void stampCount(){
+        StampAddConditionDTO dto=new StampAddConditionDTO();
+        dto.setBannerClickCount(3);
+        dto.setAttendCount(3);
+        dto.setBoardCount(1);
+        dto.setAccountId("이동우");
+        StampResponseDTO stampAddConditionDTO = service.stampCount(dto);
+        System.out.println("stampAddConditionDTO = " + stampAddConditionDTO);
+
     }
 }

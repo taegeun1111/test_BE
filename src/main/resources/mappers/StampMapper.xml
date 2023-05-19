@@ -5,7 +5,7 @@
 <mapper namespace="com.mountain.doo.repository.StampMapper">
 
     <select id="stampCount" resultType="StampResponseDTO">
-        SELECT attend_count,board_count,banner_click_count
+        SELECT account_id,attend_count,board_count,banner_click_count,total_stamp_count
         FROM stamp
         WHERE account_id = #{accountId}
 
@@ -26,7 +26,10 @@
 <!--    배너 +1 시키는 쿼리-->
     <update id="bannerPlus">
         UPDATE stamp
-        SET banner_click_count = #{bannerClickCount} +1
+        SET banner_click_count = #{bannerClickCount+1}
+        <if test="banner_click_count%3==0">
+            SET total_stamp_count = #{totalStampCount+1}
+        </if>
         WHERE account_id = #{accountId}
     </update>
 
@@ -43,6 +46,15 @@
         SET attend_count = #{attendCount} +1
         WHERE account_id = #{accountId}
     </update>
+
+<!--    업데이트 된 dto (db에 전달될 값) 사용자가 할수있는 것들 로그인,게시판,배너-->
+
+    <select id="stampAddCondition" resultType="StampAddConditionDTO">
+        SELECT account_Id,attend_count,board_count,banner_click_count
+        FROM stamp
+        WHERE account_id = #{accountId}
+
+    </select>
 
 
 

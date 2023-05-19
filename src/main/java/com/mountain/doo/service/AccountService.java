@@ -84,9 +84,11 @@ public class AccountService {
     public LoginBoolean loginBoolean(LoginRequestDTO dto){
         log.info("AccountService의 loginBoolean() 진입");
         Account account = mapper.myInfo(dto.getAccount()); //아이디로 계정찾기
+
         log.info("account : " + account);
         log.info("account.getPassword() : "+account.getPassword());
         log.info("dto.getPassword() : "+dto.getPassword());
+
 
         //비밀번호 확인
         boolean matches = encoder.matches(dto.getPassword(), account.getPassword());
