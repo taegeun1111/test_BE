@@ -55,14 +55,16 @@
     </select>
 
 
+<!-- 게시물 수정 -->
+    <update id="modifySecondhand">
+        UPDATE secondhand
+        SET secondhand_title = #{secondhandTitle}, secondhand_content = #{secondhandContent}, secondhand_modify = #{secondhandModify}
+        where secondhand_board_no = #{secondhandBoardNo};
+    </update>
 
-
-
-
-
-
-
-
-
-
+<!--    게시물 삭제-->
+    <delete id="deleteSecondhand">
+        DELETE FROM secondhand
+        WHERE secondhand_board_no = #{secondHandBoardNo}
+    </delete>
 </mapper>

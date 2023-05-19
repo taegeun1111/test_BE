@@ -8,7 +8,7 @@
         INSERT INTO review_reply
             (review_board_no, review_reply_content, review_reply_writer)
         VALUES
-            (#{reviewBoardNo}, #{reviewReplyContent}, ${reviewReplyWriter})
+            (#{reviewBoardNo}, #{reviewReplyContent}, #{reviewReplyWriter})
     </insert>
 
     <update id="modify">

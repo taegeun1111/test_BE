@@ -1,15 +1,13 @@
 package com.mountain.doo.service;
 
+import com.mountain.doo.dto.SecondhandRewriteRequestDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
-import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.repository.SecondhandBoardMapper;
-import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -20,11 +18,11 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 
 public class SecondhandBoardService {
-    SecondhandBoardMapper mapper;
+    SecondhandBoardMapper repository;
 
     //게시판 전체 조회
     public List<SecondhandBoardListDTO> findAll(Search search) {
-        return mapper.findAll(search)
+        return repository.findAll(search)
                 .stream()
                 .map(SecondhandBoardListDTO::new)
                 .collect(toList())
@@ -35,8 +33,8 @@ public class SecondhandBoardService {
 
     //게시물 하나 찾기
     public SecondhandBoard findOne(int secondHandBoardNo){
-        SecondhandBoard one = mapper.findOne(secondHandBoardNo);
-        mapper.plusViewCount(secondHandBoardNo);
+        SecondhandBoard one = repository.findOne(secondHandBoardNo);
+        repository.plusViewCount(secondHandBoardNo);
         return one;
 
     }
@@ -50,16 +48,23 @@ public class SecondhandBoardService {
         //session에서 id 추가 필요
 //        board.setAccountId(LoginUtil.getCurrentLoginMemberAccount(session));;
 
-        return mapper.handWriteData(board);
+        return repository.handWriteData(board);
 
     }
 
     //전체 게시물수 확인
     public int count(Search search){
-        return mapper.count(search);
+        return repository.count(search);
     }
 
+    //게시물 수정 처리
+    public boolean modify(SecondhandRewriteRequestDTO dto){
+        return repository.modifySecondhand(new SecondhandBoard(dto));
+    }
 
-
+    //게시물 삭제
+    public boolean delete(int boardNo){
+        return repository.deleteSecondhand(boardNo);
+    }
 
 }

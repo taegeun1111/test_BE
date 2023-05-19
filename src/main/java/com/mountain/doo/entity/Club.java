@@ -1,5 +1,6 @@
 package com.mountain.doo.entity;
 
+import com.mountain.doo.dto.ClubRewriteRequestDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 import lombok.*;
 
@@ -35,4 +36,11 @@ public class Club {
         this.clubRecruitCount=dto.getClubRecruitCount();
     }
 
+    public Club(ClubRewriteRequestDTO dto){
+        this.accountId = dto.getId();
+        this.clubTitle = dto.getTitle();
+        this.clubContent = dto.getContent();
+        this.clubBoardNo = dto.getBoardNo();
+        this.clubModifyDate = LocalDateTime.now();
+    }
 }

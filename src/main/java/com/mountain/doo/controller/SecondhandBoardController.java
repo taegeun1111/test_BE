@@ -1,11 +1,13 @@
 package com.mountain.doo.controller;
 
+import com.mountain.doo.dto.SecondhandRewriteRequestDTO;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
+import com.mountain.doo.repository.SecondhandBoardMapper;
 import com.mountain.doo.service.SecondhandBoardService;
 import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,7 +32,7 @@ import java.util.List;
 public class SecondhandBoardController {
 
     SecondhandBoardService sc;
-
+    private final SecondhandBoardMapper mapper;
     //게시글 전체 조회
     @GetMapping("/handlist")
     public String getList(Model model, Search search, HttpServletRequest request){
@@ -81,4 +84,28 @@ public class SecondhandBoardController {
         return "redirect/List";
     }
 
+
+    // 수정 요청
+    @GetMapping("/modify")
+    public String modify(SecondhandRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
+        SecondhandBoard secondhand = mapper.findOne(dto.getBoardNo());
+        model.addAttribute("bno",secondhand.getSecondHandBoardNo());
+        model.addAttribute("title", secondhand.getSecondhandTitle());
+        model.addAttribute("content", secondhand.getSecondhandContent());
+        model.addAttribute("modifyTime", secondhand.getSecondhandModify());
+        return "";
+    }
+    // 수정 완료 처리
+    @PostMapping("/modify")
+    public String modify(SecondhandRewriteRequestDTO dto){
+        sc.modify(dto);
+        return "";
+    }
+
+    // 게시물 삭제
+    @GetMapping("/delete")
+    public String delete(int boardNo){
+        sc.delete(boardNo);
+        return  "";
+    }
 }

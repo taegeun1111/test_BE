@@ -32,11 +32,11 @@
                         <ul>
                             <li>
                                 <div>아이디</div>
-                                    <span id="accound-id">"${a.account-id}"</span>
+                                    <span id="accound-id">"${a.accountId}"</span>
                             </li>
                             <li>
                                 <div>이름</div>
-                                <span id="user_name">"${a.user-name}"</span>              
+                                <span id="user_name">"${a.name}"</span>
                             </li>
                             <li>
                                 <div>비밀번호</div>
@@ -68,7 +68,7 @@
                             <li>
                                 <div>휴대전화</div>
                                 <div>
-                                <input type="phone-no" name="phone-no" id="phone-no" class="form-control"
+                                <input type="phone-no" name="phoneNo" id="phone-no" class="form-control"
                                     required="required" aria-required="true" maxlength="15"
                                     placeholder=" '-' 없이 입력해 주세요">
                                 <span id="PhoneChk"></span>

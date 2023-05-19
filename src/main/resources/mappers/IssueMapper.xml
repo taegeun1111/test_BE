@@ -48,7 +48,14 @@
         where issue_board_no = #{issueBoardNo};
     </update>
 
-    <select id="issueCount" resultType="int">
+
+    <update id="upViewCount">
+        UPDATE issue
+        SET issue_view_count = issue_view_count + 1
+        WHERE issue_board_no = #{issueBoardNo};
+    </update>
+
+    <select id = "issueCount" resultType="int">
         SELECT COUNT(*)
         FROM issue
         <if test="type == 'title'">

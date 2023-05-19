@@ -1,5 +1,6 @@
 package com.mountain.doo.repository;
 
+import com.mountain.doo.dto.ClubModifyDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.dto.page.Page;
@@ -94,6 +95,23 @@ class ClubMapperTest {
         ClubSearch search = new ClubSearch();
         int listCount = mapper.count(search);
         System.out.println("전체 개수 : "+listCount);
+    }
+    @Test
+    public void modifyTest(){
+        ClubModifyDTO dto = ClubModifyDTO.builder()
+                .clubBoardNo(4)
+                .clubArea("지리산")
+                .clubRecruitType("정기모임")
+                .clubRecruitCount(10)
+                .build();
+
+        //when
+        boolean flag=mapper.modify(dto);
+
+        //then
+        assertTrue(flag); //세이브가 성공했을 것이라고 단언
+
+
     }
 
 }
