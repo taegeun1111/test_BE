@@ -131,7 +131,7 @@ public class AccountService {
     }
 
     // 로그인 성공시 세션에 로그인한 회원의 정보 저장
-    public void maintainAccountState(HttpSession session, String accountId){
+    public boolean maintainAccountState(HttpSession session, String accountId){
         Account account = myInfo(accountId);
 
         //현재 로그인한 사람의 화면에 보여줄 일부정보 -> dto
@@ -154,23 +154,25 @@ public class AccountService {
 
     /* 로그인 기록이 없는 사람은 insert하는 구문이 필요한가??*/
         LocalDate currentLoginTime = LocalDate.now();
+        boolean b=false;
     if (dbLoginTime != null) {
+
         //db에 저장된 로그인 시간과 현재 로그인된 시간과 비교해서
         Period period = Period.between(dbLoginTime, LocalDate.now());
         int days = period.getDays();
         //1보다 크면(하루가 지나면) 현재 로그인 시간을 db에 저장하고
         if(days>=1){
-            loginTimeMapper.updateLoginTime(accountId,currentLoginTime);
-
+            b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
             //saveLoginTime()이게 True이면 스탬프 개수 +1해주고 AccountController에서 jsp에게 스탬프 개수 전달
             // 쿠폰 찍는 코드
         }
+        log.info("dbLoginTime등록여부1" + b);
+        return b;
     }else { //dbLoginTime테이블에 등록 안된 사람이면
-        boolean b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
-//        model.addAttribute("LoginStamp",b);
-//        log.info("dbLoginTime등록여부" + b);
+        b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
+        log.info("dbLoginTime등록여부2" + b);
+        return b;
     }
-
     }
 
     //자동로그인 해제

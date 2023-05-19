@@ -58,15 +58,18 @@ public class AccountController {
     @PostMapping("/sign-in")
     public String login(LoginRequestDTO dto,
                         HttpServletResponse response,
-                        HttpServletRequest request) {
+                        HttpServletRequest request,
+                        Model model) {
         log.info("sessionId : " + request.getSession().getId());
         log.info("-----------------------------------{}", dto);
 
-    boolean login = accountService.login(dto, request.getSession(), response);
+        boolean login = accountService.login(dto, request.getSession(), response);
 
         if (login) {
             //service에 세션 보냄
-            accountService.maintainAccountState(request.getSession(), dto.getAccount());
+            boolean b = accountService.maintainAccountState(request.getSession(), dto.getAccount());
+            model.addAttribute("LoginStamp",b);
+            log.info("dbLoginTime등록여부3 " + b);
             return "redirect:/account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
         } else {
             return "account/sign-in"; //로그인 안되면 로그인 페이지 다시
@@ -125,9 +128,10 @@ public class AccountController {
 
     //태근 커뮤니티 페이지 이동 추가
     @GetMapping("/community")
-    public String community(){
+    public String community() {
         log.info("community 페이지 이동 GET 발생");
         return "account/selectCategory";
     }
+}
 
 
