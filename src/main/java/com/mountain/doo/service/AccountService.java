@@ -8,15 +8,19 @@ import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.entity.LoginBoolean;
 import com.mountain.doo.repository.AccountMapper;
+import com.mountain.doo.repository.LoginTimeMapper;
 import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 
 import static com.mountain.doo.entity.LoginBoolean.*;
@@ -27,6 +31,7 @@ import static com.mountain.doo.entity.LoginBoolean.*;
 public class AccountService {
     private final AccountMapper mapper;
     private final PasswordEncoder encoder;
+    private final LoginTimeMapper loginTimeMapper;
 
     public List<Account> allAccount(){
         return mapper.allAccount();
@@ -36,8 +41,10 @@ public class AccountService {
     public boolean login(LoginRequestDTO dto,
                          HttpSession session,
                          HttpServletResponse response){
-        LoginBoolean loginBoolean = loginBoolean(dto);
+        log.info("AccountService의 login()진입");
 
+        LoginBoolean loginBoolean = loginBoolean(dto);
+        log.info("loginBoolean : "+loginBoolean);
 
         if (loginBoolean.equals(SUCCESS)) {
             log.info("로그인 성공");
@@ -75,10 +82,16 @@ public class AccountService {
 
     //계정확인여부
     public LoginBoolean loginBoolean(LoginRequestDTO dto){
+        log.info("AccountService의 loginBoolean() 진입");
         Account account = mapper.myInfo(dto.getAccount()); //아이디로 계정찾기
+        log.info("account : " + account);
+        log.info("account.getPassword() : "+account.getPassword());
+        log.info("dto.getPassword() : "+dto.getPassword());
 
         //비밀번호 확인
         boolean matches = encoder.matches(dto.getPassword(), account.getPassword());
+//        boolean matches = encoder.matches( account.getPassword(),dto.getPassword());
+        log.info("matches : "+matches);
 
         if(account==null) {
             return NOT_FOUND;
@@ -91,7 +104,8 @@ public class AccountService {
 
     public boolean save(Account account) {
         log.info("account: {}", account);
-                account.setPassword(encoder.encode(account.getPassword()));
+
+        account.setPassword(encoder.encode(account.getPassword()));
 
         return mapper.save(account);
     }
@@ -126,12 +140,35 @@ public class AccountService {
         //이 정보들을 세션에 저장
         session.setAttribute(LoginUtil.LOGIN_KEY,dto);
 
-        // 오늘 첫 로그인인지??
-//        로그인이력매퍼.saveLoginTime(LocalDateTime.now());
-        // 쿠폰 찍는 코드
-        
         // 세션의 수명을 설정 -> 1시간
-        session.setMaxInactiveInterval(60 * 60); 
+        session.setMaxInactiveInterval(60 * 60);
+
+        // 오늘 첫 로그인인지??
+//        로그인한 시간 찾아와서 오늘 시간과 비교해서 만약에 하루 지났으면 
+//        loginTimeMapper.saveLoginTime(LocalDateTime.now()); 이거 실행
+
+        //db에 저장된 로그인 시간
+        LocalDate dbLoginTime = loginTimeMapper.findLoginTime(accountId);
+
+    /* 로그인 기록이 없는 사람은 insert하는 구문이 필요한가??*/
+        LocalDate currentLoginTime = LocalDate.now();
+    if (dbLoginTime != null) {
+        //db에 저장된 로그인 시간과 현재 로그인된 시간과 비교해서
+        Period period = Period.between(dbLoginTime, LocalDate.now());
+        int days = period.getDays();
+        //1보다 크면(하루가 지나면) 현재 로그인 시간을 db에 저장하고
+        if(days>=1){
+            loginTimeMapper.updateLoginTime(accountId,currentLoginTime);
+
+            //saveLoginTime()이게 True이면 스탬프 개수 +1해주고 AccountController에서 jsp에게 스탬프 개수 전달
+            // 쿠폰 찍는 코드
+        }
+    }else { //dbLoginTime테이블에 등록 안된 사람이면
+        boolean b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
+//        model.addAttribute("LoginStamp",b);
+//        log.info("dbLoginTime등록여부" + b);
+    }
+
     }
 
     //자동로그인 해제
