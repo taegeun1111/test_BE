@@ -54,6 +54,22 @@ public class AccountController {
     }
 
 
+    @PostMapping("/sign-in")
+    public String login(LoginRequestDTO dto,
+                        HttpServletResponse response,
+                        HttpServletRequest request){
+        boolean login = accountService.login(dto,request.getSession(),response);
+
+        if(login){
+            //service에 세션 보냄
+            accountService.maintainAccountState(request.getSession(), dto.getAccount());
+            return "redirect:/account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
+        }else {
+            return "redirect:/account/sign-in"; //로그인 안되면 로그인 페이지 다시
+        }
+    }
+
+
 
     // 회원정보 수정페이지
     @GetMapping("/modify")
@@ -68,7 +84,7 @@ public class AccountController {
     public String modify(String accountId,AccountModifyDTO dto){
         boolean modify = accountService.modify(accountId, dto);
         if(modify) {
-            return "redirect:/account/sign-in";  //수정하면 메인페이지(로그인페이지)
+            return "redirect:/account/mypage";  //수정하면 메인페이지(로그인페이지)
         }
         return  "account/account-modify"; //수정 안되면 다시 수정페이지
     }
@@ -78,24 +94,7 @@ public class AccountController {
         //회원정보 마이페이지
         Account account = accountService.myInfo(accountId);
         model.addAttribute("mypage",account);
-        return "/mypage";
-    }
-
-
-    @PostMapping("/login")
-    public String login(LoginRequestDTO dto,
-                        HttpServletResponse response,
-                        HttpServletRequest request){
-        boolean login = accountService.login(dto,request.getSession(),response);
-
-        if(login){
-            //service에 세션 보냄
-            accountService.maintainAccountState(request.getSession(), dto.getAccount());
-//            accountService.loginTime();
-            return "redirect:/main"; //로그인되면 메인페이지
-        }else {
-            return "redirect:/login"; //로그인 안되면 로그인 페이지 다시
-        }
+        return "account/mypage";
     }
 
     //로그아웃 처리
