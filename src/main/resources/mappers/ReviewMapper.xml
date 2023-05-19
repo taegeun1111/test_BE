@@ -48,4 +48,20 @@
         where review_board_no = #{reviewBoardNo};
     </update>
 
+
+    <select id="reviewCount" resultType="int">
+        SELECT COUNT(*)
+        FROM review
+        <if test="type == 'title'">
+            WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE issue_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
+            OR issue_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
+
 </mapper>

@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* 메인 이미지 */
+/* #bg-color{
+    background-color: rgb(240, 240, 240);
+} */
+
+.main-img {
+    width: 55%;
+    height: 320px;
+    background-color: lightgray;
+    margin-bottom: 30px;
+    margin: 50px auto 50px;
+    background: url(/assets/jpg/리뷰템플릿1.png);
+    background-size: 100%;
+    /* background-position: 0 -100px; */
+    /* border-radius: 10px; */
+}
+
+.review-wrapper {
+    margin: 30px auto;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* 상단 대주제 */
+.review-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: end; */
+    /* background-color: aqua; */
+    margin-bottom: 20px;
+}
+
+.review-main-title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+/* 검색 버튼 영역 */
+#search,
+#form-wrapper,
+.search-warpper {
+    display: flex;
+    align-items: baseline;
+}
+
+.search-warpper {
+    justify-content: space-between;
+}
+
+#search {
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#search-type {
+    width: 100px;
+
+}
+
+#search-type,
+.form-control {
+    margin-right: 5px;
+    
+}
+#search-type,
+.form-control,
+.btn{
+    height: 40px !important;
+}
+
+.btn-primary {
+    background-color: #1e1d21 !important;
+    border: none !important;
+    
+}
+
+/* 공지 숨기기 */
+.hide-admin {
+    display: flex;
+    align-items: center;
+
+}
+
+.hide-admin-text {
+    font-size: 14px;
+}
+
+.hide-admin-btn {
+    width: 17px;
+    height: 17px;
+    border-radius: 1px;
+    margin-right: 5px;
+    border: 1px solid gray;
+}
+
+.hide-admin-check {
+    background-color: rgb(100, 100, 100);
+}
+
+#choice {
+    width: 40px;
+    margin-left: 5px;
+
+}
+
+/* 주제, 작성글 영역 정하기 */
+.division-boardNo,
+.board-boardNo {
+    width: 9%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+}
+
+
+.division-title,
+.board-title {
+    width: 50%;
+    text-align: left;
+}
+
+.division-writer,
+.board-writer {
+    width: 7%;
+    text-align-last: left;
+}
+
+.division-writen-date,
+.board-writen-date {
+    width: 13%;
+    text-align: center;
+}
+
+.division-view-count,
+.board-view-count {
+    width: 7%;
+    text-align: center;
+}
+
+.division-like-it,
+.board-like-it {
+    width: 7%;
+    text-align: center;
+}
+
+
+/* 중 주제, 작성글 공통영역 */
+.board-wrapper{
+    margin-bottom: 20px;
+}
+
+.division-wrapper,
+.board-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 300;
+}
+
+.division-wrapper {
+    padding: 15px 0;
+    border-top: 1.5px solid rgb(100, 100, 100);
+    font-weight: 400;
+}
+
+.board-container {
+    padding: 12px 0;
+    border-top: 0.5px solid rgb(200, 200, 200);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* 마지막 게시글 border-bottom */
+.board-container:last-of-type {
+    border-bottom: 0.5px solid rgb(200, 200, 200);
+}
+
+/* 글쓰기 버튼 */
+.write-btn {
+    /* width: 10%; */
+    /* margin: 10px 15px 0px 0px; */
+    /* padding: 7px 20px; */
+    /* height: 33px; */
+    padding: 7px 25px;
+    /* width: 70px; */
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #b7d15a;
+    color: black;
+    font-weight: 400;
+
+}
+
+.write-btn:hover {
+    background-color: #b7d15a;
+    color: white;
+}
+
+/* 관리자 게시물 add classlist 나중에 */
+.admin-write {
+    width: 50%;
+    padding: 2px 10px;
+    /* color: #f63b3e; */
+    color: white;
+    border-radius: 2px;
+    /* background-color: #fff5f5; */
+    background-color: #b7d15a;
+    border: 0.5px solid #d4e78e;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.admin-write-title {
+    font-weight: 500;
+    color: #9eb842;
+}
+
+
+
+/* js로 설정해줘야 함 */
+.button-active {
+    background-color: #ffffff;
+    border: 1px solid rgb(200, 200, 200);
+    font-weight: 400;
+}
+
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    margin: 20px auto;
+    margin-bottom: 50px;
+    /* background-color: rgb(250, 250, 250); */
+    /* height: 150px; */
+    /* border-bottom: 1px solid #000; */
+    
+}
+.pagination li a{
+    font-size: 18px;
+    color: #1e1d21 !important;
+}
+
+.page-item.active .page-link{
+    font-size: 18px;
+    background-color: rgb(200, 200, 200) !important;
+    color: black !important;
+    border-color: rgb(200, 200, 200) !important;
+}
