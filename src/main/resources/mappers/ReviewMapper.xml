@@ -48,4 +48,24 @@
         where review_board_no = #{reviewBoardNo};
     </update>
 
+    <update id="upViewCount">
+        UPDATE review
+        SET review_view_count = review_view_count + 1
+        WHERE review_board_no = #{reviewBoardNo};
+    </update>
+
+    <select id = "reviewCount" resultType="int">
+        SELECT COUNT(*)
+        FROM review
+        <if test="type == 'title'">
+            WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE review_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+            OR review_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
 </mapper>

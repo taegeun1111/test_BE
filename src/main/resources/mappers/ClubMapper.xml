@@ -84,4 +84,9 @@
 
 
 
+    <update id="upViewCount">
+        UPDATE club
+        SET club_view_count = club_view_count + 1
+        WHERE club_board_no = #{clubBoardNo};
+    </update>
 </mapper>

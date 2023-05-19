@@ -48,4 +48,24 @@
         where issue_board_no = #{issueBoardNo};
     </update>
 
+    <update id="upViewCount">
+        UPDATE issue
+        SET issue_view_count = issue_view_count + 1
+        WHERE issue_board_no = #{issueBoardNo};
+    </update>
+
+    <select id = "issueCount" resultType="int">
+        SELECT COUNT(*)
+        FROM issue
+        <if test="type == 'title'">
+            WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'content'">
+            WHERE issue_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type == 'tc'">
+            WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
+            OR issue_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
 </mapper>

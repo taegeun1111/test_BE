@@ -8,7 +8,7 @@
         INSERT INTO secondhand_reply
             (secondhand_board_no, secondhand_reply_content, secondhand_reply_writer)
         VALUES
-            (#{secondhandBoardNo}, #{secondhandReplyContent}, ${secondhandReplyWriter})
+            (#{secondhandBoardNo}, #{secondhandReplyContent}, #{secondhandReplyWriter})
     </insert>
 
     <update id="modify">
