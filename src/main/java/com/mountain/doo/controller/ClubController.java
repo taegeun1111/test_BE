@@ -1,15 +1,19 @@
 package com.mountain.doo.controller;
 
+import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.dto.ClubListResponseDTO;
+import com.mountain.doo.dto.ClubModifyDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.ClubSearch;
+import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -71,13 +75,35 @@ public class ClubController {
     }
 
     //수정 요청/버튼클릭
+    @GetMapping("/modify")
+    public String modify(){
+        log.info("정보수정");
+        return "";
+    }
 
+
+    //정보수정
+    @PostMapping("/modify")
+    public String modify(ClubModifyDTO dto){
+        boolean modify = clubService.modify(dto);
+        if(modify) {
+            return "";  //수정 되었을 때
+        }
+        return  ""; //수정 안되면 다시 수정페이지
+    }
 
     //글 상세보기
+    @GetMapping("/detail")
+    public String detail(int clubBoardNo, @ModelAttribute("s") Search search, Model model){
+        log.info("club detail GET");
+        model.addAttribute("club", clubService.getDetail(clubBoardNo));
+        return "";
+    }
+
 
     //글 삭제
     @PostMapping("/delete")
-    public String delete(int clubBoardNo ){
+    public String delete(int clubBoardNo){
         System.out.println("/club/delete : POST");
         log.info(String.valueOf(clubBoardNo));
         return "redirect:/club/list";

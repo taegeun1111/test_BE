@@ -74,7 +74,9 @@
     </update>
 
     <select id="findMemberByCookie" >
-    
+        SELECT account_id, name, email, limit_time
+        FROM account
+        WHERE session_id = #{sessionId}
     </select>
 
 

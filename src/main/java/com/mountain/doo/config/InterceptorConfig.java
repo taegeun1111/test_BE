@@ -15,6 +15,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     private final BoardInterceptor boardInterceptor;
     private final AfterInterceptor afterInterceptor;
+    private final AfterInterceptor autoLoginInterceptror;
     //인터셉터 설정 등록
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -28,6 +29,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
         //로그인 하면 로그인과 회원가입 페이지 유입 불가
         registry.addInterceptor(afterInterceptor)
                 .addPathPatterns("/sign-in","sign-up");
+
+        //자동 로그인 인터셉터
+        registry.addInterceptor(autoLoginInterceptror)
+                .addPathPatterns("/**");
 
 
     }

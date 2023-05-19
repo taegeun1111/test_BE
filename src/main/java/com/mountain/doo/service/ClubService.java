@@ -2,6 +2,7 @@ package com.mountain.doo.service;
 
 import com.mountain.doo.dto.ClubDetailResponseDTO;
 import com.mountain.doo.dto.ClubListResponseDTO;
+import com.mountain.doo.dto.ClubModifyDTO;
 import com.mountain.doo.dto.ClubWriteRequestDTO;
 import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.entity.Club;
@@ -64,4 +65,8 @@ public class ClubService {
         return clubRepository.count(clubSearch);
     }
 
+    //수정 처리
+    public boolean modify(ClubModifyDTO dto) {
+        return clubRepository.modify(dto);
+    }
 }
