@@ -2,6 +2,7 @@ package com.mountain.doo.entity;
 
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
+import com.mountain.doo.dto.SecondhandRewriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class SecondhandBoard {
     private int secondhandView;
     private String secondhandArea;
     private LocalDateTime secondhandRegDate;
+    private LocalDateTime secondhandModify;
     private SecondhandType secondhandDealType;
 
     //전체게시판
@@ -43,6 +45,14 @@ public SecondhandBoard(SecondhandBoardWriteDTO dto){
     this.secondhandDealType=dto.getSecondhandDealType();
 }
 
+    public SecondhandBoard(SecondhandRewriteRequestDTO dto) {
+        this.accountId = dto.getId();
+        this.secondhandTitle = dto.getTitle();
+        this.secondhandContent = dto.getContent();
+        this.secondHandBoardNo = dto.getBoardNo();
+        this.secondhandModify = dto.getModifyTime();
+
+    }
 }
 
 
