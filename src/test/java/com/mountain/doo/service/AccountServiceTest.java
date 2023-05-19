@@ -33,8 +33,7 @@ class AccountServiceTest {
         save.setGender(GENDER.M);
         save.setEmail("11");
         save.setPhoneNo("11");
-        save.setAddress("11");
-
+sadsad
         boolean isSaved = accountService.save(save);
         assertTrue(isSaved);
 

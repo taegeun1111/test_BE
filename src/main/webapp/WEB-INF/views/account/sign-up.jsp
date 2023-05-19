@@ -54,7 +54,7 @@
                             <li>
                                 <div>비밀번호 확인</div>
                                 <div>
-                                <input type="password" name="password" id="re-password" size="17" maxlength="20"
+                                <input type="password" name="passwordChk" id="re-password" size="17" maxlength="20"
                                     class="form-control" maxlength="20" required="required" aria-required="true"
                                     placeholder="다시 한 번 입력하세요">
                                     <span id="PWReChk"></span>

@@ -46,7 +46,6 @@ class AccountMapperTest {
         save.setGender(GENDER.M);
         save.setEmail("44");
         save.setPhoneNo("55");
-        save.setAddress("55");
 
         boolean isSaved = mapper.save(save);
         assertTrue(isSaved);
