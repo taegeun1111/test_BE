@@ -27,8 +27,6 @@ public class FeedReplyController {
 
     private final FeedReplyService replyService;
 
-//restcontroller는 jsp를 찾지 않는다
-
     // 댓글 목록 조회
     @GetMapping("/{boardNo}/page/{pageNo}")
     public ResponseEntity<?> list(
