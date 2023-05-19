@@ -10,16 +10,7 @@
         SELECT
         issue_board_no, account_id, issue_title, issue_content, issue_like_count, issue_view_count, issue_reg_date, issue_modify
         FROM issue
-        <if test="type == 'title'">
-            WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'content'">
-            WHERE issue_content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'tc'">
-            WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
-            OR issue_content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
+        <include refid="search" />
         ORDER BY issue_board_no DESC
         LIMIT #{pageStart},#{amount}
     </select>
@@ -58,6 +49,12 @@
     <select id = "issueCount" resultType="int">
         SELECT COUNT(*)
         FROM issue
+        <include refid="search" />
+    </select>
+
+
+
+    <sql id="search">
         <if test="type == 'title'">
             WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
         </if>
@@ -68,6 +65,6 @@
             WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
             OR issue_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
-    </select>
+    </sql>
 
 </mapper>

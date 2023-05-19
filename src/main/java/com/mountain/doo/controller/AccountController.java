@@ -123,4 +123,11 @@ public class AccountController {
     }
 
 
-}
+    //태근 커뮤니티 페이지 이동 추가
+    @GetMapping("/community")
+    public String community(){
+        log.info("community 페이지 이동 GET 발생");
+        return "account/selectCategory";
+    }
+
+

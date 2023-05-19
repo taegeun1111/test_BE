@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="/assets/css/reviewList.css">
+    <link rel="stylesheet" href="/assets/css/handList.css">
     <%@ include file="../include/static-head.jsp" %>
 </head>
 
@@ -20,8 +20,8 @@
 
         <section class="review-main-wrapper">
             <div class="title-wrapper">
-                <div class="review-main-title">산악 후기</div>
-                <div class="review-sub-title">요즘 가장 핫한 산악 정보는?</div>
+                <div class="review-main-title">중고거래</div>
+                <div class="review-sub-title">당신의 사용하지 않는 물품을 사고 팔아서 더 나은 가치를 창출하세요!</div>
             </div>
             <!-- <div class="hide-admin"> -->
             <!-- 공지 숨기기 나중에 활성화 시키기 id넘어올 때 -->
@@ -31,16 +31,23 @@
                 </div> -->
             <!-- </div> -->
             <div id="search">
-                <form action="/issue/list" method="get" id="form-wrapper">
+                <form action="/board/list" method="get" id="form-wrapper">
 
                     <div class="search-warpper">
                         <select class="form-select" name="type" id="search-type">
+                            <option value="">전체</option>
                             <option value="title">제목</option>
                             <option value="content">내용</option>
                             <option value="tc">제목+내용</option>
                         </select>
 
-                        <input type="text" class="form-control" name="keyword" value="${s.keyword}">
+                        <select class="form-select" name="secondhandType" id="secondhandType">
+                            <option value="">전체</option>
+                            <option value="buy">삽니다</option>
+                            <option value="cell">팝니다</option>
+                        </select>
+
+                        <input type="text" class="form-control" name="keyword" value="${s.keyword}">    
                     </div>
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>
@@ -54,42 +61,36 @@
 
         <section class="division-wrapper">
             <div class="division-boardNo">게시글 번호</div>
+            <div class="division-category">카테고리</div>
             <div class="division-title">제목</div>
             <div class="division-writer">작성자</div>
             <div class="division-writen-date">작성일</div>
             <div class="division-view-count">조회</div>
-            <div class="division-like-it">좋아요</div>
+            <!-- <div class="division-like-it">좋아요</div> -->
         </section>
 
         <!-- 작성글 영역 -->
         <section class="board-wrapper">
 
+ 
 
-            <c:forEach var="is" items="${rList}">
-                <!-- 공지글 영역 -->
-                <!-- id넘어오는 값 되면 주석 풀기 -->
-                <!-- <c:if test="${is.id == admin}">
-                    <div class="board-container">
-                        <div class="board-boardNo">
-                            <div class="admin-write">공지</div>
-                        </div>
-                        <div class="board-title admin-write-title">${is.title}</div>
-                        <div class="board-writer">관리자</div>
-                        <div class="board-writen-date">${is.date}</div>
-                        <div class="board-view-count">${is.viewCount}</div>
-                        <div class="board-like-it">좋아요 수</div>
-                    </div>
-                </c:if> -->
+            <c:forEach var="is" items="${shbList}">
 
                 <!-- 사용자글 영역 -->
-                <c:if test="${is.id != admin}">
+                <c:if test="${is.accountId != admin}">
                     <div class="board-container">
-                        <div class="board-boardNo" data-bno="${is.boardNo}">${is.boardNo}</div>
-                        <div class="board-title">${is.title}</div>
-                        <div class="board-writer">${is.id}</div>
-                        <div class="board-writen-date">${is.date}</div>
-                        <div class="board-view-count">${is.viewCount}</div>
-                        <div class="division-like-it">${is.likeCount}</div>
+                        <div class="board-boardNo" data-bno="${is.secondHandBoardNo}">${is.secondHandBoardNo}</div>
+                        <c:if test="${is.secondhandDealType == 'BUY'}">
+                            <div class="board-buy">삽니다</div>
+                        </c:if>
+                        <c:if test="${is.secondhandDealType == 'SELL'}">
+                            <div class="board-cell">팝니다</div>
+                        </c:if>
+                        <div class="board-title"><div class="board-region">[${is.secondhandArea}]</div>${is.secondhandTitle}</div>
+                        <div class="board-writer">${is.accountId}</div>
+                        <div class="board-writen-date">${is.secondhandRegDate}</div>
+                        <div class="board-view-count">${is.secondhandView}</div>
+                        
                     </div>
                 </c:if>
             </c:forEach>
@@ -102,29 +103,29 @@
         <ul class="pagination">
             <c:if test="${maker.page.pageNo != 1}">
                 <li class="page-item"><a class="page-link"
-                        href="/review/list?pageNo=1&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a></li>
+                        href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a></li>
             </c:if>
 
             <c:if test="${maker.prev}">
-                <li class="page-item"><a href="/review/list?pageNo=${maker.begin-1}&type=${s.type}&keyword=${s.keyword}"
+                <li class="page-item"><a href="/board/list?pageNo=${maker.begin-1}&type=${s.type}&keyword=${s.keyword}"
                         class="page-link">prev</a>
                 </li>
             </c:if>
 
             <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
                 <li data-page-num="${i}" class="page-item">
-                    <a class="page-link" href="/review/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}">${i}</a>
+                    <a class="page-link" href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}">${i}</a>
                 </li>
             </c:forEach>
 
             <c:if test="${maker.next}">
-                <li class="page-item"><a href="/review/list?pageNo=${maker.end+1}&type=${s.type}&keyword=${s.keyword}"
+                <li class="page-item"><a href="/board/list?pageNo=${maker.end+1}&type=${s.type}&keyword=${s.keyword}"
                         class="page-link">next</a></li>
             </c:if>
 
             <c:if test="${maker.page.pageNo != maker.finalPage}">
                 <li class="page-item"><a class="page-link"
-                        href="/review/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
+                        href="/board/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
                 </li>
             </c:if>
         </ul>
@@ -174,6 +175,8 @@
             })    
         };
 
+
+        
         appendPageActive();
         fixSearchOption();
     </script>
