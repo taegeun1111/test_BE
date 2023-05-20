@@ -44,7 +44,7 @@
                         <select class="form-select" name="secondhandType" id="secondhandType">
                             <option value="">전체</option>
                             <option value="buy">삽니다</option>
-                            <option value="cell">팝니다</option>
+                            <option value="sell">팝니다</option>
                         </select>
 
                         <input type="text" class="form-control" name="keyword" value="${s.keyword}">    
@@ -54,7 +54,7 @@
                     </button>
                 </form>
 
-                <a href="/issue/write" class="write-btn">글쓰기</a>
+                <a href="/board/write" class="write-btn">글쓰기</a>
             </div>
 
         </section>
