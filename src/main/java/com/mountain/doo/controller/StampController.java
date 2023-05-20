@@ -2,6 +2,7 @@ package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
 import com.mountain.doo.dto.stamp.StampResponseDTO;
+import com.mountain.doo.entity.Stamp;
 import com.mountain.doo.service.StampService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class StampController {
     public String myStampPage(StampAddConditionDTO dto, Model model){
 
         //id가 가지고 있는 총 스탬프 수
-        StampResponseDTO stampCount = stampService.stampCount(dto);
+        Stamp stampCount = stampService.stampCount(dto);
 
         model.addAttribute("sc",stampCount);
 

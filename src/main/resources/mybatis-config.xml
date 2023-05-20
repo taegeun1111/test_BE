@@ -11,7 +11,6 @@
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
          <typeAlias alias="test" type="com.mountain.doo.entity.test" />
-
          <typeAlias alias="club" type="com.mountain.doo.entity.Club" />
          <typeAlias alias="feed" type="com.mountain.doo.entity.Feed" />
          <typeAlias alias="issue" type="com.mountain.doo.entity.Issue" />
@@ -21,7 +20,7 @@
         <typeAlias alias="AccountModifyDTO" type="com.mountain.doo.dto.AccountModifyDTO" />
         <typeAlias alias="StampResponseDTO" type="com.mountain.doo.dto.stamp.StampResponseDTO" />
         <typeAlias alias="StampAddConditionDTO" type="com.mountain.doo.dto.stamp.StampAddConditionDTO" />
-        <typeAlias alias="StampAddConditionDTO" type="com.mountain.doo.dto.stamp.StampAddConditionDTO" />
+        <typeAlias alias="Stamp" type="com.mountain.doo.entity.Stamp" />
         <typeAlias alias="feedReply" type="com.mountain.doo.entity.reply.FeedReply" />
         <typeAlias alias="clubReply" type="com.mountain.doo.entity.reply.ClubReply" />
         <typeAlias alias="reviewReply" type="com.mountain.doo.entity.reply.ReviewReply" />

@@ -4,59 +4,64 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mountain.doo.repository.StampMapper">
 
-    <select id="stampCount" resultType="StampResponseDTO">
-        SELECT account_id,attend_count,board_count,banner_click_count,total_stamp_count
+    <select id="stampCount" resultType="Stamp">
+        SELECT account_id,attend_count,board_count,banner_click_count,current_stamp_count,total_stamp_count
         FROM stamp
         WHERE account_id = #{accountId}
 
     </select>
 
-<!--    스탬프 획득 방법 -->
-    <update id="stampUpdate">
-        UPDATE stamp
-        SET total_stamp_count = CASE
-        WHEN banner_click_count % 3 = 0 THEN total_stamp_count + 1
-        WHEN board_count % 3 = 0 THEN total_stamp_count + 1
-        WHEN attend_count % 1 = 0 THEN total_stamp_count + 1
-        ELSE total_stamp_count
-        END
-        WHERE account_id = #{accountId}
-    </update>
-
 <!--    배너 +1 시키는 쿼리-->
     <update id="bannerPlus">
         UPDATE stamp
-        SET banner_click_count = #{bannerClickCount+1}
-        <if test="banner_click_count%3==0">
-            SET total_stamp_count = #{totalStampCount+1}
-        </if>
+        SET banner_click_count = banner_click_count+1
         WHERE account_id = #{accountId}
     </update>
 
 <!--    게시판 작성시 +1-->
     <update id="boardPlus">
         UPDATE stamp
-        SET board_count = #{boardCount} +1
+        SET board_count = board_count+1
         WHERE account_id = #{accountId}
     </update>
 
-<!--     로그인여부 확인-->
-    <update id="booleanLogin">
+
+
+<!-- 스탬프 개수 1-->
+
+    <update id="stampAdd">
         UPDATE stamp
-        SET attend_count = #{attendCount} +1
+        SET total_stamp_count=total_stamp_count+1
         WHERE account_id = #{accountId}
     </update>
 
-<!--    업데이트 된 dto (db에 전달될 값) 사용자가 할수있는 것들 로그인,게시판,배너-->
+<!--    현재 스탬프개수 +1-->
+    <update id="currentAdd">
+        UPDATE stamp
+        SET current_stamp_count=current_stamp_count+1
+        WHERE account_id = #{accountId}
+    </update>
 
-    <select id="stampAddCondition" resultType="StampAddConditionDTO">
-        SELECT account_Id,attend_count,board_count,banner_click_count
-        FROM stamp
+    <!--    현재 스탬스개수 count-->
+    <select id="currentCount" resultType="int">
+        SELECT current_stamp_count
+        from stamp
         WHERE account_id = #{accountId}
 
     </select>
 
+<!--    응모권사용 현재 스탬프 -18-->
+    <update id="openEvent">
+        UPDATE stamp
+        SET current_stamp_count = current_stamp_count-18
+        WHERE account_id = #{accountId}
+    </update>
 
+    <select id="myBoard" resultType="int">
+        select count(board_no)
+        from stamp
+        inner join feed on stamp.account_id = feed.account_id
+    </select>
 
 
 </mapper>
