@@ -11,7 +11,7 @@
             <li><a href="/board/list" class="category-secondhand">중고거래</a></li>
             <li><a href="/event/stamp" class="category-event">스탬프</a></li>
         </ul>
-        <img src="/assets/jpg/logo(white).png" alt="" class="logo">
+        <img src="/assets/jpg/logo(white).png" alt="" class="logo" onclick="window.location.href='/'" style="cursor: pointer;">
 
         <ul class="login-wrapper">
             <li><a href="/account/sign-up" class="signUp-btn">Sign up</a></li>

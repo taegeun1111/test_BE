@@ -58,13 +58,12 @@ public class SecondhandBoardController {
         return "secondHand/handList";
     }
 
-    //게시물 하나 조회
+    //게시물 상세 조회
     @GetMapping("/detail")
-    public String findOne(int boardNo,Model model){
-        SecondhandBoard one = sc.findOne(boardNo);
-        model.addAttribute("one",one);
-
-        return "secondHand/detail";
+    public String findOne(int bno,Model model){
+        SecondhandBoard detail = sc.findOne(bno);
+        model.addAttribute("is",detail);
+        return "secondHand/handDetail";
     }
 
     //게시물 작성 페이지 열림

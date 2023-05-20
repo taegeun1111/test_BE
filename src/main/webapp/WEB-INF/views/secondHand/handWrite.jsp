@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <%@ include file="../include/static-head.jsp" %>
-    <link rel="stylesheet" href="/assets/css/clubWrite.css">
+    <link rel="stylesheet" href="/assets/css/handWrite.css">
 </head>
 
 <body id="body-color" >

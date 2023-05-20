@@ -47,7 +47,7 @@
                             <option value="sell">팝니다</option>
                         </select>
 
-                        <input type="text" class="form-control" name="keyword" value="${s.keyword}">    
+                        <input type="text" class="form-control" name="keyword" value="${s.keyword}">
                     </div>
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
         <!-- 작성글 영역 -->
         <section class="board-wrapper">
 
- 
+
 
             <c:forEach var="is" items="${shbList}">
 
@@ -86,11 +86,13 @@
                         <c:if test="${is.secondhandDealType == 'SELL'}">
                             <div class="board-cell">팝니다</div>
                         </c:if>
-                        <div class="board-title"><div class="board-region">[${is.secondhandArea}]</div>${is.secondhandTitle}</div>
+                        <div class="board-title">
+                            <div class="board-region">[${is.secondhandArea}]</div>${is.secondhandTitle}
+                        </div>
                         <div class="board-writer">${is.accountId}</div>
                         <div class="board-writen-date">${is.secondhandRegDate}</div>
                         <div class="board-view-count">${is.secondhandView}</div>
-                        
+
                     </div>
                 </c:if>
             </c:forEach>
@@ -103,29 +105,29 @@
         <ul class="pagination">
             <c:if test="${maker.page.pageNo != 1}">
                 <li class="page-item"><a class="page-link"
-                        href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a></li>
+                        href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">&lt;&lt;</a></li>
             </c:if>
 
             <c:if test="${maker.prev}">
-                <li class="page-item"><a href="/board/list?pageNo=${maker.begin-1}&type=${s.type}&keyword=${s.keyword}"
+                <li class="page-item"><a href="/board/list?pageNo=${maker.begin-1}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}"
                         class="page-link">prev</a>
                 </li>
             </c:if>
 
             <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
                 <li data-page-num="${i}" class="page-item">
-                    <a class="page-link" href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}">${i}</a>
+                    <a class="page-link" href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">${i}</a>
                 </li>
             </c:forEach>
 
             <c:if test="${maker.next}">
-                <li class="page-item"><a href="/board/list?pageNo=${maker.end+1}&type=${s.type}&keyword=${s.keyword}"
+                <li class="page-item"><a href="/board/list?pageNo=${maker.end+1}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}"
                         class="page-link">next</a></li>
             </c:if>
 
             <c:if test="${maker.page.pageNo != maker.finalPage}">
                 <li class="page-item"><a class="page-link"
-                        href="/board/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
+                        href="/board/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">&gt;&gt;</a>
                 </li>
             </c:if>
         </ul>
@@ -156,29 +158,41 @@
         // 셀렉트옵션 검색타입 태그 고정
         function fixSearchOption() {
             const $select = document.getElementById('search-type');
+            const $typeSelect = document.getElementById('secondhandType');
 
             for (let $opt of [...$select.children]) {
                 if ($opt.value === '${s.type}') {
                     $opt.setAttribute('selected', 'selected');
                     break;
                 }
-            } 
+            }
+
+            for (let $opt2 of [...$typeSelect.children]) {
+                if ($opt2.value === '${s.secondhandType}') {
+                    $opt2.setAttribute('selected', 'selected');
+                    break;
+                }
+            }
         }
 
-        const clickBoards = document.querySelectorAll('.board-container');
-        
-        for (const clickBoard of clickBoards) {
-            clickBoard.addEventListener('click',e =>{
-                console.log(clickBoard);
-                const bno = clickBoard.querySelector('.board-boardNo').dataset.bno;
-                window.location.href = '/review/detail?bno='+bno+'&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
-            })    
-        };
-
 
         
-        appendPageActive();
-        fixSearchOption();
+            const clickBoards = document.querySelectorAll('.board-container');
+
+            for (const clickBoard of clickBoards) {
+                clickBoard.addEventListener('click', e => {
+                    console.log(clickBoard);
+                    const bno = clickBoard.querySelector('.board-boardNo').dataset.bno;
+                    window.location.href = '/board/detail?bno=' + bno +
+                        '&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}';
+                })
+            };
+
+
+
+            appendPageActive();
+            fixSearchOption();
+            fixSearchType();
     </script>
 </body>
 
