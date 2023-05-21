@@ -24,9 +24,9 @@
 
     <select id="findAll" resultType="feedReply">
         SELECT
-            A.feed_reply_no, A.feed_reply_content, A.feed_reply_writer, A.feed_reply_date, B.feed_board_no
-        FROM feed_reply A, feed B
-        WHERE B.feed_board_no = A.feed_board_no
+            feed_reply_no, feed_reply_content, feed_reply_writer, feed_reply_date, feed_board_no
+        FROM feed_reply
+        WHERE feed_board_no = #{feedBoardNo}
         ORDER BY feed_reply_no
         LIMIT #{p.pageStart}, #{p.amount}
     </select>
@@ -40,7 +40,7 @@
 
     <select id="count" resultType="int">
         SELECT COUNT(*)
-        FROM feed
+        FROM feed_reply
         WHERE feed_board_no = #{feedBoardNo}
     </select>
 </mapper>

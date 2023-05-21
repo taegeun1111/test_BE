@@ -134,6 +134,7 @@ public class AccountController {
         return "account/selectCategory";
     }
 
+
     //아이디,이메일 중복 검사
     @GetMapping("/check")
     @ResponseBody
