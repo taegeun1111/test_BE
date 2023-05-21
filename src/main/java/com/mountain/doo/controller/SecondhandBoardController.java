@@ -58,31 +58,30 @@ public class SecondhandBoardController {
         return "secondHand/handList";
     }
 
-    //게시물 하나 조회
-    @GetMapping("/handboardOne")
-    public String findOne(int boardNo,Model model){
-        SecondhandBoard one = sc.findOne(boardNo);
-        model.addAttribute("one",one);
-
-        return "/handlistOne";
+    //게시물 상세 조회
+    @GetMapping("/detail")
+    public String findOne(int bno,Model model){
+        SecondhandBoard detail = sc.findOne(bno);
+        model.addAttribute("is",detail);
+        return "secondHand/handDetail";
     }
 
     //게시물 작성 페이지 열림
-    @GetMapping("/handWrite")
+    @GetMapping("/write")
     public String handWrite(HttpSession session){
 
 
         //회원정보있는 회원만 게시판 작성 가능
-        return "/write";
+        return "secondHand/handWrite";
     }
 
 
     //게시물 작성
-    @PostMapping("/handWriteData")
+    @PostMapping("/write")
     public String handWriteDate(SecondhandBoardWriteDTO dto,HttpSession session){
-         sc.handWriteData(dto,session);
-
-        return "redirect/List";
+        sc.handWriteData(dto, session);
+        log.info("handWrite 저장되는 값 {}",dto);
+        return "redirect:/board/list";
     }
 
 
