@@ -54,7 +54,7 @@ class FeedReplyMapperTest {
     @DisplayName("1번 게시물의 댓글을 전부 조회할 수 있어야 한다")
     void findReplyTest(){
 
-        long bno= 1L;
+        long bno= 100L;
 
         List<FeedReply> replyList = feedReplyMapper.findAll(bno, new Page());
         System.out.println("replyList = " + replyList);
