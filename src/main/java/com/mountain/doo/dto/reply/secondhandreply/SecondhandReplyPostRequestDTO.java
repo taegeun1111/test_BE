@@ -1,7 +1,7 @@
 package com.mountain.doo.dto.reply.secondhandreply;
 
 
-import com.mountain.doo.entity.reply.FeedReply;
+import com.mountain.doo.entity.reply.SecondhandReply;
 import lombok.*;
 
 
@@ -17,11 +17,11 @@ public class SecondhandReplyPostRequestDTO {
     private String replyWriter;
     private long boardNo;
 
-    public FeedReply feedReplyEntity(){
-        return FeedReply.builder()
-                .feedReplyContent(this.replyContent)
-                .feedReplyWriter(this.replyWriter)
-                .feedBoardNo(this.boardNo)
+    public SecondhandReply secondhandReplyEntity(){
+        return SecondhandReply.builder()
+                .secondhandReplyContent(this.replyContent)
+                .secondhandReplyWriter(this.replyWriter)
+                .secondhandBoardNo(this.boardNo)
                 .build();
     }
 }
