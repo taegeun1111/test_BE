@@ -1,6 +1,7 @@
 package com.mountain.doo.repository.replymapper;
 
 
+import com.mountain.doo.dto.page.Page;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Feed;
 import com.mountain.doo.entity.reply.FeedReply;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,4 +50,16 @@ class FeedReplyMapperTest {
 
     }
 
+    @Test
+    @DisplayName("1번 게시물의 댓글을 전부 조회할 수 있어야 한다")
+    void findReplyTest(){
+
+        long bno= 1L;
+
+        List<FeedReply> replyList = feedReplyMapper.findAll(bno, new Page());
+        System.out.println("replyList = " + replyList);
+        assertNotNull(replyList);
+
+
+    }
 }

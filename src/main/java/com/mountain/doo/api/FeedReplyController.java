@@ -28,7 +28,7 @@ public class FeedReplyController {
     private final FeedReplyService replyService;
 
     // 댓글 목록 조회
-    @GetMapping("/{boardNo}/page/{pageNo}")
+    @GetMapping("/{boardNo}/page/{pageNo}") //특정 게시물의 댓글 목록 중 특정 페이지 조회
     public ResponseEntity<?> list(
             @PathVariable long boardNo,
             @PathVariable int pageNo
@@ -37,7 +37,7 @@ public class FeedReplyController {
         page.setPageNo(pageNo);
         page.setAmount(10);
         FeedReplyListResponseDTO replyList = replyService.getList(boardNo, page);
-
+        log.info("replyList: {}", replyList);
         return ResponseEntity.ok().body(replyList);
     }
 

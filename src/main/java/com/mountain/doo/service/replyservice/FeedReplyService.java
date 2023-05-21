@@ -30,7 +30,7 @@ public class FeedReplyService {
     public FeedReplyListResponseDTO getList(long feedBoardNo, Page page){
         List<FeedReplyDetailResponseDTO> feedReplies = replyMapper.findAll(feedBoardNo, page)
                 .stream()
-                .map(feedReply -> new FeedReplyDetailResponseDTO(feedReply))
+                .map(FeedReplyDetailResponseDTO::new)
                 .collect(Collectors.toList());
 
         int count = replyMapper.count(feedBoardNo);
