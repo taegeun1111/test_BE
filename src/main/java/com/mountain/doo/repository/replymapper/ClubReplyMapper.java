@@ -21,7 +21,7 @@ public interface ClubReplyMapper {
     boolean remove(long clubBoardNo);
     // 댓글 목록 조회
     List<ClubReply> findAll(
-            @RequestParam("c") long clubBoardNo
+             long clubBoardNo
             ,   @RequestParam("p") Page page
     ); //특정 게시물의 댓글 목록 조회, 페이징 처리
 

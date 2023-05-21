@@ -20,6 +20,7 @@ class SecondhandBoardMapperTest {
     @Autowired
     SecondhandBoardMapper mapper;
 
+
 /*    @Test
     @DisplayName("거래타입별 필터링 후 게시물이 전체 출력되어야 한다")
     void findAllTest(){
@@ -37,6 +38,7 @@ class SecondhandBoardMapperTest {
             }
         }
     }*/
+
     @Test
     @DisplayName("boardNo가 들어오면 하나의 게시판이 출력되어야 한다")
 
