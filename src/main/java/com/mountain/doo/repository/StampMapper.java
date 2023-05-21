@@ -19,7 +19,4 @@ public interface StampMapper {
     void booleanLogin(StampAddConditionDTO dto);
 
     StampAddConditionDTO stampAddCondition(StampAddConditionDTO dto);
-
-
-
 }

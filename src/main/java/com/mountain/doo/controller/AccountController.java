@@ -69,7 +69,7 @@ public class AccountController {
             //service에 세션 보냄
             boolean b = accountService.maintainAccountState(request.getSession(), dto.getAccount());
             model.addAttribute("LoginStamp",b);
-            log.info("dbLoginTime등록여부3 " + b);
+            log.info("dbLoginTime등록여부3 : " + b);
             return "redirect:/account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
         } else {
             return "account/sign-in"; //로그인 안되면 로그인 페이지 다시

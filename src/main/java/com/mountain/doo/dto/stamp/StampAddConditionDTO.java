@@ -12,4 +12,6 @@ public class StampAddConditionDTO {
     private int attendCount;
     private int boardCount;
     private int bannerClickCount;
+    private int currentStampCount;
+    private int totalStampCount;
 }

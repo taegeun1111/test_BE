@@ -15,14 +15,14 @@ public class AfterInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws Exception {
-        HttpSession session = request.getSession();
-
-        if(LoginUtil.isLogin(session)){
-            response.sendRedirect("/");
-            return false;
-        }
+//        HttpSession session = request.getSession();
+//
+//        if(LoginUtil.isLogin(session)){
+//            response.sendRedirect("/");
+//            return false;
+//        }
         return true;
-
-
+//
+//
     }
 }
