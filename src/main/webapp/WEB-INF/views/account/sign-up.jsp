@@ -8,16 +8,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%@ include file="../include/static-head.jsp" %>
+    <%@ include file="../include/account-static-head.jsp" %>
     <link rel="stylesheet" href="/assets/css/sign-up.css">
-    <link rel="stylesheet" href="/assets/css/common.css">
+    <!-- <link rel="stylesheet" href="/assets/css/common.css"> -->
 
 
     <title>Mountain-Do</title>
 </head>
 
 <body>
-    <%@ include file="../include/header.jsp" %>
+    <!-- <%@ include file="../include/header.jsp" %> -->
 
     <div class="container">
         <div class="sign-up-wrap">

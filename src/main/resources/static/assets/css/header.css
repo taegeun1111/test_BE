@@ -45,28 +45,21 @@
 .signUp-btn,
 .signIn-btn,
 .logout-btn {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.signUp-btn {
     color: white;
 }
 
-.signUp-btn,
-.signIn-btn,
-.logout-btn:hover {
-    font-size: 16px;
-    font-weight: 300;
+.signIn-btn {
     padding: 5px 14px;
     background-color: white;
     color: black;
     border-radius: 50px;
     margin-left: 20px;
 }
-
-/* .signIn-btn {
-    padding: 5px 14px;
-    background-color: white;
-    color: black;
-    border-radius: 50px;
-    margin-left: 20px;
-} */
 
 /* 로그인 후 */
 .afterLogin-wrapper {
@@ -89,6 +82,5 @@
     background-color: rgb(240, 240, 240);
     border-radius: 50px;
     margin-left: 20px;
-    padding: auto;
     overflow: hidden;
 }
