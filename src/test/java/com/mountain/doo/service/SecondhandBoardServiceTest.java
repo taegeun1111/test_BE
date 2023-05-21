@@ -19,19 +19,21 @@ class SecondhandBoardServiceTest {
     @Autowired
     SecondhandBoardMapper mapper;
 
-//    @Test
-//    @DisplayName("거래타입별 필터링 후 게시물이 전체 출력되어야 한다")
-//    void findAllTest(){
-//        Search search =new Search();
-//        SecondhandType type = SecondhandType.BUY;
-//        List<SecondhandBoard> list = mapper.findAll(new Search());
-//
-//        for (SecondhandBoard board : list) {
-//            if (board.getSecondhandDealType()==type){
-//                System.out.println("board = " + board);
-//            }
-//        }
-//    }
+
+/*    @Test
+    @DisplayName("거래타입별 필터링 후 게시물이 전체 출력되어야 한다")
+    void findAllTest(){
+        Search search =new Search();
+        SecondhandType type = SecondhandType.BUY;
+        List<SecondhandBoard> list = mapper.findAll(new Search());
+
+        for (SecondhandBoard board : list) {
+            if (board.getSecondhandDealType()==type){
+                System.out.println("board = " + board);
+            }
+        }
+    }*/
+
 
     @Test
     @DisplayName("게시글 번호 입력하면 board 하나를 출력하고 조회수를 +1 시킨다")

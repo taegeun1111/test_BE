@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* 상단 마진 */
+#carouselExampleControls{
+    margin-top: 70px;
+}
+
+.col-4, .col-8{
+    height: 500px;
+    padding: 0 !important;
+}
+
+
+.index-container {
+    background-color: #fcf9f2;
+}
+/* 캐러셀 영역 */
+.carousel-inner{
+    height: 500px !important;
+    
+}
+
+.d-block{
+    width: 100% !important;
+    height: auto;
+    background-size: cover;
+    display: inline-block;
+}
+
+/* 버튼 위치 */
+.carousel-control-prev{
+    left: 550px !important;
+}
+.carousel-control-next{
+    right: -80px !important;
+}
+
+
+/* main-img 영역 */
+.main-wrapper {
+    width: 40%;
+    margin: 80px auto 0;
+    display: flex;
+    align-items: flex-end; /* 수정: 중앙 정렬 대신 아래로 정렬 */
+    height: 500px;
+
+}
+
+/* main-text */
+.main-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%; /* 수정: 부모 요소의 높이를 상속받음 */
+    /* background-color: rgb(240, 240, 240); */
+    background-color: #1e1d21;
+    color: white;
+    padding: 40px 70px;
+}
+
+
+.main-text .main-logo img {
+    height: 15px;
+}
+
+.main-title-wrapper {
+    height: 130px;
+}
+
+.gobtn {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+}
+
+.main-title-wrapper a {
+    padding: 5px 15px;
+    background-color: #d5f462;
+    text-decoration: none;
+    color: #1e1d21;
+    border-radius: 5px;
+    font-weight: 300;
+}
+
+.gobtn img {
+    margin-left: 5px;
+    width: 20px;
+}
+
+.main-title {
+
+    text-align: left;
+    font-weight: 300;
+    margin: 0 0 10px;
+
+}
+.img1{
+background-position-y: -350px !important;
+}
+.sub-title {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 0;
+}
+.col-8 .img2, .col-8 .img3{
+    height: 500px !important;
+}
+/* 각자 배경 포지션 */
+
+/* 2번째 영역 전체 */
+.second-warpper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 40px auto;
+}
+
+/* 오늘의 날씨 영역 */
+.sec1-container {
+    display: flex;
+    flex-direction: column;
+    margin: 25px auto;
+
+}
+
+
+/* 타이틀, 서브타이틀 공통영역 */
+.sec1-title,
+.sec2-title,
+.sec3-title {
+    font-size: 15px;
+    margin: 0 auto;
+    font-weight: 400;
+    padding: 10px 30px;
+    background-color: white;
+    width: fit-content;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
+
+/* 오늘의 날씨 박스 영역 공통 부분 */
+.weather-today-wrapper,
+.weather-mountain-wrapper {
+    width: 430px;
+    height: 250px;
+    /* background-color: #1e1d21; */
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 5px;
+}
+
+.weather-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.region {
+    background-color: #d5f462;
+    padding: 5px 20px;
+    color: #1e1d21;
+    border-radius: 20px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.weather-icon img {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.weather-now {
+    font-size: 60px;
+    color: black;
+}
+
+.weather-detail-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.weather-detail {
+    width: 120px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.etc {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(150, 150, 150);
+}
+
+
+/* 오늘의 산, 막걸리 영역 */
+.sec2-container {
+    /* background-color: #1e1d21; */
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 20px;
+    height: 585px;
+}
+
+.today-mountain-wrapper {
+    height: 300px;
+    /* display: flex; */
+    color: black;
+    margin: 20px auto;
+    position: relative;
+    /* align-items: start; */
+    border-radius: 20px;
+}
+
+
+/* 오늘 이미지 */
+.today-mountain-img {
+    margin: 0 auto;
+    width: 97%;
+    margin-top: 30px;
+    height: 350px;
+    border-radius: 20px;
+    background-image: url(jpg/contents_images-1655441432506-1.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 0 -180px;
+    background-color: #d5f462;
+    position: relative;
+}
+
+.today-mountain-title {
+    font-size: 25px;
+    color: #d5f462;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.today-mountain-content {
+
+    width: 80%;
+    margin: 0 auto 15px;
+    font-size: 16px;
+}
+
+.today-mountain-price {
+    font-size: 19px;
+}
+
+/* 화살표 공통영역 */
+.less,
+.then {
+    width: 35px;
+    position: absolute;
+    transform: translate(0%, -45%);
+    cursor: pointer;
+}
+
+.less {
+    top: 50%;
+    left: 2%;
+}
+
+.then {
+    top: 50%;
+    right: 2%;
+}
+
+
+/* sec3 영역 */
+.sec3-container{
+    background-color: #1e1d21;
+}

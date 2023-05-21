@@ -20,23 +20,25 @@ class SecondhandBoardMapperTest {
     @Autowired
     SecondhandBoardMapper mapper;
 
-//    @Test
-//    @DisplayName("거래타입별 필터링 후 게시물이 전체 출력되어야 한다")
-//    void findAllTest(){
-//        Search search =new Search();
-//        SecondhandType type = SecondhandType.BUY;
-//
-//
-////        List<SecondhandBoard> list = mapper.findAll(new Search());
-////        search.setPageNo(1);
-////        search.setAmount(10);
-////        search.getPageStart();
-//        for (SecondhandBoard board : list) {
-//            if (board.getSecondhandDealType()==type){
-//                System.out.println("board = " + board);
-//            }
-//        }
-//    }
+
+/*    @Test
+    @DisplayName("거래타입별 필터링 후 게시물이 전체 출력되어야 한다")
+    void findAllTest(){
+        Search search =new Search();
+        SecondhandType type = SecondhandType.BUY;
+
+
+        List<SecondhandBoard> list = mapper.findAll(new Search());
+//        search.setPageNo(1);
+//        search.setAmount(10);
+//        search.getPageStart();
+        for (SecondhandBoard board : list) {
+            if (board.getSecondhandDealType()==type){
+                System.out.println("board = " + board);
+            }
+        }
+    }*/
+
     @Test
     @DisplayName("boardNo가 들어오면 하나의 게시판이 출력되어야 한다")
 

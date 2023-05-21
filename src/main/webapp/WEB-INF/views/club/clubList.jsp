@@ -33,7 +33,7 @@
 
         <div class="club-wrapper">
             <c:forEach var="b" items="${bList}">
-                <div class="club-list-container" data-bno="b.clubBoardNo">
+                <div class="club-list-container" data-bno="${b.clubBoardNo}">
                     <div class="club-title">${b.clubTitle}</div>
                     <div class="icon-detail">
                         <div class="mountain-sec">
@@ -103,7 +103,7 @@
             const bno = e.target.closest('div.club-list-container').dataset.bno;
             console.log(bno);
             // 상세조회 요청 보내기
-            window.location.href = '/club/clubDetail?bno=' + bno +
+            window.location.href = '/club/detail?bno=' + bno +
                 '&pageNo=${s.pageNo}&clubRecruitType=${s.clubRecruitType}';
         });
 

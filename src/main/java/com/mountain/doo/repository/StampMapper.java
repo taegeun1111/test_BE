@@ -2,24 +2,26 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
 import com.mountain.doo.dto.stamp.StampResponseDTO;
+import com.mountain.doo.entity.Stamp;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface StampMapper {
 
 
-    StampResponseDTO stampCount (String accountId);
+    Stamp stampCount (String accountId);
 
-    void suForBanner(StampAddConditionDTO dto);
+    void bannerPlus(String accountId);
 
-    void bannerPlus(StampAddConditionDTO dto);
+    void boardPlus(String accountId);
 
-    void boardPlus(StampAddConditionDTO dto);
+    void stampAdd(String accountId);
 
-    void booleanLogin(StampAddConditionDTO dto);
+    void currentAdd(String accountId);
+    int currentCount(String acocuntId);
 
-    StampAddConditionDTO stampAddCondition(StampAddConditionDTO dto);
+    void openEvent(String accountId);
 
-
+    void isLogin(boolean attendCount,String accountId);
 
 }

@@ -7,9 +7,12 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
+@Builder
 public class StampAddConditionDTO {
     private String accountId;
-    private int attendCount;
-    private int boardCount;
-    private int bannerClickCount;
+    private boolean attendCount;
+    private boolean boardCount;
+    private boolean bannerClickCount;
+    private boolean clickEvent;
 }
