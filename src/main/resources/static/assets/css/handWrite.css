@@ -1,0 +1,137 @@
+#body-color {
+    /* background-color: black; */
+    background-color: rgb(240, 240, 240);
+    /* background-color: #1e1d21; */
+    /* height: 100vh; */
+}
+
+.title-wrapper {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    margin: 120px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    /* box-shadow: 3px 3px 5px 1px rgba(200, 200, 200, 0.5); */
+}
+
+.review-main-title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.select-wrapper,
+.text-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+/* input버튼 공통 영역 */
+.type-wrapper,
+.deadline-wrapper,
+.area-wrapper,
+.count-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* input 설명글 공통영역 */
+.type-title,
+.deadline-title,
+.area-title,
+.count-title {
+    margin-right: 5px;
+    margin: 0px 5px;
+    font-weight: 400;
+}
+
+/* 전체 border 공통영역 */
+#title,
+#content,
+#clubRecruitType,
+#secondhandArea,
+.submit-btn,
+.close-btn {
+    border: 0.5px solid rgb(230, 230, 230) !important;
+}
+
+/* 타이틀 콘텐츠 영역 */
+#title,
+#content {
+    /* width: 550px; */
+    width: 100%;
+    margin: 0 auto;
+    resize: none;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+}
+
+#title {
+    height: 45px;
+    border-radius: 5px;
+}
+
+#content {
+    min-height: 480px;
+    border-radius: 7px;
+}
+
+/* input태그 넓이 */
+#clubRecruitType,
+#secondhandArea{
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#clubRecruitType,
+#secondhandArea {
+    width: 120px;
+}
+
+
+/* 작성, 취소 버튼 */
+.write-wrapper {
+    /* width: 500px; */
+    margin: 0 auto;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-wrapper :nth-child(1) {
+    margin-bottom: 7px;
+}
+
+.submit-btn,
+.close-btn {
+    padding: 5px 0;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 200;
+    /* background-color: black; */
+    background-color: rgb(240, 240, 240);
+    /* color: white; */
+    border: none !important;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 400;
+    color: black;
+}
+
+.close-btn{
+    text-align: center;
+}
+
+.submit-btn:hover,
+.close-btn:hover {
+    background-color: #d5f462;
+    color: black;
+
+}

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #1e1d21;
+}
+
+.detail-container {
+    margin-top: 120px;
+}
+
+.club-list-wrapper {
+    margin: 0 auto;
+    width: 60%;
+    /* background-color: #aba8b3; */
+    color: white;
+    padding: 25px;
+}
+
+
+/* icon 영역 */
+.icon-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px rgb(150, 150, 150) solid;
+    padding-bottom: 10px;
+}
+
+.mountain-sec {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 19px;
+}
+.mountain-sec p{
+    margin: 0;
+}
+.mountain-sec img {
+    margin-right: 20px;
+}
+
+.mountain-icon {
+    width: 30px;
+}
+
+.people-icon {
+    width: 30px;
+}
+
+.calendar-icon {
+    width: 28px;
+}
+
+.location-icon {
+    width: 24px;
+}
+
+
+/* club list */
+.club-title {
+    font-size: 30px;
+    color: #d5f462;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+/* 내용 */
+.club-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px rgb(150, 150, 150) solid;
+    height: 700px;
+}
+
+.club-content {
+    margin-top: 20px;
+    font-size: 20px;
+    /* height: 500px; */
+}
+
+/* 약도 */
+.location-wrapper {
+    width: 50%;
+    margin: 100px 0 30px;
+    font-size: 18px;
+    color: rgb(200, 200, 200);
+}
+
+#location-main {
+    margin-top: 8px;
+    height: 300px;
+    background-color: rgb(200, 200, 200);
+    border-radius: 10px;
+}
+
+/* 현재 인원 */
+.count-whole-text {
+    display: flex;
+    font-size: 20px;
+    margin: 20px 0 10px;
+    color: #d5f462;
+}
+
+.now-count {
+    margin-left: 7px;
+}
+
+/* 현재 모집 인원 */
+.now-people-warpper{
+    display: flex;
+    margin-bottom: 50px;
+}
+.person{
+    padding: 5px 20px;
+    background-color: #d5f462;
+    width: fit-content;
+    margin-right: 10px;
+    color: #1e1d21;
+    border-radius: 50px;
+    font-size: 17px;
+}

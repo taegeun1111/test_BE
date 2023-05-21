@@ -40,5 +40,5 @@ public interface ClubMapper {
 //    int count();
 
     // 조회수 상승
-    void upViewCount(int clubBoardNo);
+//    void upViewCount(int clubBoardNo);
 }
