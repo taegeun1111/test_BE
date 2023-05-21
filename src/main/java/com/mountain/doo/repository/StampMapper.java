@@ -8,15 +8,20 @@ import org.apache.ibatis.annotations.Mapper;
 public interface StampMapper {
 
 
-    StampResponseDTO stampCount (String accountId);
+    Stamp stampCount (String accountId);
 
-    void suForBanner(StampAddConditionDTO dto);
+    void bannerPlus(String accountId);
 
-    void bannerPlus(StampAddConditionDTO dto);
+    void boardPlus(String accountId);
 
-    void boardPlus(StampAddConditionDTO dto);
+    void stampAdd(String accountId);
+
+    void currentAdd(String accountId);
+    int currentCount(String acocuntId);
+
+    void openEvent(String accountId);
 
     void booleanLogin(StampAddConditionDTO dto);
 
-    StampAddConditionDTO stampAddCondition(StampAddConditionDTO dto);
+
 }
