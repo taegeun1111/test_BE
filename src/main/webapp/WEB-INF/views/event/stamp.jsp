@@ -6,9 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/stamp.css">
-    <link rel="stylesheet" href="/assets/css/common.css">
     <%@ include file="../include/static-head.jsp" %>
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <link rel="stylesheet" href="/assets/css/stamp.css">
+
     <title>Mountain-Do stamp</title>
 </head>
 <body>
@@ -18,38 +19,38 @@
         <div class="event-wrap">
             <div class="stamp-map">
                 <div class="map-header">
-                   <h1>00님의 STAMP MAP</h1>
+                   <h1><span>${login == null ? '비회원' : login.name}</span>님의 STAMP MAP</h1>
                    <hr>
                 </div>
                 <div class="map-main">
-                    
                   </div>
-                <div class="map-footer">오늘의 STAMP 완료</div>
+
+                <div class="map-footer">출석체크</div>
             </div>
             <div class="my-stamp-wrap">
                 <div class="my-stamp">
                     <ul>
                         <li>출석
                             <div>
-                                <img src="https://cdn-icons-png.flaticon.com/128/753/753344.png"> 
+                                <img src="https://cdn-icons-png.flaticon.com/128/753/753344.png">
                             </div>
                         </li>
                         <li class="stamp-3rd">
                             게시물
                             <div>
-                                <p>1</p>
+                                <p>${sc.boardCount}</p>
                                 <p>3</p>
                              </div>
                         </li>
                         <li class="stamp-3rd">배너
                             <div>
-                                <p>1</p>
+                                <p>${sc.bannerClickCount}</p>
                                 <p>3</p>
                              </div>
                         </li>
                         <li>누적 스탬프
                             <div>
-                                <p id="count-stamp">18개</p>
+                                <p id="count-stamp">${sc.totalStampCount}개</p>
                              </div>
                         </li>
                     </ul>
@@ -57,7 +58,7 @@
             </div>
             <div class="card-wrap">
                 <div class="stamp-card">
-                    <ul>
+                    <ul class="card-main">
                         <li id="stamp-card">
                             <div>?</div>
                             <span>comming soon</span> 

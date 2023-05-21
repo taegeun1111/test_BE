@@ -44,5 +44,9 @@ public interface ReviewMapper {
     // 좋아요 재 클릭시 delete
     void minusLike(ReviewLikeResponseDTO dto);
 
+    //해당 아이디로 해당 게시글에 좋아요 눌렀는지 안눌렀는지 확인
     int likeCount(ReviewLikeResponseDTO dto);
+
+    //해당 게시글에 있는 좋아요 개수 확인
+    void updateLikeCount(int boardNo);
 }

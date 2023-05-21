@@ -79,6 +79,8 @@ public class ReviewService {
 
             }
 
+            //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
+            reviewRepository.updateLikeCount(dto.getReviewBoardNo());
         }
     }
 

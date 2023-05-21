@@ -35,11 +35,10 @@ class ReviewMapperTest {
         //서비스에서는 동일 아이디가 동일 게시글에 좋아요 2번하게 하면 안된다
 
         ReviewLikeResponseDTO dto=new ReviewLikeResponseDTO();
-        dto.setAccountId("myblog0419");
-        dto.setReviewBoardNo(3);
-        dto.setClickLike(false);
-//        mapper.plusLike(dto);
-        mapper.minusLike(dto);
+        dto.setAccountId("sd");
+        dto.setReviewBoardNo(2);
+        dto.setClickLike(true);
+        mapper.plusLike(dto);
 
     }
 
@@ -54,6 +53,17 @@ class ReviewMapperTest {
         int i = mapper.likeCount(dto);
         System.out.println("i = " + i);
 
+    }
+
+    @Test
+    @DisplayName("해당 게시글에 있는 좋아요 개수 확인")
+    void updateLikeCount(){
+
+
+        mapper.updateLikeCount(3);
+        Review one = mapper.findOne(3);
+
+        System.out.println("one = " + one);
     }
 
 
