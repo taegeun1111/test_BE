@@ -70,6 +70,7 @@ body {
 
     color: white;
     font-size: 20px;
+    cursor: pointer;
 }
 .map-footer-login {
     background: rgb(182, 82, 82) !important;

@@ -127,6 +127,44 @@
         }
         const signInButton = document.querySelector('.map-footer');
         signInButton.addEventListener('click', goToSignInPage);
+
+
+        // 메인 스탬프 찍기
+        const stampMain = document.querySelector('.map-main');
+     const stampShapes = mapMain.querySelectorAll('.stamp-shape');
+    const oneDayImage = document.querySelector('.my-stamp li:first-child img');
+
+    function changeAttendanceImage() {
+        attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+    }
+
+    function checkBoardCount() {
+        const boardsCount = `${sc.boardCount}`;
+
+        if (boardCount === 3) {
+            stampShapes[2].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
+        }
+    }
+
+    function checkBannerClickCount() {
+        const bannersClickCount = `${sc.bannerClickCount}`;
+
+        if (bannerClickCount === 3) {
+            stampShapes[3].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
+        }
+    }
+
+    for (let i = 0; i < 18; i++) {
+        const stampShape = document.createElement('div');
+        stampShape.classList.add('stamp-shape');
+        mapMain.appendChild(stampShape);
+    }
+
+    attendanceButton.addEventListener('click', () => {
+        changeAttendanceImage();
+        checkBoardCount();
+        checkBannerClickCount();
+    });
   
     </script>
 
