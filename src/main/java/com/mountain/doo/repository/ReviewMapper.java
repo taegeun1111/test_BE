@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Review;
 import org.apache.ibatis.annotations.Mapper;
@@ -36,4 +37,12 @@ public interface ReviewMapper {
 
     // 조회수 상승
     void upViewCount(int reviewBoardNo);
+
+    //좋아요 클릭시 count +1
+    void plusLike(ReviewLikeResponseDTO dto);
+
+    // 좋아요 재 클릭시 delete
+    void minusLike(ReviewLikeResponseDTO dto);
+
+    int likeCount(ReviewLikeResponseDTO dto);
 }

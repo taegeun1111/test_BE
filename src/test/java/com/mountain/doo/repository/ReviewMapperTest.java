@@ -1,13 +1,11 @@
 package com.mountain.doo.repository;
 
-import com.mountain.doo.entity.Issue;
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.entity.Review;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ReviewMapperTest {
@@ -30,4 +28,33 @@ class ReviewMapperTest {
             mapper.save(review);
         }
     }
+
+    @Test
+    @DisplayName("아이디와 보드넘버가 같다면 좋아요 수 +1")
+    void plusMinusLike(){
+        //서비스에서는 동일 아이디가 동일 게시글에 좋아요 2번하게 하면 안된다
+
+        ReviewLikeResponseDTO dto=new ReviewLikeResponseDTO();
+        dto.setAccountId("myblog0419");
+        dto.setReviewBoardNo(3);
+        dto.setClickLike(false);
+//        mapper.plusLike(dto);
+        mapper.minusLike(dto);
+
+    }
+
+    @Test
+    @DisplayName("아이디와 보드넘버 같은 LIKENO COUNT 구하기")
+    void likeCount(){
+        ReviewLikeResponseDTO dto=new ReviewLikeResponseDTO();
+        dto.setAccountId("myblog0419");
+        dto.setReviewBoardNo(1);
+        dto.setClickLike(false);
+
+        int i = mapper.likeCount(dto);
+        System.out.println("i = " + i);
+
+    }
+
+
 }
