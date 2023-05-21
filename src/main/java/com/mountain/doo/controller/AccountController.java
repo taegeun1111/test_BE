@@ -62,7 +62,7 @@ public class AccountController {
         log.info("sessionId : " + request.getSession().getId());
         log.info("-----------------------------------{}", dto);
 
-    boolean login = accountService.login(dto, request.getSession(), response);
+        boolean login = accountService.login(dto, request.getSession(), response);
 
         if (login) {
             //service에 세션 보냄
@@ -125,9 +125,9 @@ public class AccountController {
 
     //태근 커뮤니티 페이지 이동 추가
     @GetMapping("/community")
-    public String community(){
+    public String community() {
         log.info("community 페이지 이동 GET 발생");
         return "account/selectCategory";
     }
-
+}
 
