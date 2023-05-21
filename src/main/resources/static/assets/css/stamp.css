@@ -1,3 +1,6 @@
+body {
+    background-color: #1e1d21;
+}
 
 /* 이벤트창 전체 */
 .event-container {
@@ -13,7 +16,7 @@
     padding: 30px;
     width: 80%;
     height: 1800px;
-    background:#3f3f3f;
+    background:#a6a6a6;
     border-radius: 10px;
     /* border: 1px solid #000; */
 }
@@ -33,6 +36,9 @@
     font-weight: bold;
     padding: 30px;
 }
+.stamp-map .map-header h1 span {
+    color :rgb(105, 134, 163);
+}
 
 .stamp-map .map-main {
     display: flex;
@@ -46,11 +52,12 @@
 
     margin: 15px;
     border-radius: 50%;
-    background-image: url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png");
+    background: linear-gradient(to bottom, #D9D9D9, #FFFFFF);
+    /* background-image: url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png"); */
     background-size: contain;
 }
 
- .map-footer{
+ .map-footer, .map-footer-login{
     margin: 20px auto;
     background: rgb(185, 185, 185);
     box-shadow: 1px 1px 3px 1px rgba(60, 60, 60, 0.2);
@@ -63,6 +70,9 @@
 
     color: white;
     font-size: 20px;
+}
+.map-footer-login {
+    background: rgb(182, 82, 82) !important;
 }
 
 /* 내 스탬프 현황 */
@@ -137,11 +147,11 @@
      /* border: 1px solid #000; */
     border-radius: 10px;
 }
-.card-wrap .stamp-card ul li:first-child {
+/* .card-wrap .stamp-card ul li:first-child {
     background: #dad60a;
     color:#dad60a;
     box-shadow: 2px 3px 3px 1px rgba(255, 255, 255, 0.3);
-}
+} */
 .card-wrap .stamp-card ul li:hover{
     background: #dad60a;
     color:#dad60a;
@@ -150,20 +160,27 @@
 .card-wrap .stamp-card ul li div{
     width: 80px;
     height: 90px;
-    background: #ffffff;
+    /* background: #ffffff; */
     border-radius: 10px;
-    margin: 50px auto;
+    margin: 50px auto 30px;
 
     color:  rgb(184, 184, 184);
     font-size: 70px;
     font-weight: bold;
     text-align: center;
-    line-height: 80px;
+    line-height: 90px;
+}
+.card-wrap .stamp-card ul li div img {
+    width: 80px;
+    height: 80px;
 }
 .card-wrap .stamp-card ul li span{
     display: block;
-    width: 100%;
+    width: 50%;
+    margin: 0 auto;
     color: #ffffff;
     font-size: 35px;
+    font-weight: bold;
     text-align: center;
+    line-height: 1.4;
 }

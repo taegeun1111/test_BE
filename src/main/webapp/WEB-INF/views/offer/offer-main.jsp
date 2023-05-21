@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/css/common.css">
     <%@ include file="../include/static-head.jsp" %>
 
-    <title>Mountain-Do Offer</title>
+    <title>Mountain-Do</title>
     <style>
         /* 추후 js 걸어야 함 */
         .offer-category-select li:nth-child(1) {

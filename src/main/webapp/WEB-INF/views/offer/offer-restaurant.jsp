@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/css/common.css">
     <%@ include file="../include/static-head.jsp" %>
 
-    <title>Mountain-Do Offer</title>
+    <title>Mountain-Do</title>
     <style>
 
         /* 맛집 추천 독립 css */
