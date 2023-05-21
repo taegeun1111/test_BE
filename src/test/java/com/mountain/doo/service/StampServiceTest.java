@@ -20,7 +20,7 @@ class StampServiceTest {
     @DisplayName("배너, 게시물, 출석 db에 + 시키기")
     void stampAddCondition() {
         StampAddConditionDTO dto = new StampAddConditionDTO();
-        dto.setBannerClickCount(false);
+        dto.setBannerClickCount(true);
         dto.setAttendCount(false);
         dto.setBoardCount(false);
         dto.setClickEvent(false);
