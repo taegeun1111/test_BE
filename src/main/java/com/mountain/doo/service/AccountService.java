@@ -133,7 +133,7 @@ public class AccountService {
     }
 
     // 로그인 성공시 세션에 로그인한 회원의 정보 저장
-    public boolean maintainAccountState(HttpSession session, String accountId,StampAddConditionDTO stampDto){
+    public boolean maintainAccountState(HttpSession session, String accountId){
         Account account = myInfo(accountId);
 
         //현재 로그인한 사람의 화면에 보여줄 일부정보 -> dto
@@ -163,22 +163,22 @@ public class AccountService {
             //현재 로그인 시간을 db에 저장하고
             b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
             //스탬프 개수 +1
-            upStamp(stampDto);
+//            upStamp(stampDto);
         }
         log.info("dbLoginTime등록여부1" + b);
         return b;
     }else { //dbLoginTime테이블에 등록 안된 사람이면(아마도 처음 회원가입하고 들어온 사람이면)
         b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
-        upStamp(stampDto);
+//        upStamp(stampDto);
         log.info("dbLoginTime등록여부2" + b);
         return b;
     }
     }
 
     //로그인 스탬프 전체 개수 +1 해주는 함수
-    public void upStamp(StampAddConditionDTO dto){
-        boolean isAttendCountUp = stampMapper.booleanLogin(dto);
-    }
+//    public void upStamp(StampAddConditionDTO dto){
+//        boolean isAttendCountUp = stampMapper.booleanLogin(dto);
+//    }
 
     //자동로그인 해제
     public void autoLoginClear(HttpServletRequest request, HttpServletResponse response){
