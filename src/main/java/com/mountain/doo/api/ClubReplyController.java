@@ -31,7 +31,7 @@ public class ClubReplyController {
     ) {
         Page page = new Page();
         page.setPageNo(pageNo);
-        page.setAmount(10);
+        page.setAmount(5);
         ClubReplyListResponseDTO replyList = replyService.getList(boardNo, page);
         log.info("replyList: {}", replyList);
         return ResponseEntity.ok().body(replyList);
@@ -43,7 +43,7 @@ public class ClubReplyController {
             @Validated @RequestBody ClubReplyPostRequestDTO dto // 요청 바디에 보내줌
             , BindingResult result
     ) {
-
+        log.info("register 비동기 댓글 작성 POST!");
         if (result.hasErrors()) {
             return ResponseEntity.badRequest()
                     .body(result.toString());
