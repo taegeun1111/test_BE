@@ -64,13 +64,11 @@
     </select>
 
     <!--     로그인여부 확인-->
-    <update id="booleanLogin">
+    <update id="isLogin">
         UPDATE stamp
-        SET attend_count = #{attendCount} +1
+        SET attend_count = #{attendCount}
         WHERE account_id = #{accountId}
     </update>
-
-
 
 
 </mapper>

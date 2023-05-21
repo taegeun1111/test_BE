@@ -64,4 +64,13 @@ class StampMapperTest {
             System.out.println("stamp = " + stamp);
     }
 
+    @Test
+    void isLoginTest(){
+        StampAddConditionDTO dto=StampAddConditionDTO.builder().
+         attendCount(true)
+        .build();
+        System.out.println("isLoginTest의 dto"+dto);
+        mapper.isLogin(dto.isAttendCount(),"aaaa");
+    }
+
     }

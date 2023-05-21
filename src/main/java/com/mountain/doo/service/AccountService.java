@@ -133,7 +133,7 @@ public class AccountService {
     }
 
     // 로그인 성공시 세션에 로그인한 회원의 정보 저장
-    public boolean maintainAccountState(HttpSession session, String accountId){
+    public void maintainAccountState(HttpSession session, String accountId){
         Account account = myInfo(accountId);
 
         //현재 로그인한 사람의 화면에 보여줄 일부정보 -> dto
@@ -147,7 +147,8 @@ public class AccountService {
         // 세션의 수명을 설정 -> 1시간
         session.setMaxInactiveInterval(60 * 60);
 
-        //db에 저장된 로그인 시간
+        //< 로그인 스탬프 여부 처리하는 부분 >
+        //db에 저장된 로그인 시간 가져오기
         LocalDate dbLoginTime = loginTimeMapper.findLoginTime(accountId);
         //현재 로그인한 시간
         LocalDate currentLoginTime = LocalDate.now();
@@ -158,27 +159,31 @@ public class AccountService {
         //db에 저장된 로그인 시간과 현재 로그인된 시간과 비교해서
         Period period = Period.between(dbLoginTime, LocalDate.now());
         int days = period.getDays();
-        //1보다 크면(하루가 지나면)
+        //1보다 크면(하루가 지났다면)
         if(days>=1){
             //현재 로그인 시간을 db에 저장하고
             b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
-            //스탬프 개수 +1
-//            upStamp(stampDto);
+            log.info("dbLoginTime등록여부1" + b);
+
+            //로그인했다고 attendCount를 true셋팅
+            accountTrueFalse(b);
+            return;
         }
-        log.info("dbLoginTime등록여부1" + b);
-        return b;
+        //아직 하루 안지났으면 flase
+        accountTrueFalse(b);
+
     }else { //dbLoginTime테이블에 등록 안된 사람이면(아마도 처음 회원가입하고 들어온 사람이면)
         b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
-//        upStamp(stampDto);
         log.info("dbLoginTime등록여부2" + b);
-        return b;
+        accountTrueFalse(b);
     }
     }
 
-    //로그인 스탬프 전체 개수 +1 해주는 함수
-//    public void upStamp(StampAddConditionDTO dto){
-//        boolean isAttendCountUp = stampMapper.booleanLogin(dto);
-//    }
+    public void accountTrueFalse(boolean b){ //true이면 로그인 스탬프 +1
+        StampAddConditionDTO.builder()
+                .attendCount(b)
+                .build();
+    }
 
     //자동로그인 해제
     public void autoLoginClear(HttpServletRequest request, HttpServletResponse response){
@@ -199,4 +204,8 @@ public class AccountService {
         );
     }
 
+    public boolean checkSignUpValue(String type, String keyword) {
+        int flagNum = mapper.isDuplicate(type, keyword);
+        return flagNum==1;
+    }
 }
