@@ -58,13 +58,19 @@
     <select id="isDuplicate" resultType="int">
         SELECT COUNT(*)
         FROM account
-        <if test= 'type eq "account_id"'>
+        <if test="type=='accountId'">
             WHERE account_id = #{keyword}
         </if>
-        <if test= 'type eq "email"'>
-            WHERE email = #{keyword}
+        <if test="type=='email'">
+            WHERE email=#{keyword}
         </if>
     </select>
+
+<!--    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM account
+        WHERE account_id = #{keyword}
+    </select>-->
 
     <update id="saveAutoLogin">
         UPDATE account

@@ -43,7 +43,6 @@ public class AccountService {
     public boolean login(LoginRequestDTO dto,
                          HttpSession session,
                          HttpServletResponse response){
-        log.info("AccountService의 login()진입");
 
         LoginBoolean loginBoolean = loginBoolean(dto);
         log.info("loginBoolean : "+loginBoolean);
@@ -206,6 +205,8 @@ public class AccountService {
 
     public boolean checkSignUpValue(String type, String keyword) {
         int flagNum = mapper.isDuplicate(type, keyword);
-        return flagNum==1;
+        log.info("flagNum : "+flagNum);
+        if(flagNum==0) return false;
+        else return true;
     }
 }
