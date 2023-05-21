@@ -20,7 +20,7 @@ class ClubReplyMapperTest {
     ClubReplyMapper replyMapper;
     @Autowired
     ClubMapper clubMapper;
-
+/*
     @Test
     @DisplayName("게시물 300개를 등록하고 " +
             "각 게시물에 랜덤으로 1000개의 " +
@@ -50,9 +50,9 @@ class ClubReplyMapperTest {
 
             replyMapper.register(reply);
         }
+ }
 
 
 
-
-    }
+ */
 }
