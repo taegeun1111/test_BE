@@ -4,16 +4,19 @@ package com.mountain.doo.controller;
 import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
+import com.mountain.doo.dto.stamp.StampAddConditionDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.service.AccountService;
 import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,7 +61,8 @@ public class AccountController {
     @PostMapping("/sign-in")
     public String login(LoginRequestDTO dto,
                         HttpServletResponse response,
-                        HttpServletRequest request) {
+                        HttpServletRequest request,
+                        Model model) {
         log.info("sessionId : " + request.getSession().getId());
         log.info("-----------------------------------{}", dto);
 
@@ -130,4 +134,15 @@ public class AccountController {
         return "account/selectCategory";
     }
 
+    //아이디,이메일 중복 검사
+    @GetMapping("/check")
+    @ResponseBody
+    //검사 타입(아이디인지,이메일인지), 검사 키워드(어떤 계정인)
+    public ResponseEntity<?> check(String type, String keyword){
+        log.info("/account/check?type={}&keyword={} ASYNC GET!",type,keyword);
+        boolean flag=accountService.checkSignUpValue(type,keyword);
+        return ResponseEntity.ok().body(flag);
+    }
 }
+
+

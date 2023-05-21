@@ -117,12 +117,12 @@
         $idInput.onkeyup = e => {
                 const idValue = $idInput.value;
 
-                if (idValue.trim() == '') {
+                if (idValue.trim() == '') {  //공백을 앞뒤로 제거했을 때 빈문자열이니?
                     $idInput.style.borderColor = 'gray';
                     document.getElementById('idChk').innerHTML =
                         '<b style="color: gray; font-size: 12px;"> - 아이디를 입력해주세요.</b>';
                     checkResultList[0] = false;
-                } else if (!accountPattern.test(idValue)) {
+                } else if (!accountPattern.test(idValue)) { //정규표현식 맞지 않으면
                     $idInput.style.borderColor = 'gray';
                     document.getElementById('idChk').innerHTML =
                         '<b style="color: gray; font-size: 12px;"> - 아이디는 4~14글자의 영문, 숫자로 입력하세요.</b>';
