@@ -22,7 +22,7 @@ public interface StampMapper {
 
     void openEvent(String accountId);
 
-
+    int myBoard(String accountId);
 
 
 }
