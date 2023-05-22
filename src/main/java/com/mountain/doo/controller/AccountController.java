@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.File;
+
 import static com.mountain.doo.util.LoginUtil.*;
 
 @Controller
@@ -51,6 +53,15 @@ public class AccountController {
 
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
+
+        String savePath = null;
+        if (!clientProfileImage.isEmpty()) { //프로필 추가 했으면
+        //rootPath에 파일을 업로드
+            //루트 디렉토리 생성
+            File root = new File(rootPath);
+            if (!root.exists()) root.mkdirs();
+            savePath = FileUtil.uploadFile(clientProfileImage, rootPath);
+        }
 
 
 //        String savePath = null;
