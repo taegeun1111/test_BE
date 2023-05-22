@@ -39,7 +39,7 @@ class StampServiceTest {
         dto.setBannerClickCount(false);
         dto.setClickEvent(false);
         dto.setAttendCount(true);
-        dto.setAccountId("asd");
+        dto.setAccountId("qqq");
         Stamp stamp = service.stampCount(dto);
         System.out.println("stamp = " + stamp);
     }

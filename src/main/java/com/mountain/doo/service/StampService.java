@@ -75,5 +75,7 @@ public void plusStamp(StampAddConditionDTO dto) {
             mapper.openEvent(dto.getAccountId());}
     }
 
+    //
+
 }
 
