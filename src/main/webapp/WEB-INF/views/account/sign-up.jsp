@@ -30,8 +30,8 @@
 
             <div class="sign-up-body">
                 <form action="/account/sign-up" name="signup" id="signUpForm" method="post" enctype="multipart/form-data">
-                   
-                    
+
+
                     <div class="profile">
                         <div class="thumbnail-box">
                             <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필 썸네일">
@@ -39,15 +39,15 @@
 
                         <label>프로필 이미지 추가</label>
 
-                        <input 
+                        <input
                             type="file"
-                            id="profile-img" 
+                            id="profile-img"
                             accept="image/*"
                             style="display: none;"
                             name="clientProfileImage"
                         >
                     </div>
-                   
+
                     <ul>
                         <li>
                             <div>아이디</div>
@@ -331,35 +331,6 @@
                 const modal = document.getElementById('modal');
                 modal.style.display = 'none'; // 모달 닫기
             }
-
-             // 프로필 사진 관련 스크립트
-        const $profile = document.querySelector('.profile');
-        const $fileInput = document.getElementById('profile-img');
-
-        // 프로필 추가 영역 클릭 이벤트
-        $profile.onclick = e => {
-            $fileInput.click();
-        };
-
-        // 프로필 사진 선택시 썸네일 이벤트
-        $fileInput.onchange = e => {
-            // 첨부한 파일의 데이터를 읽어오기
-            const fileData = $fileInput.files[0];
-            // console.log(fileData);
-
-            // 첨부파일의 바이트데이터를 읽어들이는 객체 생성
-            const reader = new FileReader();
-
-            // 파일의 바이트데이터를 읽어서 img태그의 src속성이나
-            // a태그의 href속성에 넣기 위한 형태로 읽음
-            reader.readAsDataURL(fileData);
-
-            // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
-            reader.onloadend = e => {
-                const $imgTag = document.querySelector('.thumbnail-box img');
-                $imgTag.setAttribute('src', reader.result);
-            };
-        };
         </script>
 
 </body>
