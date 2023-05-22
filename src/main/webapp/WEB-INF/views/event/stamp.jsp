@@ -6,12 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <%@ include file="../include/account-static-head.jsp" %>
     <!-- <link rel="stylesheet" href="/assets/css/common.css"> -->
     <link rel="stylesheet" href="/assets/css/stamp.css">
     
     <title>Mountain-Do</title>
-   
+
 </head>
 <body>
     <!-- <%@ include file="../include/header.jsp" %> -->
@@ -19,6 +20,7 @@
         <div class="event-wrap">
             <div class="stamp-map">
                 <div class="map-header">
+
                     <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP</h1>
                     <hr>
                 </div>
@@ -38,34 +40,41 @@
                     <ul>
                         <li>출석
                             <div>
+
                                 <img src="https://cdn-icons-png.flaticon.com/128/7543/7543187.png">
+
                             </div>
                         </li>
                         <li class="stamp-3rd">
                             게시물
                             <div>
+
                                 <c:if test="${login == null || sc.boardCount == null }">
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
                                     <p>${sc.boardCount}</p>
                                 </c:if>
+
                                 <p>3</p>
                             </div>
                         </li>
                         <li class="stamp-3rd">배너
                             <div>
+
                                 <c:if test="${login == null || sc.bannerClickCount == null }">
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
                                     <p>${sc.bannerClickCount}</p>
                                 </c:if>
+
                                 <p>3</p>
                             </div>
                         </li>
                         <li>누적 스탬프
                             <div>
+
                                 <c:if test="${login == null || sc.stampCount == null }">
                                     <p id="count-stamp">0</p>
                                 </c:if>
@@ -73,6 +82,7 @@
                                     <p id="count-stamp">${sc.stampCount}</p>
                                 </c:if>
                             </div>
+
                         </li>
                     </ul>
                 </div>
@@ -80,6 +90,7 @@
             <div class="card-wrap">
                 <div class="stamp-card">
                     <ul class="card-main">
+
                     </ul>
                 </div>
             </div>

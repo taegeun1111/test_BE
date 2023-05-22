@@ -25,6 +25,17 @@
         WHERE account_id = #{accountId}
     </update>
 
+<!--    내가 쓴 게시물 찾기-->
+    <select id="myBoard" resultType="int">
+        SELECT count(*)
+        FROM offer AS b1
+        JOIN feed AS b2 ON b1.account_id = b2.account_id
+        JOIN review AS b3 ON b1.account_id = b3.account_id
+        JOIN issue AS b4 ON b1.account_id = b4.account_id
+        JOIN club AS b5 ON b1.account_id = b5.account_id
+        JOIN secondhand AS b6 ON b1.account_id = b6.account_id
+        WHERE b1.account_id = #{accountId}
+    </select>
 
 
 <!-- 스탬프 개수 1-->
