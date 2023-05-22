@@ -48,22 +48,22 @@ public class ClubReplyService {
         if(!flag) throw new SQLException("댓글 저장 실패");
 
 
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     };
     // 댓글 삭제
     @Transactional
     public ClubReplyListResponseDTO delete(final long replyNo) throws Exception{
         long clubBoardNo = replyMapper.findOne(replyNo).getClubBoardNo();
         System.out.println("clubBoardNo = " + clubBoardNo);
-        replyMapper.remove(clubBoardNo);
-        System.out.println("서비스까지 도");
-        return getList(clubBoardNo, new Page(1,10));
+        replyMapper.remove(replyNo);
+        System.out.println("서비스까지 도달");
+        return getList(clubBoardNo, new Page(1,5));
     }
     // 댓글 수정
     @Transactional
     public ClubReplyListResponseDTO edit(final ClubReplyModifyRequestDTO dto) throws Exception {
         replyMapper.modify(dto.toEntity());
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     }
 
 }

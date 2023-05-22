@@ -52,20 +52,20 @@ public class ReviewReplyService {
         if(!flag) throw new SQLException("댓글 저장 실패");
 
 
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     };
     // 댓글 삭제
     @Transactional
     public ReviewReplyListResponseDTO delete(final long replyNo) throws Exception{
         long reviewBoardNo = replyMapper.findOne(replyNo).getReviewBoardNo();
-        replyMapper.remove(reviewBoardNo);
-        return getList(reviewBoardNo, new Page(1,10));
+        replyMapper.remove(replyNo);
+        return getList(reviewBoardNo, new Page(1,5));
     }
     // 댓글 수정
     @Transactional
     public ReviewReplyListResponseDTO edit(final ReviewReplyModifyRequestDTO dto) throws Exception {
         replyMapper.modify(dto.toEntity());
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     }
 
 }

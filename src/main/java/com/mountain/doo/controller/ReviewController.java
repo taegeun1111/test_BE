@@ -1,6 +1,7 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
@@ -93,15 +94,18 @@ public class ReviewController {
     // 수정 완료 처리
     @PostMapping("/modify")
     public String modify(ReviewRewriteRequestDTO dto){
-        reviewService.modify(dto);
-        return "";
+        ReviewRewriteRequestDTO requestDTO = new ReviewRewriteRequestDTO(dto);
+        System.out.println("requestDTO = " + requestDTO);
+        reviewService.modify(requestDTO);
+
+        return "redirect:/review/detail?bno="+requestDTO.getBoardNo();
     }
 
     // 삭제
     @GetMapping("/delete")
-    public String delete(int boardNo){
-        reviewService.delete(boardNo);
-        return  "";
+    public String delete(int bno){
+        reviewService.delete(bno);
+        return  "redirect:/review/list";
     }
 
 

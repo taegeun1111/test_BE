@@ -35,16 +35,16 @@
                                     <a href="/issue/delete?bno=${is.boardNo}">삭제</a>
                                 </div>
                             </c:if>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
 
                 <div class="like-it-count" style="cursor: pointer;">
                     <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요
                         ${is.likeCount}</div>
-                    </div>
                 </div>
+
             </div>
 
         </div>
@@ -58,7 +58,7 @@
         </div>
 
 
-      
+
     </section>
 
     <script>
@@ -70,18 +70,19 @@
         // jsp줘야함
         $heart.addEventListener('click', e => {
             console.log("클릭됨");
-           const heartIcon = document.querySelector('.heard-icon');
+            const heartIcon = document.querySelector('.heard-icon');
 
-           if(isLiked){
-            heartIcon.src = originSrc;
-            isLiked = false;
-           }else{
-            heartIcon.src = changeSrc;
-            isLiked = true;
-           }
+            if (isLiked) {
+                heartIcon.src = originSrc;
+                isLiked = false;
+            } else {
+                heartIcon.src = changeSrc;
+                isLiked = true;
+            }
         });
 
 
+        
     </script>
 </body>
 
