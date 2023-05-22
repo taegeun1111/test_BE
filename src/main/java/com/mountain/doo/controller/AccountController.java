@@ -45,7 +45,9 @@ public class AccountController {
     }
 
     @PostMapping("/sign-up")
-    public String signUp(Account account, MultipartFile clientProfileImage) {
+    public String signUp(Account account
+            ,MultipartFile clientProfileImage
+    ) {
 
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
@@ -53,14 +55,13 @@ public class AccountController {
 
         String savePath = null;
         if (!clientProfileImage.isEmpty()) { //프로필 추가 했으면
-        //rootPath에 파일을 업로드
+            //rootPath에 파일을 업로드
             savePath = FileUtil.uploadFile(clientProfileImage, rootPath);
         }
 
-        boolean save = accountService.save(account,savePath);
+        boolean save = accountService.save(account, savePath);
 
         log.info("회원가입 성별  :" + account.getGender());
-        boolean save = accountService.save(account);
 
         if (save) {
             return "redirect:/account/sign-in";  //로그인페이지
@@ -89,13 +90,11 @@ public class AccountController {
         if (login) {
             //service에 세션 보냄
 
-            boolean b = accountService.maintainAccountState(request.getSession(), dto.getAccount());
-            model.addAttribute("LoginStamp",b);
-            log.info("dbLoginTime등록여부3 " + b);
-            return "account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
+            accountService.maintainAccountState(request.getSession(), dto.getAccount());
+            return "redirect:/"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
 
         } else {
-            return "redirect:/account/sign-in"; //로그인 안되면 로그인 페이지 다시
+            return "account/sign-in"; //로그인 안되면 로그인 페이지 다시
         }
     }
 
@@ -162,9 +161,9 @@ public class AccountController {
     @GetMapping("/check")
     @ResponseBody
     //검사 타입(아이디인지,이메일인지), 검사 키워드(어떤 계정인)
-    public ResponseEntity<?> check(String type, String keyword){
-        log.info("/account/check?type={}&keyword={} ASYNC GET!",type,keyword);
-        boolean flag=accountService.checkSignUpValue(type,keyword);
+    public ResponseEntity<?> check(String type, String keyword) {
+        log.info("/account/check?type={}&keyword={} ASYNC GET!", type, keyword);
+        boolean flag = accountService.checkSignUpValue(type, keyword);
         return ResponseEntity.ok().body(flag);
     }
 }

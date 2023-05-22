@@ -145,7 +145,7 @@ public class AccountService {
         session.setAttribute(LoginUtil.LOGIN_KEY,dto);
         log.info("maintainAccountState에서 저장한 세션 : "+session.getAttribute(LoginUtil.LOGIN_KEY));
         // 세션의 수명을 설정 -> 1시간
-        session.setMaxInactiveInterval(60 * 60);
+        session.setMaxInactiveInterval(60 * 60 * 24);
 
         //< 로그인 스탬프 여부 처리하는 부분 >
         //db에 저장된 로그인 시간 가져오기
