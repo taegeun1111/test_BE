@@ -8,9 +8,10 @@
             <li><a href="/offer/offer-main" class="category-offer">추천 정보</a></li>
             <li><a href="/account/community" class="category-community">커뮤니티</a></li>
             <li><a href="/club/list" class="category-club">모임</a></li>
-            <li><a href="" class="category-secondhand">중고거래</a></li>
+            <li><a href="/board/list" class="category-secondhand">중고거래</a></li>
             <li><a href="/event/stamp" class="category-event">스탬프</a></li>
         </ul>
+
         <img src="/assets/jpg/logo(white).png" alt="" class="logo">
         <c:if test="${login == null}">
              <ul class="login-wrapper">
@@ -18,6 +19,7 @@
                 <li><a href="/account/sign-in" class="signIn-btn">Sign in</a></li>
             </ul>
         </c:if>
+
         <!-- Login 되면 보여질 버튼  -->
         <c:if test="${login != null}">
             <ul class="afterLogin-wrapper">

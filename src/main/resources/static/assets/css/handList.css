@@ -11,7 +11,7 @@
     background-color: lightgray;
     margin-bottom: 30px;
     margin: 50px auto 50px;
-    background: url(/assets/jpg/리뷰템플릿1.png);
+    background: url(/assets/jpg/중고거래1.png);
     background-size: 100%;
     /* background-position: 0 -100px; */
     /* border-radius: 10px; */
@@ -116,6 +116,8 @@
 .board-region{
     color: rgb(150, 150, 150);
     font-weight: 400;
+    text-align: center;
+    width: 105px;
     margin-right: 10px;
 }
 .board-cell,

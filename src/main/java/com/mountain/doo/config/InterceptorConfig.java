@@ -29,7 +29,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         //로그인 하면 로그인과 회원가입 페이지 유입 불가
         registry.addInterceptor(afterInterceptor)
-                .addPathPatterns("/sign-in","sign-up");
+                .addPathPatterns("/sign-in","/sign-up");
 
         //자동 로그인 인터셉터
         registry.addInterceptor(autoLoginInterceptror)

@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AccountResponseDTOMinjung {
+public class AccountResponseDTO {
     private String accountId;
     private String name;
 }

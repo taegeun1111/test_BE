@@ -24,8 +24,9 @@
 
     <select id="findAll" resultType="secondhandReply">
         SELECT
-            A.secondhand_reply_no, A.secondhand_reply_content, A.secondhand_reply_writer, A.secondhand_reply_date, B.secondhand_board_no        FROM feed_reply A, feed B
-        WHERE A.secondhand_board_no = B.secondhand_board_no
+            secondhand_reply_no, secondhand_reply_content, secondhand_reply_writer, secondhand_reply_date, secondhand_board_no
+        FROM secondhand_reply
+        WHERE secondhand_board_no = #{secondhandBoardNo}
         ORDER BY secondhand_reply_no
             LIMIT #{p.pageStart}, #{p.amount}
     </select>
@@ -35,5 +36,11 @@
             secondhand_reply_no, secondhand_reply_content, secondhand_reply_writer, secondhand_reply_date, secondhand_board_no
         FROM secondhand_reply
         WHERE secondhand_reply_no = #{secondhandReplyNo}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM secondhand_reply
+        WHERE secondhand_board_no = #{secondhandBoardNo}
     </select>
 </mapper>

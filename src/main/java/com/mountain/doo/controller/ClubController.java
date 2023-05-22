@@ -104,10 +104,12 @@ public class ClubController {
 
     //글 상세보기
     @GetMapping("/detail")
-    public String detail(int clubBoardNo, @ModelAttribute("s") Search search, Model model){
+    public String detail(int bno, @ModelAttribute("s") ClubSearch search, Model model){
         log.info("club detail GET");
-        model.addAttribute("club", clubService.getDetail(clubBoardNo));
-        return "";
+        model.addAttribute("c", clubService.getDetail(bno));
+
+        log.info("search 목록 : {}",search);
+        return "club/clubDetail";
     }
 
 
