@@ -33,7 +33,7 @@
 
     <select id="findOne" resultType="clubReply">
         SELECT
-            club_reply_no, club_reply_content, club_reply_writer, club_reply_date, feed_board_no
+            club_reply_no, club_reply_content, club_reply_writer, club_reply_date, club_board_no
         FROM club_reply
         WHERE club_reply_no = #{clubReplyNo}
     </select>

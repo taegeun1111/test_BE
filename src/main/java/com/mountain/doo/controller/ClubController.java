@@ -107,6 +107,8 @@ public class ClubController {
     public String detail(int bno, @ModelAttribute("s") ClubSearch search, Model model){
         log.info("club detail GET");
         model.addAttribute("c", clubService.getDetail(bno));
+
+        log.info("search 목록 : {}",search);
         return "club/clubDetail";
     }
 

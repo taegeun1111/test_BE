@@ -4,6 +4,7 @@ package com.mountain.doo.repository.replymapper;
 import com.mountain.doo.dto.page.Page;
 import com.mountain.doo.entity.reply.ClubReply;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface ClubReplyMapper {
     // 댓글 목록 조회
     List<ClubReply> findAll(
              long clubBoardNo
-            ,   @RequestParam("p") Page page
+            ,   @Param("p") Page page
     ); //특정 게시물의 댓글 목록 조회, 페이징 처리
 
     // 댓글 개별 조회
