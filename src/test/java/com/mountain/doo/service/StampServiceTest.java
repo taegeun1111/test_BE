@@ -22,7 +22,7 @@ class StampServiceTest {
         StampAddConditionDTO dto = new StampAddConditionDTO();
         dto.setBannerClickCount(true);
         dto.setAttendCount(false);
-        dto.setBoardCount(false);
+        dto.setBoardCount(true);
         dto.setClickEvent(false);
         dto.setAccountId("myblog0419");
 

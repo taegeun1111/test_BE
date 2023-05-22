@@ -32,11 +32,11 @@
                         <ul>
                             <li>
                                 <div>아이디</div>
-                                    <span id="accound-id">"${a.accountId}"</span>
+                                    <span id="accound-id">${login.accountId}</span>
                             </li>
                             <li>
                                 <div>이름</div>
-                                <span id="user_name">"${a.name}"</span>
+                                <span id="user_name">${login.name}</span>
                             </li>
                             <li>
                                 <div>비밀번호</div>
@@ -89,8 +89,6 @@
     <script>
         // 입력값 검증 통과 여부 배열
         const checkResultList = [false, false, false, false, false];
-
-       
 
             // 패스워드 검사 정규표현식
             const passwordPattern = /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9]).{8,}/;

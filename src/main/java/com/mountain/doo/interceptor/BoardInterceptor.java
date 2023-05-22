@@ -22,7 +22,7 @@ public class BoardInterceptor implements HandlerInterceptor {
         //로그인 했는지 확인
         if(!LoginUtil.isLogin(request.getSession())){
             log.info("this request({}) denied!!", request.getRequestURI());
-            response.sendRedirect("/sing-in"); //로그인화면으로 돌려보냄
+            response.sendRedirect("/sign-in"); //로그인화면으로 돌려보냄
             return false;
         }
 

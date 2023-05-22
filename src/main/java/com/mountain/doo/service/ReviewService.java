@@ -1,6 +1,7 @@
 package com.mountain.doo.service;
 
 
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
 import com.mountain.doo.dto.review.ReviewListResponseDTO;
@@ -65,4 +66,27 @@ public class ReviewService {
         return reviewRepository.reviewCount(search);
     }
 
+
+    //클릭 시 좋아요 +1 재클릭시 좋아요 -1
+    public void clickLike(ReviewLikeResponseDTO dto) {
+        int islike = islike(dto);
+
+        if (dto.isClickLike()) {
+            if (islike != 1) {   //클릭시 좋아요가 없다면
+                reviewRepository.plusLike(dto);   //좋아요 +1
+            } else {
+                reviewRepository.minusLike(dto);  //아니면 좋아요 -1
+
+            }
+
+            //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
+            reviewRepository.updateLikeCount(dto.getReviewBoardNo());
+        }
+    }
+
+    //좋아요가 있나 없나 확인
+    public int islike(ReviewLikeResponseDTO dto){
+        int i = reviewRepository.likeCount(dto);
+        return i;
+    }
 }

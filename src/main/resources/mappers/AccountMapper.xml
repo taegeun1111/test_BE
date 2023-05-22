@@ -15,11 +15,11 @@
 <!--    회원정보 저장-->
     <insert id="save">
         INSERT INTO account
-        (account_id, password, name, gender, email, phone_no, profile_img)
-        VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo},#{profileImg})
+        (account_id, password, name, gender, email, phone_no)
+        VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo})
     </insert>
 <!--    로그인-->
-    <select id="login" resultType="boolean">
+    <select id="login" resultType="Account">
         SELECT account_id, password, name, gender, email, phone_no, address
         FROM account
         WHERE account_id = #{accountId}

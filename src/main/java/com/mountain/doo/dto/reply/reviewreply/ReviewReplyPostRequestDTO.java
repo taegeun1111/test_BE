@@ -1,7 +1,7 @@
 package com.mountain.doo.dto.reply.reviewreply;
 
 
-import com.mountain.doo.entity.reply.FeedReply;
+import com.mountain.doo.entity.reply.ReviewReply;
 import lombok.*;
 
 
@@ -17,11 +17,11 @@ public class ReviewReplyPostRequestDTO {
     private String replyWriter;
     private long boardNo;
 
-    public FeedReply feedReplyEntity(){
-        return FeedReply.builder()
-                .feedReplyContent(this.replyContent)
-                .feedReplyWriter(this.replyWriter)
-                .feedBoardNo(this.boardNo)
+    public ReviewReply reviewReplyEntity(){
+        return ReviewReply.builder()
+                .reviewReplyContent(this.replyContent)
+                .reviewReplyWriter(this.replyWriter)
+                .reviewBoardNo(this.boardNo)
                 .build();
     }
 }

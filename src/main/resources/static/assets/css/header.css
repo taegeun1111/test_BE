@@ -82,4 +82,5 @@
     background-color: rgb(240, 240, 240);
     border-radius: 50px;
     margin-left: 20px;
+    overflow: hidden;
 }
