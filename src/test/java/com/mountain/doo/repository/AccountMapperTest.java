@@ -46,6 +46,7 @@ class AccountMapperTest {
         save.setGender(GENDER.M);
         save.setEmail("44");
         save.setPhoneNo("55");
+        save.setProfileImg("/2023/05/22/d69dc8ce-66bb-43ca-8c1a-0b6c1704a90b_bobby.png");
 
         boolean isSaved = mapper.save(save);
         assertTrue(isSaved);
