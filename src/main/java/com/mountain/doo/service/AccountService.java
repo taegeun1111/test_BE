@@ -105,11 +105,11 @@ public class AccountService {
         }
     }
 
-    public boolean save(Account account,final String savePath) {
+    public boolean save(Account account) {
         log.info("account: {}", account);
 
         account.setPassword(encoder.encode(account.getPassword()));
-        account.setProfileImg(savePath);
+//        account.setProfileImg(savePath);
 
         return mapper.save(account);
     }
