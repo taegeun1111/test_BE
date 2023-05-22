@@ -7,9 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/offer.css">
-    <link rel="stylesheet" href="/assets/css/common.css">
     <%@ include file="../include/static-head.jsp" %>
+    <link rel="stylesheet" href="/assets/css/offer.css">
 
     <title>Mountain-Do</title>
     <style>
@@ -138,6 +137,15 @@
         </main>
     </section>
 
+    <script>
+        // 글쓰기 버튼
+        function goToOfferWritePage() {
+            location.href = '/offer/offer-writer';
+        }
+
+        const offerWriteButton = document.querySelector('.article-write-btn');
+        offerWriteButton.addEventListener('click', goToOfferWritePage);
+    </script>
 
 </body>
 
