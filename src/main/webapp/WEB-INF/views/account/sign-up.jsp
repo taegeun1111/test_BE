@@ -29,7 +29,25 @@
             </div>
 
             <div class="sign-up-body">
-                <form action="/account/sign-up" name="signup" id="signUpForm" method="post">
+                <form action="/account/sign-up" name="signup" id="signUpForm" method="post" enctype="multipart/form-data">
+
+
+                    <div class="profile">
+                        <div class="thumbnail-box">
+                            <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필 썸네일">
+                        </div>
+
+                        <label>프로필 이미지 추가</label>
+
+                        <input
+                            type="file"
+                            id="profile-img"
+                            accept="image/*"
+                            style="display: none;"
+                            name="clientProfileImage"
+                        >
+                    </div>
+
                     <ul>
                         <li>
                             <div>아이디</div>

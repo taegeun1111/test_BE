@@ -60,6 +60,7 @@ public class FeedController {
         System.out.println("/feed/write : GET");
         return "";
     }
+
     // 게시물 등록 완료 처리
     @PostMapping("/write")
     public String write(FeedWriteRequestDTO dto){

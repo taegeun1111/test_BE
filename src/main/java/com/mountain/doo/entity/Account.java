@@ -29,5 +29,6 @@ public class Account {
     //실제로 클라에서 넘어오는 파일 데이터이므로 MultipartFile
 //    private MultipartFile profileImage;
     //db에 저장된 이 파일의 경로이므로 String
-//    private String profileImg;
+    private String profileImg;
+
 }

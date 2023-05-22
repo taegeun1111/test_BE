@@ -40,9 +40,7 @@
                     <ul>
                         <li>출석
                             <div>
-
                                 <img src="https://cdn-icons-png.flaticon.com/128/7543/7543187.png">
-
                             </div>
                         </li>
                         <li class="stamp-3rd">
@@ -105,6 +103,7 @@
             mapMain.appendChild(stampShape);
         }
 
+
         const cardMain = document.querySelector('.card-main');
 
         for (let i = 0; i < 6; i++) {
@@ -128,27 +127,31 @@
             const attendanceImage = document.querySelector('.my-stamp li:first-child img');
             attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
         }
-        const attendanceButton = document.querySelector('.map-footer-login');
-        attendanceButton.addEventListener('click', changeAttendanceImage);
 
+        const attendanceButton = document.querySelector('.map-footer-login');
+        if (attendanceButton) {
+            attendanceButton.addEventListener('click', changeAttendanceImage);
+}
        
         // 비회원 - 로그인 요청
         function goToSignInPage() {
             location.href = '/account/sign-in';
         }
         const signInButton = document.querySelector('.map-footer');
+        if (signInButton) {
         signInButton.addEventListener('click', goToSignInPage);
-
+        }
 
         // 메인 스탬프 찍기
-        const stampMain = document.querySelector('.map-main');
-     const stampShapes = mapMain.querySelectorAll('.stamp-shape');
-    const oneDayImage = document.querySelector('.my-stamp li:first-child img');
+    //     const stampMain = document.querySelector('.map-main');
+    //  const stampShapes = mapMain.querySelectorAll('.stamp-shape');
+    // const oneDayImage = document.querySelector('.my-stamp li:first-child img');
 
-    function changeAttendanceImage() {
-        attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-    }
+    // function changeAttendanceImage() {
+    //     attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+    // }
 
+    
     function checkBoardCount() {
         const boardsCount = `${sc.boardCount}`;
 
@@ -163,12 +166,6 @@
         if (bannerClickCount === 3) {
             stampShapes[3].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
         }
-    }
-
-    for (let i = 0; i < 18; i++) {
-        const stampShape = document.createElement('div');
-        stampShape.classList.add('stamp-shape');
-        mapMain.appendChild(stampShape);
     }
 
     attendanceButton.addEventListener('click', () => {
