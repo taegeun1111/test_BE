@@ -21,7 +21,7 @@
         </c:if>
 
         <!-- Login 되면 보여질 버튼  -->
-        <c:if test="${login != null}">
+        <!-- <c:if test="${login != null}">
             <ul class="afterLogin-wrapper">
                 <li class="logout-btn"><a href="/account/sign-out">Log out</a></li>
 
@@ -40,6 +40,6 @@
                 </c:if>
                 
             </ul>
-        </c:if>
+        </c:if> -->
     </div>
 </header>
