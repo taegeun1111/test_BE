@@ -22,10 +22,10 @@ public class AfterInterceptor implements HandlerInterceptor {
         log.info("AfterInterceptor : "+ session);
 
 
-//        if(LoginUtil.isLogin(session)){
-//            response.sendRedirect("/");
-//            return false;
-//        }
+        if(LoginUtil.isLogin(session)){
+            response.sendRedirect("/");
+            return false;
+        }
 
         return true;
     }
