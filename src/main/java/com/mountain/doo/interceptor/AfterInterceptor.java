@@ -20,8 +20,7 @@ public class AfterInterceptor implements HandlerInterceptor {
                              Object handler) throws Exception {
         HttpSession session = request.getSession(); //세션 생성
         log.info("AfterInterceptor : "+ session);
-
-
+      
         if(LoginUtil.isLogin(session)){
             response.sendRedirect("/");
             return false;
