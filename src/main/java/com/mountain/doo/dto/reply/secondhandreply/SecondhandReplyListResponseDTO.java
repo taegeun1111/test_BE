@@ -2,7 +2,6 @@ package com.mountain.doo.dto.reply.secondhandreply;
 
 
 import com.mountain.doo.dto.page.PageMaker;
-import com.mountain.doo.dto.reply.feedreply.FeedReplyDetailResponseDTO;
 import lombok.*;
 
 import java.util.List;
@@ -21,5 +20,5 @@ public class SecondhandReplyListResponseDTO {
 
     private int replyCount;
     private PageMaker replyPage;
-    private List<FeedReplyDetailResponseDTO> feedReplies;
+    private List<SecondhandReplyDetailResponseDTO> scReplies;
 }
