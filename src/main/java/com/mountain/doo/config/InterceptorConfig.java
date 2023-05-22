@@ -21,19 +21,20 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //게시판 인터셉터 설정
 
-        registry.addInterceptor(boardInterceptor)
-//                .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
-                .addPathPatterns("/mypage/*")
-                .excludePathPatterns("/board리스트");     //실행하지 않을 경로
+//        registry.addInterceptor(boardInterceptor)
+////                .addPathPatterns("/board/*")      //어떤 경로 인터셉터 실행할것인가
+//                .addPathPatterns("/account/mypage/*")
+//                .excludePathPatterns("/board리스트")
+        ;     //실행하지 않을 경로
 
 
         //로그인 하면 로그인과 회원가입 페이지 유입 불가
         registry.addInterceptor(afterInterceptor)
-                .addPathPatterns("/sign-in","/sign-up");
+                .addPathPatterns("/account/sign-in","/account/sign-up");
 
         //자동 로그인 인터셉터
-        registry.addInterceptor(autoLoginInterceptror)
-                .addPathPatterns("/**");
+//        registry.addInterceptor(autoLoginInterceptror)
+//                .addPathPatterns("/**");
 
 
 

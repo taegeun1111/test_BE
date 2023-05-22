@@ -7,9 +7,11 @@ import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
 import com.mountain.doo.entity.Account;
 import com.mountain.doo.service.AccountService;
+import com.mountain.doo.util.FileUtil;
 import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +32,8 @@ import static com.mountain.doo.util.LoginUtil.*;
 @RequestMapping("/account")
 @Slf4j
 public class AccountController {
+    @Value("${file.upload.root-path}")
+    private String rootPath;
 
     private final AccountService accountService;
 
@@ -40,10 +45,18 @@ public class AccountController {
     }
 
     @PostMapping("/sign-up")
-    public String signUp(Account account) {
+    public String signUp(Account account, MultipartFile clientProfileImage) {
+
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
-        boolean save = accountService.save(account);
+
+        String savePath = null;
+        if (!clientProfileImage.isEmpty()) { //프로필 추가 했으면
+        //rootPath에 파일을 업로드
+            savePath = FileUtil.uploadFile(clientProfileImage, rootPath);
+        }
+
+        boolean save = accountService.save(account,savePath);
         if (save) {
             return "redirect:/account/sign-in";  //로그인페이지
         }
@@ -99,6 +112,7 @@ public class AccountController {
     @GetMapping("/mypage")
     public String mypage(Model model, String accountId) {
         //회원정보 마이페이지
+        log.info("account mypage 요청");
         Account account = accountService.myInfo(accountId);
         model.addAttribute("mypage", account);
         return "account/mypage";

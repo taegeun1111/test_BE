@@ -33,7 +33,10 @@ class AccountServiceTest {
         save.setGender(GENDER.M);
         save.setEmail("1111@naver.com");
         save.setPhoneNo("11");
-        boolean isSaved = accountService.save(save);
+        String savePath="/2023/05/22/d69dc8ce-66bb-43ca-8c1a-0b6c1704a90b_bobby.png";
+//        save.setProfileImg("");
+
+        boolean isSaved = accountService.save(save,savePath);
         assertTrue(isSaved);
 
     }
