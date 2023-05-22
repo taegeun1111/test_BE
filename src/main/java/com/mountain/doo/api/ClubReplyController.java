@@ -66,12 +66,14 @@ public class ClubReplyController {
     public ResponseEntity<?> delete(
             @PathVariable(required = false) Long replyNo
     ) {
+        log.info("DeleteMapping 발생 댓글 번호 : {}",replyNo);
         if (replyNo == null) {
             return ResponseEntity.badRequest().body("댓글 번호를 보내주세요");
         }
 
         try {
             ClubReplyListResponseDTO responseDTO = replyService.delete(replyNo);
+            System.out.println("삭제 이벤트 발생");
             return ResponseEntity.ok().body(responseDTO);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());

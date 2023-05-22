@@ -205,9 +205,9 @@
                         "       <div class='col-md-3 text-right'>";
 
                     // if (currentAccount === replyWriter || auth === 'ADMIN') {
-                    //     tag +=
-                    //         "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                    //         "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
+                        tag +=
+                            "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
+                            "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
                     // }
                     tag += "       </div>" +
                         "    </div>" +
@@ -232,7 +232,7 @@
 
             $regBtn.onclick = e => {
 
-                
+
                 // const $rw = document.getElementById('newReplyWriter');
                 const $rt = document.getElementById('comment-write-area');
                 const $rw = 'test1';
@@ -286,6 +286,61 @@
             };
         }
 
+        //-----------------------------------
+        // 삭제
+        // 댓글 삭제+수정모달 이벤트 처리 함수
+        function replyRemoveClickEvent() {
+
+            const $replyData = document.querySelector('.comment-write-wrapper');
+
+            $replyData.onclick = e => {
+
+                e.preventDefault();
+
+                // 삭제할 댓글의 PK값 읽기
+                const rno = e.target.closest('#replyContent').dataset.replyid;
+
+                if (e.target.matches('#replyDelBtn')) {
+                    // console.log('삭제버튼 클릭!!');
+
+                    if (!confirm('정말 삭제합니까?')) return;
+
+                    // console.log(rno);
+
+                    // 서버에 삭제 비동기 요청
+                    fetch(URL + '/' + rno, {
+                        method: 'DELETE'
+                    }).then(res => {
+                        if (res.status === 200) {
+                            alert('댓글이 정상 삭제됨!');
+                            return res.json();
+                        } else {
+                            alert('댓글 삭제 실패!');
+                        }
+                    }).then(responseResult => {
+                        renderReplyList(responseResult);
+                    });
+
+
+                } else if (e.target.matches('#replyModBtn')) {
+                    // console.log('수정 화면 진입!');
+
+                    // 클릭한 수정 버튼 근처에 있는 텍스트 읽기
+                    const replyText = e.target.parentElement.previousElementSibling.textContent;
+                    // console.log(replyText);
+
+                    // 모달에 모달바디에 textarea에 읽은 텍스트를 삽입
+                    document.getElementById('modReplyText').value = replyText;
+
+                    // 다음 수정완료 처리를 위해 미리 
+                    // 수정창을 띄울 때 댓글번호를 모달에 붙여놓자
+                    const $modal = document.querySelector('.modal');
+                    $modal.dataset.rno = rno;
+                }
+            };
+        }
+
+
 
         //글번호
         const bno = '${c.clubBoardNo}';
@@ -308,6 +363,7 @@
             getReplyList();
             makePageButtonClickEvent();
             makeReplyRegisterClickEvent();
+            replyRemoveClickEvent();
         })();
     </script>
 
