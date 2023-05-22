@@ -21,25 +21,25 @@
         </c:if>
 
         <!-- Login 되면 보여질 버튼  -->
-        <!-- <c:if test="${login != null}">
-            <ul class="afterLogin-wrapper">
-                <li class="logout-btn"><a href="/account/sign-out">Log out</a></li>
+<%--        <c:if test="${login != null}">--%>
+<%--            <ul class="afterLogin-wrapper">--%>
+<%--                <li class="logout-btn"><a href="/account/sign-out">Log out</a></li>--%>
 
-                <c:if test="${login.profile == null}">
-                        <li class="myPage-btn">
-                            <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">
-                            <a href="/account/mypage">My Page</a>
-                        </li>
-                    </div>     
-                </c:if>
-                <c:if test="${login.profile != null}">
-                    <li class="myPage-btn">
-                    <img src="/local${login.profile}" alt="프로필사진">
-                        <a href="/account/mypage">My Page</a>
-                    </li>
-                </c:if>
-                
-            </ul>
-        </c:if> -->
+<%--                <c:if test="${login.profile == null}">--%>
+<%--                        <li class="myPage-btn">--%>
+<%--                            <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">--%>
+<%--                            <a href="/account/mypage">My Page</a>--%>
+<%--                        </li>--%>
+<%--                    </div>     --%>
+<%--                </c:if>--%>
+<%--                <c:if test="${login.profile != null}">--%>
+<%--                    <li class="myPage-btn">--%>
+<%--                    <img src="/local${login.profile}" alt="프로필사진">--%>
+<%--                        <a href="/account/mypage">My Page</a>--%>
+<%--                    </li>--%>
+<%--                </c:if>--%>
+<%--                --%>
+<%--            </ul>--%>
+<%--        </c:if>--%>
     </div>
 </header>
