@@ -50,6 +50,7 @@ public class AccountController {
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
 
+
         String savePath = null;
         if (!clientProfileImage.isEmpty()) { //프로필 추가 했으면
         //rootPath에 파일을 업로드
@@ -57,6 +58,10 @@ public class AccountController {
         }
 
         boolean save = accountService.save(account,savePath);
+
+        log.info("회원가입 성별  :" + account.getGender());
+        boolean save = accountService.save(account);
+
         if (save) {
             return "redirect:/account/sign-in";  //로그인페이지
         }
@@ -83,10 +88,14 @@ public class AccountController {
 
         if (login) {
             //service에 세션 보냄
-            accountService.maintainAccountState(request.getSession(), dto.getAccount());
-            return "redirect:/account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
+
+            boolean b = accountService.maintainAccountState(request.getSession(), dto.getAccount());
+            model.addAttribute("LoginStamp",b);
+            log.info("dbLoginTime등록여부3 " + b);
+            return "account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
+
         } else {
-            return "account/sign-in"; //로그인 안되면 로그인 페이지 다시
+            return "redirect:/account/sign-in"; //로그인 안되면 로그인 페이지 다시
         }
     }
 

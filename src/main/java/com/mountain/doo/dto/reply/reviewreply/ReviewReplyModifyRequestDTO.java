@@ -1,7 +1,7 @@
 package com.mountain.doo.dto.reply.reviewreply;
 
 
-import com.mountain.doo.entity.reply.FeedReply;
+import com.mountain.doo.entity.reply.ReviewReply;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -21,10 +21,10 @@ public class ReviewReplyModifyRequestDTO {
     @NotNull
     private String content;
 
-    public FeedReply toEntity() {
-        return FeedReply.builder()
-                .feedReplyNo(this.replyNo)
-                .feedBoardNo(this.boardNo)
-                .feedReplyContent(this.content).build();
+    public ReviewReply toEntity() {
+        return ReviewReply.builder()
+                .reviewReplyNo(this.replyNo)
+                .reviewBoardNo(this.boardNo)
+                .reviewReplyContent(this.content).build();
     }
 }

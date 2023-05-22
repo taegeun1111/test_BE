@@ -52,7 +52,7 @@ span[id] {
 .sign-up-body form ul {
     /* border: 1px solid #000; */
     padding: 0;
-    width: fit-content;
+    width: 470px;
     margin: 0 auto;
     padding: 50px auto;
 }
@@ -69,11 +69,11 @@ span[id] {
     width: 150px;
 }
 .sign-up-body #signUpForm ul li span{
-    width: 420px;
+    width: 320px;
 }
 
 .sign-up-body #signUpForm li .form-control {
-    width: 420px;
+    width: 320px;
     height: 40px;
     padding-left: 10px;
     border: 2px solid #d9d9de;

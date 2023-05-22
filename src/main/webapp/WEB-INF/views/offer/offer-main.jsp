@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/css/common.css">
     <%@ include file="../include/static-head.jsp" %>
 
-    <title>Mountain-Do Offer</title>
+    <title>Mountain-Do</title>
     <style>
         /* 추후 js 걸어야 함 */
         .offer-category-select li:nth-child(1) {
@@ -35,8 +35,8 @@
             </div>
             <div class="offer-category-select">
                 <ul class="category">
-                    <li id="offern1"><a href="offer-menu.html">이달의 산행 추천</a></li>
-                    <li id="offern2"><a href="offer-restaurant.html">코스별 맛집 추천</a></li>
+                    <li id="offern1"><a href="/offer/offer-main">이달의 산행 추천</a></li>
+                    <li id="offern2"><a href="/offer/offer-eat">코스별 맛집 추천</a></li>
                     <li id="offern3"><a href="">50대 명산 추천</a></li>
                 </ul>
             </div>

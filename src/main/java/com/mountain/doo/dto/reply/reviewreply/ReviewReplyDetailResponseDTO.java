@@ -2,7 +2,7 @@ package com.mountain.doo.dto.reply.reviewreply;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mountain.doo.entity.reply.FeedReply;
+import com.mountain.doo.entity.reply.ReviewReply;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,10 +23,10 @@ public class ReviewReplyDetailResponseDTO {
     @JsonFormat(pattern="yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime replyRegDate;
 
-    public ReviewReplyDetailResponseDTO(FeedReply feedReply) {
-        this.replyNo = feedReply.getFeedReplyNo();
-        this.replyContent = feedReply.getFeedReplyContent();
-        this.replyWriter = feedReply.getFeedReplyWriter();
-        this.replyRegDate = feedReply.getFeedReplyDate();
+    public ReviewReplyDetailResponseDTO(ReviewReply reviewReply) {
+        this.replyNo = reviewReply.getReviewReplyNo();
+        this.replyContent = reviewReply.getReviewReplyContent();
+        this.replyWriter = reviewReply.getReviewReplyWriter();
+        this.replyRegDate = reviewReply.getReviewReplyDate();
     }
 }
