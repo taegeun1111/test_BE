@@ -52,7 +52,7 @@ span[id] {
 .sign-up-body form ul {
     /* border: 1px solid #000; */
     padding: 0;
-    width: fit-content;
+    width: 470px;
     margin: 0 auto;
     padding: 50px auto;
 }
@@ -69,11 +69,11 @@ span[id] {
     width: 150px;
 }
 .sign-up-body #signUpForm ul li span{
-    width: 420px;
+    width: 320px;
 }
 
 .sign-up-body #signUpForm li .form-control {
-    width: 420px;
+    width: 320px;
     height: 40px;
     padding-left: 10px;
     border: 2px solid #d9d9de;
@@ -120,4 +120,29 @@ span[id] {
     font-weight: 700;
     font-size: 25px;
     cursor: pointer;
+}
+
+/* 프로필사진 */
+.profile {
+    margin-bottom: 70px;
+    text-align: center;
+}
+.profile label {
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    color: rgb(108, 121, 126);
+}
+.profile .thumbnail-box {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 30px auto 10px;
+    cursor: pointer;
+}
+
+.profile .thumbnail-box img {
+    width: 150px;
+    height: 150px;
 }
