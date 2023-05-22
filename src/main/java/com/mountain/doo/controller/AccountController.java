@@ -47,9 +47,8 @@ public class AccountController {
     }
 
     @PostMapping("/sign-up")
-    public String signUp(Account account
-//            ,MultipartFile clientProfileImage
-    ) {
+    public String signUp(Account account, MultipartFile clientProfileImage) {
+
 
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
@@ -63,16 +62,7 @@ public class AccountController {
             savePath = FileUtil.uploadFile(clientProfileImage, rootPath);
         }
 
-
-//        String savePath = null;
-//        if (!clientProfileImage.isEmpty()) { //프로필 추가 했으면
-//            //rootPath에 파일을 업로드
-//            savePath = FileUtil.uploadFile(clientProfileImage, rootPath);
-//        }
-
-        boolean save = accountService.save(account);
-
-        log.info("회원가입 성별  :" + account.getGender());
+        boolean save = accountService.save(account,savePath);
 
         if (save) {
             return "redirect:/account/sign-in";  //로그인페이지
