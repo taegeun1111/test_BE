@@ -22,7 +22,6 @@ class StampServiceTest {
         StampAddConditionDTO dto = new StampAddConditionDTO();
         dto.setBannerClickCount(true);
         dto.setAttendCount(false);
-        dto.setBoardCount(true);
         dto.setClickEvent(false);
         dto.setAccountId("myblog0419");
 
@@ -33,16 +32,15 @@ class StampServiceTest {
 
     }
 
-//    @Test
-//    @DisplayName("사용자의 데이터를 가지고 도장개수 return")
-//    void stampCount(){
-//        StampAddConditionDTO dto=new StampAddConditionDTO();
-//        dto.setBannerClickCount(true);
-//        dto.setAttendCount(true);
-//        dto.setBoardCount(true);
-//        dto.setAccountId("이동우");
-//        StampResponseDTO stampAddConditionDTO = service.stampCount(dto);
-//        System.out.println("stampAddConditionDTO = " + stampAddConditionDTO);
-//
-//    }
+    @Test
+    @DisplayName("사용자의 데이터를 가지고 도장개수 return")
+    void stampCount(){
+        StampAddConditionDTO dto=new StampAddConditionDTO();
+        dto.setBannerClickCount(false);
+        dto.setClickEvent(false);
+        dto.setAttendCount(true);
+        dto.setAccountId("asd");
+        Stamp stamp = service.stampCount(dto);
+        System.out.println("stamp = " + stamp);
+    }
 }

@@ -31,7 +31,7 @@ class ReviewServiceTest {
 
         ReviewLikeResponseDTO dto = new ReviewLikeResponseDTO();
         dto.setClickLike(true);
-        dto.setReviewBoardNo(1);
+        dto.setReviewBoardNo(2);
         dto.setAccountId("myblog0419");
 
        service.clickLike(dto);

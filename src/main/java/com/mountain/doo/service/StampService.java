@@ -25,7 +25,6 @@ public class StampService {
 
         // 업데이트 된 정보 전달
         Stamp stampCount = mapper.stampCount(dto.getAccountId());
-
         return stampCount;
 
     }
@@ -39,12 +38,9 @@ public class StampService {
 //여기에 변수 하나 만들어서 로그인 true 면 조건 넣으시고
 public void boardBanner(StampAddConditionDTO dto) {
     boolean ac = dto.isBannerClickCount();
-    boolean bc = dto.isBoardCount();
     boolean attendCount = dto.isAttendCount();
 
-    if (bc) {
-        mapper.boardPlus(dto.getAccountId());
-    }  if (ac) {
+  if (ac) {
         mapper.bannerPlus(dto.getAccountId());
     }
     mapper.isLogin(dto.isAttendCount(),dto.getAccountId());
@@ -52,7 +48,12 @@ public void boardBanner(StampAddConditionDTO dto) {
 
 
 public void plusStamp(StampAddConditionDTO dto) {
+    mapper.myBoard(dto.getAccountId());
+
     Stamp stamp = mapper.stampCount(dto.getAccountId());
+
+    //해당 아이디가 작성한 게시글 count 로 교체
+//    stamp.realBoardCount(dto.getAccountId());
 
         if (stamp.getBannerClickCount() % 3 == 0 && stamp.getBannerClickCount() != 0) {
             mapper.stampAdd(dto.getAccountId());

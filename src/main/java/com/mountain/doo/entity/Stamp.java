@@ -1,6 +1,9 @@
 package com.mountain.doo.entity;
 
+import com.mountain.doo.dto.stamp.StampAddConditionDTO;
+import com.mountain.doo.repository.StampMapper;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Setter

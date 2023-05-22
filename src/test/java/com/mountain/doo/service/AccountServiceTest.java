@@ -27,7 +27,7 @@ class AccountServiceTest {
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("1111");
+        save.setAccountId("myblog0419");
         save.setPassword("1111");
         save.setName("봉봉");
         save.setGender(GENDER.M);
@@ -36,7 +36,7 @@ class AccountServiceTest {
         String savePath="/2023/05/22/d69dc8ce-66bb-43ca-8c1a-0b6c1704a90b_bobby.png";
 //        save.setProfileImg("");
 
-        boolean isSaved = accountService.save(save,savePath);
+        boolean isSaved = accountService.save(save);
         assertTrue(isSaved);
 
     }
