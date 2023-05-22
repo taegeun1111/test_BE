@@ -23,16 +23,14 @@
         <!-- Login 되면 보여질 버튼  -->
       <c:if test="${login != null}">
            <ul class="afterLogin-wrapper">
-               <li class="logout-btn"><a href="/account/sign-out">Log out</a></li>
+               <li class="logout-btn"><a href="/account/log-out">Log out</a></li>
 
               
                        <li class="myPage-btn">
                             <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">
-                            <a href="/account/mypage">${login == null ? '' : '안녕하세요'}</a>
+                            <a href="/account/mypage"></a>
                         </li>
-                    
-            
-
+                        
             </ul>
         </c:if>
     </div>
