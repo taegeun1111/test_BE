@@ -65,10 +65,16 @@ class StampMapperTest {
     }
 
     @Test
-    @DisplayName("아이디로 내가쓴 게시물 찾기")
-    void myboard(){
-        int i = mapper.myBoard("myblog0419");
-        System.out.println("i = " + i);
+//     @DisplayName("아이디로 내가쓴 게시물 찾기")
+//     void myboard(){
+//         int i = mapper.myBoard("myblog0419");
+//         System.out.println("i = " + i);
+    void isLoginTest(){
+        StampAddConditionDTO dto=StampAddConditionDTO.builder().
+         attendCount(true)
+        .build();
+        System.out.println("isLoginTest의 dto"+dto);
+        mapper.isLogin(dto.isAttendCount(),"aaaa");
     }
 
     }

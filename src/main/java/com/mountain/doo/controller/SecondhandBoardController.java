@@ -5,6 +5,7 @@ import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
+import com.mountain.doo.dto.page.SecondhandSearch;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.repository.SecondhandBoardMapper;
@@ -31,57 +32,56 @@ import java.util.List;
 
 public class SecondhandBoardController {
 
-    SecondhandBoardService sc;
+   private final SecondhandBoardService sc;
     private final SecondhandBoardMapper mapper;
     //게시글 전체 조회
-    @GetMapping("/handlist")
-    public String getList(Model model, Search search, HttpServletRequest request){
+    @GetMapping("/list")
+    public String getList(Model model, SecondhandSearch page){
 
 
-        boolean flag=false;
-        request.getSession().getAttribute("login");
+//        boolean flag=false;
+//        request.getSession().getAttribute("login");
 
 //        if(login!=null) flag=true;
 
-        if (!flag) return "redirect:/club/sign-in";
+//        if (!flag) return "redirect:/club/sign-in";
 
-
-        List<SecondhandBoardListDTO> list = sc.findAll(search);
+        page.setAmount(15);
+        List<SecondhandBoardListDTO> list = sc.findAll(page);
 
         //페이징 알고리즘 작동
-        PageMaker maker = new PageMaker(search,sc.count(search));
-
-        model.addAttribute("shblist",list);
+        PageMaker maker = new PageMaker(page,sc.count(page));
+        log.info("page = {}",page);
+        model.addAttribute("shbList",list);
         model.addAttribute("maker",maker);
-        model.addAttribute("search",search);
-        return "/handlist";
+        model.addAttribute("s",page);
+        return "secondHand/handList";
     }
 
-    //게시물 하나 조회
-    @GetMapping("/handboardOne")
-    public String findOne(int boardNo,Model model){
-        SecondhandBoard one = sc.findOne(boardNo);
-        model.addAttribute("one",one);
-
-        return "/handlistOne";
+    //게시물 상세 조회
+    @GetMapping("/detail")
+    public String findOne(int bno,Model model){
+        SecondhandBoard detail = sc.findOne(bno);
+        model.addAttribute("is",detail);
+        return "secondHand/handDetail";
     }
 
     //게시물 작성 페이지 열림
-    @GetMapping("/handWrite")
+    @GetMapping("/write")
     public String handWrite(HttpSession session){
 
 
         //회원정보있는 회원만 게시판 작성 가능
-        return "/write";
+        return "secondHand/handWrite";
     }
 
 
     //게시물 작성
-    @PostMapping("/handWriteData")
+    @PostMapping("/write")
     public String handWriteDate(SecondhandBoardWriteDTO dto,HttpSession session){
-         sc.handWriteData(dto,session);
-
-        return "redirect/List";
+        sc.handWriteData(dto, session);
+        log.info("handWrite 저장되는 값 {}",dto);
+        return "redirect:/board/list";
     }
 
 

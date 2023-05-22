@@ -16,11 +16,17 @@ public class ClubDetailResponseDTO {
     private final String clubTitle;
     private final String clubContent;
     private final LocalDateTime clubRecruitDeadline;
+    private final String clubArea;
+    private final String clubRecruitType;
+    private final int clubRecruitCount;
 
     public ClubDetailResponseDTO(Club club) {
         this.clubBoardNo = club.getClubBoardNo();
         this.clubTitle = club.getClubTitle();
         this.clubContent = club.getClubContent();
         this.clubRecruitDeadline = club.getClubRegDate();
+        this.clubArea = club.getClubArea();
+        this.clubRecruitType = club.getClubRecruitType();
+        this.clubRecruitCount = club.getClubRecruitCount();
     }
 }

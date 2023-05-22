@@ -112,7 +112,7 @@ body {
     /* height: 200px; */
     /* margin-bottom: 100px; */
     min-height: 200px;
-    
+    word-break:break-all;
 }
 
 /* 댓글 영역 */

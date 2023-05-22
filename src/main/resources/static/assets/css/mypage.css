@@ -53,8 +53,11 @@
     width: 150px;
     height: 150px;
     background-color: rgb(200, 200, 200);
+
     border-radius: 100px;
     margin-right: 20px;
+    padding: auto;
+    overflow: hidden;
 }
 
 /* 수정 영역 */
@@ -70,6 +73,7 @@
 }
 .modify-btn span{
     font-size: 15px;
+    cursor: pointer;
 }
 
 .than-icon {

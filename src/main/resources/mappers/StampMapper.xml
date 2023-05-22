@@ -74,5 +74,12 @@
         inner join feed on stamp.account_id = feed.account_id
     </select>
 
+    <!--     로그인여부 확인-->
+    <update id="isLogin">
+        UPDATE stamp
+        SET attend_count = #{attendCount}
+        WHERE account_id = #{accountId}
+    </update>
+
 
 </mapper>

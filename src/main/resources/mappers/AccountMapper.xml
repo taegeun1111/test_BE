@@ -15,12 +15,11 @@
 <!--    회원정보 저장-->
     <insert id="save">
         INSERT INTO account
-        (account_id, password, name, gender, email, phone_no)
-        VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo})
-
+        (account_id, password, name, gender, email, phone_no, profile_img)
+        VALUES (#{accountId}, #{password}, #{name}, #{gender}, #{email}, #{phoneNo},#{profileImg})
     </insert>
 <!--    로그인-->
-    <select id="login" resultType="boolean">
+    <select id="login" resultType="Account">
         SELECT account_id, password, name, gender, email, phone_no, address
         FROM account
         WHERE account_id = #{accountId}
@@ -59,13 +58,19 @@
     <select id="isDuplicate" resultType="int">
         SELECT COUNT(*)
         FROM account
-        <if test= 'type eq "account_id"'>
+        <if test="type=='accountId'">
             WHERE account_id = #{keyword}
         </if>
-        <if test= 'type eq "email"'>
-            WHERE email = #{keyword}
+        <if test="type=='email'">
+            WHERE email=#{keyword}
         </if>
     </select>
+
+<!--    <select id="isDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM account
+        WHERE account_id = #{keyword}
+    </select>-->
 
     <update id="saveAutoLogin">
         UPDATE account

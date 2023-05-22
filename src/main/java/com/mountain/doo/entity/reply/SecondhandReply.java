@@ -15,7 +15,7 @@ public class SecondhandReply {
 
     private long secondhandReplyNo;
     private long secondhandBoardNo;
-    private int secondhandReplyContent;
+    private String secondhandReplyContent;
     private String secondhandReplyWriter;
     private LocalDateTime secondhandReplyDate;
 }

@@ -24,17 +24,23 @@
 
     <select id="findAll" resultType="clubReply">
         SELECT
-            A.club_reply_no, A.club_reply_content, A.club_reply_writer, A.club_reply_date, B.club_board_no
-        FROM club_reply A, club B
-        WHERE A.club_board_no = B.club_board_no
+            club_reply_no, club_reply_content, club_reply_writer, club_reply_date, club_board_no
+        FROM club_reply
+        WHERE club_board_no = #{clubBoardNo}
         ORDER BY club_reply_no
             LIMIT #{p.pageStart}, #{p.amount}
     </select>
 
     <select id="findOne" resultType="clubReply">
         SELECT
-            club_reply_no, club_reply_content, club_reply_writer, club_reply_date, feed_board_no
+            club_reply_no, club_reply_content, club_reply_writer, club_reply_date, club_board_no
         FROM club_reply
         WHERE club_reply_no = #{clubReplyNo}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM club_reply
+        WHERE club_board_no = #{clubBoardNo}
     </select>
 </mapper>

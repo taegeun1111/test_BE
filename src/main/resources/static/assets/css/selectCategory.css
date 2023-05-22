@@ -41,17 +41,17 @@
 }
 
 .feed-img {
-    background-image: url(jpg/feed1.jpg);
+    background-image: url(/assets/jpg/feed1.jpg);
     background-position: 0px 100%;
 }
 
 .issue-img {
-    background-image: url(jpg/issue1.jpg);
+    background-image: url(/assets/jpg/issue1.jpg);
     background-position: 0px 100%;
 }
 
 .review-img {
-    background-image: url(jpg/review1.jpg);
+    background-image: url(/assets/jpg/review1.jpg);
     background-position: 0px 100%;
 }
 
@@ -79,10 +79,11 @@
     width: 470px;
     font-size: 15px;
     color: white;
+    min-height: 140px;
 }
 
 .sub-title {
-    margin-top: 75px;
+    /* margin-top: 75px; */
     font-size: 17px;
     color: rgb(150, 150, 150);
     font-weight: 200;

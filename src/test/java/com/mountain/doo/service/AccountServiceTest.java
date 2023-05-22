@@ -27,13 +27,16 @@ class AccountServiceTest {
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("11");
-        save.setPassword("11");
-        save.setName("11");
+        save.setAccountId("1111");
+        save.setPassword("1111");
+        save.setName("봉봉");
         save.setGender(GENDER.M);
-        save.setEmail("11");
+        save.setEmail("1111@naver.com");
         save.setPhoneNo("11");
-        boolean isSaved = accountService.save(save);
+        String savePath="/2023/05/22/d69dc8ce-66bb-43ca-8c1a-0b6c1704a90b_bobby.png";
+//        save.setProfileImg("");
+
+        boolean isSaved = accountService.save(save,savePath);
         assertTrue(isSaved);
 
     }

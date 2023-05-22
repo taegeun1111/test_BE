@@ -38,6 +38,7 @@ public SecondhandBoard(SecondhandBoardListDTO dto){
 
     //게시글 작성
 public SecondhandBoard(SecondhandBoardWriteDTO dto){
+    this.accountId = dto.getAccountId();
     this.secondhandTitle=dto.getSecondhandTitle();
     this.secondhandContent=dto.getSecondhandContent();
     this.secondhandArea=dto.getSecondhandArea();

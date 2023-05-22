@@ -20,7 +20,7 @@
 
         <section class="review-main-wrapper">
             <div class="title-wrapper">
-                <div class="review-main-title">산악 이슈</div>
+                <div class="review-main-title">산악 후기</div>
                 <div class="review-sub-title">요즘 가장 핫한 산악 정보는?</div>
             </div>
             <!-- <div class="hide-admin"> -->
@@ -170,7 +170,7 @@
             clickBoard.addEventListener('click',e =>{
                 console.log(clickBoard);
                 const bno = clickBoard.querySelector('.board-boardNo').dataset.bno;
-                window.location.href = '/issue/detail?bno='+bno+'&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
+                window.location.href = '/review/detail?bno='+bno+'&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
             })    
         };
 

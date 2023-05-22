@@ -34,9 +34,11 @@
                 </div>
 
                 <div class="like-it-count">
-                    <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요 ${is.likeCount}</div>
+                    <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요
+                        ${is.likeCount}</div>
                     <!-- 댓글 안되면 삭제하기 -->
-                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 10</div>
+                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 10
+                    </div>
                 </div>
             </div>
 
@@ -44,7 +46,9 @@
 
         <div class="content-wrapper">
             <div class="issue-content">
+
                 ${is.content}
+
             </div>
         </div>
 
@@ -80,6 +84,7 @@
 
 
     </section>
+
 
 </body>
 

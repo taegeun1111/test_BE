@@ -25,13 +25,12 @@
         <typeAlias alias="clubReply" type="com.mountain.doo.entity.reply.ClubReply" />
         <typeAlias alias="reviewReply" type="com.mountain.doo.entity.reply.ReviewReply" />
         <typeAlias alias="secondhandReply" type="com.mountain.doo.entity.reply.SecondhandReply" />
+        <typeAlias alias="loginTime" type="com.mountain.doo.entity.LoginTime" />
 
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
-        <mapper resource="mappers/test.xml"/>
-           
         <mapper resource="mappers/ClubMapper.xml"/>
         <mapper resource="mappers/FeedMapper.xml"/>
         <mapper resource="mappers/IssueMapper.xml"/>
@@ -44,6 +43,7 @@
         <mapper resource="mappers/replies/ReviewReplyMapper.xml"/>
         <mapper resource="mappers/replies/SecondhandReplyMapper.xml"/>
         <mapper resource="mappers/StampMapper.xml"/>
+        <mapper resource="mappers/LoginTimeMapper.xml"/>
 
     </mappers>
 
