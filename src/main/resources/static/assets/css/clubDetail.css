@@ -120,3 +120,94 @@ body {
     border-radius: 50px;
     font-size: 17px;
 }
+
+
+/* 댓글 영역 */
+.detail-comment-container {
+    padding-top: 20px;
+    /* background-color: bisque; */
+    padding: 15px;
+}
+
+.comment-warpper {
+    display: flex;
+}
+
+.comment-title {
+    font-weight: 400;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.comment-info-wrapper {
+    display: flex;
+    /* background-color: azure; */
+    border-bottom: 1px solid rgb(220, 220, 220);
+    width: 100%;
+}
+
+.comment-write-date {
+    margin-top: 10px;
+    color: rgb(150, 150, 150);
+    font-size: 14px;
+}
+
+.comment-write-wrapper {
+    /* background-color: wheat; */
+    /* padding: 10px; */
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    background-color: rgb(230, 230, 230);
+    /* border: 2px solid white; */
+    border-radius: 10px;
+    padding: 20px 15px;
+}
+
+/* 댓글 작성 영역 */
+#comment-write-area {
+    border-radius: 5px;
+    width: 99%;
+    resize: none;
+    height: 50px;
+    margin: 10px 0;
+    background: none;
+    border: none;
+}
+
+#comment-write-area::placeholder {
+    color: rgb(150, 150, 150);
+}
+
+.write-id {
+    font-weight: 400;
+    font-size: 17px;
+}
+
+
+/* 등록 버튼 */
+.submit-btn {
+    width: 80px;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    border-radius: 5px;
+    /* background-color: rgb(100, 100, 100); */
+    background-color: #1e1d21;
+    color: white;
+    padding: 4px 8px;
+    cursor: pointer;
+
+}
+
+.submit-btn:hover {
+    background-color: rgb(100, 100, 100);
+}

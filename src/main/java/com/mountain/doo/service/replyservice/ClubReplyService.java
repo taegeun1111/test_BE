@@ -54,7 +54,9 @@ public class ClubReplyService {
     @Transactional
     public ClubReplyListResponseDTO delete(final long replyNo) throws Exception{
         long clubBoardNo = replyMapper.findOne(replyNo).getClubBoardNo();
+        System.out.println("clubBoardNo = " + clubBoardNo);
         replyMapper.remove(clubBoardNo);
+        System.out.println("서비스까지 도");
         return getList(clubBoardNo, new Page(1,10));
     }
     // 댓글 수정

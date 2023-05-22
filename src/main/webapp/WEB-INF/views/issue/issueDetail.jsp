@@ -46,9 +46,9 @@
 
         <div class="content-wrapper">
             <div class="issue-content">
-                
-                    ${is.content}
-                
+
+                ${is.content}
+
             </div>
         </div>
 
@@ -84,6 +84,7 @@
 
 
     </section>
+
 
 </body>
 

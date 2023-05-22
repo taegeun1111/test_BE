@@ -5,6 +5,7 @@ import com.mountain.doo.dto.page.Page;
 import com.mountain.doo.entity.reply.ClubReply;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 

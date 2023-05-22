@@ -10,22 +10,33 @@
     <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/mypage.css">
     <%@ include file="../include/static-head.jsp" %>
-    <title>Mountain-Do My Page</title>
+    <title>Mountain-Do</title>
 
 </head>
 
 <body id="bg-color">
 
- <%@ include file="../include/header.jsp" %>
+    <%@ include file="../include/header.jsp" %>
     <div class="title">My Page</div>
     <section class="mypage-informaiton-container">
         <div class="main-informaiton">
-            <div class="profile"></div>
+
+            <c:if test="${login.profile == null}">
+                <div class="profile">
+                    <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">
+                </div>     
+            </c:if>
+            <c:if test="${login.profile != null}">
+                <div class="profile">
+                    <img src="/local${login.profile}" alt="프로필사진">
+                </div>
+            </c:if>
+            
             <div class="name-wrapper">
-                <div class="nickname">${account.name}</div>
+                <div class="nickname">${login == null ? '스파이?' : login.name}</div>
 
                 <div class="modify-btn">
-                    <span style=cursor:hand onClick="location.href='/account/modify'">수정하기</span>
+                    <span>수정하기</span>
                 </div>
             </div>
         </div>
@@ -33,7 +44,13 @@
         <div class="my-count-wrapper">
             <div class="write-count-wrapper">
                 <div class="write-title">내가 쓴 글</div>
-                <div class="write-count">07</div>
+                <c:if test="${login == null || sc.boardCount == null }">
+                    <p class="write-count">0</p>
+                </c:if>
+                <c:if test="${login != null}">
+                    <div class="write-count">0${sc.boardCount}</div>
+                </c:if>
+
             </div>
             <div class="comment-count-wrapper">
                 <div class="comment-title">나의 댓글</div>
@@ -42,7 +59,7 @@
             <div class="stamp-count-wrapper">
                 <div class="stamp-title">스탬프</div>
                 <div class="stamp-count">
-                    07<p class="total-stamp">/30</p>
+                    0${sc.stampCount}<p class="total-stamp">/30</p>
                 </div>
             </div>
 
@@ -132,6 +149,16 @@
             </div>
         </section>
     </section>
+
+    <script>
+        // 수정하기 버튼
+        function goToModifyPage() {
+            location.href = '/account/modify';
+        }
+
+        const modifyButton = document.querySelector('.modify-btn');
+        modifyButton.addEventListener('click', goToModifyPage);
+    </script>
 </body>
 
 </html>
