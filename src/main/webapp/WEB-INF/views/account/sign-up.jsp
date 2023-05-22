@@ -125,6 +125,8 @@
             </div>
         </div>
     </div>
+
+
         <script>
             // 입력값 검증 통과 여부 배열
             const checkResultList = [false, false, false, false, false];
@@ -332,6 +334,7 @@
                 modal.style.display = 'none'; // 모달 닫기
             }
 
+
              // 프로필 사진 관련 스크립트
         const $profile = document.querySelector('.profile');
         const $fileInput = document.getElementById('profile-img');
@@ -360,6 +363,7 @@
                 $imgTag.setAttribute('src', reader.result);
             };
         };
+
         </script>
 
 </body>

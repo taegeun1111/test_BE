@@ -2,7 +2,7 @@ package com.mountain.doo.dto.reply.secondhandreply;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mountain.doo.entity.reply.FeedReply;
+import com.mountain.doo.entity.reply.SecondhandReply;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,10 +23,10 @@ public class SecondhandReplyDetailResponseDTO {
     @JsonFormat(pattern="yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime replyRegDate;
 
-    public SecondhandReplyDetailResponseDTO(FeedReply feedReply) {
-        this.replyNo = feedReply.getFeedReplyNo();
-        this.replyContent = feedReply.getFeedReplyContent();
-        this.replyWriter = feedReply.getFeedReplyWriter();
-        this.replyRegDate = feedReply.getFeedReplyDate();
+    public SecondhandReplyDetailResponseDTO(SecondhandReply secondhandReply) {
+        this.replyNo = secondhandReply.getSecondhandReplyNo();
+        this.replyContent = secondhandReply.getSecondhandReplyContent();
+        this.replyWriter = secondhandReply.getSecondhandReplyWriter();
+        this.replyRegDate = secondhandReply.getSecondhandReplyDate();
     }
 }

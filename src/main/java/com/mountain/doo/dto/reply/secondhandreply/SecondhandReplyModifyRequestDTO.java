@@ -1,7 +1,7 @@
 package com.mountain.doo.dto.reply.secondhandreply;
 
 
-import com.mountain.doo.entity.reply.FeedReply;
+import com.mountain.doo.entity.reply.SecondhandReply;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -21,10 +21,10 @@ public class SecondhandReplyModifyRequestDTO {
     @NotNull
     private String content;
 
-    public FeedReply toEntity() {
-        return FeedReply.builder()
-                .feedReplyNo(this.replyNo)
-                .feedBoardNo(this.boardNo)
-                .feedReplyContent(this.content).build();
+    public SecondhandReply toEntity() {
+        return SecondhandReply.builder()
+                .secondhandReplyNo(this.replyNo)
+                .secondhandBoardNo(this.boardNo)
+                .secondhandReplyContent(this.content).build();
     }
 }

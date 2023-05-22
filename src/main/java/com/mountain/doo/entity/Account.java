@@ -30,4 +30,5 @@ public class Account {
 //    private MultipartFile profileImage;
     //db에 저장된 이 파일의 경로이므로 String
     private String profileImg;
+
 }

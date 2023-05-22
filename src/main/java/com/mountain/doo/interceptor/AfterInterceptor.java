@@ -13,17 +13,20 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class AfterInterceptor implements HandlerInterceptor {
 
+
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws Exception {
         HttpSession session = request.getSession(); //세션 생성
         log.info("AfterInterceptor : "+ session);
-
+      
         if(LoginUtil.isLogin(session)){
             response.sendRedirect("/");
             return false;
         }
+
         return true;
     }
+
 }

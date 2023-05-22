@@ -25,7 +25,12 @@
         WHERE account_id = #{accountId}
     </update>
 
-
+<!--    내가 쓴 게시물 찾기-->
+    <select id="myBoard" resultType="int">
+        select count(board_no)
+        from stamp
+        inner join feed on stamp.account_id = feed.account_id
+    </select>
 
 <!-- 스탬프 개수 1-->
 
@@ -57,11 +62,6 @@
         WHERE account_id = #{accountId}
     </update>
 
-    <select id="myBoard" resultType="int">
-        select count(board_no)
-        from stamp
-        inner join feed on stamp.account_id = feed.account_id
-    </select>
 
     <!--     로그인여부 확인-->
     <update id="isLogin">

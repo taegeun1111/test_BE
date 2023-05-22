@@ -31,7 +31,7 @@ public class ClubReplyController {
     ) {
         Page page = new Page();
         page.setPageNo(pageNo);
-        page.setAmount(10);
+        page.setAmount(5);
         ClubReplyListResponseDTO replyList = replyService.getList(boardNo, page);
         log.info("replyList: {}", replyList);
         return ResponseEntity.ok().body(replyList);
@@ -43,7 +43,7 @@ public class ClubReplyController {
             @Validated @RequestBody ClubReplyPostRequestDTO dto // 요청 바디에 보내줌
             , BindingResult result
     ) {
-
+        log.info("register 비동기 댓글 작성 POST!");
         if (result.hasErrors()) {
             return ResponseEntity.badRequest()
                     .body(result.toString());
@@ -66,12 +66,14 @@ public class ClubReplyController {
     public ResponseEntity<?> delete(
             @PathVariable(required = false) Long replyNo
     ) {
+        log.info("DeleteMapping 발생 댓글 번호 : {}",replyNo);
         if (replyNo == null) {
             return ResponseEntity.badRequest().body("댓글 번호를 보내주세요");
         }
 
         try {
             ClubReplyListResponseDTO responseDTO = replyService.delete(replyNo);
+            System.out.println("삭제 이벤트 발생");
             return ResponseEntity.ok().body(responseDTO);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());

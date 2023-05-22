@@ -49,6 +49,7 @@ public class AccountController {
     @PostMapping("/sign-up")
     public String signUp(Account account, MultipartFile clientProfileImage) {
 
+
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
 
@@ -62,6 +63,7 @@ public class AccountController {
         }
 
         boolean save = accountService.save(account,savePath);
+
         if (save) {
             return "redirect:/account/sign-in";  //로그인페이지
         }
@@ -88,8 +90,10 @@ public class AccountController {
 
         if (login) {
             //service에 세션 보냄
+
             accountService.maintainAccountState(request.getSession(), dto.getAccount());
-            return "redirect:/account/mypage"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
+            return "redirect:/"; //로그인되면 메인페이지(메인 아직 없어서 마이페이지로 ㅎㅎ)
+
         } else {
             return "account/sign-in"; //로그인 안되면 로그인 페이지 다시
         }
@@ -158,9 +162,9 @@ public class AccountController {
     @GetMapping("/check")
     @ResponseBody
     //검사 타입(아이디인지,이메일인지), 검사 키워드(어떤 계정인)
-    public ResponseEntity<?> check(String type, String keyword){
-        log.info("/account/check?type={}&keyword={} ASYNC GET!",type,keyword);
-        boolean flag=accountService.checkSignUpValue(type,keyword);
+    public ResponseEntity<?> check(String type, String keyword) {
+        log.info("/account/check?type={}&keyword={} ASYNC GET!", type, keyword);
+        boolean flag = accountService.checkSignUpValue(type, keyword);
         return ResponseEntity.ok().body(flag);
     }
 }
