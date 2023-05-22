@@ -57,10 +57,6 @@ public class IssueController {
     public String detail(int bno, @ModelAttribute("s") Search search, Model model, HttpServletRequest request){
         log.info("issue detail GET");
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
         Object login = request.getSession().getAttribute("login");
         IssueDetailResponseDTO detail = issueService.getDetail(bno);
 
@@ -81,7 +77,7 @@ public class IssueController {
     // 게시물 등록 완료 처리
     @PostMapping("/write")
     public String write(IssueWriteRequestDTO dto){
-        System.out.println("/feed/write : POST");
+        System.out.println("/issue/write : POST");
        issueService.register(dto);
         return "redirect:/issue/list";
     }
@@ -91,22 +87,18 @@ public class IssueController {
     public String modify(int bno, Model model){
         Issue issue = issueMapper.findOne(bno);
         IssueListResponseDTO modifyIssue = new IssueListResponseDTO(issue);
-//        Issue issue = issueMapper.findOne(dto.getBoardNo());
+
         model.addAttribute("is",modifyIssue);
-//        model.addAttribute("bno",issue.getIssueBoardNo());
-//        model.addAttribute("title", issue.getIssueTitle());
-//        model.addAttribute("content", issue.getIssueContent());
-//        model.addAttribute("modifyTime", issue.getIssueModify());
+
         return "issue/issueModify";
     }
     // 수정 완료 처리
     @PostMapping("/modify")
     public String modify(IssueRewriteRequestDTO dto){
         IssueRewriteRequestDTO requestDTO = new IssueRewriteRequestDTO(dto);
+        System.out.println("requestDTO = " + requestDTO);
         boolean modify = issueService.modify(requestDTO);
-        System.out.println("modify = " + modify);
 
-//        bno받기
         return "redirect:/issue/detail?bno="+requestDTO.getBoardNo();
     }
 

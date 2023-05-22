@@ -24,7 +24,7 @@ public class IssueRewriteRequestDTO {
         this.title = issue.getTitle();
         this.content = issue.getContent();
         this.boardNo = issue.getBoardNo();
-        this.modifyTime = LocalDateTime.now();
-//        this.modifyTime = issue.getModifyTime();
+//        this.modifyTime = LocalDateTime.now();
+        this.modifyTime = issue.getModifyTime();
     }
 }

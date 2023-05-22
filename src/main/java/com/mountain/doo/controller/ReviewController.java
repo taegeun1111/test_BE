@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -51,9 +52,16 @@ public class ReviewController {
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int bno, @ModelAttribute("s") Search search, Model model){
+    public String detail(int bno, @ModelAttribute("s") Search search, Model model, HttpServletRequest request){
         log.info("review detail GET");
+
+        Object login = request.getSession().getAttribute("login");
         ReviewDetailResponseDTO detail = reviewService.getDetail(bno);
+
+        log.info("detail에 접근한 User의 정보 : {}", request.getSession().getAttribute("login"));
+        log.info("detail 게시물 정보 : {}",detail);
+
+        model.addAttribute("login", login);
         model.addAttribute("is", detail);
         return "review/reviewDetail";
     }
@@ -67,19 +75,20 @@ public class ReviewController {
     @PostMapping("/write")
     public String write(ReviewWriteRequestDTO dto){
         System.out.println("/review/write : POST");
+        log.info("산악 후기 게시물 작성 POST발생 : {}",dto);
         reviewService.register(dto);
         return "redirect:/review/list";
     }
 
     // 수정 요청
     @GetMapping("/modify")
-    public String modify(ReviewRewriteRequestDTO dto, @ModelAttribute("s") Search search, Model model){
-        Review review = reviewMapper.findOne(dto.getBoardNo());
-        model.addAttribute("bno", review.getReviewBoardNo());
-        model.addAttribute("title", review.getReviewTitle());
-        model.addAttribute("content", review.getReviewContent());
-        model.addAttribute("modifyTime", review.getReviewModify());
-        return "";
+    public String modify(int bno, Model model){
+        Review review = reviewMapper.findOne(bno);
+        ReviewListResponseDTO modifyReview = new ReviewListResponseDTO(review);
+
+        model.addAttribute("is",modifyReview);
+
+        return "review/reviewModify";
     }
     // 수정 완료 처리
     @PostMapping("/modify")
