@@ -136,6 +136,7 @@ span[id] {
 .profile .thumbnail-box {
     width: 150px;
     height: 150px;
+    border: 1.2 solid #c2c2c2;
     border-radius: 50%;
     overflow: hidden;
     margin: 30px auto 10px;

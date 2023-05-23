@@ -23,4 +23,12 @@ public class OfferController {
         log.info("추천맛집");
         return "offer/offer-restaurant";
     }
+
+    //글쓰기 버튼 클릭
+    @GetMapping("write")
+    public String write(){
+        log.info("추천정보 글쓰기");
+        return "offer/offer-writer";
     }
+
+}
