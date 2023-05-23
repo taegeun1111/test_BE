@@ -81,8 +81,7 @@ public class AccountController {
     @PostMapping("/sign-in")
     public String login(LoginRequestDTO dto,
                         HttpServletResponse response,
-                        HttpServletRequest request,
-                        Model model) {
+                        HttpServletRequest request) {
         log.info("sessionId : " + request.getSession().getId());
         log.info("-----------------------------------{}", dto);
 

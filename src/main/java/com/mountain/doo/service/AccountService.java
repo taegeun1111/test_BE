@@ -141,6 +141,7 @@ public class AccountService {
         AccountResponseDTO dto= AccountResponseDTO.builder()
                 .accountId(account.getAccountId())
                 .name(account.getName())
+                .profile(account.getProfileImg())
                 .build();
         //이 정보들을 세션에 저장
         session.setAttribute(LoginUtil.LOGIN_KEY,dto);
@@ -162,20 +163,21 @@ public class AccountService {
         int days = period.getDays();
         //1보다 크면(하루가 지났다면)
         if(days>=1){
-            //현재 로그인 시간을 db에 저장하고
-            b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
-            log.info("dbLoginTime등록여부1" + b);
+                //현재 로그인 시간을 db에 저장하고
+                b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
+                log.info("dbLoginTime등록여부1 : " + b);
 
-            //로그인했다고 attendCount를 true셋팅
-            accountTrueFalse(b);
-            return;
+                //로그인했다고 attendCount를 true셋팅
+                accountTrueFalse(b);
+                return;
         }
         //아직 하루 안지났으면 flase
         accountTrueFalse(b);
 
-    }else { //dbLoginTime테이블에 등록 안된 사람이면(아마도 처음 회원가입하고 들어온 사람이면)
+    } else { //dbLoginTime테이블에 등록 안된 사람이면(아마도 처음 회원가입하고 들어온 사람이면)
         b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
-        log.info("dbLoginTime등록여부2" + b);
+
+        log.info("dbLoginTime등록여부2 : " + b);
         accountTrueFalse(b);
     }
 
