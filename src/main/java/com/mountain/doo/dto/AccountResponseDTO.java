@@ -10,4 +10,5 @@ import lombok.*;
 public class AccountResponseDTO {
     private String accountId;
     private String name;
+    private String profile;
 }

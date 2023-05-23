@@ -6,7 +6,7 @@
 
 <!--   회원정보 전체보기(관리자) -->
     <select id="allAccount" resultType="Account">
-        SELECT account_id, password, name, gender, email, phone_no, address
+        SELECT account_id, password, name, gender, email, phone_no, address, profile_img
         FROM account
 
 
@@ -20,7 +20,7 @@
     </insert>
 <!--    로그인-->
     <select id="login" resultType="Account">
-        SELECT account_id, password, name, gender, email, phone_no, address
+        SELECT account_id, password, name, gender, email, phone_no, address, profile_img
         FROM account
         WHERE account_id = #{accountId}
 
@@ -29,7 +29,7 @@
 
 <!--    마이페이지  회원 정보-->
     <select id="myInfo" resultType="Account">
-        SELECT account_id,password,name,gender,email,phone_no
+        SELECT account_id,password,name,gender,email,phone_no, profile_img
         FROM account
         WHERE account_id = #{accountId}
 
