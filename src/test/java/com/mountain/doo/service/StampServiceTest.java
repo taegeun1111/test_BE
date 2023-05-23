@@ -37,9 +37,9 @@ class StampServiceTest {
     void stampCount(){
         StampAddConditionDTO dto=new StampAddConditionDTO();
         dto.setBannerClickCount(false);
-        dto.setClickEvent(false);
-        dto.setAttendCount(true);
-        dto.setAccountId("qqq");
+        dto.setClickEvent(true);
+        dto.setAttendCount(false);
+        dto.setAccountId("myblog0419");
         Stamp stamp = service.stampCount(dto);
         System.out.println("stamp = " + stamp);
     }

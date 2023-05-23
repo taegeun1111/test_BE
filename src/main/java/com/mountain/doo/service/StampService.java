@@ -40,7 +40,8 @@ public void boardBanner(StampAddConditionDTO dto) {
     boolean ac = dto.isBannerClickCount();
     boolean attendCount = dto.isAttendCount();
 
-  if (ac) {
+
+    if (ac) {
         mapper.bannerPlus(dto.getAccountId());
     }
     mapper.isLogin(dto.isAttendCount(),dto.getAccountId());
@@ -49,25 +50,24 @@ public void boardBanner(StampAddConditionDTO dto) {
 
 public void plusStamp(StampAddConditionDTO dto) {
     mapper.myBoard(dto.getAccountId());
+    int todayMyBoard = mapper.todayMyBoard(dto.getAccountId());
 
     Stamp stamp = mapper.stampCount(dto.getAccountId());
+    System.out.println("stamp = " + stamp);
+        //오늘 쓴 게시물이 3개면 도장 찍기
+         if(todayMyBoard==3){
+        mapper.stampAdd(dto.getAccountId());
+        mapper.currentAdd(dto.getAccountId());
+        }
+        if (stamp.getBannerClickCount() == 3 ) {
+            mapper.stampAdd(dto.getAccountId());
+            mapper.currentAdd(dto.getAccountId());
+        }
 
-    //해당 아이디가 작성한 게시글 count 로 교체
-//    stamp.realBoardCount(dto.getAccountId());
-
-        if (stamp.getBannerClickCount() % 3 == 0 && stamp.getBannerClickCount() != 0) {
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
-        }
-        if (stamp.getBoardCount() % 3 == 0 && stamp.getBoardCount() != 0) {
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
-        }
-        if(stamp.isAttendCount()==true){
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
-        }
     }
+
+
+
 
     public void clickEvent(StampAddConditionDTO dto){
         // 스탬프 18개 이상일때만 동작
@@ -75,7 +75,7 @@ public void plusStamp(StampAddConditionDTO dto) {
             mapper.openEvent(dto.getAccountId());}
     }
 
-    //
+    //해당아이디로 오늘 쓴 게시글 수 count 확인
 
 }
 
