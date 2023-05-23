@@ -51,7 +51,7 @@ public class ReviewController {
     };
     // 게시글 상세 조회
     @GetMapping("/detail")
-    public String detail(int bno, @ModelAttribute("s") Search search, Model model){
+    public String detail(int bno, @ModelAttribute("s") Search search, Model model ){
         log.info("review detail GET");
         ReviewDetailResponseDTO detail = reviewService.getDetail(bno);
         model.addAttribute("is", detail);

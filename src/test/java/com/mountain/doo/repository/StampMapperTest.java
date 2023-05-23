@@ -24,7 +24,6 @@ class StampMapperTest {
         StampAddConditionDTO dto = new StampAddConditionDTO();
         dto.setBannerClickCount(true);
         dto.setAttendCount(true);
-        dto.setBoardCount(true);
         dto.setAccountId("myblog0419");
 
         //해당 아이디 정보 확인
@@ -45,36 +44,29 @@ class StampMapperTest {
         System.out.println("stamp = " + stamp);
 
 
-
-
-    }
-
-        @Test
-        @DisplayName("배너가 3의 배수면 토탈 스탬프 개수 +1")
-        void bannerPlus() {
-            StampAddConditionDTO dto = new StampAddConditionDTO();
-            dto.setBannerClickCount(true);
-            dto.setBoardCount(true);
-            dto.setAttendCount(true);
-            dto.setAccountId("myblog0419");
-
-            mapper.stampAdd(dto.getAccountId());
-
-            Stamp stamp = mapper.stampCount(dto.getAccountId());
-            System.out.println("stamp = " + stamp);
     }
 
     @Test
-//     @DisplayName("아이디로 내가쓴 게시물 찾기")
-//     void myboard(){
-//         int i = mapper.myBoard("myblog0419");
-//         System.out.println("i = " + i);
-    void isLoginTest(){
-        StampAddConditionDTO dto=StampAddConditionDTO.builder().
-         attendCount(true)
-        .build();
-        System.out.println("isLoginTest의 dto"+dto);
-        mapper.isLogin(dto.isAttendCount(),"aaaa");
+    @DisplayName("배너가 3의 배수면 토탈 스탬프 개수 +1")
+    void bannerPlus() {
+        StampAddConditionDTO dto = new StampAddConditionDTO();
+        dto.setBannerClickCount(true);
+        dto.setAttendCount(true);
+        dto.setAccountId("myblog0419");
+
+        mapper.stampAdd(dto.getAccountId());
+
+        Stamp stamp = mapper.stampCount(dto.getAccountId());
+        System.out.println("stamp = " + stamp);
     }
 
+    @Test
+    @DisplayName("아이디로 내가쓴 게시물 찾기")
+    void myboard() {
+        Stamp stamp = mapper.stampCount("myblog0419");
+        System.out.println("stamp = " + stamp);
+        mapper.myBoard("myblog0419");
+        Stamp stamp2 = mapper.stampCount("myblog0419");
+        System.out.println("stamp2 = " + stamp2);
     }
+}

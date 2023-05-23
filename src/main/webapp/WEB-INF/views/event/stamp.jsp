@@ -133,6 +133,7 @@
             attendanceButton.addEventListener('click', changeAttendanceImage);
 }
        
+
         // 비회원 - 로그인 요청
         function goToSignInPage() {
             location.href = '/account/sign-in';
@@ -146,6 +147,7 @@
     //     const stampMain = document.querySelector('.map-main');
     //  const stampShapes = mapMain.querySelectorAll('.stamp-shape');
     // const oneDayImage = document.querySelector('.my-stamp li:first-child img');
+
 
     // function changeAttendanceImage() {
     //     attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
