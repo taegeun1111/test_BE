@@ -68,31 +68,30 @@
     </sql>
 
     <insert id="plusLike">
-        INSERT INTO review_like_count
-        (account_id, review_board_no)
-        VALUES (#{accountId}, #{reviewBoardNo})
+        INSERT INTO issue_like_count
+        (account_id, issue_board_no)
+        VALUES (#{accountId}, #{issueBoardNo})
     </insert>
 
     <delete id="minusLike">
-        DELETE FROM review_like_count
+        DELETE FROM issue_like_count
         WHERE account_id = #{accountId}
-        AND review_board_no = #{reviewBoardNo}
+        AND issue_board_no = #{issueBoardNo}
     </delete>
 
     <select id="likeCount" resultType="int">
-        SELECT count(review_like_no)
-        FROM review_like_count
+        SELECT count(issue_like_no)
+        FROM issue_like_count
         WHERE account_id = #{accountId}
-        AND review_board_no = #{reviewBoardNo}
+        AND issue_board_no = #{issueBoardNo}
 
     </select>
 
     <update id="updateLikeCount">
-        UPDATE review
-        SET review_like_count = (SELECT count(*)
-        FROM review_like_count
-        WHERE review_board_no = #{reviewBoardNo})
-        WHERE review_board_no = #{reviewBoardNo}
+        UPDATE issue
+        SET issue_like_count = (SELECT count(*)
+        FROM issue_like_count
+        WHERE issue_board_no = #{issueBoardNo})
     </update>
 
 </mapper>

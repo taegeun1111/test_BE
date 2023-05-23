@@ -54,6 +54,7 @@ public void plusStamp(StampAddConditionDTO dto) {
 
     Stamp stamp = mapper.stampCount(dto.getAccountId());
     System.out.println("stamp = " + stamp);
+
         //오늘 쓴 게시물이 3개면 도장 찍기
          if(todayMyBoard==3){
         mapper.stampAdd(dto.getAccountId());
