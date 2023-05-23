@@ -61,29 +61,17 @@
         </div>
 
         <!-- 댓글 비동기처리하기 -->
+
         <section class="detail-comment-container">
-            <div class="comment-title">댓글</div>
+            <div class='comment-title'>댓글</div>
             <div class="comment-warpper">
                 <div class="comment-info-wrapper">
-                    <div class="comment-profile"></div>
-                    <div class="comment-info">
-                        <div class="comment-detail-wrapper">
-                            <div class="comment-id">파이란 정운석</div>
-                        </div>
-
-                        <div class="comment-content">
-                            그마저도 힘들면 천문봉에서 주차장(찦차)으로 되돌아가는 코스를 잡아도 된다.
-                        </div>
-
-                        <div class="comment-write-time">
-                            <div class="comment-write-date">2023-05-16</div>
-                        </div>
-                    </div>
+                    <!-- 댓글 내용 영역 -->
                 </div>
             </div>
-
-
+            </div>
         </section>
+
         <div class="col-md-3">
             <div class="form-group">
 
@@ -98,19 +86,13 @@
                     </c:choose>
                 </div>
 
-                <label for="newReplyWriter" hidden>댓글 작성자</label>
-                <input id="newReplyWriter" name="replyWriter" type="text" class="form-control" placeholder="작성자 이름"
-                    style="margin-bottom: 6px;" value="${login.nickName}" readonly>
-                <button id="replyAddBtn" type="button" class="btn btn-dark form-control">등록</button>
+
             </div>
         </div>
         <div class="write-id" name="replyWriter">test1</div>
         <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
         <button type="submit" class="submit-btn">등록</button>
 
-        <div class="comment-write-wrapper">
-            <!-- 댓글 내용 영역 -->
-        </div>
 
 
         <!-- 댓글 페이징 영역 -->
@@ -192,6 +174,7 @@
 
             // ul에 마지막페이지 번호 저장.
             $pageUl.dataset.fp = finalPage;
+            console.log($pageUl.dataset.fp);
 
         }
 
@@ -240,36 +223,36 @@
                         // profile
                     } = rep;
 
-                    tag += "<div id='replyContent' class='card-body' data-replyId='" + replyNo + "'>" +
-                        "    <div class='row user-block'>" +
-                        "       <span class='col-md-8'>" +
-                        // (profile
-                        //     ?`<img class='reply-profile' src='\${profile}' alt='profile'>`
-                        //     : `<img class='reply-profile' src='/assets/img/anonymous.jpeg' alt='profile'>`
-                        //     ) +
-                        "         <b>" + replyWriter + "</b>" +
-                        "       </span>" +
-                        "       <span class='col-md-4 text-right'><b>" + replyRegDate +
-                        "</b></span>" +
-                        "    </div><br>" +
-                        "    <div class='row'>" +
-                        "       <div class='col-md-9'>" + replyContent + "</div>" +
-                        "       <div class='col-md-3 text-right'>";
+
+                    tag += `
+                <div class='comment-write-wrapper' id='replyContent' data-replyId='${replyNo}'>
+                    <div class='comment-profile'></div>
+                    <div class='comment-info'>
+                        <div class='comment-detail-wrapper'>
+                            <div class='comment-id'>${replyWriter}</div>`;
 
                     // if (currentAccount === replyWriter || auth === 'ADMIN') {
-                    tag +=
-                        "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                        "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
+                    tag += `
+                            <div class='btn-container'>
+                                <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;
+                                <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>
+                            </div>`;
                     // }
-                    tag += "       </div>" +
-                        "    </div>" +
-                        " </div>";
+
+                    tag += `
+                        </div>
+                        <div class='comment-content'>${replyContent}</div>
+                        <div class='comment-write-time'>
+                            <div class='comment-write-date'>${replyRegDate}</div>
+                        </div>
+                    </div>
+                </div>`;
                 }
             }
 
 
             // 생성된 댓글 tag 렌더링
-            document.querySelector('.comment-write-wrapper').innerHTML = tag;
+            document.querySelector('.comment-info-wrapper').innerHTML = tag;
 
             // 페이지 렌더링
             renderPage(replyPage);
@@ -354,7 +337,7 @@
         // 댓글 삭제+수정모달 이벤트 처리 함수
         function replyRemoveClickEvent() {
 
-            const $replyData = document.querySelector('.comment-write-wrapper');
+            const $replyData = document.querySelector('.comment-info-wrapper');
 
             $replyData.onclick = e => {
 
