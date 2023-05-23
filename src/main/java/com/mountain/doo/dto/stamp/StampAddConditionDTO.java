@@ -4,6 +4,8 @@ import com.mountain.doo.repository.StampMapper;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @ToString
@@ -17,6 +19,7 @@ public class StampAddConditionDTO {
 //    private int boardCount;
     private boolean bannerClickCount;
     private boolean clickEvent;
+    private LocalDateTime stampTime;
 
 
 

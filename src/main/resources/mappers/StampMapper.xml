@@ -30,14 +30,32 @@
     UNION ALL
     SELECT club_board_no FROM club WHERE account_id = #{accountId}
     UNION ALL
-    SELECT offer_board_no FROM offer WHERE account_id = #{accountId}
-    UNION ALL
     SELECT review_board_no FROM review WHERE account_id = #{accountId}
     UNION ALL
     SELECT feed_board_no FROM feed WHERE account_id = #{accountId}
     ) AS combined_table)
         WHERE account_id = #{accountId};
     </update>
+
+<!--    날짜비교 게시판-->
+    <select id="myBoardTime" resultType="int">
+        select stamp
+        SET board_count = (
+        SELECT COUNT(*) AS total_count
+        FROM (
+        SELECT issue_board_no FROM issue WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT secondhand_board_no FROM secondhand WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT club_board_no FROM club WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT review_board_no FROM review WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT feed_board_no FROM feed WHERE account_id = #{accountId}
+        ) AS combined_table)
+        WHERE account_id = #{accountId};
+    </select>
+
 
 
 <!--    게시판 작성시 +1-->
