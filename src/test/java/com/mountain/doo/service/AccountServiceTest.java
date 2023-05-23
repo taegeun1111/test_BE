@@ -27,8 +27,8 @@ class AccountServiceTest {
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("test1");
-        save.setPassword("test1!");
+        save.setAccountId("myblog0419");
+        save.setPassword("1111");
         save.setName("봉봉");
         save.setGender(GENDER.M);
         save.setEmail("1111@naver.com");
