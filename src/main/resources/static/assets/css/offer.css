@@ -3,6 +3,7 @@
 
 /* 추천 정보 헤더 */
 .offer-wrapper {
+    background-color: rgb(240, 240, 240);
     margin: 100px auto;
     width: 1000px;
     display: flex;

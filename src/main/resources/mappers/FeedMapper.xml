@@ -68,4 +68,32 @@
             OR feed_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
     </select>
+
+    <insert id="plusLike">
+        INSERT INTO review_like_count
+        (account_id, review_board_no)
+        VALUES (#{accountId}, #{reviewBoardNo})
+    </insert>
+
+    <delete id="minusLike">
+        DELETE FROM review_like_count
+        WHERE account_id = #{accountId}
+        AND review_board_no = #{reviewBoardNo}
+    </delete>
+
+    <select id="likeCount" resultType="int">
+        SELECT count(review_like_no)
+        FROM review_like_count
+        WHERE account_id = #{accountId}
+        AND review_board_no = #{reviewBoardNo}
+
+    </select>
+
+    <update id="updateLikeCount">
+        UPDATE review
+        SET review_like_count = (SELECT count(*)
+        FROM review_like_count
+        WHERE review_board_no = #{reviewBoardNo})
+        WHERE review_board_no = #{reviewBoardNo}
+    </update>
 </mapper>

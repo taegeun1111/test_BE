@@ -40,13 +40,13 @@ class AccountMapperTest {
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("33");
-        save.setPassword(encoder.encode("3123"));
-        save.setName("33");
+        save.setAccountId("test1");
+        save.setPassword(encoder.encode("test1!"));
+        save.setName("테스트");
         save.setGender(GENDER.M);
         save.setEmail("44");
         save.setPhoneNo("55");
-        save.setProfileImg("/2023/05/22/d69dc8ce-66bb-43ca-8c1a-0b6c1704a90b_bobby.png");
+//        save.setProfileImg("/2023/05/22/d69dc8ce-66bb-43ca-8c1a-0b6c1704a90b_bobby.png");
 
         boolean isSaved = mapper.save(save);
         assertTrue(isSaved);

@@ -2,6 +2,7 @@ package com.mountain.doo.dto.issue;
 
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +24,7 @@ public class IssueRewriteRequestDTO {
         this.title = issue.getTitle();
         this.content = issue.getContent();
         this.boardNo = issue.getBoardNo();
+//        this.modifyTime = LocalDateTime.now();
         this.modifyTime = issue.getModifyTime();
     }
 }

@@ -169,6 +169,18 @@ SELECT * FROM issue;
 SELECT * FROM club;
 SELECT * FROM secondhand;
 
+SELECT COUNT(*) AS total_count
+FROM (
+    SELECT issue_board_no FROM issue WHERE account_id = 'test1'
+    UNION ALL
+    SELECT secondhand_board_no FROM secondhand WHERE account_id = 'test1'
+    UNION ALL
+    SELECT club_board_no FROM club WHERE account_id = 'test1'
+) AS combined_table;
+
+SELECT *
+FROM secondhand s 
+WHERE account_id ='test1';
 -- =================테이블 삭제 구문=================
 -- 망쳐서 테이블 다 삭제하고 싶으면 drop 쓰시고 처음부터 다시 만드세요
 -- DROP TABLE offer;
@@ -231,9 +243,18 @@ CREATE TABLE account(
                         gender CHAR(1) NOT NULL ,
                         email VARCHAR(50) NOT NULL ,
                         phone_no VARCHAR(20) NOT NULL ,
-                        address VARCHAR(100)
+                        address VARCHAR(100),
+                        session_id VARCHAR(200),
+						limit_time DATETIME
 );
 
+create table account_login_time(
+   account_id VARCHAR(16) PRIMARY key,
+   login_time DATE not null
+);
+
+alter table account
+add profile_img VARCHAR(100);
 
 CREATE TABLE stamp(
     stamp_no INT(2) PRIMARY KEY ,
@@ -242,23 +263,26 @@ CREATE TABLE stamp(
     board_count INT(10) DEFAULT 0,
     banner_click_count INT(10) DEFAULT 0,
     current_stamp_count INT(10),
-    total_stamp_count INT(5)
+    total_stamp_count INT(5),
 );
-
+update account 
+set profile_img = 'fwefjklf';
 -- =================테이블 조회 구문=================
 SELECT * FROM account;
 SELECT * FROM stamp;
+SELECT * FROM account_login_time;
 -- =================테이블 삭제 구문=================
-DROP TABLE account;
-DROP TABLE stamp;
+-- DROP TABLE account;
+-- DROP TABLE stamp;
 
 -- TRUNCATE TABLE account;
 -- TRUNCATE TABLE stamp;
+-- TRUNCATE TABLE account_login_time;
 
 -- =================테이블 변경 구문=================
 
 INSERT INTO account (account_id, password, name, gender, email, phone_no, address)
-VALUES ('test2', 'test2', '테스트','M', 'admin@admin.com', '000-0000-0000', '서울시 강남구');
+VALUES ('test2', 'test2', '테스트','M', 'admin@admin.com', '000-0000-0000', '서울시 강남구');	
 
 
 

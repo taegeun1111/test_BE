@@ -18,6 +18,46 @@
         WHERE account_id = #{accountId}
     </update>
 
+<!--    해당 id가 작성한 게시물 개수 확인-->
+    <update id="myBoard">
+    UPDATE stamp
+        SET board_count = (
+    SELECT COUNT(*) AS total_count
+    FROM (
+    SELECT issue_board_no FROM issue WHERE account_id = #{accountId}
+    UNION ALL
+    SELECT secondhand_board_no FROM secondhand WHERE account_id = #{accountId}
+    UNION ALL
+    SELECT club_board_no FROM club WHERE account_id = #{accountId}
+    UNION ALL
+    SELECT review_board_no FROM review WHERE account_id = #{accountId}
+    UNION ALL
+    SELECT feed_board_no FROM feed WHERE account_id = #{accountId}
+    ) AS combined_table)
+        WHERE account_id = #{accountId};
+    </update>
+
+<!--    날짜비교 게시판-->
+    <select id="myBoardTime" resultType="int">
+        select stamp
+        SET board_count = (
+        SELECT COUNT(*) AS total_count
+        FROM (
+        SELECT issue_board_no FROM issue WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT secondhand_board_no FROM secondhand WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT club_board_no FROM club WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT review_board_no FROM review WHERE account_id = #{accountId}
+        UNION ALL
+        SELECT feed_board_no FROM feed WHERE account_id = #{accountId}
+        ) AS combined_table)
+        WHERE account_id = #{accountId};
+    </select>
+
+
+
 <!--    게시판 작성시 +1-->
     <update id="boardPlus">
         UPDATE stamp
@@ -26,11 +66,11 @@
     </update>
 
 <!--    내가 쓴 게시물 찾기-->
-    <select id="myBoard" resultType="int">
-        select count(board_no)
-        from stamp
-        inner join feed on stamp.account_id = feed.account_id
-    </select>
+<!--    <select id="myBoard" resultType="int">-->
+<!--        select count(board_no)-->
+<!--        from stamp-->
+<!--        inner join feed on stamp.account_id = feed.account_id-->
+<!--    </select>-->
 
 <!-- 스탬프 개수 1-->
 

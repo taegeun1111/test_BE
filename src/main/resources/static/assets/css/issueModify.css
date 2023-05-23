@@ -9,6 +9,10 @@ body {
     width: 60%;
 }
 
+.top-wrapper {
+    /* background-color: blanchedalmond; */
+
+}
 
 .category {
     color: black;
@@ -28,9 +32,13 @@ body {
 }
 
 .title {
+    margin-top: 10px;
     font-size: 23px;
-
-    
+    width: 100%;
+    resize: none;
+    border: 0.5px solid rgb(200, 200, 200);
+    height: 50px;
+    border-radius: 10px;
 }
 
 /* 유저 정보 영역 */
@@ -72,7 +80,6 @@ body {
     display: flex;
     align-items: end;
     height: 50px;
-    padding-right: 10px;
 }
 
 .heart,
@@ -102,16 +109,21 @@ body {
 /* 내용 영역 */
 .content-wrapper {
     width: 100%;
-    padding: 20px 0 40px;
+    padding: 20px 0 20px;
     /* border-bottom: 1px solid rgb(200, 200, 200); */
     font-size: 17px;
+    border-radius: 10px;
 }
 
 .issue-content{
     /* height: 200px; */
     /* margin-bottom: 100px; */
-    min-height: 200px;
+    min-height: 500px;
     word-break:break-all;
+    width: 100%;
+    resize: none;
+    border: 0.5px solid rgb(200, 200, 200);
+    border-radius: 10px;
 }
 
 /* 댓글 영역 */
@@ -186,19 +198,23 @@ body {
 
 
 /* 등록 버튼 */
-.submit-btn {
-    width: 80px;
+.btn-wrapper{
+    margin: 0 auto;
+}
+
+#submitBtn, .cancelBtn {
+    width: 90px;
+    height: 35px;
     font-size: 15px;
     font-weight: 300;
     border: none;
     border-radius: 5px;
-    /* background-color: rgb(100, 100, 100); */
     background-color: #1e1d21;
     color: white;
-    padding: 4px 8px;
+    /* padding: 4px 8px; */
     cursor: pointer;
-
 }
+
 
 .submit-btn:hover {
     background-color: rgb(100, 100, 100);
@@ -217,4 +233,9 @@ body {
 .modify-warpper a{
     font-weight: 14px;
     color: rgb(150, 150, 150) !important;
+}
+
+/* 하트 클릭 toggle */
+.btn-heart{
+    
 }

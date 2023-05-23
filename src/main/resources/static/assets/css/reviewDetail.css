@@ -72,7 +72,6 @@ body {
     display: flex;
     align-items: end;
     height: 50px;
-    padding-right: 10px;
 }
 
 .heart,

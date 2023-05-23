@@ -1,0 +1,116 @@
+#body-color {
+    background-color: rgb(240, 240, 240);
+  }
+  
+  .title-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 120px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  
+  .review-main-title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  /* 전체 border 공통영역 */
+  #title,
+  #content,
+  #categorySelect,
+  .submit-btn,
+  .close-btn {
+    border: 0.5px solid rgb(230, 230, 230);
+  }
+  
+  /* 타이틀 콘텐츠 영역 */
+  #title,
+  #image,
+  #content {
+    /* width: 550px; */
+    width: 100%;
+    margin: 0 auto;
+    resize: none;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+  }
+  
+  #title {
+    height: 45px;
+    border-radius: 5px;
+  }
+  
+  #content {
+    min-height: 150px;
+    border-radius: 7px;
+  }
+  
+  #categorySelect {
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* 섹션 부분  */
+  .section{
+    width: 530px;
+  }
+  
+  input[type=file]::file-selector-button {
+    width: 150px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(105, 105, 105);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+    
+  input[type=file]::file-selector-button:hover {
+      background: #d5f462;
+      color: #000000;
+    }
+  
+  
+  /* 작성, 취소 버튼 */
+  .write-wrapper {
+    width: 590px;
+    margin: 0 auto;
+  }
+  
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button-wrapper :nth-child(1) {
+    margin-bottom: 7px;
+  }
+  
+  
+  .submit-btn,
+  .close-btn {
+    padding: 5px 0;
+    width: 100%;
+    font-size: 15px;
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 400;
+    color: black;
+  }
+  
+  .close-btn{
+    text-align: center;
+    text-decoration: none;
+    font-weight: 300;
+  }
+  
+  .submit-btn:hover,
+  .close-btn:hover {
+    background-color: #d5f462;
+    color: black;
+  }
