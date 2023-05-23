@@ -79,8 +79,10 @@
                     </div>
 
                     <label for="newReplyWriter" hidden>댓글 작성자</label>
+
+                    <!-- 여기 문제 -->
                     <input id="newReplyWriter" name="replyWriter" type="text" class="form-control" placeholder="작성자 이름"
-                        style="margin-bottom: 6px;" value="${login.nickName}" readonly>
+                        style="margin-bottom: 6px;" value="${login.name}" readonly>
                     <button id="replyAddBtn" type="button" class="btn btn-dark form-control">등록</button>
                 </div>
             </div>

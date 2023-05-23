@@ -14,31 +14,31 @@
 
         <img src="/assets/jpg/logo(white).png" alt="" class="logo">
         <c:if test="${login == null}">
-             <ul class="login-wrapper">
+            <ul class="login-wrapper">
                 <li><a href="/account/sign-up" class="signUp-btn">Sign up</a></li>
                 <li><a href="/account/sign-in" class="signIn-btn">Sign in</a></li>
             </ul>
         </c:if>
 
         <!-- Login 되면 보여질 버튼  -->
-      <c:if test="${login != null}">
-           <ul class="afterLogin-wrapper">
-               <li class="logout-btn"><a href="/account/log-out">Log out</a></li>
+        <c:if test="${login != null}">
+            <ul class="afterLogin-wrapper">
+                <li class="logout-btn"><a href="/account/log-out">Log out</a></li>
 
-              
+
                 <c:if test="${login==null || login.profile==null}">
-                                      <li class="myPage-btn">
-                                           <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">
-                                           <a href="/account/mypage">My Page</a>
-                                       </li>
-                               </c:if>
+                    <li class="myPage-btn">
+                        <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">
+                        <a href="/account/mypage">My Page</a>
+                    </li>
+                </c:if>
 
-                                <c:if test="${login != null}">
-                                   <li class="myPage-btn">
-                                   <img src="/local${login.profile}" alt="프로필사진">
-                                       <a href="/account/mypage">My Page</a>
-                                   </li>
-                               </c:if>
+                <c:if test="${login != null}">
+                    <li class="myPage-btn">
+                        <img src="/local${login.profile}" alt="프로필사진">
+                        <a href="/account/mypage">My Page</a>
+                    </li>
+                </c:if>
             </ul>
         </c:if>
     </div>
