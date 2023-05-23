@@ -40,9 +40,9 @@ class AccountMapperTest {
     @DisplayName("DB에 회원정보 하나가 쌓여야 한다")
     void save(){
         Account save = new Account();
-        save.setAccountId("33");
-        save.setPassword(encoder.encode("3123"));
-        save.setName("33");
+        save.setAccountId("test1");
+        save.setPassword(encoder.encode("test1!"));
+        save.setName("테스트");
         save.setGender(GENDER.M);
         save.setEmail("44");
         save.setPhoneNo("55");

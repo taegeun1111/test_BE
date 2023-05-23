@@ -39,7 +39,7 @@ public class Review {
     private LocalDateTime reviewModify;
 
     public Review(ReviewWriteRequestDTO dto) {
-        this.accountId = dto.getId();
+        this.accountId=dto.getId();
         this.reviewTitle = dto.getTitle();
         this.reviewContent = dto.getContent();
         this.reviewRegDate = LocalDateTime.now();

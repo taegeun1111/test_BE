@@ -17,7 +17,6 @@
     <section id="issue-detail-container">
         <div class="top-wrapper">
             <a href="/issue/list" class="category">산악 이슈<img src="/assets/jpg/than.png" alt="" class="than-btn"></a>
-
             <div class="title">
                 ${is.title}
             </div>
@@ -28,18 +27,24 @@
                         <div class="user-id">${is.writer}</div>
                         <div class="write-time">
                             <div class="write-date">${is.date}</div>
-                            <div class="view-count">${is.viewCount}</div>
+                            <div class="view-count">조회수 ${is.viewCount}</div>
+
+                            <c:if test="${login.accountId==is.writer}">
+                                <div class="modify-warpper">
+                                    <a href="/issue/modify?bno=${is.boardNo}">수정</a>
+                                    <a href="/issue/delete?bno=${is.boardNo}">삭제</a>
+                                </div>
+                            </c:if>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="like-it-count">
+                <div class="like-it-count" style="cursor: pointer;">
                     <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요
                         ${is.likeCount}</div>
-                    <!-- 댓글 안되면 삭제하기 -->
-                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 10
-                    </div>
                 </div>
+
             </div>
 
         </div>
@@ -52,40 +57,33 @@
             </div>
         </div>
 
-        <!-- 댓글 비동기처리하기 -->
-        <section class="detail-comment-container">
-            <div class="comment-title">댓글</div>
-            <div class="comment-warpper">
-                <div class="comment-info-wrapper">
-                    <div class="comment-profile"></div>
-                    <div class="comment-info">
-                        <div class="comment-detail-wrapper">
-                            <div class="comment-id">파이란 정운석</div>
-                        </div>
-
-                        <div class="comment-content">
-                            그마저도 힘들면 천문봉에서 주차장(찦차)으로 되돌아가는 코스를 잡아도 된다.
-                        </div>
-
-                        <div class="comment-write-time">
-                            <div class="comment-write-date">2023-05-16</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="comment-write-wrapper">
-                <div class="write-id">두루룽</div>
-                <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
-                <button type="submit" class="submit-btn">등록</button>
-            </div>
-        </section>
-
 
 
     </section>
 
+    <script>
+        const $heart = document.querySelector('.heart');
+        const originSrc = "/assets/jpg/heart(line).png";
+        const changeSrc = "/assets/jpg/heart(full).png";
+        let isLiked = false;
 
+        // jsp줘야함
+        $heart.addEventListener('click', e => {
+            console.log("클릭됨");
+            const heartIcon = document.querySelector('.heard-icon');
+
+            if (isLiked) {
+                heartIcon.src = originSrc;
+                isLiked = false;
+            } else {
+                heartIcon.src = changeSrc;
+                isLiked = true;
+            }
+        });
+
+
+        
+    </script>
 </body>
 
 </html>
