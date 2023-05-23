@@ -45,6 +45,8 @@
                     <!-- 약도 api -->
                     <div id="location-main"></div>
                 </div>
+                <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=478691db78642ec3c56d8b3e645f0257&libraries=services"></script>
+
             </div>
 
             <div class="now-count-wrapper">
@@ -97,9 +99,8 @@
                             < JS로 댓글 페이징 DIV삽입 > 
                         -->
             </ul>
-
+        </div>
     </section>
-
     <script>
         // 페이지네이션 영역
         function renderPage({
@@ -365,6 +366,63 @@
             makeReplyRegisterClickEvent();
             replyRemoveClickEvent();
         })();
+
+
+        //지도 api 스크립트
+
+        const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+
+        const mapContainer = document.getElementById('location-main');
+        const mapOption = {
+            center: new window.kakao.maps.LatLng(37.566826, 126.9786567), // 초기값은 null로 설정
+            level: 3
+        };
+
+        const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+        const ps = new window.kakao.maps.services.Places();
+
+        // 장소가 이미 게시글에 적혀 있는 경우
+        const placeName = document.querySelector('.location-text').textContent; // 장소명을 게시글에 적힌 값으로 대체
+        // console.log("placeName : ", placeName);
+
+        function searchPlace() {
+            if (placeName.trim() !== '') {
+                ps.keywordSearch(placeName, placesSearchCB);
+            }
+        }
+        searchPlace();
+
+        function placesSearchCB(data, status, pagination) {
+            if (status === window.kakao.maps.services.Status.OK) {
+                const bounds = new window.kakao.maps.LatLngBounds();
+
+                for (let i = 0; i < data.length; i++) {
+                    displayMarker(data[i]);
+                    bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
+                }
+
+                map.setBounds(bounds);
+
+                // 검색된 장소 중 첫 번째 장소를 기준으로 지도의 center 값을 설정
+                map.setCenter(new window.kakao.maps.LatLng(data[0].y, data[0].x));
+            }
+        }
+
+        function displayMarker(place) {
+            // 입력한 장소의 좌표와 일치하는 경우에만 마커를 생성하고 표시합니다
+            if (place.place_name === placeName) {
+                const marker = new window.kakao.maps.Marker({
+                    map: map,
+                    position: new window.kakao.maps.LatLng(place.y, place.x)
+                });
+
+                window.kakao.maps.event.addListener(marker, 'click', function () {
+                    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+                    infowindow.open(map, marker);
+                });
+            }
+        }
     </script>
 
 </body>
