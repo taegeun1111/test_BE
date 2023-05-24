@@ -70,30 +70,30 @@
     </select>
 
     <insert id="plusLike">
-        INSERT INTO review_like_count
-        (account_id, review_board_no)
-        VALUES (#{accountId}, #{reviewBoardNo})
+        INSERT INTO feed_like_count
+        (account_id, feed_board_no)
+        VALUES (#{accountId}, #{feedBoardNo})
     </insert>
 
     <delete id="minusLike">
-        DELETE FROM review_like_count
+        DELETE FROM feed_like_count
         WHERE account_id = #{accountId}
-        AND review_board_no = #{reviewBoardNo}
+        AND feed_board_no = #{feedBoardNo}
     </delete>
 
     <select id="likeCount" resultType="int">
-        SELECT count(review_like_no)
-        FROM review_like_count
+        SELECT count(feed_like_no)
+        FROM feed_like_count
         WHERE account_id = #{accountId}
-        AND review_board_no = #{reviewBoardNo}
+        AND feed_board_no = #{feedBoardNo}
 
     </select>
 
     <update id="updateLikeCount">
-        UPDATE review
-        SET review_like_count = (SELECT count(*)
-        FROM review_like_count
-        WHERE review_board_no = #{reviewBoardNo})
-        WHERE review_board_no = #{reviewBoardNo}
+        UPDATE feed
+        SET feed_like_count = (SELECT count(*)
+        FROM feed_like_count
+        WHERE feed_board_no = #{feedBoardNo})
+        WHERE feed_board_no = #{feedBoardNo}
     </update>
 </mapper>

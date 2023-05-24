@@ -1,6 +1,7 @@
 package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.AccountResponseDTO;
+import com.mountain.doo.dto.LoginUserResponseDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
 import com.mountain.doo.dto.stamp.StampResponseDTO;
 import com.mountain.doo.entity.Stamp;
@@ -8,11 +9,11 @@ import com.mountain.doo.service.StampService;
 import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +27,7 @@ public class StampController {
 
     // 내 스탬프 보기
     @GetMapping("/stamp")
-    public String myStampPage(Model model, HttpSession session){
+    public String myStampPage( Model model, HttpSession session){
 
         AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
 
@@ -35,6 +36,9 @@ public class StampController {
         log.info("Get Stamp 요청 accountId: "+accountId);
 
         Stamp stamp = stampService.stampCount(accountId);
+
+        ;
+
 
         log.info("스탬프 : "+stamp.getAccountId());
         System.out.println("스탬프 : "+stamp);
@@ -55,7 +59,43 @@ public class StampController {
 
     }
 
+    //    @PostMapping("/stamp")
+//    public String myStampPage(){
+////        model.addAttribute("stamp",stampCount);
+//
+//        return "/event/stamp";
+//    }
+//
+////    @GetMapping("/banner-count")
+////    @ResponseBody
+////    public ResponseEntity<?> bannerCount(StampAddConditionDTO dto, Model model) {
+////        log.info("/stamp/banner-count?type={}&keyword={} ASYNC GET!");
+////        stampService.boardBanner(dto);
+////        return ResponseEntity.ok().body();
+////
+////    }
+    @PostMapping("/banner-count")
+    @ResponseBody
+    public void handleBannerClick(
+            @RequestBody StampAddConditionDTO stampAdd
+            , HttpSession session) {
+
+        AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
+
+        String accountId=loginUserData.getAccountId();
+
+        stampAdd.setAccountId(accountId);
+
+        log.info("스탬프 비동기 : "+stampAdd);
+//        String userId = stampAdd.getAccountId();
+//        boolean flag = (boolean) stampAdd.get();
+        stampService.update(stampAdd);
 
 
+        // 클릭 횟수 증가 또는 저장 로직 구현
+//    incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount());
+
+
+    }
 
 }

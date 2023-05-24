@@ -8,13 +8,27 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class StampService {
     private final StampMapper mapper;
 
-    public Stamp stampCount(StampAddConditionDTO dto) {
+    public Stamp stampCount(String accountId) {
+
+
+        // 업데이트 된 정보 전달
+        Stamp stampCount = mapper.stampCount(accountId);
+        return stampCount;
+
+    }
+
+
+
+
+    public void update(StampAddConditionDTO dto){
         //조건별 데이터 전달
         stampAddCondition(dto);
 
@@ -23,51 +37,51 @@ public class StampService {
             clickEvent(dto);
         }
 
-        // 업데이트 된 정보 전달
-        Stamp stampCount = mapper.stampCount(dto.getAccountId());
-        return stampCount;
-
     }
+
+
+
     //로그인, 게시글작성, 배너 클릭시 각각 칼럼 count ++
     //스탬프 +1 되는 조건 충족시 도장개수 +1
     public void stampAddCondition(StampAddConditionDTO dto){
-               boardBanner(dto);
+        boardBanner(dto);
                 plusStamp(dto);
+
     }
 
 //여기에 변수 하나 만들어서 로그인 true 면 조건 넣으시고
 public void boardBanner(StampAddConditionDTO dto) {
     boolean ac = dto.isBannerClickCount();
-    boolean attendCount = dto.isAttendCount();
+//    boolean attendCount = dto.isAttendCount();
 
 
     if (ac) {
         mapper.bannerPlus(dto.getAccountId());
     }
-    mapper.isLogin(dto.isAttendCount(),dto.getAccountId());
+//    mapper.isLogin(dto.isAttendCount(),dto.getAccountId());
 }
 
 
-public void plusStamp(StampAddConditionDTO dto) {
+public void plusStamp(StampAddConditionDTO dto){
+        int todayMyBoard = mapper.todayMyBoard(dto.getAccountId());
     mapper.myBoard(dto.getAccountId());
-    int todayMyBoard = mapper.todayMyBoard(dto.getAccountId());
 
-    Stamp stamp = mapper.stampCount(dto.getAccountId());
-    System.out.println("stamp = " + stamp);
+    System.out.println("todayMyBoard = " + todayMyBoard);
+
+
+        Stamp stamp = mapper.stampCount(dto.getAccountId());
+        System.out.println("!!!stamp = " + stamp);
 
         //오늘 쓴 게시물이 3개면 도장 찍기
-         if(todayMyBoard==3){
-        mapper.stampAdd(dto.getAccountId());
-        mapper.currentAdd(dto.getAccountId());
-        }
-        if (stamp.getBannerClickCount() == 3 ) {
+        if (todayMyBoard == 3) {
             mapper.stampAdd(dto.getAccountId());
             mapper.currentAdd(dto.getAccountId());
         }
-
+        if (stamp.getBannerClickCount() == 3) {
+            mapper.stampAdd(dto.getAccountId());
+            mapper.currentAdd(dto.getAccountId());
+        }
     }
-
-
 
 
     public void clickEvent(StampAddConditionDTO dto){
@@ -79,4 +93,6 @@ public void plusStamp(StampAddConditionDTO dto) {
     //해당아이디로 오늘 쓴 게시글 수 count 확인
 
 }
+
+
 
