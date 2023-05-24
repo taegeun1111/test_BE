@@ -22,11 +22,13 @@ public class ClubReplyDetailResponseDTO {
 
     @JsonFormat(pattern="yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime replyRegDate;
+    private String profile;
 
     public ClubReplyDetailResponseDTO(ClubReply clubReply) {
         this.replyNo = clubReply.getClubReplyNo();
         this.replyContent = clubReply.getClubReplyContent();
         this.replyWriter = clubReply.getClubReplyWriter();
         this.replyRegDate = clubReply.getClubReplyDate();
+        this.profile = clubReply.getProfileImg();
     }
 }

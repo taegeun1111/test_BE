@@ -18,4 +18,5 @@ public class SecondhandReply {
     private String secondhandReplyContent;
     private String secondhandReplyWriter;
     private LocalDateTime secondhandReplyDate;
+    private String profileImg;
 }

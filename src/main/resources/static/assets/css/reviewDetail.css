@@ -273,3 +273,10 @@
     margin-right: 10px;
     outline: none;
 }
+#move-login{
+    color: #1e1d21;
+    font-weight: 500;
+    line-height: 20px;
+    border-bottom: 1px solid #000;
+    
+}

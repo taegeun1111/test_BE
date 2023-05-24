@@ -45,7 +45,7 @@
                     <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요
                         ${is.likeCount}</div>
 
-                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 10
+                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 <span id="replyCnt"></span>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <c:if test="${empty login}">
-                    <span>댓글은 로그인 후 작성 가능합니다</span> <a href="">로그인 하러 가기</a>
+                    <span>댓글은 로그인 후 작성 가능합니다</span> <a href="/account/sign-in" id="move-login">로그인 하러 가기</a>
                 </c:if>
                 <c:if test="${not empty login}">
                     <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
@@ -221,6 +221,7 @@
             replyCount,
             replyPage
         }) {
+            document.getElementById('replyCnt').textContent = replyCount;
             // 댓글 내용 렌더링
             // 각 댓글 하나의 태그
             let tag = '';
@@ -344,7 +345,8 @@
                             // $rw.value = '';
 
                             // 마지막페이지 번호
-                            const lastPageNo = document.querySelector('.pagination').dataset.fp;
+                            let lastPageNo = document.querySelector('.pagination').dataset.fp;
+                            if (lastPageNo === '0') lastPageNo = 1;
                             getReplyList(lastPageNo);
                         } else {
                             alert('댓글 등록에 실패함!');

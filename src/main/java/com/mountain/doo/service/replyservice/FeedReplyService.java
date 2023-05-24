@@ -49,21 +49,21 @@ public class FeedReplyService {
         if(!flag) throw new SQLException("댓글 저장 실패");
 
 
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     };
 
     // 댓글 삭제
     @Transactional
     public FeedReplyListResponseDTO delete(final long replyNo) throws Exception{
         long feedBoardNo = replyMapper.findOne(replyNo).getFeedBoardNo();
-        replyMapper.remove(feedBoardNo);
-        return getList(feedBoardNo, new Page(1,10));
+        replyMapper.remove(replyNo);
+        return getList(feedBoardNo, new Page(1,5));
     }
 
     // 댓글 수정
     @Transactional
     public FeedReplyListResponseDTO edit(final FeedReplyModifyRequestDTO dto) throws Exception {
         replyMapper.modify(dto.toEntity());
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     }
 }

@@ -22,11 +22,13 @@ public class SecondhandReplyDetailResponseDTO {
 
     @JsonFormat(pattern="yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime replyRegDate;
+    private String profile;
 
     public SecondhandReplyDetailResponseDTO(SecondhandReply secondhandReply) {
         this.replyNo = secondhandReply.getSecondhandReplyNo();
         this.replyContent = secondhandReply.getSecondhandReplyContent();
         this.replyWriter = secondhandReply.getSecondhandReplyWriter();
         this.replyRegDate = secondhandReply.getSecondhandReplyDate();
+        this.profile = secondhandReply.getProfileImg();
     }
 }
