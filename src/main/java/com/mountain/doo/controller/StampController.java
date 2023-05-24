@@ -110,6 +110,8 @@ public class StampController {
         log.info("스탬프 비동기 : "+stampAdd);
         String userId = stampAdd.getAccountId();
 //        boolean flag = (boolean) stampAdd.get();
+        Stamp stamp = stampService.stampCount(userId);
+
 
         // 클릭 횟수 증가 또는 저장 로직 구현
         incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount(), stampAdd);
@@ -122,7 +124,6 @@ public class StampController {
         log.info("스탬프 비동기 : "+stampAdd);
         String userId = stampAdd.getAccountId();
 //        boolean flag = (boolean) stampAdd.get();
-        Stamp stamp = stampService.stampCount(userId);
 
         }
 

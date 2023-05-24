@@ -43,7 +43,7 @@ class SecondhandBoardServiceTest {
         mapper.plusViewCount(10);
 
         System.out.println("one = " + one);
-        System.out.println("viewCount = "+one.getSecondhandView());
+        System.out.println("viewCount = "+one.getSecondhandViewCount());
 
     }
 
