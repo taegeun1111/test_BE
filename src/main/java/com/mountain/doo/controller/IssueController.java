@@ -70,8 +70,10 @@ public class IssueController {
 
     // 게시물 등록 화면 요청
     @GetMapping("/write")
-    public String write(){
+    public String write(HttpServletRequest request, Model model){
         System.out.println("/issue/write : GET");
+        Object login = request.getSession().getAttribute("login");
+        model.addAttribute("login",login);
         return "issue/issueWrite";
     }
     // 게시물 등록 완료 처리

@@ -16,7 +16,15 @@
 
     <section class="detail-container">
         <div class="club-list-wrapper">
-            <div class="club-title">${c.clubTitle}</div>
+            <div class="club-title">
+                ${c.clubTitle}
+                <c:if test="${login.accountId==c.accountId}">
+                    <div class="modify-warpper">
+                        <a href="/review/modify?bno=${c.clubBoardNo}">수정</a>
+                        <a href="/review/delete?bno=${c.clubBoardNo}">삭제</a>
+                    </div>
+                </c:if>
+            </div>
             <div class="icon-detail">
                 <div class="mountain-sec">
                     <img src="/assets/jpg/mountain.png" alt="" class="mountain-icon">
@@ -34,6 +42,8 @@
                     <img src="/assets/jpg/location.png" alt="" class="location-icon">
                     <p class="location-text">${c.clubArea}</p>
                 </div>
+
+                
             </div>
 
             <div class="club-content-wrapper">
@@ -41,11 +51,13 @@
                     ${c.clubContent}
                 </div>
                 <div class="location-wrapper">
-                    <div class="location-title">관악산 지하주차장 2F</div>
+                    <div class="location-title">📍 ${c.clubArea} 📍</div>
                     <!-- 약도 api -->
                     <div id="location-main"></div>
                 </div>
-                <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=478691db78642ec3c56d8b3e645f0257&libraries=services"></script>
+                <script
+                    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=478691db78642ec3c56d8b3e645f0257&libraries=services">
+                </script>
 
             </div>
 
@@ -63,45 +75,75 @@
                 </div>
             </div>
 
+        </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
+        <!-- 댓글 비동기처리하기 -->
 
-                    <div class="profile-box">
-                        <c:choose>
-                            <c:when test="${login.profile != null}">
-                                <img src="/${login.profile}" alt="프사">
-                            </c:when>
-                            <c:otherwise>
-                                <img src="/assets/img/anonymous.jpeg" alt="프사">
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
+        <section class="detail-comment-container">
+            <div class="comment-title">댓글</div>
+            <div class="comment-warpper">
+                <div class="comment-info-wrapper">
 
-                    <label for="newReplyWriter" hidden>댓글 작성자</label>
-                    <input id="newReplyWriter" name="replyWriter" type="text" class="form-control" placeholder="작성자 이름"
-                        style="margin-bottom: 6px;" value="${login.nickName}" readonly>
-                    <button id="replyAddBtn" type="button" class="btn btn-dark form-control">등록</button>
+                    <!-- 댓글 내용 영역 -->
+
                 </div>
+
             </div>
-            <div class="write-id" name="replyWriter">test1</div>
-            <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
-            <button type="submit" class="submit-btn">등록</button>
+
+
+
+
+            <!-- 댓글 작성 영역 -->
 
             <div class="comment-write-wrapper">
-                <!-- 댓글 내용 영역 -->
+                <div class="col-md-3">
+                    <div class="form-group">
+
+                        <div class="profile-box">
+                            <c:choose>
+                                <c:when test="${login.profile != null}">
+                                    <img src="/local${login.profile}" alt="프사">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진"
+                                        id="profile-img">
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+
+
+                        <div class="write-id" name="replyWriter">${login.accountId}</div>
+                    </div>
+                </div>
+                <c:if test="${empty login}">
+                    <span>댓글은 로그인 후 작성 가능합니다</span> <a href="/account/sign-in" id="move-login">로그인 하러 가기</a>
+                </c:if>
+                <c:if test="${not empty login}">
+                    <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
+                    <button type="submit" class="submit-btn">등록</button>
+                </c:if>
             </div>
+        </section>
 
-
-            <!-- 댓글 페이징 영역 -->
-            <ul class="pagination justify-content-center">
-                <!-- 
-                            < JS로 댓글 페이징 DIV삽입 > 
-                        -->
-            </ul>
-        </div>
+        <!-- 댓글 페이징 영역 -->
+        <ul class="pagination justify-content-center">
+            <!-- 
+                        < JS로 댓글 페이징 DIV삽입 > 
+                    -->
+        </ul>
     </section>
+
     <script>
+        //--------------------------------------------------
+        //글번호
+        const bno = '${c.clubBoardNo}';
+
+        //댓글 요청 URI
+        const URL = '/club-reply';
+
+        //로그인한 회원 id
+        const currentAccount = '${login.accountId}';
+
         // 페이지네이션 영역
         function renderPage({
             begin,
@@ -141,11 +183,13 @@
 
             // ul에 마지막페이지 번호 저장.
             $pageUl.dataset.fp = finalPage;
+            console.log($pageUl.dataset.fp);
 
         }
 
         // 페이지 클릭 이벤트 핸들러
         function makePageButtonClickEvent() {
+            console.log("페이지 클릭 이벤트");
             // 페이지 버튼 클릭이벤트 처리
             const $pageUl = document.querySelector('.pagination');
             $pageUl.onclick = e => {
@@ -164,13 +208,13 @@
 
         //--------------------------------------------------
 
-
         //댓글 목록 렌더링 함수
         function renderReplyList({
             clubReplies,
             replyCount,
             replyPage
         }) {
+            // document.getElementById('replyCnt').textContent = replyCount;
             // 댓글 내용 렌더링
             // 각 댓글 하나의 태그
             let tag = '';
@@ -184,45 +228,68 @@
                         replyNo,
                         replyWriter,
                         replyContent,
-                        replyRegDate
-                        // account: replyWriter,
-                        // profile
+                        replyRegDate,
+                        account: accountid,
+                        profile
                     } = rep;
+                    tag += `
 
-                    tag += "<div id='replyContent' class='card-body' data-replyId='" + replyNo + "'>" +
-                        "    <div class='row user-block'>" +
-                        "       <span class='col-md-8'>" +
-                        // (profile
-                        //     ?`<img class='reply-profile' src='\${profile}' alt='profile'>`
-                        //     : `<img class='reply-profile' src='/assets/img/anonymous.jpeg' alt='profile'>`
-                        //     ) +
-                        "         <b>" + replyWriter + "</b>" +
-                        "       </span>" +
-                        "       <span class='col-md-4 text-right'><b>" + replyRegDate +
-                        "</b></span>" +
-                        "    </div><br>" +
-                        "    <div class='row'>" +
-                        "       <div class='col-md-9'>" + replyContent + "</div>" +
-                        "       <div class='col-md-3 text-right'>";
-
-                    // if (currentAccount === replyWriter || auth === 'ADMIN') {
+                    <div id='replyContent' class='comment-list' data-reply-id='\${replyNo}'>
+                        <div class="comment-profile">`;
+                    if (profile === null) {
                         tag +=
-                            "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                            "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
-                    // }
-                    tag += "       </div>" +
-                        "    </div>" +
-                        " </div>";
+                            `<img class='reply-profile' src='https://cdn-icons-png.flaticon.com/128/7281/7281869.png' alt='profile'>`;
+                    }
+                    if (profile !== null) {
+                        tag += `<img class='reply-profile' src='/local\${profile}' alt='profile'>`;
+                    }
+
+
+                    tag += `</div>
+                        <div class="text-wrapper">
+                            <div class="comment-info">
+                                <div class="comment-detail-wrapper">
+                                    <div class="comment-id">\${replyWriter}</div>`;
+
+                    if (currentAccount === replyWriter) {
+                        tag += `<div class='btn-container'>
+                                        <a id='replyModBtn' class='btn btn-sm'>수정</a>
+                                        <a id='replyDelBtn' class='btn btn-sm' href='#'>삭제</a>
+                                    </div>`;
+                    }
+                    tag += `
+                               </div>
+                                <div class='content-modify-wrapper'>
+                                <span class="comment-content">\${replyContent}</span>
+                                </div>
+
+                                <div class="comment-write-time">
+                                    <div class="comment-write-date">\${replyRegDate}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
                 }
             }
 
 
             // 생성된 댓글 tag 렌더링
-            document.querySelector('.comment-write-wrapper').innerHTML = tag;
+            document.querySelector('.comment-info-wrapper').innerHTML = tag;
 
             // 페이지 렌더링
             renderPage(replyPage);
 
+        }
+
+        //--------------------------------
+        //댓글 목록 불러오기 함수
+        function getReplyList(page = 1) {
+            fetch(`\${URL}/\${bno}/page/\${page}`)
+                .then(res => res.json())
+                .then(responseResult => {
+                    console.log(responseResult);
+                    renderReplyList(responseResult);
+                })
         }
 
         //--------------------------------
@@ -236,19 +303,13 @@
 
                 // const $rw = document.getElementById('newReplyWriter');
                 const $rt = document.getElementById('comment-write-area');
-                const $rw = 'test1';
+                const $rw = "${login.accountId}";
 
                 // 클라이언트 입력값 검증
-                // if ($rt.value.trim() === '') {
-                //     alert('댓글 내용은 필수입니다!');
-                //     return;
-                // } else if ($rw.value.trim() === '') {
-                //     alert('댓글 작성자 이름은 필수입니다!');
-                //     return;
-                // } else if ($rw.value.trim().length < 2 || $rw.value.trim().length > 8) {
-                //     alert('댓글 작성자 이름은 2~8자 사이로 작성하세요!');
-                //     return;
-                // }
+                if ($rt.value.trim() === '') {
+                    alert('댓글 내용은 필수입니다!');
+                    return;
+                }
 
 
                 // # 서버로 보낼 데이터
@@ -276,9 +337,10 @@
                             // 입력창 비우기
                             $rt.value = '';
                             // $rw.value = '';
-                            console.log("여기까지");
+
                             // 마지막페이지 번호
-                            const lastPageNo = document.querySelector('.pagination').dataset.fp;
+                            let lastPageNo = document.querySelector('.pagination').dataset.fp;
+                            if (lastPageNo === '0') lastPageNo = 1;
                             getReplyList(lastPageNo);
                         } else {
                             alert('댓글 등록에 실패함!');
@@ -292,17 +354,21 @@
         // 댓글 삭제+수정모달 이벤트 처리 함수
         function replyRemoveClickEvent() {
 
-            const $replyData = document.querySelector('.comment-write-wrapper');
+            const $replyData = document.querySelector('.comment-info-wrapper');
 
             $replyData.onclick = e => {
 
                 e.preventDefault();
 
+                console.log('targer:', e.target);
+
                 // 삭제할 댓글의 PK값 읽기
-                const rno = e.target.closest('#replyContent').dataset.replyid;
+                const rno = e.target.closest('#replyContent').dataset.replyId;
 
                 if (e.target.matches('#replyDelBtn')) {
                     // console.log('삭제버튼 클릭!!');
+                    console.log('rno : ' + rno);
+                    // console.log(e.target.closest('#replyContent').dataset.replyid);
 
                     if (!confirm('정말 삭제합니까?')) return;
 
@@ -313,6 +379,7 @@
                         method: 'DELETE'
                     }).then(res => {
                         if (res.status === 200) {
+                            console.log(URL + '/' + rno);
                             alert('댓글이 정상 삭제됨!');
                             return res.json();
                         } else {
@@ -324,53 +391,87 @@
 
 
                 } else if (e.target.matches('#replyModBtn')) {
-                    // console.log('수정 화면 진입!');
+                    console.log('수정 화면 진입!');
+                    console.log('e.target' + e.target);
+                    //교체대상 input
+                    const $textSpan = e.target.closest('.comment-list').querySelector('.comment-content');
 
-                    // 클릭한 수정 버튼 근처에 있는 텍스트 읽기
-                    const replyText = e.target.parentElement.previousElementSibling.textContent;
-                    // console.log(replyText);
+                    //input만들기
+                    const $modInput = document.createElement('input');
 
-                    // 모달에 모달바디에 textarea에 읽은 텍스트를 삽입
-                    document.getElementById('modReplyText').value = replyText;
+                    $modInput.setAttribute('type', 'text'); // <input type='text'>
+                    $modInput.classList.add('modify-input'); // <input type='text' class='modify-input'>
+                    $modInput.setAttribute('value', $textSpan.textContent);
 
-                    // 다음 수정완료 처리를 위해 미리 
-                    // 수정창을 띄울 때 댓글번호를 모달에 붙여놓자
-                    const $modal = document.querySelector('.modal');
+                    const $label = $textSpan.parentElement;
+                    $label.replaceChild($modInput, $textSpan);
+
+
+                    var modifyBtn = document.createElement('button');
+                    modifyBtn.innerText = '수정';
+                    modifyBtn.classList.add('modify-btn');
+
+                    var cancelBtn = document.createElement('button');
+                    cancelBtn.setAttribute('type', 'button');
+                    cancelBtn.innerText = '취소';
+                    cancelBtn.classList.add('cancle-btn');
+
+                    $label.appendChild(modifyBtn);
+                    $label.appendChild(cancelBtn);
+
+                    const $modal = document.querySelector('.content-modify-wrapper');
                     $modal.dataset.rno = rno;
+
+                    console.log('modifyBtn = ' + modifyBtn);
+                    // console.log($modal.dataset.rno);
+                    replyModifyClickEvent()
                 }
             };
         }
 
+        // 서버에 수정 비동기 요청 처리 함수
+        function replyModifyClickEvent() {
 
+            const $modBtn = document.querySelector('.modify-btn');
+            if ($modBtn) {
+                console.log($modBtn);
+                $modBtn.onclick = e => {
 
-        //글번호
-        const bno = '${c.clubBoardNo}';
+                    const payload = {
+                        replyNo: +document.querySelector('.content-modify-wrapper').dataset.rno,
+                        boardNo: +bno,
+                        content: document.querySelector('.modify-input').value
+                    };
 
-        //댓글 요청 URI
-        const URL = '/club-reply';
+                    console.log(payload);
 
-        //댓글 목록 불러오기 함수
-        function getReplyList(page = 1) {
-            fetch(`\${URL}/\${bno}/page/\${page}`)
-                .then(res => res.json())
-                .then(responseResult => {
-                    console.log(responseResult);
-                    renderReplyList(responseResult);
-                })
+                    fetch(URL, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    }).then(res => {
+                        if (res.status === 200) {
+                            alert('댓글이 정상 수정되었습니다!');
+                            return res.json();
+                        } else {
+                            alert('댓글 수정에 실패했습니다.');
+                        }
+                    }).then(result => {
+                        console.log(result);
+                        renderReplyList(result);
+                    });
+                };
+            };
         }
-
-        (function () {
-            //첫 댓글 페이지 불러오기
-            getReplyList();
-            makePageButtonClickEvent();
-            makeReplyRegisterClickEvent();
-            replyRemoveClickEvent();
-        })();
 
 
         //지도 api 스크립트
 
-        const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+        const infowindow = new window.kakao.maps.InfoWindow({
+            zIndex: 1
+        });
 
         const mapContainer = document.getElementById('location-main');
         const mapOption = {
@@ -418,11 +519,22 @@
                 });
 
                 window.kakao.maps.event.addListener(marker, 'click', function () {
-                    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+                    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name +
+                        '</div>');
                     infowindow.open(map, marker);
                 });
             }
         }
+
+        (function () {
+            //첫 댓글 페이지 불러오기
+            getReplyList();
+            makePageButtonClickEvent();
+            makeReplyRegisterClickEvent();
+            replyRemoveClickEvent();
+            replyModifyClickEvent();
+        })();
+
     </script>
 
 </body>

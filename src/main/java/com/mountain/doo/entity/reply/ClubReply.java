@@ -19,5 +19,6 @@ public class ClubReply {
     private String clubReplyContent;
     private String clubReplyWriter;
     private LocalDateTime clubReplyDate;
+    private String profileImg;
 
 }

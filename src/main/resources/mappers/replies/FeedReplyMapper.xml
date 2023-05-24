@@ -24,8 +24,11 @@
 
     <select id="findAll" resultType="feedReply">
         SELECT
-            feed_reply_no, feed_reply_content, feed_reply_writer, feed_reply_date, feed_board_no
-        FROM feed_reply
+            A.feed_reply_no, A.feed_reply_content, A.feed_reply_writer,
+            A.feed_reply_date, A.feed_board_no, B.profile_img AS profileImg
+        FROM feed_reply A
+        JOIN account B
+        on A.feed_reply_writer = B.account_id
         WHERE feed_board_no = #{feedBoardNo}
         ORDER BY feed_reply_no
         LIMIT #{p.pageStart}, #{p.amount}

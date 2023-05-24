@@ -1,10 +1,6 @@
 package com.mountain.doo.controller;
 
-import com.mountain.doo.dto.AccountModifyDTO;
-import com.mountain.doo.dto.ClubListResponseDTO;
-import com.mountain.doo.dto.ClubRewriteRequestDTO;
-import com.mountain.doo.dto.ClubModifyDTO;
-import com.mountain.doo.dto.ClubWriteRequestDTO;
+import com.mountain.doo.dto.*;
 
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.page.PageMaker;
@@ -70,8 +66,11 @@ public class ClubController {
 
     // 글쓰기 화면 조회 요청
     @GetMapping("/write")
-    public String write() {
+    public String write(Model model, HttpServletRequest request) {
+        Object login = request.getSession().getAttribute("login");
+
         System.out.println("/club/write : GET");
+        model.addAttribute("login",login);
         return "club/clubWrite";
     }
 
@@ -104,8 +103,21 @@ public class ClubController {
 
     //글 상세보기
     @GetMapping("/detail")
-    public String detail(int bno, @ModelAttribute("s") ClubSearch search, Model model){
+    public String detail(int bno, @ModelAttribute("s") ClubSearch search, Model model,  HttpServletRequest request){
         log.info("club detail GET");
+
+        Object login = request.getSession().getAttribute("login");
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("login = " + login);
+        System.out.println("detail = " + clubService.getDetail(bno));
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        model.addAttribute("login", login);
         model.addAttribute("c", clubService.getDetail(bno));
 
         log.info("search 목록 : {}",search);

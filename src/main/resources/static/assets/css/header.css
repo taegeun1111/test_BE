@@ -61,6 +61,7 @@
     margin-left: 20px;
 }
 
+
 /* 로그인 후 */
 .afterLogin-wrapper {
     display: flex;
@@ -86,6 +87,7 @@
     margin-left: 20px;
     overflow: hidden;
     color: white;
+    cursor: pointer;
 }
 .myPage-btn img {
     width: 40px;

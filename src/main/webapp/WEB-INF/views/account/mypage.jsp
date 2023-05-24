@@ -21,16 +21,18 @@
     <section class="mypage-informaiton-container">
         <div class="main-informaiton">
 
-<%--            <c:if test="${login.profile == null}">--%>
-<%--                <div class="profile">--%>
-<%--                    <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">--%>
-<%--                </div>     --%>
-<%--            </c:if>--%>
-<%--            <c:if test="${login.profile != null}">--%>
-<%--                <div class="profile">--%>
-<%--                    <img src="/local${login.profile}" alt="프로필사진">--%>
-<%--                </div>--%>
-<%--            </c:if>--%>
+          <c:if test="${login.profile == null}">
+               <div class="profile">
+               <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진">
+               </div>     
+           </c:if>
+           <c:if test="${login.profile != null}">
+               <div class="profile">
+                  <img src="/local${login.profile}" alt="프로필사진">
+              </div>
+          </c:if>
+
+
             
             <div class="name-wrapper">
                 <div class="nickname">${login == null ? '스파이?' : login.name}</div>
@@ -45,7 +47,7 @@
             <div class="write-count-wrapper">
                 <div class="write-title">내가 쓴 글</div>
                 <c:if test="${login == null || sc.boardCount == null }">
-                    <p class="write-count">0</p>
+                    <p class="write-count">.</p>
                 </c:if>
                 <c:if test="${login != null}">
                     <div class="write-count">0${sc.boardCount}</div>

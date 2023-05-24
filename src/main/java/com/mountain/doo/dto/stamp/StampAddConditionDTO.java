@@ -19,8 +19,5 @@ public class  StampAddConditionDTO {
 //    private int boardCount;
     private boolean bannerClickCount;
     private boolean clickEvent;
-//    private LocalDateTime stampTime;
-
-
-
+    private LocalDateTime stampTime;
 }

@@ -37,7 +37,7 @@ public interface IssueMapper {
     int issueCount(Search search);
 
     // 조회수 상승
-//    void upViewCount(int issueBoardNo);
+    void upViewCount(int issueBoardNo);
 
     //좋아요 클릭시 count +1
     void plusLike(IssueLikeResponseDTO dto);

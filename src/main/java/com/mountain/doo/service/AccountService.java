@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.*;
@@ -40,7 +41,7 @@ public class AccountService {
     }
 
     //로그인 검증
-    public boolean login(LoginRequestDTO dto,
+    public LoginBoolean login(LoginRequestDTO dto,
                          HttpSession session,
                          HttpServletResponse response){
 
@@ -49,6 +50,7 @@ public class AccountService {
 
         if (loginBoolean.equals(SUCCESS)) {
             log.info("로그인 성공");
+
             //자동로그인 여부 확인
             if(dto.isAutoLogin()){
                 //자동 로그인 처리 쿠키 생성
@@ -69,13 +71,13 @@ public class AccountService {
                 );
             }
 
-            return true;
+            return SUCCESS;
         }else if(loginBoolean.equals(FALSE_PW)){
             log.info("비밀번호 틀림");
-            return false;
+            return FALSE_PW;
         }else{
             log.info("회원가입요망");
-            return false;
+            return NOT_FOUND;
         }
     }
 
@@ -84,6 +86,7 @@ public class AccountService {
     //계정확인여부
     public LoginBoolean loginBoolean(LoginRequestDTO dto){
         log.info("AccountService의 loginBoolean() 진입");
+        System.out.println("dto.getPassword() = " + dto.getPassword());
         Account account = mapper.myInfo(dto.getAccount()); //아이디로 계정찾기
 
         log.info("account : " + account);
@@ -110,7 +113,6 @@ public class AccountService {
 
         account.setPassword(encoder.encode(account.getPassword()));
         account.setProfileImg(savePath);
-
 
         return mapper.save(account);
     }

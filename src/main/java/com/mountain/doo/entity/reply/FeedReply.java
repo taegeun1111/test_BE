@@ -20,4 +20,5 @@ public class FeedReply {
     private String feedReplyContent;
     private String feedReplyWriter;
     private LocalDateTime feedReplyDate;
+    private String profileImg;
 }

@@ -19,7 +19,7 @@ public class SecondhandBoard {
     private String accountId;
     private String secondhandTitle;
     private String secondhandContent;
-    private int secondhandView;
+    private int secondhandViewCount;
     private String secondhandArea;
     private LocalDateTime secondhandRegDate;
     private LocalDateTime secondhandModify;
@@ -30,7 +30,7 @@ public SecondhandBoard(SecondhandBoardListDTO dto){
     this.secondHandBoardNo=dto.getSecondHandBoardNo();
     this.accountId=dto.getAccountId();
     this.secondhandTitle=dto.getSecondhandTitle();
-    this.secondhandView=dto.getSecondhandView();
+    this.secondhandViewCount=dto.getSecondhandViewCount();
     this.secondhandArea=dto.getSecondhandArea();
     this.secondhandRegDate=LocalDateTime.now();
     this.secondhandDealType=dto.getSecondhandDealType();
