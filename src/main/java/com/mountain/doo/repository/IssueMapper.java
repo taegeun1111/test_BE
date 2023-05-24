@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 
+import com.mountain.doo.dto.like.IssueLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
@@ -39,13 +40,13 @@ public interface IssueMapper {
     void upViewCount(int issueBoardNo);
 
     //좋아요 클릭시 count +1
-    void plusLike(ReviewLikeResponseDTO dto);
+    void plusLike(IssueLikeResponseDTO dto);
 
     // 좋아요 재 클릭시 delete
-    void minusLike(ReviewLikeResponseDTO dto);
+    void minusLike(IssueLikeResponseDTO dto);
 
     //해당 아이디로 해당 게시글에 좋아요 눌렀는지 안눌렀는지 확인
-    int likeCount(ReviewLikeResponseDTO dto);
+    int likeCount(IssueLikeResponseDTO dto);
 
     //해당 게시글에 있는 좋아요 개수 확인
     void updateLikeCount(int boardNo);

@@ -5,6 +5,7 @@ import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
 import com.mountain.doo.dto.issue.IssueListResponseDTO;
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
+import com.mountain.doo.dto.like.IssueLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
@@ -67,7 +68,7 @@ public class IssueService {
 
 
     //클릭 시 좋아요 +1 재클릭시 좋아요 -1
-    public void clickLike(ReviewLikeResponseDTO dto) {
+    public void clickLike(IssueLikeResponseDTO dto) {
         int islike = islike(dto);
 
         if (dto.isClickLike()) {
@@ -79,12 +80,12 @@ public class IssueService {
             }
 
             //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
-            issueRepository.updateLikeCount(dto.getReviewBoardNo());
+            issueRepository.updateLikeCount(dto.getIssueBoardNo());
         }
     }
 
     //좋아요가 있나 없나 확인
-    public int islike(ReviewLikeResponseDTO dto){
+    public int islike(IssueLikeResponseDTO dto){
         int i = issueRepository.likeCount(dto);
         return i;
     }
