@@ -34,7 +34,7 @@ public class SecondhandReplyController {
     ) {
         Page page = new Page();
         page.setPageNo(pageNo);
-        page.setAmount(10);
+        page.setAmount(5);
         SecondhandReplyListResponseDTO replyList = replyService.getList(boardNo, page);
         log.info("replyList: {}", replyList);
         return ResponseEntity.ok().body(replyList);
@@ -46,7 +46,7 @@ public class SecondhandReplyController {
             @Validated @RequestBody SecondhandReplyPostRequestDTO dto // 요청 바디에 보내줌
             , BindingResult result
     ) {
-
+        log.info("secondHand 비동기 댓글 작성 POST!");
         if (result.hasErrors()) {
             return ResponseEntity.badRequest()
                     .body(result.toString());
@@ -72,7 +72,7 @@ public class SecondhandReplyController {
         if (replyNo == null) {
             return ResponseEntity.badRequest().body("댓글 번호를 보내주세요");
         }
-
+        log.info("DeleteMapping 발생 댓글 번호 : {}",replyNo);
         try {
             SecondhandReplyListResponseDTO responseDTO = replyService.delete(replyNo);
             return ResponseEntity.ok().body(responseDTO);
@@ -90,6 +90,7 @@ public class SecondhandReplyController {
             @Validated @RequestBody SecondhandReplyModifyRequestDTO dto,
             BindingResult result
     ) {
+        log.info("secondBoard-reply PUT!");
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(result.toString());
         }

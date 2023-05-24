@@ -15,7 +15,7 @@
     <%@ include file="../include/header.jsp" %>
 
     <form action="" method="post" id="write-porm">
-        <input type="hidden" name="id" value="test1">
+        <input type="hidden" name="id" value="${login.accountId}">
         <div class="write-container">
             <div class="write-wrapper">
                 <div class="title-wrapper">

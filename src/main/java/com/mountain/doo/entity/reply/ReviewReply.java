@@ -20,5 +20,6 @@ public class ReviewReply {
     private String reviewReplyContent;
     private String reviewReplyWriter;
     private LocalDateTime reviewReplyDate;
+    private String profileImg;
 
 }

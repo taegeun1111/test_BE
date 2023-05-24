@@ -331,7 +331,41 @@
             $fileInput.click();
         };
 
-      
+            // 모달 닫기 버튼 클릭 시 실행되는 함수
+            function closeModal() {
+                const modal = document.getElementById('modal');
+                modal.style.display = 'none'; // 모달 닫기
+            }
+
+            // 프로필 사진 관련 스크립트
+        const $profile = document.querySelector('.profile');
+        const $fileInput = document.getElementById('profile-img');
+
+        // 프로필 추가 영역 클릭 이벤트
+        $profile.onclick = e => {
+            $fileInput.click();
+        }
+
+        // 프로필 사진 선택시 썸네일 이벤트
+        $fileInput.onchange = e => {
+            //첨부한 파일의 데이터를 읽어오기
+            const fileData = $fileInput.files[0];
+            // console.log(fileData);
+
+            //첨부파일의 바이트데이터를 읽어들이는 객체 생성
+            const reader = new FileReader();
+
+            //파일의 바이트데이터를 읽어서 img태그의 src속성이나
+            //a태그의 href속성에 넣기 위한 형태로 읽음
+            reader.readAsDataURL(fileData);
+            
+            //첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+            reader.onloadend = e =>{
+                const $imgTag = document.querySelector('.thumbnail-box img');
+                $imgTag.setAttribute('src', reader.result);
+            }
+        }
+
         $fileInput.onchange = e => {
             
             const fileData = $fileInput.files[0];
@@ -352,6 +386,7 @@
             modal.style.display = 'none'; // 모달 닫기
         }
     </script>
+
 
 </body>
 

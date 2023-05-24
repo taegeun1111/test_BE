@@ -24,8 +24,11 @@
 
     <select id="findAll" resultType="secondhandReply">
         SELECT
-            secondhand_reply_no, secondhand_reply_content, secondhand_reply_writer, secondhand_reply_date, secondhand_board_no
-        FROM secondhand_reply
+            A.secondhand_reply_no, A.secondhand_reply_content,A.secondhand_reply_writer,
+            A.secondhand_reply_date, A.secondhand_board_no, B.profile_img AS profileImg
+        FROM secondhand_reply A
+        JOIN account B
+        on A.secondhand_reply_writer = B.account_id
         WHERE secondhand_board_no = #{secondhandBoardNo}
         ORDER BY secondhand_reply_no
             LIMIT #{p.pageStart}, #{p.amount}

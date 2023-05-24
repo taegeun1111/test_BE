@@ -18,19 +18,21 @@ public class SecondhandBoardListDTO {
     private int secondHandBoardNo;
     private String accountId;
     private String secondhandTitle;
-    private int secondhandView;
+    private int secondhandViewCount;
     private String secondhandArea;
     private String secondhandRegDate;
     private SecondhandType secondhandDealType;
+    private String secondhandContent;
 
 public SecondhandBoardListDTO(SecondhandBoard board){
     this.secondHandBoardNo=board.getSecondHandBoardNo();
     this.accountId=board.getAccountId();
     this.secondhandTitle=board.getSecondhandTitle();
-    this.secondhandView=board.getSecondhandView();
+    this.secondhandViewCount=board.getSecondhandViewCount();
     this.secondhandArea=board.getSecondhandArea();
     this.secondhandRegDate=timeSet(board.getSecondhandRegDate());
     this.secondhandDealType=board.getSecondhandDealType();
+    this.secondhandContent = board.getSecondhandContent();
 }
 
 private String timeSet(LocalDateTime dt){

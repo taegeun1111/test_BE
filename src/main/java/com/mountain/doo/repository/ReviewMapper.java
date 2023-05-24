@@ -36,7 +36,7 @@ public interface ReviewMapper {
     int reviewCount(Search search);
 
     // 조회수 상승
-    void upViewCount(int reviewBoardNo);
+    boolean upViewCount(int reviewBoardNo);
 
     //좋아요 클릭시 count +1
     void plusLike(ReviewLikeResponseDTO dto);

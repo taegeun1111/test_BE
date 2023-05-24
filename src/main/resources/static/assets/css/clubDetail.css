@@ -5,12 +5,13 @@ body {
 }
 
 .detail-container {
+    margin: 0 auto;
     margin-top: 120px;
+    width: 60%;
 }
 
 .club-list-wrapper {
     margin: 0 auto;
-    width: 60%;
     /* background-color: #aba8b3; */
     color: white;
     padding: 25px;
@@ -58,6 +59,7 @@ body {
 
 /* club list */
 .club-title {
+    /* display: flex; */
     font-size: 30px;
     color: #d5f462;
     font-weight: 400;
@@ -124,9 +126,18 @@ body {
 
 /* 댓글 영역 */
 .detail-comment-container {
+    /* border-top: 1px rgb(150, 150, 150) solid; */
     padding-top: 20px;
     /* background-color: bisque; */
     padding: 15px;
+}
+
+.comment-list {
+    display: flex;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid rgb(150, 150, 150);
+    align-items: start;
 }
 
 .comment-warpper {
@@ -137,6 +148,7 @@ body {
     font-weight: 400;
     font-size: 17px;
     margin-bottom: 10px;
+    color: white;
 }
 
 .comment-info {
@@ -146,14 +158,15 @@ body {
 }
 
 .comment-info-wrapper {
+    color: white;
     display: flex;
-    /* background-color: azure; */
-    border-bottom: 1px solid rgb(220, 220, 220);
+    flex-direction: column;
+
     width: 100%;
 }
 
 .comment-write-date {
-    margin-top: 10px;
+    margin-top: 5px;
     color: rgb(150, 150, 150);
     font-size: 14px;
 }
@@ -170,6 +183,31 @@ body {
     /* border: 2px solid white; */
     border-radius: 10px;
     padding: 20px 15px;
+}
+
+.comment-detail-wrapper {
+    display: flex;
+    align-items: baseline;
+}
+
+.btn-container #replyModBtn,
+.btn-container #replyDelBtn {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0px !important;
+    margin-right: 4px !important;
+    color: rgb(150, 150, 150) !important;
+    font-weight: 300 !important;
+}
+
+.comment-id{
+    margin-right: 10px;
+    font-weight: 400;
+}
+.comment-content{
+    border: none;
+    background: none;
+    outline: none;
 }
 
 /* 댓글 작성 영역 */
@@ -210,4 +248,48 @@ body {
 
 .submit-btn:hover {
     background-color: rgb(100, 100, 100);
+}
+
+.modify-warpper{
+
+    margin: 5px 3px 8px 0;
+    font-size: 17px;
+    font-weight: 300;
+}
+.modify-warpper a{
+    color: rgb(200, 200, 200);
+}
+
+/* 프로필 이미지 영역 */
+#profile-img{
+    height: 35px;
+    margin-right: 5px;
+}
+
+/* 수정하식 수정 취소 버튼 */
+.modify-btn, .cancle-btn{
+    padding: 0px 15px;
+    height: 33.5px;
+    margin-right: 5px;
+    background-color: rgb(210, 210, 210);
+    border-radius: 3px;
+    font-size: 13px;
+    border: 0.5px white solid;
+}
+
+.modify-input{
+    padding: 5px;
+    width: 500px;
+    border: none;
+    background: none;
+    border-bottom: 2px solid rgb(220, 220, 220);
+    margin-right: 10px;
+    outline: none;
+}
+#move-login{
+    color: #1e1d21;
+    font-weight: 500;
+    line-height: 20px;
+    border-bottom: 1px solid #000;
+    
 }

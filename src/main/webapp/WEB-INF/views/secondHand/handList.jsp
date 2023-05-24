@@ -91,7 +91,7 @@
                         </div>
                         <div class="board-writer">${is.accountId}</div>
                         <div class="board-writen-date">${is.secondhandRegDate}</div>
-                        <div class="board-view-count">${is.secondhandView}</div>
+                        <div class="board-view-count">${is.secondhandViewCount}</div>
 
                     </div>
                 </c:if>
