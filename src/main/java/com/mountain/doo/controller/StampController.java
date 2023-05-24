@@ -31,7 +31,7 @@ public class StampController {
         //id가 가지고 있는 총 스탬프 수
         Stamp stampCount = stampService.stampCount(dto);
 
-        model.addAttribute("stamp",stampCount);
+//        model.addAttribute("stamp",stampCount);
 
         return "/event/stamp";
     }
