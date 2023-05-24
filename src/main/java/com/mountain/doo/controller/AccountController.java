@@ -6,6 +6,7 @@ import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
 import com.mountain.doo.entity.Account;
+import com.mountain.doo.entity.LoginBoolean;
 import com.mountain.doo.service.AccountService;
 import com.mountain.doo.util.FileUtil;
 import com.mountain.doo.util.LoginUtil;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,22 +83,26 @@ public class AccountController {
     @PostMapping("/sign-in")
     public String login(LoginRequestDTO dto,
                         HttpServletResponse response,
-                        HttpServletRequest request) {
+                        HttpServletRequest request,
+                        RedirectAttributes ra) {
         log.info("sessionId : " + request.getSession().getId());
         log.info("-----------------------------------{}", dto);
 
-        boolean login = accountService.login(dto, request.getSession(), response);
+        LoginBoolean login = accountService.login(dto, request.getSession(), response);
 
+        ra.addFlashAttribute("msg", login);
 
-        if (login) {
+        if (login==LoginBoolean.SUCCESS) {
             //service에 세션 보냄
-
             accountService.maintainAccountState(request.getSession(), dto.getAccount());
             return "redirect:/";
 
         } else {
             return "account/sign-in"; //로그인 안되면 로그인 페이지 다시
         }
+
+
+
     }
 
 
@@ -111,6 +117,7 @@ public class AccountController {
     //정보수정
     @PostMapping("/modify")
     public String modify(String accountId, AccountModifyDTO dto) {
+        log.info("수정 accountId : " +accountId+" / "+  dto);
         boolean modify = accountService.modify(accountId, dto);
         if (modify) {
             return "redirect:/account/mypage";  //수정하면 메인페이지(로그인페이지)
@@ -167,6 +174,8 @@ public class AccountController {
         boolean flag = accountService.checkSignUpValue(type, keyword);
         return ResponseEntity.ok().body(flag);
     }
+
+
 }
 
 

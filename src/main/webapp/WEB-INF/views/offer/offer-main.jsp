@@ -105,7 +105,7 @@
 
          // 글쓰기 버튼
          function goToOfferWritePage() {
-            location.href = '/offer/offer-writer';
+            location.href = '/offer/write';
         }
 
         const offerWriteButton = document.querySelector('.article-write-btn');
