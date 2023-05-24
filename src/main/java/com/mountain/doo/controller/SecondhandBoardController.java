@@ -62,7 +62,8 @@ public class SecondhandBoardController {
     @GetMapping("/detail")
     public String findOne(int bno,Model model){
         SecondhandBoard detail = sc.findOne(bno);
-        model.addAttribute("is",detail);
+        System.out.println("detail = " + detail);
+        model.addAttribute("is",new SecondhandBoardListDTO(detail));
         return "secondHand/handDetail";
     }
 

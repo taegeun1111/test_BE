@@ -24,8 +24,11 @@
 
     <select id="findAll" resultType="reviewReply">
         SELECT
-            review_reply_no, review_reply_content, review_reply_writer, review_reply_date, review_board_no
-        FROM review_reply
+            A.review_reply_no, A.review_reply_content, A.review_reply_writer,
+            A.review_reply_date, A.review_board_no, B.profile_img AS profileImg
+        FROM review_reply A
+        JOIN account B
+        on A.review_reply_writer = B.account_id
         WHERE review_board_no = #{reviewBoardNo}
         ORDER BY review_reply_no
         LIMIT #{p.pageStart}, #{p.amount}

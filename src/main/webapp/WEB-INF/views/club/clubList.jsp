@@ -151,6 +151,22 @@
             }
         }
         fixSearchOption();
+
+        // title 요소 선택
+        const $titles = document.querySelectorAll('.club-title');
+
+        // title 생략 및 ... 추가 함수
+        function truncateTitle(titleElement, maxLength) {
+            const title = titleElement.textContent;
+            if (title.length > maxLength) {
+                titleElement.textContent = title.slice(0, maxLength) + '...';
+            }
+        }
+
+        // 각 title 요소에 대해 처리
+        $titles.forEach(titleElement => {
+            truncateTitle(titleElement, 10); // 최대 10글자로 제한
+        });
     </script>
 
 </body>

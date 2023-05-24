@@ -16,7 +16,7 @@
 
     <section id="issue-detail-container">
         <div class="top-wrapper">
-            <a href="/review/list" class="category">산악 리뷰<img src="/assets/jpg/than.png" alt="" class="than-btn"></a>
+            <a href="/review/list" class="category">산악 후기<img src="/assets/jpg/than.png" alt="" class="than-btn"></a>
 
             <div class="title">
                 ${is.title}
@@ -85,7 +85,7 @@
                         <div class="profile-box">
                             <c:choose>
                                 <c:when test="${login.profile != null}">
-                                    <img src="/${login.profile}" alt="프사">
+                                    <img src="/local${login.profile}" alt="프사">
                                 </c:when>
                                 <c:otherwise>
                                     <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진"
@@ -94,24 +94,19 @@
                             </c:choose>
                         </div>
 
+
                         <div class="write-id" name="replyWriter">${login.accountId}</div>
                     </div>
                 </div>
-
-                <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
-                <button type="submit" class="submit-btn">등록</button>
+                <c:if test="${empty login}">
+                    <span>댓글은 로그인 후 작성 가능합니다</span> <a href="">로그인 하러 가기</a>
+                </c:if>
+                <c:if test="${not empty login}">
+                    <textarea name="" id="comment-write-area" cols="" rows="" placeholder="댓글을 입력하세요."></textarea>
+                    <button type="submit" class="submit-btn">등록</button>
+                </c:if>
             </div>
         </section>
-
-
-        <!-- <div id="replyModifyModal" class="modify-modal">
-            <input id="modReplyId" type="hidden">
-            <textarea id="modReplyText" class="form-control" placeholder="수정할 댓글 내용을 입력하세요." rows=""></textarea>
-            <div class="modal-footer">
-                <button id="replyModBtn" type="button" class="btn">수정</button>
-                <button id="modal-close" type="button" class="btn">닫기</button>
-            </div>
-        </div> -->
 
         <!-- 댓글 페이징 영역 -->
         <ul class="pagination justify-content-center">
@@ -152,6 +147,9 @@
 
         //댓글 요청 URI
         const URL = '/review-reply';
+
+        //로그인한 회원 id
+        const currentAccount = '${login.accountId}';
 
         // 페이지네이션 영역
         function renderPage({
@@ -236,24 +234,36 @@
                         replyNo,
                         replyWriter,
                         replyContent,
-                        replyRegDate
-                        // account: replyWriter,
-                        // profile
+                        replyRegDate,
+                        account: accountid,
+                        profile
                     } = rep;
                     tag += `
 
                     <div id='replyContent' class='comment-list' data-reply-id='\${replyNo}'>
-                        <div class="comment-profile"></div>
+                        <div class="comment-profile">`;
+                            if(profile === null){
+                                tag += `<img class='reply-profile' src='https://cdn-icons-png.flaticon.com/128/7281/7281869.png' alt='profile'>`;
+                            }
+                            if(profile !== null){
+                                tag+= `<img class='reply-profile' src='/local\${profile}' alt='profile'>`;
+                            }
+                           
+                            
+                    tag += `</div>
                         <div class="text-wrapper">
                             <div class="comment-info">
                                 <div class="comment-detail-wrapper">
-                                    <div class="comment-id">\${replyWriter}</div>
+                                    <div class="comment-id">\${replyWriter}</div>`;
 
-                                    <div class='btn-container'>
+                    if (currentAccount === replyWriter) {
+                        tag += `<div class='btn-container'>
                                         <a id='replyModBtn' class='btn btn-sm'>수정</a>
                                         <a id='replyDelBtn' class='btn btn-sm' href='#'>삭제</a>
-                                    </div>
-                                </div>
+                                    </div>`;
+                    }
+                    tag += `
+                               </div>
                                 <div class='content-modify-wrapper'>
                                 <span class="comment-content">\${replyContent}</span>
                                 </div>
@@ -298,19 +308,13 @@
 
                 // const $rw = document.getElementById('newReplyWriter');
                 const $rt = document.getElementById('comment-write-area');
-                const $rw = 'test1';
+                const $rw = "${login.accountId}";
 
                 // 클라이언트 입력값 검증
-                // if ($rt.value.trim() === '') {
-                //     alert('댓글 내용은 필수입니다!');
-                //     return;
-                // } else if ($rw.value.trim() === '') {
-                //     alert('댓글 작성자 이름은 필수입니다!');
-                //     return;
-                // } else if ($rw.value.trim().length < 2 || $rw.value.trim().length > 8) {
-                //     alert('댓글 작성자 이름은 2~8자 사이로 작성하세요!');
-                //     return;
-                // }
+                if ($rt.value.trim() === '') {
+                    alert('댓글 내용은 필수입니다!');
+                    return;
+                }
 
 
                 // # 서버로 보낼 데이터
@@ -338,7 +342,7 @@
                             // 입력창 비우기
                             $rt.value = '';
                             // $rw.value = '';
-                            console.log("여기까지");
+
                             // 마지막페이지 번호
                             const lastPageNo = document.querySelector('.pagination').dataset.fp;
                             getReplyList(lastPageNo);
@@ -419,21 +423,6 @@
                     $label.appendChild(modifyBtn);
                     $label.appendChild(cancelBtn);
 
-                    // modifyBtn.addEventListener('click', e => {
-
-                    //     const $textSpan = document.createElement('span');
-                    //     $textSpan.classList.add('text');
-                    //     $textSpan.textContent = $modInput.value;
-
-                    //     const $label = $modInput.parentElement;
-                    //     $label.replaceChild($textSpan, $modInput);
-                    // })
-
-                    // 모달에 모달바디에 textarea에 읽은 텍스트를 삽입
-                    // document.getElementById('modReplyText').value = replyText;
-
-                    // 다음 수정완료 처리를 위해 미리 
-                    // 수정창을 띄울 때 댓글번호를 모달에 붙여놓자
                     const $modal = document.querySelector('.content-modify-wrapper');
                     $modal.dataset.rno = rno;
 
@@ -469,25 +458,18 @@
                     }).then(res => {
                         if (res.status === 200) {
                             alert('댓글이 정상 수정되었습니다!');
-                            // 모달창 닫기
-                            // document.getElementById('modal-close').click();
                             return res.json();
                         } else {
                             alert('댓글 수정에 실패했습니다.');
                         }
                     }).then(result => {
+                        console.log(result);
                         renderReplyList(result);
                     });
                 };
             };
         }
 
-
-
-        // document.addEventListener('DOMContentLoaded', () => {
-        //     replyRemoveClickEvent();
-        //     replyModifyClickEvent();
-        // });
 
         (function () {
             //첫 댓글 페이지 불러오기
