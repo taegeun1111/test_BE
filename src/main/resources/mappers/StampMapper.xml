@@ -8,7 +8,6 @@
         SELECT account_id,attend_count,board_count,banner_click_count,current_stamp_count,total_stamp_count
         FROM stamp
         WHERE account_id = #{accountId}
-
     </select>
 
 <!--    배너 +1 시키는 쿼리-->
@@ -19,7 +18,7 @@
     </update>
 
 <!--    해당 id가 작성한 게시물 개수 확인-->
-    <update id="myBoard">
+<!--    <update id="myBoard">
     UPDATE stamp
         SET board_count = (
     SELECT COUNT(*) AS total_count
@@ -37,7 +36,7 @@
         WHERE account_id = #{accountId};
     </update>
 
-<!--    날짜비교 게시판-->
+&lt;!&ndash;    날짜비교 게시판&ndash;&gt;
     <select id="myBoardTime" resultType="int">
         select stamp
         SET board_count = (
@@ -54,7 +53,7 @@
         SELECT feed_board_no FROM feed WHERE account_id = #{accountId}
         ) AS combined_table)
         WHERE account_id = #{accountId};
-    </select>
+    </select>-->
 
 
 
@@ -110,5 +109,15 @@
         WHERE account_id = #{accountId}
     </update>
 
+    <select id="findAccountCount" resultType="boolean">
+        select attend_count
+        from stamp
+        where account_id = #{accountId}
+    </select>
 
+    <!-- 스탬프 테이블에 회원 추가-->
+    <insert id="addAccount">
+        insert into stamp (account_id)
+        values (#{accountId})
+    </insert>
 </mapper>

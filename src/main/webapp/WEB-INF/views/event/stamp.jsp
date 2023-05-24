@@ -15,13 +15,13 @@
 
 </head>
 <body>
-    <!-- <%@ include file="../include/header.jsp" %> -->
+    <%@ include file="../include/header.jsp" %>
     <div class="event-container">
         <div class="event-wrap">
             <div class="stamp-map">
                 <div class="map-header">
 
-                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP</h1>
+                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP ${stamp.accountId}</h1>
                     <hr>
                 </div>
                 <div class="map-main">
@@ -30,8 +30,11 @@
                 <c:if test="${login == null}">
                     <div class="map-footer">로그인이 필요합니다.</div>
                 </c:if>
-                <c:if test="${login != null}">
-                    <div class="map-footer-login">Today Check!</div>
+                <c:if test="${login != null && stamp.attendCount==true}">
+                    <div class="map-footer-login">Today Check! true</div>
+                </c:if>
+                <c:if test="${login != null && stamp.attendCount==false}">
+                    <div class="map-footer-loginCK">Today Check! false</div>
                 </c:if>
 
             </div>
@@ -47,11 +50,11 @@
                             게시물
                             <div>
 
-                                <c:if test="${login == null || sc.boardCount == null }">
+                                <c:if test="${login == null || stamp.boardCount == null }">
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${sc.boardCount}</p>
+                                    <p>${stamp.boardCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -60,11 +63,11 @@
                         <li class="stamp-3rd">배너
                             <div>
 
-                                <c:if test="${login == null || sc.bannerClickCount == null }">
+                                <c:if test="${login == null || stamp.bannerClickCount == null }">
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${sc.bannerClickCount}</p>
+                                    <p>${stamp.bannerClickCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -73,11 +76,11 @@
                         <li>누적 스탬프
                             <div>
 
-                                <c:if test="${login == null || sc.stampCount == null }">
-                                    <p id="count-stamp">0</p>
+                                <c:if test="${login == null || stamp.currentStampCount == null }">
+                                    <p id="count-stamp">${stamp.currentStampCount}</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p id="count-stamp">${sc.stampCount}</p>
+                                    <p id="count-stamp">${stamp.totalStampCount}</p>
                                 </c:if>
                             </div>
 

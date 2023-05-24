@@ -69,4 +69,21 @@ class StampMapperTest {
         Stamp stamp2 = mapper.stampCount("myblog0419");
         System.out.println("stamp2 = " + stamp2);
     }
+
+    @Test
+    @DisplayName("회원 추가")
+    void addAccountTest(){
+        String accountId="bbbb";
+        mapper.addAccount(accountId);
+    }
+
+    @Test
+    void findAccountCountTest(){
+        String accountId="bbbb";
+        boolean b = mapper.findAccountCount(accountId);
+
+        System.out.println("bbbb : "+b);
+
+        assertFalse(b);
+    }
 }

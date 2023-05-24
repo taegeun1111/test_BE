@@ -33,12 +33,12 @@
                                        </li>
                                </c:if>
 
-                                <c:if test="${login != null}">
-                                   <li class="myPage-btn">
-                                   <img src="/local${login.profile}" alt="프로필사진">
-                                       <a href="/account/mypage">My Page</a>
-                                   </li>
-                               </c:if>
+                            <c:if test="${login != null}">
+                               <li class="myPage-btn">
+                               <img src="/local${login.profile}" alt="프로필사진">
+                                   <a href="/account/mypage">My Page</a>
+                               </li>
+                           </c:if>
             </ul>
         </c:if>
     </div>

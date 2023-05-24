@@ -26,5 +26,4 @@ public class Stamp {
     private int totalStampCount;  //총 스탬프 개수
     private LocalDateTime stampTime;
 
-
 }

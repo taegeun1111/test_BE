@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mountain.doo.repository.OfferMapper">
+
+<!--    <insert id="save">
+        insert into offer (account_id,offer_type,offer_title1,offer_content1,offer_title2,offer_content2,
+        offer_title3,offer_content3,offer_title4,offer_content4)
+        VALUES (#{accountId},#{offerType},#{offerTitle1},#{offerContent1},
+        #{offerTitle2},#{offerContent2},#{offerTitle3},#{offerContent3},#{offerTitle4},#{offerContent4})
+    </insert>-->
+
+    <insert id="save">
+        insert into offer (account_id,offer_title1,offer_content1)
+        VALUES (#{accountId},#{offerTitle1},#{offerContent1})
+    </insert>
+
+</mapper>

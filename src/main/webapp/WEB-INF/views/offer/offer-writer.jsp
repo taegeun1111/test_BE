@@ -29,44 +29,44 @@
                         <option value="offer-restaurant">맛집 추천</option>
                     </select>
                     <div class="section section1">
-                        <textarea name="title1" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
+                        <textarea name="offerTitle1" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
                         <div>
                             <label for="file">
                                 <div class="btn-upload"></div>
                             </label>
-                              <input type="file" name="articleImage1" id="image" required>
+                              <input type="file" name="articleImage1" id="image">
                         </div>
-                        <textarea name="articleContent1" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+                        <textarea name="offerContent1" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
                      </div>
                      <div class="section section2">
-                        <textarea name="title2" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
+                        <textarea name="offerTitle2" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
                         <div>
                             <label for="file">
                                 <div class="btn-upload"></div>
                             </label>
-                              <input type="file" name="articleImage2" id="image" required>
+                              <input type="file" name="articleImage2" id="image">
                         </div>
-                        <textarea name="articleContent2" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+                        <textarea name="offerContent2" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
                      </div>
                      <div class="section section3">
-                        <textarea name="title3" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
+                        <textarea name="offerTitle3" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
                         <div>
                             <label for="file">
                                 <div class="btn-upload"></div>
                             </label>
-                              <input type="file" name="articleImage3" id="image" required>
+                              <input type="file" name="articleImage3" id="image" >
                         </div>
-                        <textarea name="articleContent3" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+                        <textarea name="offerContent3" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
                      </div>
                      <div class="section section4">
-                        <textarea name="title4" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
+                        <textarea name="offerTitle4" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
                         <div>
                             <label for="file">
                                 <div class="btn-upload"></div>
                             </label>
-                              <input type="file" name="articleImage4" id="image" required>
+                              <input type="file" name="articleImage4" id="image" >
                         </div>
-                        <textarea name="articleContent4" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
+                        <textarea name="offerContent4" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
                      </div>
                     <div class="button-wrapper">
                         <button class="submit-btn">작성하기</button>

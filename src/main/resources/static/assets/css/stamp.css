@@ -75,6 +75,9 @@ body {
 .map-footer-login {
     background: rgb(182, 82, 82) !important;
 }
+.map-footer-loginCK
+    background : gray;
+}
 
 /* 내 스탬프 현황 */
 .my-stamp-wrap {

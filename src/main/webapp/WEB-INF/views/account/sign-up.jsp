@@ -39,6 +39,7 @@
 
                         <label>프로필 이미지 추가</label>
 
+                    <ul>
                         <input
                             type="file"
                             id="profile-img"
@@ -48,7 +49,6 @@
                         >
                     </div>
 
-                    <ul>
                         <li>
                             <div>아이디</div>
                             <div>
