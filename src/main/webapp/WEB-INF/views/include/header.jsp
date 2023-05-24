@@ -27,7 +27,6 @@
             <ul class="afterLogin-wrapper">
                 <li class="logout-btn"><a href="/account/log-out">Log out</a></li>
 
-
                 <c:if test="${login.profile==null}">
                     <li class="myPage-btn">
                         <a href="/account/mypage">
