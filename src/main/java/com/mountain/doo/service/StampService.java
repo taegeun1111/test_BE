@@ -40,7 +40,7 @@ public class StampService {
 
         // 업데이트 된 정보 전달
         Stamp stampCount = mapper.stampCount(dto.getAccountId());
-        return stampCount;
+//        return stampCount;
 
     }
 
@@ -107,9 +107,9 @@ public void plusStamp(StampAddConditionDTO dto){
         log.info("currentAttendCount : "+currentAttendCount);
         log.info("dbAttendCount : "+dbAttendCount);
 
-        if(currentAttendCount!=dbAttendCount){
-            mapper.isLogin(currentAttendCount, accountId);
-        }
+//        if(currentAttendCount!=dbAttendCount){
+//            mapper.isLogin(currentAttendCount, accountId);
+//        }
     }
 
     public Stamp minjungTest(String accountId){
