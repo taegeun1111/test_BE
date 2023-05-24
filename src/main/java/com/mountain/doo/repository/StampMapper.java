@@ -24,7 +24,7 @@ public interface StampMapper {
 
     void myBoard(String accountId);
 
-//    void isLogin(boolean attendCount,String accountId);
+    void isLogin(boolean attendCount,String accountId);
 
     int todayMyBoard(String accountId);
 
