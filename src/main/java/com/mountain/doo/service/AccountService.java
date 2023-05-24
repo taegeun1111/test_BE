@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.*;
+import javax.websocket.Session;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -159,36 +160,43 @@ public class AccountService {
         boolean b=false;
 
     if (dbLoginTime != null) {
-
         //db에 저장된 로그인 시간과 현재 로그인된 시간과 비교해서
         Period period = Period.between(dbLoginTime, LocalDate.now());
         int days = period.getDays();
         //1보다 크면(하루가 지났다면)
         if(days>=1){
-                //현재 로그인 시간을 db에 저장하고
-                b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
-                log.info("dbLoginTime등록여부1 : " + b);
+            //현재 로그인 시간을 db에 저장하고
+            b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
 
-                //로그인했다고 attendCount를 true셋팅
-                accountTrueFalse(b);
-                return;
+
+            //로그인했다고 attendCount를 true셋팅
+            accountTrueFalse(b,accountId);
+            return;
         }
         //아직 하루 안지났으면 flase
-        accountTrueFalse(b);
+        accountTrueFalse(b,accountId);
 
     } else { //dbLoginTime테이블에 등록 안된 사람이면(아마도 처음 회원가입하고 들어온 사람이면)
         b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
 
-        log.info("dbLoginTime등록여부2 : " + b);
-        accountTrueFalse(b);
+        //stamp테이블에도 추가
+        stampMapper.addAccount(accountId);
+
+        accountTrueFalse(b,accountId);
     }
 
     }
 
-    public void accountTrueFalse(boolean b){ //true이면 로그인 스탬프 +1
-        StampAddConditionDTO.builder()
-                .attendCount(b)
-                .build();
+    public void accountTrueFalse(boolean b,String accountId){ //true이면 로그인 스탬프 +1
+//        StampAddConditionDTO build = StampAddConditionDTO.builder()
+//                .attendCount(b)
+//                .build();
+        stampMapper.isLogin(b,accountId);
+        if(b==true){
+            stampMapper.currentAdd(accountId);
+            stampMapper.stampAdd(accountId);
+        }
+//        log.info("AccountService에서 true/false : " + build.isAttendCount());
     }
 
     //자동로그인 해제
@@ -209,7 +217,7 @@ public class AccountService {
                         .build()
         );
     }
-
+//mm
     public boolean checkSignUpValue(String type, String keyword) {
         int flagNum = mapper.isDuplicate(type, keyword);
         log.info("flagNum : "+flagNum);

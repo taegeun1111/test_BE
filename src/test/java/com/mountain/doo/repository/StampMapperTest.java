@@ -71,6 +71,23 @@ class StampMapperTest {
     }
 
     @Test
+
+    @DisplayName("회원 추가")
+    void addAccountTest(){
+        String accountId="bbbb";
+        mapper.addAccount(accountId);
+    }
+
+    @Test
+    void findAccountCountTest(){
+        String accountId="bbbb";
+        boolean b = mapper.findAccountCount(accountId);
+
+        System.out.println("bbbb : "+b);
+
+        assertFalse(b);
+    }
+
     @DisplayName("해당아이디가 쓴 오늘 날짜 게시물 수 확인")
     void todayMyBoard(){
         int i = mapper.todayMyBoard("myblog0419");

@@ -32,4 +32,6 @@ public interface StampMapper {
 
     void updateCount(String accountId);
 
+    void addAccount(String accountId);
+    boolean findAccountCount(String accountId);
 }

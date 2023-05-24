@@ -26,6 +26,7 @@
         <typeAlias alias="reviewReply" type="com.mountain.doo.entity.reply.ReviewReply" />
         <typeAlias alias="secondhandReply" type="com.mountain.doo.entity.reply.SecondhandReply" />
         <typeAlias alias="loginTime" type="com.mountain.doo.entity.LoginTime" />
+        <typeAlias alias="offer" type="com.mountain.doo.entity.Offer" />
 
     </typeAliases>
 
@@ -44,6 +45,7 @@
         <mapper resource="mappers/replies/SecondhandReplyMapper.xml"/>
         <mapper resource="mappers/StampMapper.xml"/>
         <mapper resource="mappers/LoginTimeMapper.xml"/>
+        <mapper resource="mappers/OfferMapper.xml"/>
 
     </mappers>
 

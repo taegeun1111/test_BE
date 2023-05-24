@@ -40,11 +40,18 @@
 
                         <label>프로필 이미지 추가</label>
 
-                        <input type="file" id="profile-img" accept="image/*" style="display: none;"
-                            name="clientProfileImage">
-                    </div>
 
                     <ul>
+                        <input
+                            type="file"
+                            id="profile-img"
+                            accept="image/*"
+                            style="display: none;"
+                            name="clientProfileImage"
+                        >
+
+                    </div>
+
                         <li>
                             <div>아이디</div>
                             <div>

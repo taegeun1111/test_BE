@@ -18,13 +18,15 @@
 <body>
     <%@ include file="../include/header.jsp" %>
 
+
     <div class="side-banner"> 배너광고 </div>
+
     <div class="event-container">
         <div class="event-wrap">
             <div class="stamp-map">
                 <div class="map-header">
 
-                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP</h1>
+                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP ${stamp.accountId}</h1>
                     <hr>
                 </div>
                 <div class="map-main">
@@ -33,8 +35,11 @@
                 <c:if test="${login == null}">
                     <div class="map-footer">로그인이 필요합니다.</div>
                 </c:if>
-                <c:if test="${login != null}">
-                    <div class="map-footer-login">Today Check!</div>
+                <c:if test="${login != null && stamp.attendCount==true}">
+                    <div class="map-footer-login">Today Check! true</div>
+                </c:if>
+                <c:if test="${login != null && stamp.attendCount==false}">
+                    <div class="map-footer-loginCK">Today Check! false</div>
                 </c:if>
 
             </div>

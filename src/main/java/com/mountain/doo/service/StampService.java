@@ -37,6 +37,11 @@ public class StampService {
             clickEvent(dto);
         }
 
+
+        // 업데이트 된 정보 전달
+        Stamp stampCount = mapper.stampCount(dto.getAccountId());
+        return stampCount;
+
     }
 
 
@@ -52,13 +57,16 @@ public class StampService {
 //여기에 변수 하나 만들어서 로그인 true 면 조건 넣으시고
 public void boardBanner(StampAddConditionDTO dto) {
     boolean ac = dto.isBannerClickCount();
+
 //    boolean attendCount = dto.isAttendCount();
 
 
     if (ac) {
         mapper.bannerPlus(dto.getAccountId());
     }
+
 //    mapper.isLogin(dto.isAttendCount(),dto.getAccountId());
+
 }
 
 
@@ -89,6 +97,27 @@ public void plusStamp(StampAddConditionDTO dto){
             if(mapper.currentCount(dto.getAccountId())>=18){
             mapper.openEvent(dto.getAccountId());}
     }
+
+    public void loginStamp(String accountId, StampAddConditionDTO dto){
+
+        boolean currentAttendCount = dto.isAttendCount();
+        log.info("dto.getAccountId() : "+dto.getAccountId());
+        boolean dbAttendCount = mapper.findAccountCount(accountId);
+
+        log.info("currentAttendCount : "+currentAttendCount);
+        log.info("dbAttendCount : "+dbAttendCount);
+
+        if(currentAttendCount!=dbAttendCount){
+            mapper.isLogin(currentAttendCount, accountId);
+        }
+    }
+
+    public Stamp minjungTest(String accountId){
+        Stamp stamp = mapper.stampCount(accountId);
+        return stamp;
+    }
+
+
 
     //해당아이디로 오늘 쓴 게시글 수 count 확인
 

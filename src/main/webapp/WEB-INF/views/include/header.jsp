@@ -35,6 +35,7 @@
                     </li>
                 </c:if>
 
+
                 <c:if test="${login.profile!=null}">
                     <li class="myPage-btn">
                         <a href="/account/mypage">
@@ -42,6 +43,7 @@
                         </a>
                     </li>
                 </c:if>
+
             </ul>
         </c:if>
     </div>
