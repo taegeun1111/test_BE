@@ -5,6 +5,7 @@ import com.mountain.doo.dto.feed.FeedDetailResponseDTO;
 import com.mountain.doo.dto.feed.FeedListResponseDTO;
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
+import com.mountain.doo.dto.like.FeedLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.ClubSearch;
 import com.mountain.doo.dto.page.Page;
@@ -68,7 +69,7 @@ public class FeedService {
     }
 
     //클릭 시 좋아요 +1 재클릭시 좋아요 -1
-    public void clickLike(ReviewLikeResponseDTO dto) {
+    public void clickLike(FeedLikeResponseDTO dto) {
         int islike = islike(dto);
 
         if (dto.isClickLike()) {
@@ -80,12 +81,12 @@ public class FeedService {
             }
 
             //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
-            feedRepository.updateLikeCount(dto.getReviewBoardNo());
+            feedRepository.updateLikeCount(dto.getFeedBoardNo());
         }
     }
 
     //좋아요가 있나 없나 확인
-    public int islike(ReviewLikeResponseDTO dto){
+    public int islike(FeedLikeResponseDTO dto){
         int i = feedRepository.likeCount(dto);
         return i;
     }

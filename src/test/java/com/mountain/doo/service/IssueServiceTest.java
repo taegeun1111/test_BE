@@ -31,7 +31,7 @@ class IssueServiceTest {
 
         IssueLikeResponseDTO dto = new IssueLikeResponseDTO();
         dto.setClickLike(true);
-        dto.setIssueBoardNo(1);
+        dto.setIssueBoardNo(2);
         dto.setAccountId("myblog0419");
 
         service.clickLike(dto);
