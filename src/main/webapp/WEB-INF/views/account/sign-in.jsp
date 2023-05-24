@@ -15,7 +15,7 @@
 </head>
 
 <body>
- <!-- <%@ include file="../include/header.jsp" %> -->
+  <%@ include file="../include/header.jsp" %> 
 
     <div class="container">
         <div class="sign-in-wrap">
@@ -81,8 +81,16 @@
     </div>
 
     <script>
-
+        const loginMsg = '${msg}';
+        console.log('loginMsg: ' + loginMsg);
+    
+        if (loginMsg === 'NOT_FOUND') {
+            alert('회원가입을 진행해주세요.');
+        } else if (loginMsg === 'FALSE_PW') {
+            alert('비밀번호가 틀렸습니다.');
+        }
     </script>
+    
 
 </body>
 

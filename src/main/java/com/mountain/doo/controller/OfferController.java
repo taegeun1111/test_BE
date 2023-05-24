@@ -28,7 +28,7 @@ public class OfferController {
     @GetMapping("write")
     public String write(){
         log.info("추천정보 글쓰기");
-        return "/";
+        return "offer/offer-writer";
     }
 
 }

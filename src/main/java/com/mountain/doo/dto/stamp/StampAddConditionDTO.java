@@ -20,7 +20,4 @@ public class StampAddConditionDTO {
     private boolean bannerClickCount;
     private boolean clickEvent;
     private LocalDateTime stampTime;
-
-
-
 }

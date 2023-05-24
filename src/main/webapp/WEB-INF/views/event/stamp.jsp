@@ -2,20 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%@ include file="../include/account-static-head.jsp" %>
-    <!-- <link rel="stylesheet" href="/assets/css/common.css"> -->
     <link rel="stylesheet" href="/assets/css/stamp.css">
-    
+
     <title>Mountain-Do</title>
 
 </head>
+
 <body>
-    <!-- <%@ include file="../include/header.jsp" %> -->
+    <%@ include file="../include/header.jsp" %>
+
+    <div class="side-banner"> 배너광고 </div>
     <div class="event-container">
         <div class="event-wrap">
             <div class="stamp-map">
@@ -47,11 +50,11 @@
                             게시물
                             <div>
 
-                                <c:if test="${login == null || sc.boardCount == null }">
+                                <c:if test="${login == null || stamp.boardCount == null }">
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${sc.boardCount}</p>
+                                    <p>${stamp.boardCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -60,11 +63,11 @@
                         <li class="stamp-3rd">배너
                             <div>
 
-                                <c:if test="${login == null || sc.bannerClickCount == null }">
+                                <c:if test="${login == null || stamp.bannerClickCount == null }">
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${sc.bannerClickCount}</p>
+                                    <p>${stamp.bannerClickCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -73,11 +76,11 @@
                         <li>누적 스탬프
                             <div>
 
-                                <c:if test="${login == null || sc.stampCount == null }">
-                                    <p id="count-stamp">0</p>
+                                <c:if test="${login == null || stamp.currentStampCount == null }">
+                                    <p id="count-stamp">${stamp.currentStampCount}</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p id="count-stamp">${sc.stampCount}</p>
+                                    <p id="count-stamp">${stamp.totalStampCount}</p>
                                 </c:if>
                             </div>
 
@@ -94,6 +97,8 @@
             </div>
         </div>
     </div>
+
+    <div class="side-banner"> 배너광고 </div>
     <script>
         const mapMain = document.querySelector('.map-main');
 
@@ -131,8 +136,8 @@
         const attendanceButton = document.querySelector('.map-footer-login');
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
-}
-       
+        }
+
 
         // 비회원 - 로그인 요청
         function goToSignInPage() {
@@ -140,42 +145,78 @@
         }
         const signInButton = document.querySelector('.map-footer');
         if (signInButton) {
-        signInButton.addEventListener('click', goToSignInPage);
+            signInButton.addEventListener('click', goToSignInPage);
         }
 
         // 메인 스탬프 찍기
-    //     const stampMain = document.querySelector('.map-main');
-    //  const stampShapes = mapMain.querySelectorAll('.stamp-shape');
-    // const oneDayImage = document.querySelector('.my-stamp li:first-child img');
+        //     const stampMain = document.querySelector('.map-main');
+        //  const stampShapes = mapMain.querySelectorAll('.stamp-shape');
+        // const oneDayImage = document.querySelector('.my-stamp li:first-child img');
 
 
-    // function changeAttendanceImage() {
-    //     attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-    // }
+        // function changeAttendanceImage() {
+        //     attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+        // }
 
-    
-    function checkBoardCount() {
-        const boardsCount = `${sc.boardCount}`;
 
-        if (boardCount === 3) {
-            stampShapes[2].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
+        // function checkBoardCount() {
+        //     const boardsCount = `${sc.boardCount}`;
+
+        //     if (boardCount === 3) {
+        //         stampShapes[2].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
+        //     }
+        // }
+
+        // function checkBannerClickCount() {
+        //     const bannersClickCount = `${sc.bannerClickCount}`;
+
+        //     if (bannerClickCount === 3) {
+        //         stampShapes[3].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
+        //     }
+        // }
+
+        // attendanceButton.addEventListener('click', () => {
+        //     changeAttendanceImage();
+        //     checkBoardCount();
+        //     checkBannerClickCount();
+        // });
+
+
+        var bannerClickCount = 0;
+        var clickSideBars = document.querySelectorAll('.side-banner');
+
+        clickSideBars.forEach(function(clickSideBar) {
+        clickSideBar.addEventListener('click', function() {
+            bannerClickCount++;
+            console.log('클릭 횟수:', bannerClickCount);
+
+            sendClickCountToServer(bannerClickCount);
+        });
+        });
+
+        function sendClickCountToServer(bannerClickCount) {
+        fetch('/event/banner-count', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            bannerClickCount: bannerClickCount
+            
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+            console.log('클릭 횟수 전송 성공');
+            } else {
+            console.log('클릭 횟수 전송 실패');
+            }
+        })
+        .catch(error => {
+            console.error('클릭 횟수 전송 중 에러 발생:', error);
+        });
         }
-    }
 
-    function checkBannerClickCount() {
-        const bannersClickCount = `${sc.bannerClickCount}`;
-
-        if (bannerClickCount === 3) {
-            stampShapes[3].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
-        }
-    }
-
-    attendanceButton.addEventListener('click', () => {
-        changeAttendanceImage();
-        checkBoardCount();
-        checkBannerClickCount();
-    });
-  
     </script>
 
 </body>
