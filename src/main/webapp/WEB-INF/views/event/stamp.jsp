@@ -153,23 +153,23 @@
             signInButton.addEventListener('click', goToSignInPage);
         }
 
-        // 출석 버튼 
-        // 버튼 스타일 변경 여부를 저장할 변수
-        let isStyleChanged = false;
+        // // 출석 버튼 
+        // // 버튼 스타일 변경 여부를 저장할 변수
+        // let isStyleChanged = false;
 
-        // 초기 스타일 클래스명 저장
-        let initialStyleClass = document.getElementById('styledElement').className;
+        // // 초기 스타일 클래스명 저장
+        // let initialStyleClass = document.getElementById('styledElement').className;
 
-        // 스타일 변경 함수
-        function toggleStyle() {
-        const styledElement = document.getElementById('styledElement');
+        // // 스타일 변경 함수
+        // function toggleStyle() {
+        // const styledElement = document.getElementById('styledElement');
 
-        if (!isStyleChanged) {
-            // 스타일 변경
-            styledElement.className = 'mf map-footer-loginCK';
-            isStyleChanged = true;
-        }
-        }
+        // if (!isStyleChanged) {
+        //     // 스타일 변경
+        //     styledElement.className = 'mf map-footer-loginCK';
+        //     isStyleChanged = true;
+        // }
+        // }
 
         // 페이지 로드 시 초기 스타일 확인 및 설정
         window.onload = function() {
