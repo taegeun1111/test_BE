@@ -87,6 +87,7 @@ public class ClubReplyController {
             @Validated @RequestBody ClubReplyModifyRequestDTO dto,
             BindingResult result
     ) {
+        log.info("club-reply PUT!");
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(result.toString());
         }

@@ -60,13 +60,13 @@ public class SecondhandReplyService {
     public SecondhandReplyListResponseDTO delete(final long replyNo) throws Exception{
         long scBoardNo = replyMapper.findOne(replyNo).getSecondhandBoardNo();
         replyMapper.remove(scBoardNo);
-        return getList(scBoardNo, new Page(1,10));
+        return getList(scBoardNo, new Page(1,5));
     }
     // 댓글 수정
     @Transactional
     public SecondhandReplyListResponseDTO edit(final SecondhandReplyModifyRequestDTO dto) throws Exception {
         replyMapper.modify(dto.toEntity());
-        return getList(dto.getBoardNo(), new Page(1,10));
+        return getList(dto.getBoardNo(), new Page(1,5));
     }
 
 }

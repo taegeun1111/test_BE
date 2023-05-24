@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,6 +40,10 @@ public class StampController {
 
         ;
 
+        Stamp stamp = stampService.stampCount(accountId);
+
+        ;
+
 
         log.info("스탬프 : "+stamp.getAccountId());
         System.out.println("스탬프 : "+stamp);
@@ -53,6 +58,8 @@ public class StampController {
         Stamp stampCount = stampService.stampCount(dto);
         stampService.boardBanner(dto);
 
+// 민정님꺼
+/*
         StampAddConditionDTO dto;
         model.addAttribute("sc",dto);*/
         return "/event/stamp";
@@ -83,20 +90,57 @@ public class StampController {
 
         String id = session.getId();
         stampAdd.setAccountId(id);
+*/
+//---------------------------------------------------
 
+//        model.addAttribute("stamp",stampCount);
+
+
+        return "/event/stamp";
+
+    }
+
+
+//    @GetMapping("/banner-count")
+//    @ResponseBody
+//    public ResponseEntity<?> bannerCount(StampAddConditionDTO dto, Model model) {
+//        log.info("/stamp/banner-count?type={}&keyword={} ASYNC GET!");
+//        stampService.boardBanner(dto);
+//        return ResponseEntity.ok().body();
+//
+//    }
+    @PostMapping("/banner-count")
+    @ResponseBody
+    public void handleBannerClick(@RequestBody StampAddConditionDTO stampAdd) {
+
+        log.info("스탬프 비동기 : "+stampAdd);
+        String userId = stampAdd.getAccountId();
+//        boolean flag = (boolean) stampAdd.get();
+
+        // 클릭 횟수 증가 또는 저장 로직 구현
+        incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount());
+    }
+
+        private void incrementClickCount(String accountId, boolean bannerClickCount) {
+            // 클릭 횟수를 저장하는 데이터베이스에 접근하여 클릭 횟수 증가 또는 저장 작업 수행
+            // 예: 클릭 횟수 정보를 데이터베이스에서 조회하고, 증가시킨 후 다시 저장
+          
         log.info("스탬프 비동기 : "+stampAdd);
         String userId = stampAdd.getAccountId();
 //        boolean flag = (boolean) stampAdd.get();
         Stamp stamp = stampService.stampCount(stampAdd);
 
+        }
+
+        log.info("스탬프 비동기 : "+stampAdd);
+//        String userId = stampAdd.getAccountId();
+//        boolean flag = (boolean) stampAdd.get();
+        stampService.update(stampAdd);
+
 
         // 클릭 횟수 증가 또는 저장 로직 구현
 //    incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount());
 
-        return ResponseEntity
-                .ok()
-                .body(stamp);
 
     }
-
 }

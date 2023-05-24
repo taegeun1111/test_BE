@@ -19,23 +19,22 @@
             <a href="/review/list" class="category">중고 거래<img src="/assets/jpg/than.png" alt="" class="than-btn"></a>
 
             <div class="title">
-                ${is.title}
+                ${is.secondhandTitle}
             </div>
             <div class="user-info-wrapper">
                 <div class="user-info">
                     <div class="user-profile"></div>
                     <div class="user-detail-wrapper">
-                        <div class="user-id">${is.writer}</div>
+                        <div class="user-id">${is.accountId}</div>
                         <div class="write-time">
-                            <div class="write-date">${is.date}</div>
-                            <div class="view-count">${is.viewCount}</div>
+                            <div class="write-date">${is.secondhandRegDate}</div>
+                            <div class="view-count">조회수 ${is.secondhandViewCount}</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="like-it-count">
-                    <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요
-                        ${is.likeCount}</div>
+            
                     <!-- 댓글 안되면 삭제하기 -->
                     <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 10
                     </div>
@@ -47,7 +46,7 @@
         <div class="content-wrapper">
             <div class="issue-content">
                 
-                    ${is.content}
+                    ${is.secondhandContent}
                 
             </div>
         </div>

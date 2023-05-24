@@ -19,7 +19,7 @@
                 <div class="title-wrapper">
                     <div class="review-main-title">게시물 작성</div>
                     <section class="select-wrapper">
-                        <input type="hidden" name="accountId" value="test1">
+                        <input type="hidden" name="accountId" value="${login.accountId}">
                         <div class="type-wrapper">
                             <p class="type-title">모임종류</p>
                             <select name="clubRecruitType" id="clubRecruitType">

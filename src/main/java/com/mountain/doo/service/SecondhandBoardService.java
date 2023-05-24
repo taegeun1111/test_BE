@@ -35,7 +35,9 @@ public class SecondhandBoardService {
     //게시물 하나 찾기
     public SecondhandBoard findOne(int secondHandBoardNo){
         SecondhandBoard one = repository.findOne(secondHandBoardNo);
-        repository.plusViewCount(secondHandBoardNo);
+
+        boolean viewResult = repository.plusViewCount(secondHandBoardNo);
+        System.out.println("viewResult = " + viewResult);
         return one;
 
     }

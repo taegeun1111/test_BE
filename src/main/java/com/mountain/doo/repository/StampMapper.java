@@ -18,13 +18,19 @@ public interface StampMapper {
     void stampAdd(String accountId);
 
     void currentAdd(String accountId);
-    int currentCount(String acocuntId);
+    int currentCount(String accountId);
 
     void openEvent(String accountId);
 
     void myBoard(String accountId);
 
-    void isLogin(boolean attendCount,String accountId);
+//    void isLogin(boolean attendCount,String accountId);
+
+    int todayMyBoard(String accountId);
+
+//    int todayMyBoard2(String accountId);
+
+    void updateCount(String accountId);
 
     void addAccount(String accountId);
     boolean findAccountCount(String accountId);

@@ -24,7 +24,7 @@ public interface SecondhandBoardMapper {
     boolean handWriteData(SecondhandBoard board);
 
     //조회수 +1 증가
-    void plusViewCount(int secondHandBoardNo);
+    boolean plusViewCount(int secondHandBoardNo);
 
     //게시판 전체수 조회
     int count(SecondhandSearch search);

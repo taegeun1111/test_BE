@@ -22,11 +22,13 @@ public class ReviewReplyDetailResponseDTO {
 
     @JsonFormat(pattern="yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime replyRegDate;
+    private String profile;
 
     public ReviewReplyDetailResponseDTO(ReviewReply reviewReply) {
         this.replyNo = reviewReply.getReviewReplyNo();
         this.replyContent = reviewReply.getReviewReplyContent();
         this.replyWriter = reviewReply.getReviewReplyWriter();
         this.replyRegDate = reviewReply.getReviewReplyDate();
+        this.profile = reviewReply.getProfileImg();
     }
 }

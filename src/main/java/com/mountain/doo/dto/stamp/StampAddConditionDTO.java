@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @AllArgsConstructor
 @Builder
-public class StampAddConditionDTO {
+public class  StampAddConditionDTO {
     private String accountId;
     private boolean attendCount;
 //    private int boardCount;

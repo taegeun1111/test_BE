@@ -28,15 +28,15 @@
                 </div>
 
                 <div class="modify-body">
-                    <form action="/account/modify" name="accountModify" id="accountModifyForm" method="post">
+                    <form action="/account/modify" name="accountId" id="accountModifyForm" method="post">
                         <ul>
                             <li>
                                 <div>아이디</div>
-                                    <span id="accound-id">${login.accountId}</span>
+                                <input id="account-id" name="accountId" value="${login.accountId}"></input>
                             </li>
                             <li>
                                 <div>이름</div>
-                                <span id="user_name">${login.name}</span>
+                                <input id="user_name" name="name" value="${login.name}"></input>
                             </li>
                             <li>
                                 <div>비밀번호</div>
@@ -50,7 +50,7 @@
                             <li>
                                 <div>비밀번호 확인</div>
                                 <div>
-                                <input type="password" size="17" maxlength="20" id="re-password" name="re-password"
+                                <input type="password" size="17" maxlength="20" id="re-password" name="passwordChk"
                                     class="form-control" maxlength="20" required="required" aria-required="true"
                                     placeholder="다시 한 번 입력하세요">
                                     <span id="PWReChk"></span>

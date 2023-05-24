@@ -78,6 +78,9 @@ body {
     color: #d5f462;
     font-weight: 400;
     margin-bottom: 10px;
+    /* min-height: 75px; */
+    height: 37.5;
+    text-overflow: ellipsis;
 }
 
 .club-list-container {

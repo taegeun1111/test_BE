@@ -26,8 +26,8 @@
 
     <insert id="save">
         INSERT INTO review
-            (account_id, review_title, review_content)
-        VALUES (#{accountId}, #{reviewTitle}, #{reviewContent})
+            (account_id, review_title, review_content, review_like_count, review_view_count)
+        VALUES (#{accountId}, #{reviewTitle}, #{reviewContent},0,0)
     </insert>
 
     <delete id="deleteReview">
@@ -96,6 +96,5 @@
         SET review_like_count = (SELECT count(*)
         FROM review_like_count
         WHERE review_board_no = #{reviewBoardNo})
-        WHERE review_board_no = #{reviewBoardNo}
     </update>
 </mapper>

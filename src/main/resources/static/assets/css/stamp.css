@@ -1,5 +1,7 @@
 body {
     background-color: rgb(240, 240, 240);
+    display: flex;
+    justify-content: space-around;
 }
 
 /* 이벤트창 전체 */
@@ -75,8 +77,10 @@ body {
 .map-footer-login {
     background: rgb(182, 82, 82) !important;
 }
-.map-footer-loginCK
-    background : gray;
+
+.map-footer-loginCK{
+    background: gray;
+
 }
 
 /* 내 스탬프 현황 */
@@ -187,4 +191,11 @@ body {
     font-weight: bold;
     text-align: center;
     line-height: 1.4;
+}
+.side-banner {
+    width: 300px;
+    height: 900px;
+    margin-top: 100px;
+    background: url('../img/sideBanner.png') no-repeat center ;
+    background-size: cover;
 }

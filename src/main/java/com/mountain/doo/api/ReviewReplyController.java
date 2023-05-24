@@ -90,12 +90,15 @@ public class ReviewReplyController {
             @Validated @RequestBody ReviewReplyModifyRequestDTO dto,
             BindingResult result
     ) {
+        log.info("review-reply PUT!");
         if (result.hasErrors()) {
+            log.info("review-reply hasErrors");
             return ResponseEntity.badRequest().body(result.toString());
         }
 
         try {
             ReviewReplyListResponseDTO responseDTO = replyService.edit(dto);
+            log.info("review-reply try까지");
             return ResponseEntity.ok().body(responseDTO);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body(e.getMessage());

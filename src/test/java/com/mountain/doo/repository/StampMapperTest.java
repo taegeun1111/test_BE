@@ -71,6 +71,7 @@ class StampMapperTest {
     }
 
     @Test
+
     @DisplayName("회원 추가")
     void addAccountTest(){
         String accountId="bbbb";
@@ -86,4 +87,19 @@ class StampMapperTest {
 
         assertFalse(b);
     }
+
+    @DisplayName("해당아이디가 쓴 오늘 날짜 게시물 수 확인")
+    void todayMyBoard(){
+        int i = mapper.todayMyBoard("myblog0419");
+
+        System.out.println(i);
+
+
+    }
+    @Test
+    @DisplayName("해당 아이디 카운트 리셋")
+    void updateCount(){
+        mapper.updateCount("myblog0419");
+    }
+
 }

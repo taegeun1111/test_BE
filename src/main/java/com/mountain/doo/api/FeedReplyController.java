@@ -35,7 +35,7 @@ public class FeedReplyController {
     ) {
         Page page = new Page();
         page.setPageNo(pageNo);
-        page.setAmount(10);
+        page.setAmount(5);
         FeedReplyListResponseDTO replyList = replyService.getList(boardNo, page);
         log.info("replyList: {}", replyList);
         return ResponseEntity.ok().body(replyList);
@@ -73,7 +73,7 @@ public class FeedReplyController {
         if (replyNo == null) {
             return ResponseEntity.badRequest().body("댓글 번호를 보내주세요");
         }
-
+        log.info("DeleteMapping 발생 댓글 번호 : {}",replyNo);
         try {
             FeedReplyListResponseDTO responseDTO = replyService.delete(replyNo);
             return ResponseEntity.ok().body(responseDTO);
@@ -91,6 +91,7 @@ public class FeedReplyController {
             @Validated @RequestBody FeedReplyModifyRequestDTO dto,
             BindingResult result
     ) {
+        log.info("feed-reply PUT!");
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(result.toString());
         }
