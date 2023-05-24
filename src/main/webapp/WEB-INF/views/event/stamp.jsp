@@ -26,20 +26,20 @@
             <div class="stamp-map">
                 <div class="map-header">
 
-                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP ${stamp.accountId}</h1>
+                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP</h1>
                     <hr>
                 </div>
-                <div class="map-main">
 
-                </div>
+                <div class="map-main"></div>
+                
                 <c:if test="${login == null}">
-                    <div class="map-footer">로그인이 필요합니다.</div>
+                    <div class="mf map-footer">로그인이 필요합니다.</div>
                 </c:if>
-                <c:if test="${login != null && stamp.attendCount==true}">
-                    <div class="map-footer-login">Today Check! true</div>
+                <c:if test="${stamp.attendCount==true}">
+                    <div class="mf map-footer-login">Today Check Please!</div>  
                 </c:if>
-                <c:if test="${login != null && stamp.attendCount==false}">
-                    <div class="map-footer-loginCK">Today Check! false</div>
+                <c:if test="${stamp.attendCount==false}">
+                    <div class="mf map-footer-loginCK">Today Check Done!</div>
                 </c:if>
 
             </div>
@@ -153,40 +153,35 @@
             signInButton.addEventListener('click', goToSignInPage);
         }
 
-        // 메인 스탬프 찍기
-        //     const stampMain = document.querySelector('.map-main');
-        //  const stampShapes = mapMain.querySelectorAll('.stamp-shape');
-        // const oneDayImage = document.querySelector('.my-stamp li:first-child img');
+        // 출석 버튼 
+        // 버튼 스타일 변경 여부를 저장할 변수
+        let isStyleChanged = false;
 
+        // 초기 스타일 클래스명 저장
+        let initialStyleClass = document.getElementById('styledElement').className;
 
-        // function changeAttendanceImage() {
-        //     attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-        // }
+        // 스타일 변경 함수
+        function toggleStyle() {
+        const styledElement = document.getElementById('styledElement');
 
+        if (!isStyleChanged) {
+            // 스타일 변경
+            styledElement.className = 'mf map-footer-loginCK';
+            isStyleChanged = true;
+        }
+        }
 
-        // function checkBoardCount() {
-        //     const boardsCount = `${sc.boardCount}`;
+        // 페이지 로드 시 초기 스타일 확인 및 설정
+        window.onload = function() {
+        const styledElement = document.getElementById('styledElement');
+        
+        // 초기 스타일 확인
+        if (styledElement.className === 'mf map-footer-loginCK') {
+            isStyleChanged = true;
+        }
+        };
 
-        //     if (boardCount === 3) {
-        //         stampShapes[2].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
-        //     }
-        // }
-
-        // function checkBannerClickCount() {
-        //     const bannersClickCount = `${sc.bannerClickCount}`;
-
-        //     if (bannerClickCount === 3) {
-        //         stampShapes[3].style.backgroundImage = 'url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png")';
-        //     }
-        // }
-
-        // attendanceButton.addEventListener('click', () => {
-        //     changeAttendanceImage();
-        //     checkBoardCount();
-        //     checkBannerClickCount();
-        // });
-
-
+        // 배너 클릭 횟수 카운트 비동기 처리
         var bannerClickCount = 0;
         var clickSideBars = document.querySelectorAll('.side-banner');
 
