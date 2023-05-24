@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Insert title here</title>
+  <title>Mountain-Do</title>
   <%@ include file="include/static-head.jsp" %>
   <link rel="stylesheet" href="/assets/css/index.css">
 </head>
