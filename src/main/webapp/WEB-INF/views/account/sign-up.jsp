@@ -231,7 +231,6 @@
             }
         };
 
-
         // 이름 검사 정규표현식
         const namePattern = /^[가-힣]+$/;
 
@@ -387,11 +386,7 @@
             };
         };
 
-        // 모달 닫기 버튼 클릭 시 실행되는 함수
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.style.display = 'none'; // 모달 닫기
-        }
+
     </script>
 
 
