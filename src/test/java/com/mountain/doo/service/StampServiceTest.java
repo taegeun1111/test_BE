@@ -50,7 +50,6 @@ class StampServiceTest {
     @DisplayName("배너 보내고 받는거 확인")
     void test(){
         Stamp stamp = service.stampCount("myblog0419");
-        System.out.println("stamp = " + stamp);
 
         StampAddConditionDTO dto =new StampAddConditionDTO();
         dto.setClickEvent(false);
