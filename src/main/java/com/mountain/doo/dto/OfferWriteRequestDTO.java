@@ -1,6 +1,9 @@
 package com.mountain.doo.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -20,4 +23,5 @@ public class OfferWriteRequestDTO {
     private String offerContent3;
     private String offerTitle4;
     private String offerContent4;
+    private List<MultipartFile> offerImage;
 }
