@@ -215,7 +215,7 @@ public class AccountService {
                         .build()
         );
     }
-
+//mm
     public boolean checkSignUpValue(String type, String keyword) {
         int flagNum = mapper.isDuplicate(type, keyword);
         log.info("flagNum : "+flagNum);
