@@ -284,3 +284,17 @@ background-position-y: -350px !important;
 .sec3-container{
     background-color: #1e1d21;
 }
+
+/* 날씨 select 영역*/
+#weather-list {
+    /*-o-appearance: none;*/
+    /*-webkit-appearance: none;*/
+    /*-moz-appearance: none;*/
+    /*appearance: none;*/
+    border: none;
+    background-color: #d5f462;
+    text-align-last: center;
+    text-align: center;
+    -ms-text-align-last: center;
+    -moz-text-align-last: center;
+}
