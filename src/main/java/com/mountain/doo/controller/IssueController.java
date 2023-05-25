@@ -110,6 +110,8 @@ public class IssueController {
         issueService.delete(bno);
         return  "redirect:/issue/list";
     }
+//    @PostMapping("/")
+
 
 
 

@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../include/static-head.jsp" %>
     <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/mypage.css">
-    <%@ include file="../include/static-head.jsp" %>
+    
     <title>Mountain-Do</title>
 
 </head>
@@ -45,14 +46,8 @@
 
         <div class="my-count-wrapper">
             <div class="write-count-wrapper">
-                <div class="write-title">내가 쓴 글</div>
-                <c:if test="${login == null || sc.boardCount == null }">
-                    <p class="write-count">.</p>
-                </c:if>
-                <c:if test="${login != null}">
-                    <div class="write-count">0${sc.boardCount}</div>
-                </c:if>
-
+                <div class="write-title">오늘 내가 쓴 글</div>
+                    <div class="write-count">0${stamp.boardCount}</div>
             </div>
             <div class="comment-count-wrapper">
                 <div class="comment-title">나의 댓글</div>
@@ -60,11 +55,16 @@
             </div>
             <div class="stamp-count-wrapper">
                 <div class="stamp-title">스탬프</div>
-                <div class="stamp-count">
-                    0${sc.stampCount}<p class="total-stamp">/30</p>
-                </div>
-            </div>
 
+                <c:if test="${stamp.totalStampCount == 0}">
+                    <p class="stamp-count">0</p>
+                </c:if>
+                <c:if test="${stamp.totalStampCount >= 1}">
+                    <div class="stamp-count">00${stamp.totalStampCount}
+                        <p class="total-stamp">/30</p>
+                    </div>
+                </c:if>
+            </div>
         </div>
     </section>
 
@@ -160,6 +160,7 @@
 
         const modifyButton = document.querySelector('.modify-btn');
         modifyButton.addEventListener('click', goToModifyPage);
+
     </script>
 </body>
 

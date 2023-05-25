@@ -99,4 +99,10 @@
         )
         WHERE review_board_no = #{reviewBoardNo}
     </update>
+    <select id="findOneByUser" resultType="reviewByLikeOne">
+    SELECT DISTINCT A.account_id, A.review_board_no
+    FROM review_like_count A
+    JOIN review B
+    ON A.account_id = B.account_id;
+    </select>
 </mapper>

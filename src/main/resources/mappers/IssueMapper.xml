@@ -84,7 +84,6 @@
         FROM issue_like_count
         WHERE account_id = #{accountId}
         AND issue_board_no = #{issueBoardNo}
-
     </select>
 
     <update id="updateLikeCount">
