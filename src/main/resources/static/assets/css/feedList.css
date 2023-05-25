@@ -21,7 +21,7 @@ body#bg-color {
     justify-content: center;
     background-color: white;
     padding: 10px 40px 30px;
-    /* margin-bottom: 50px; */
+    margin-bottom: 20px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     /* overflow: scroll; */
@@ -53,6 +53,7 @@ body#bg-color {
 .user-id,
 .comment-id {
     font-weight: 400;
+    color: black;
 }
 
 /* 아이콘 */
@@ -129,19 +130,21 @@ body#bg-color {
 }
 
 /* 페이지네이션 */
-.pagination {
+.pagination, .pagination2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1000px;
-    margin: 20px auto;
-    margin-bottom: 50px;
-    /* background-color: rgb(250, 250, 250); */
+    /* margin: 20px auto; */
+    /* margin-bottom: 50px; */
+    /* background-color: rgb(150, 150, 150); */
     /* height: 150px; */
     /* border-bottom: 1px solid #000; */
-    
 }
-.pagination li a{
+.pagination2{
+    margin-bottom: 30px;
+}
+
+.pagination li a, .pagination2 li a{
     font-size: 18px;
     color: #1e1d21 !important;
 }
@@ -213,7 +216,7 @@ body#bg-color {
     display: flex;
     padding-bottom: 3px;
     margin-bottom: 10px;
-    border-bottom: 0.5px solid rgb(150, 150, 150);
+    border-bottom: 0.5px solid rgb(200, 200, 200);
     align-items: start;
 }
 
@@ -225,7 +228,7 @@ body#bg-color {
     font-weight: 400;
     font-size: 17px;
     margin-bottom: 10px;
-    color: white;
+    color: black;
 }
 
 .comment-info {
@@ -285,6 +288,7 @@ body#bg-color {
     border: none;
     background: none;
     outline: none;
+    color: black;
 }
 
 /* 댓글 작성 영역 */
@@ -355,10 +359,10 @@ body#bg-color {
     width: 500px;
     border: none;
     background: none;
-    border-bottom: 2px solid rgb(220, 220, 220);
+    border-bottom: 2px solid rgb(240, 240, 240);
     margin-right: 10px;
     outline: none;
-    color: white;
+    color: black;
 }
 #move-login{
     color: #1e1d21;
