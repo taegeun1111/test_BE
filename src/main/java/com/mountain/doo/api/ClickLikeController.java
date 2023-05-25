@@ -1,7 +1,9 @@
 package com.mountain.doo.api;
 
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
+import com.mountain.doo.dto.reply.clubreply.ClubReplyPostRequestDTO;
 import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
+import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLException;
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/review-like")
 @Slf4j
-public class ClickLikeReviewController {
+public class ClickLikeController {
     private final ReviewService reviewService;
 
     @PostMapping
@@ -25,7 +30,7 @@ public class ClickLikeReviewController {
             @Validated @RequestBody ReviewLikeResponseDTO dto // 요청 바디에 보내줌
             , BindingResult result
     ){
-        log.info("Review like Click 비동기 클릭 발생 POST!");
+        log.info("likeClick 비동기 클릭 발생 POST!");
         log.info("dto : {}", dto);
         if (result.hasErrors()){
             return ResponseEntity.badRequest()
@@ -37,6 +42,12 @@ public class ClickLikeReviewController {
 
         return ResponseEntity.ok().body(responseDTO);
     }
+
+
+
+
+
+
 
 
 }

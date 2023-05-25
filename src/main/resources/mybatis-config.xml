@@ -29,6 +29,7 @@
         <typeAlias alias="offer" type="com.mountain.doo.entity.Offer" />
         <typeAlias alias="OfferResponseDTO" type="com.mountain.doo.dto.OfferResponseDTO" />
         <typeAlias alias="OfferImageResponseDTO" type="com.mountain.doo.dto.OfferImageResponseDTO" />
+        <typeAlias alias="reviewByLikeOne" type="com.mountain.doo.dto.ReviewLikeResponseDTO" />
     </typeAliases>
 
     <mappers>
