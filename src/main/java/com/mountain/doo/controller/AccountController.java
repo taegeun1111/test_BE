@@ -5,8 +5,7 @@ import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
-import com.mountain.doo.entity.Account;
-import com.mountain.doo.entity.LoginBoolean;
+import com.mountain.doo.entity.*;
 import com.mountain.doo.service.AccountService;
 import com.mountain.doo.util.FileUtil;
 import com.mountain.doo.util.LoginUtil;
@@ -28,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.File;
+import java.util.List;
 
 import static com.mountain.doo.util.LoginUtil.*;
 
@@ -130,6 +130,17 @@ public class AccountController {
         //회원정보 마이페이지
         log.info("account mypage 요청");
         Account account = accountService.myInfo(accountId);
+//        List<Issue> issues = accountService.issueFindAll(accountId);
+//        List<Feed> feeds = accountService.feedFindAll(accountId);
+//        List<Club> clubs = accountService.offerFindAll(accountId);
+//        List<Review> reviews = accountService.reviewFindAll(accountId);
+//        List<SecondhandBoard> secondhandBoards = accountService.secondhandFindAll(accountId);
+//
+//    model.addAttribute("issues",issues);
+//    model.addAttribute("feeds",feeds);
+//    model.addAttribute("clubs",clubs);
+//    model.addAttribute("reviews",reviews);
+//    model.addAttribute("secondhandBoards",secondhandBoards);
         model.addAttribute("mypage", account);
         return "account/mypage";
     }

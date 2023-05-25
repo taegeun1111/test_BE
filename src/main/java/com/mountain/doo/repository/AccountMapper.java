@@ -2,8 +2,7 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.dto.AutoLoginDTO;
-import com.mountain.doo.dto.LoginRequestDTO;
-import com.mountain.doo.entity.Account;
+import com.mountain.doo.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -32,5 +31,16 @@ public interface AccountMapper {
 
     void saveAutoLogin(AutoLoginDTO build);
 
+
     Account findMemberByCookie(String sessionId);
+
+    List<Issue> issueFindAll(String sessionId);
+
+    List<Feed> feedFindAll(String sessionId);
+
+    List<Club> clubFindAll(String sessionId);
+
+    List<Review> reviewFindAll(String sessionId);
+
+    List<SecondhandBoard> secondhandFindAll(String sessionId);
 }

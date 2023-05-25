@@ -6,8 +6,7 @@ import com.mountain.doo.dto.AccountResponseDTO;
 import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
-import com.mountain.doo.entity.Account;
-import com.mountain.doo.entity.LoginBoolean;
+import com.mountain.doo.entity.*;
 import com.mountain.doo.repository.AccountMapper;
 import com.mountain.doo.repository.LoginTimeMapper;
 import com.mountain.doo.repository.StampMapper;
@@ -224,4 +223,34 @@ public class AccountService {
         if(flagNum==0) return false;
         else return true;
     }
+
+    public List<Issue>  issueFindAll(String sessionId){
+        List<Issue> issue = mapper.issueFindAll(sessionId);
+        return issue;
+    }
+
+    public List<Feed> feedFindAll(String sessionId){
+        List<Feed> feed = mapper.feedFindAll(sessionId);
+        return feed;
+    }
+
+    public List<Club> offerFindAll(String sessionId){
+        List<Club> club = mapper.clubFindAll(sessionId);
+        return club;
+    }
+
+    public List<Review> reviewFindAll(String sessionId){
+        List<Review> review = mapper.reviewFindAll(sessionId);
+
+        return review;
+    }
+
+    public List<SecondhandBoard> secondhandFindAll(String sessionId){
+        List<SecondhandBoard> board = mapper.secondhandFindAll(sessionId);
+        return board;
+    }
+
+
+
+
 }

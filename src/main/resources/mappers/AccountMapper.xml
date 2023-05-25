@@ -80,6 +80,49 @@
         WHERE session_id = #{sessionId}
     </select>
 
+<!--     내가쓴글 마이페이지 위한 쿼리문-->
+
+    <select id="secondhandFindAll" resultType="SecondhandBoard">
+    SELECT secondhand_board_no, account_id, secondhand_title,
+    secondhand_content,secondhand_view_count, secondhand_area,
+    secondhand_reg_date, secondhand_deal_type
+    From secondhand
+        where account_id = #{accountId}
+    </select>
+
+    <select id="reviewFindAll" resultType="review">
+    SELECT
+    review_board_no, account_id, review_title, review_content, review_like_count, review_view_count, review_reg_date, review_modify
+    FROM review
+        where account_id = #{accountId}
+
+    </select>
+
+
+    <select id="clubFindAll" resultType="club">
+    SELECT
+    club_board_no, account_id,
+    club_title, club_content,
+    club_area, club_reg_date,
+    club_modify_date, club_recruit_deadline,
+    club_recruit_type, club_recruit_count
+    from club
+    </select>
+
+    <select id="feedFindAll" resultType="feed">
+    SELECT
+    feed_board_no, account_id, feed_title, feed_content,
+    feed_like_count, feed_view_count, feed_reg_date, feed_modify, feed_img
+    FROM feed
+    where account_id ={accountId}
+    </select>
+
+    <select id="issueFindAll" resultType="issue">
+    SELECT
+    issue_board_no, account_id, issue_title, issue_content, issue_like_count, issue_view_count, issue_reg_date, issue_modify
+    FROM issue
+    where account_id ={accountId}
+    </select>
 
 
 </mapper>
