@@ -79,13 +79,13 @@ public void plusStamp(StampAddConditionDTO dto){
         System.out.println("!!!stamp = " + stamp);
 
         //오늘 쓴 게시물이 3개면 도장 찍기
-        if (stamp.getBoardCount() == 3) {
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
-        }
-        if (stamp.getBannerClickCount() == 3) {
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
+    if (stamp.getBoardCount() == 3) {
+        mapper.stampAdd(dto.getAccountId());
+        mapper.currentAdd(dto.getAccountId());
+    }
+    if (stamp.getBannerClickCount() == 3) {
+        mapper.stampAdd(dto.getAccountId());
+        mapper.currentAdd(dto.getAccountId());
         }
     }
 
