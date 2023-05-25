@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode
-public class ReviewLikeResponseDTO {
+public class ReviewLikeUserResponseDTO {
 
     private String accountId;
     private int reviewBoardNo;
