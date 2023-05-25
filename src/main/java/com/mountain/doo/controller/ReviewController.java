@@ -64,7 +64,7 @@ public class ReviewController {
 
         boolean heartResult = isHeartResult(login, detail, byAccountDTO);
 
-        log.info("like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
+        log.info("Review like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
         model.addAttribute("login", login);
         model.addAttribute("is", detail);
         model.addAttribute("l",heartResult);
