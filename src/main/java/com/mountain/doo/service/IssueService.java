@@ -1,10 +1,8 @@
 package com.mountain.doo.service;
 
 
-import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
-import com.mountain.doo.dto.issue.IssueListResponseDTO;
-import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
-import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
+import com.mountain.doo.dto.feed.FeedLikeUserResponseDTO;
+import com.mountain.doo.dto.issue.*;
 import com.mountain.doo.dto.like.IssueLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
@@ -89,6 +87,11 @@ public class IssueService {
     public int isLike(IssueLikeResponseDTO dto){
         int i = issueRepository.likeCount(dto);
         return i;
+    }
+
+    // 좋아요한 게시물 조회
+    public List<IssueLikeUserResponseDTO> findByAccount(){
+        return issueRepository.findOneByUser();
     }
 
 }

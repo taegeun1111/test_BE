@@ -95,6 +95,11 @@
         WHERE issue_board_no = #{issueBoardNo}
     </update>
 
-
+    <select id="findOneByUser" resultType="issueByLikeOne">
+        SELECT DISTINCT A.account_id, A.like_board_no
+        FROM issue_like_count A
+        JOIN review B
+        ON A.account_id = B.account_id;
+    </select>
 
 </mapper>
