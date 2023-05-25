@@ -1,9 +1,9 @@
 package com.mountain.doo.controller;
 
 import com.mountain.doo.dto.AccountResponseDTO;
+import com.mountain.doo.dto.OfferImageResponseDTO;
+import com.mountain.doo.dto.OfferResponseDTO;
 import com.mountain.doo.dto.OfferWriteRequestDTO;
-import com.mountain.doo.entity.Offer;
-import com.mountain.doo.entity.OfferImage;
 import com.mountain.doo.service.OfferService;
 import com.mountain.doo.util.FileUtil;
 import com.mountain.doo.util.LoginUtil;
@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,16 +29,28 @@ public class OfferController {
     private final OfferService offerService;
 
     @GetMapping("/offer-main")
-    public String offer() {
-            log.info("추천메뉴");
-            return "offer/offer-main";
+    public String offer(Model model) {
+            log.info("산 추천");
+        int boardNo = offerService.findBoardNo("산 추천");
+        OfferResponseDTO text = offerService.findText(boardNo);
+        List<OfferImageResponseDTO> image = offerService.findImage(boardNo);
+        log.info("산 추천 text : "+text);
+        model.addAttribute("text",text);
+        model.addAttribute("image",image);
+        return "offer/offer-main";
     }
 
 
 
     @GetMapping("offer-eat")
-    public String offerEat() {
-        log.info("추천맛집");
+    public String offerEat(Model model) {
+        log.info("맛집 추천");
+        int boardNo = offerService.findBoardNo("맛집 추천");
+        OfferResponseDTO text = offerService.findText(boardNo);
+        List<OfferImageResponseDTO> image = offerService.findImage(boardNo);
+        log.info("산 추천 text : "+text);
+        model.addAttribute("text",text);
+        model.addAttribute("image",image);
         return "offer/offer-restaurant";
     }
 
@@ -68,8 +80,7 @@ public class OfferController {
         AccountResponseDTO attribute = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
         offerService.save(dto,attribute.getAccountId(), filePathList);
 
-//        return "redirect:/offer/offer-main";
-        return "";
+        return "redirect:/offer/offer-main";
     }
 
 }
