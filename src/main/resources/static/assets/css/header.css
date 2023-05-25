@@ -37,6 +37,7 @@
 .logo {
     height: 17px;
     position: absolute;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
 }

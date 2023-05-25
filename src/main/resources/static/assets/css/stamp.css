@@ -1,6 +1,7 @@
 body {
     background-color: rgb(240, 240, 240);
     display: flex;
+    flex: 1;
     justify-content: space-around;
 }
 
@@ -59,19 +60,20 @@ body {
     background-size: contain;
 }
 
- .map-footer, .map-footer-login{
+.mf {
     margin: 20px auto;
-    background: rgb(185, 185, 185);
     box-shadow: 1px 1px 3px 1px rgba(60, 60, 60, 0.2);
     width: 300px;
     height: 60px;
     border-radius: 20px;
-   
     text-align: center;
     line-height: 60px;
-
-    color: white;
     font-size: 20px;
+}
+
+ .map-footer, .map-footer-login{
+    background: rgb(185, 185, 185);
+    color: white;
     cursor: pointer;
 }
 .map-footer-login {
@@ -80,7 +82,7 @@ body {
 
 .map-footer-loginCK{
     background: gray;
-
+    color: white;
 }
 
 /* 내 스탬프 현황 */
@@ -193,7 +195,7 @@ body {
     line-height: 1.4;
 }
 .side-banner {
-    width: 300px;
+    width: 200px;
     height: 900px;
     margin-top: 100px;
     background: url('../img/sideBanner.png') no-repeat center ;
