@@ -406,3 +406,9 @@ body#bg-color {
     display: flex;
     align-items: center;
 }
+
+.like-ative{
+    background-color: #d5f462 ;
+    border: none;
+    color: black;
+}

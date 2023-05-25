@@ -3,6 +3,7 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.review.ReviewLikeUserResponseDTO;
 import com.mountain.doo.entity.Review;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,7 +25,7 @@ public interface ReviewMapper {
     Review findOne(int reviewBoardNo);
 
     // 좋아요 누른 회원
-    List<ReviewLikeResponseDTO> findOneByUser();
+    List<ReviewLikeUserResponseDTO> findOneByUser();
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가

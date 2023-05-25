@@ -1,14 +1,12 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.AccountResponseDTO;
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
-import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
-import com.mountain.doo.dto.review.ReviewListResponseDTO;
-import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
-import com.mountain.doo.dto.review.ReviewWriteRequestDTO;
+import com.mountain.doo.dto.review.*;
 import com.mountain.doo.entity.Review;
 import com.mountain.doo.repository.ReviewMapper;
 import com.mountain.doo.service.ReviewService;
@@ -62,21 +60,37 @@ public class ReviewController {
 
         log.info("detail에 접근한 User의 정보 : {}", request.getSession().getAttribute("login"));
         log.info("detail 게시물 정보 : {}",detail);
-        List<ReviewLikeResponseDTO> byAccountDTO = reviewService.findByAccount();
+        List<ReviewLikeUserResponseDTO> byAccountDTO = reviewService.findByAccount();
+
+        boolean heartResult = isHeartResult(login, detail, byAccountDTO);
 
         log.info("like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
         model.addAttribute("login", login);
         model.addAttribute("is", detail);
-        model.addAttribute("l",byAccountDTO);
+        model.addAttribute("l",heartResult);
         return "review/reviewDetail";
     }
-//    @GetMapping("/detail")
-//    public ResponseEntity<?>modify(@Validated @RequestBody ReviewLikeResponseDTO like){
-//
-//        return ResponseEntity.ok().body(detail)
-//    }
 
 
+    private static boolean isHeartResult(Object login, ReviewDetailResponseDTO detail, List<ReviewLikeUserResponseDTO> byAccountDTO) {
+        boolean heartResult = false;
+        if (login != null) {
+            String accountId = ((AccountResponseDTO) login).getAccountId();
+
+            for (ReviewLikeUserResponseDTO heartList : byAccountDTO) {
+                if (heartList.getAccountId().equals(accountId)){
+                    heartResult = true;
+                    break;
+                }else {
+                    heartResult = false;
+                }
+            }
+        }
+        if (detail.getLikeCount() == 0){
+            heartResult = false;
+        }
+        return heartResult;
+    }
 
 
     // 게시물 등록 화면 요청

@@ -3,10 +3,7 @@ package com.mountain.doo.service;
 
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
-import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
-import com.mountain.doo.dto.review.ReviewListResponseDTO;
-import com.mountain.doo.dto.review.ReviewRewriteRequestDTO;
-import com.mountain.doo.dto.review.ReviewWriteRequestDTO;
+import com.mountain.doo.dto.review.*;
 import com.mountain.doo.entity.Review;
 import com.mountain.doo.repository.ReviewMapper;
 import lombok.RequiredArgsConstructor;
@@ -94,7 +91,7 @@ public class ReviewService {
     }
 
     // 좋아요한 게시물 조회
-    public List<ReviewLikeResponseDTO> findByAccount(){
+    public List<ReviewLikeUserResponseDTO> findByAccount(){
         return reviewRepository.findOneByUser();
     }
 }
