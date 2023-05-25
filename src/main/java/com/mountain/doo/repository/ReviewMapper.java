@@ -18,8 +18,13 @@ public interface ReviewMapper {
     // 전체 게시글 조회
     List<Review> findAll(Search page);
 
+    // 한 게시물에대한 좋아요 찾기
+
     // 게시글 상세 조회
-    Review findOne(long reviewBoardNo);
+    Review findOne(int reviewBoardNo);
+
+    // 좋아요 누른 회원
+    ReviewLikeResponseDTO findOneByUser();
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가

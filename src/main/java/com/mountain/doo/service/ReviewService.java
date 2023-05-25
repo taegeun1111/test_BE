@@ -92,4 +92,9 @@ public class ReviewService {
         int i = reviewRepository.likeCount(dto);
         return i;
     }
+
+    // 좋아요한 게시물 조회
+    public ReviewLikeResponseDTO findByAccount(){
+        return reviewRepository.findOneByUser();
+    }
 }
