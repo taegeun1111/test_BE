@@ -149,24 +149,28 @@
                 <div class="weather-detail humidity"></div>
 <%--                <div class="weather-detail">구름 : 0m/s</div>--%>
               </div>
-              <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>
+<%--              <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>--%>
             </div>
+<%--             이하는 산악기상 --%>
             <div class="weather-mountain-wrapper">
-              <a class="region">북한산</a>
+              <a class="region" id="region-mountain">
+<%--                <select name="regionList" id="region-list">--%>
+<%--                  <option value="none">=== 선택 ===</option>--%>
+<%--                </select>--%>
+              </a>
               <div class="weather-main">
                 <div class="weather-icon">
-<%--                  <img src="/assets/jpg/sunny.png" alt="">--%>
+                  <img src="/assets/jpg/mountainicon.png" alt="">
                 </div>
-                <div class="weather-now">24.0°</div>
+                <div class="weather-now" id="mountain-temp"></div>
 
               </div>
               <div class="weather-detail-wrapper">
-                <div class="weather-detail">바람 : 3</div>
-                <div class="weather-detail">현재습도 : 30°</div>
-                <div class="weather-detail">구름 : 0m/s</div>
+                <div class="weather-detail" id="mountain-wind"></div>
+                <div class="weather-detail" id="mountain-humidity"></div>
 
               </div>
-              <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>
+<%--              <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>--%>
             </div>
           </div>
         </section>
@@ -177,8 +181,8 @@
 </body>
 <script>
   // 날씨 API 호출을 위한 요청 URL 구성
-  const apiUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
-  const apiUrl2 = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
+  const apiUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; //초단기실황
+  const apiUrl2 = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"; //단기예보조회
   <%--var serviceKey = '<%= getProperty("my.service.key") %>';--%>
   const serviceKey = "iSBb%2BDW08PMqwAwZinlDdlbrvSU2n7gZ7JrBaHIGaDn%2BPim3O8e3gT55tTJxfrPSofc2JdCYzPjPWOJ6xDVS8Q%3D%3D";
   const numOfRows = 1000;
@@ -313,7 +317,7 @@
     // <option> 요소를 <select>에 추가
     selectElement.appendChild(optionElement);
   });
-  console.log(selectElement);
+  // console.log(selectElement);
 
 
   // api에서 fetch 하는 함수
@@ -467,10 +471,101 @@
   });
 </script>
 <script>
-<%-- 산악기상 API  스크립트--%>
+  <%-- 산악기상 API  스크립트--%>
 
-const mountUrl = "http://apis.data.go.kr/1400377/mtweather/mountListSearch?serviceKey=인증키(URL Encode)&pageNo=1&numOfRows=10&_type=JSON";
-let localArea;
-// &localArea=1&obsid=1910&tm=202106301809";
+  // 현재 시간을 측정해 mountTime에 저장
+
+  function currentMtTime(){
+    const time = new Date();
+    return time.getFullYear().toString()
+            +(time.getMonth()+1).toString().padStart(2,"0")
+            +time.getDate().toString()
+            +time.getHours().toString().padStart(2,"0")
+            +"00"
+            // +time.getMinutes().toString()
+    ;
+  }
+
+  const mountServiceKey = "5IbnUN%2FNAP5rYLQ9UcG5fjU3yoQQyCeagSv%2FmkPaqVFb7k7dWEjunyosefC0u1ENQ3NOURapdeXeYCQWCF%2BsPw%3D%3D";
+  // let localArea=1;
+  let mountTime=currentMtTime();
+
+
+  const mountUrl = "http://apis.data.go.kr/1400377/mtweather/mountListSearch?serviceKey="
+          +mountServiceKey+"&_type=json&pageNo=1&numOfRows=1000&tm="+mountTime;
+
+  console.log(mountUrl);
+
+
+  // const mtWeather =document.querySelector('.weather-mountain-wrapper');
+  const reloadTime = 7000; //7초 뒤에 다시 로딩
+
+  mountWeather();
+
+  window.addEventListener("load",function(){
+    fetch(mountUrl)
+            .then(response => response.json())
+            .then(data => {
+              // 응답 데이터 처리
+              const items = data.response.body.items.item;
+
+              //415개 데이터 중에 랜덤으로 하나 고름
+              const index = Math.floor(Math.random()*items.length);
+
+              document.getElementById('region-mountain').textContent = items[index].obsname;
+
+              if(items[index].tm2m!==undefined
+              &&items[index].ws2m!==undefined
+              &&items[index].hm2m!==undefined) {
+                document.getElementById('mountain-temp').textContent = items[index].tm2m + "°C";
+                document.getElementById('mountain-wind').textContent = "풍속 : " + items[index].ws2m + "m/s";
+                document.getElementById('mountain-humidity').textContent = "습도 : " + items[index].hm2m + "%";
+              }else{
+                document.getElementById('mountain-temp').textContent = "-"+ "°C";
+                document.getElementById('mountain-wind').textContent = "풍속 : "+"-"+"m/s";
+                document.getElementById('mountain-humidity').textContent = "습도 : " +"-"+ "%";
+              }
+            })
+            .catch(error => {
+              // 에러 처리
+              console.error("API 호출 중 에러가 발생했습니다:", error);
+            });
+  });
+  function mountWeather (){
+    fetch(mountUrl)
+            .then(response => response.json())
+            .then(data => {
+              // 응답 데이터 처리
+              const items = data.response.body.items.item;
+
+              //415개 데이터 중에 랜덤으로 하나 고름
+              const index = Math.floor(Math.random()*items.length);
+              // console.log(items[index].value)
+              // if(items[index].value!=="-")
+              document.getElementById('region-mountain').textContent = items[index].obsname;
+
+              if(items[index].tm2m!==undefined
+                      &&items[index].ws2m!==undefined
+                      &&items[index].hm2m!==undefined) {
+                document.getElementById('mountain-temp').textContent = items[index].tm2m + "°C";
+                document.getElementById('mountain-wind').textContent ="풍속 : " + items[index].ws2m + "m/s";
+                document.getElementById('mountain-humidity').textContent = "습도 : " +items[index].hm2m + "%";
+              }else{
+                document.getElementById('mountain-temp').textContent = "-"+ "°C";
+                document.getElementById('mountain-wind').textContent = "풍속 : "+"-"+"m/s";
+                document.getElementById('mountain-humidity').textContent = "습도 : " +"-"+ "%";
+              }
+            })
+            .catch(error => {
+              // 에러 처리
+              console.error("API 호출 중 에러가 발생했습니다:", error);
+            });
+    setTimeout(mountWeather, reloadTime);
+  }
+
+
+
+
+
 </script>
 </html>
