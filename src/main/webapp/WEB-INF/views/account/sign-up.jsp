@@ -330,7 +330,7 @@
             $fileInput.click();
         };
 
-
+      
         $fileInput.onchange = e => {
 
             const fileData = $fileInput.files[0];

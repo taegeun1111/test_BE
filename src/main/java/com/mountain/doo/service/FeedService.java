@@ -30,7 +30,7 @@ public class FeedService {
 
 
     // 게시글 전체목록 처리
-    public List<FeedListResponseDTO> getList(Search page){
+    public List<FeedListResponseDTO> getList(Page page){
         return feedRepository.findAll(page)
                 .stream()
                 .map(FeedListResponseDTO::new)
@@ -48,8 +48,8 @@ public class FeedService {
     }
 
     // 글 등록 처리
-    public boolean register(FeedWriteRequestDTO dto){
-        Feed feed = new Feed(dto);
+    public boolean register(FeedWriteRequestDTO dto,final String savePath){
+        Feed feed = new Feed(dto, savePath);
         return feedRepository.save(feed);
     };
 

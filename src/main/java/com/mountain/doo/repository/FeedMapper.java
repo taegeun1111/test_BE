@@ -3,6 +3,7 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.like.FeedLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
+import com.mountain.doo.dto.page.Page;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Feed;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,7 +18,7 @@ public interface FeedMapper {
     // CRUD 기능을 명시
 
     // 전체 게시글 조회
-    List<Feed> findAll(Search page);
+    List<Feed> findAll(Page page);
 
     // 게시글 상세 조회
     Feed findOne(long feedBoardNo);

@@ -9,15 +9,19 @@ import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.entity.Feed;
 import com.mountain.doo.repository.FeedMapper;
 import com.mountain.doo.service.FeedService;
+import com.mountain.doo.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -27,6 +31,8 @@ import java.util.List;
 @Slf4j
 public class FeedController {
 
+    @Value("${file.upload.root-path}")
+    private String rootPath;
     private final FeedService feedService;
     private final FeedMapper feedMapper;
 
@@ -35,18 +41,26 @@ public class FeedController {
     @GetMapping("/list")
     public String list(Search page, Model model){
         log.info("feed list GET");
+
 //        log.info(feed.getFeedTitle());
+        page.setAmount(8);
+        page.setType("");
+        page.setKeyword("");
         List<FeedListResponseDTO> responseDTO = feedService.getList(page);
 
         PageMaker maker = new PageMaker(page, feedService.getCount(page));
+        System.out.println("responseDTO = " + responseDTO);
+        System.out.println("page = " + page);
+        System.out.println("maker = " + maker);
 
         // 페이징 알고리즘 작동
-        model.addAttribute("feedList", responseDTO);
-        model.addAttribute("feedMaker", maker);
-        model.addAttribute("f", page);
+        model.addAttribute("fList", responseDTO);
+        model.addAttribute("maker", maker);
+        model.addAttribute("s", page);
 
-        return "";
+        return "feed/feedList";
     };
+
     // 게시글 상세 조회
     @GetMapping("/detail")
     public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
@@ -63,10 +77,24 @@ public class FeedController {
 
     // 게시물 등록 완료 처리
     @PostMapping("/write")
-    public String write(FeedWriteRequestDTO dto){
+    public String write(FeedWriteRequestDTO dto, MultipartFile image){
         System.out.println("/feed/write : POST");
-        feedService.register(dto);
-        return "";
+
+        String savePath = null;
+        if(!image.isEmpty()){
+            File root = new File(rootPath);
+            if (!root.exists()) root.mkdirs();
+            savePath = FileUtil.uploadFile(image, rootPath);
+        }else {
+            log.info("이미지 등록 실패");
+        }
+        System.out.println("dto = " + dto);
+        boolean save = feedService.register(dto, savePath);
+        if (save){
+            log.info("파일 저장 성공");
+            return "redirect:/feed/list" ;
+        }
+        return "redirect:/issue/write";
     }
 
     // 수정 요청

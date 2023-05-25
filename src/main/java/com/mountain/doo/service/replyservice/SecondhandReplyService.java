@@ -59,7 +59,7 @@ public class SecondhandReplyService {
     @Transactional
     public SecondhandReplyListResponseDTO delete(final long replyNo) throws Exception{
         long scBoardNo = replyMapper.findOne(replyNo).getSecondhandBoardNo();
-        replyMapper.remove(scBoardNo);
+        replyMapper.remove(replyNo);
         return getList(scBoardNo, new Page(1,5));
     }
     // 댓글 수정

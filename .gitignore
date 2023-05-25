@@ -39,3 +39,4 @@ out/
 
 ### application.properties ###
 src/main/resources/application.properties
+src/main/java/com/mountain/doo/config/LocalResourceConfig.java
