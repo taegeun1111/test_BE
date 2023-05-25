@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file="../include/static-head.jsp" %>
     <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/mypage.css">
-    <%@ include file="../include/static-head.jsp" %>
+    
     <title>Mountain-Do</title>
 
 </head>
@@ -64,7 +65,6 @@
                     </div>
                 </c:if>
             </div>
-
         </div>
     </section>
 

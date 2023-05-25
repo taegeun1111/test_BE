@@ -28,7 +28,7 @@ public class StampController {
 
     // 내 스탬프 보기
     @GetMapping("/stamp")
-    public String myStampPage( Model model, HttpSession session){
+    public String myStampPage(Model model, HttpSession session){
 
         AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
 
@@ -56,17 +56,19 @@ public class StampController {
 /*
         StampAddConditionDTO dto;
         model.addAttribute("sc",dto);
+        */
+
         return "/event/stamp";
 
     }
 
         @PostMapping("/stamp")
-    public String myStampPage(){
-        model.addAttribute("stamp",stampCount);
+    public String myStampPage(Model model){
+
 
         return "/event/stamp";
     }
-
+/*
     @GetMapping("/banner-count")
     @ResponseBody
     public ResponseEntity<?> bannerCount(StampAddConditionDTO dto, Model model) {
@@ -90,9 +92,9 @@ public class StampController {
 //        model.addAttribute("stamp",stampCount);
 
 
-        return "/event/stamp";
-
-    }
+//        return "/event/stamp";
+//
+//    }
 
 
 //    @GetMapping("/banner-count")

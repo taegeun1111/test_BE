@@ -27,3 +27,6 @@
 <link rel="stylesheet" href="/assets/css/header.css">
 
 <link rel="stylesheet" href="/assets/css/mountain-common.css">
+
+<!-- favicon -->
+<link rel="icon" href="/assets/img/favicon.png">
