@@ -22,11 +22,13 @@
         <section class="list-container">
 
             <div class="writebtn-warpper">
+
                 <a href="/issue/write" class="write-btn">글쓰기</a>
             </div>
 
             <c:forEach var="f" items="${fList}">
                 <div class="feed-list">
+                    <div class="writer" data-id="${f.id}"></div>
                     <div class="list-img-wrapper">
                         <img src="/local${f.feedImg}" alt="" id="list-img">
                     </div>
@@ -46,68 +48,107 @@
             </c:forEach>
 
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true" style="margin-top: 200px;">
-                <div class="modal-dialog">
+                aria-hidden="true">
+
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">${login.accountId}님의 글</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                <!-- 작성자 영역 -->
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <!-- 내용 영역 -->
 
+                            <div class="modal-main">
+                                <!-- 내용 영역 -->
+                            </div>
+
+                            <!-- 댓글 작성 영역 -->
+                            <div class="comment-write-wrapper">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+
+                                        <div class="profile-box">
+                                            <c:choose>
+                                                <c:when test="${login.profile != null}">
+                                                    <img src="/local${login.profile}" alt="프사" id="profile-img">
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png"
+                                                        alt="프로필사진" id="profile-img">
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+
+
+                                        <div class="write-id" name="replyWriter">${login.accountId}</div>
+                                    </div>
                                 </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+                                <c:if test="${empty login}">
+                                    <span>댓글은 로그인 후 작성 가능합니다</span> <a href="/account/sign-in" id="move-login">로그인 하러
+                                        가기</a>
+                                </c:if>
+                                <c:if test="${not empty login}">
+                                    <textarea name="" id="comment-write-area" cols="" rows=""
+                                        placeholder="댓글을 입력하세요."></textarea>
+                                    <button type="submit" class="submit-btn">등록</button>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
         </section>
 
-
-        <!-- 페이지 버튼 영역 -->
-        <ul class="pagination">
-            <c:if test="${maker.page.pageNo != 1}">
-                <li class="page-item"><a class="page-link" href="/feed/list?pageNo=1">&lt;&lt;</a></li>
-            </c:if>
-
-            <c:if test="${maker.prev}">
-                <li class="page-item"><a href="/feed/list?pageNo=${maker.begin-1}" class="page-link">prev</a>
-                </li>
-            </c:if>
-
-            <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
-                <li data-page-num="${i}" class="page-item">
-                    <a class="page-link" href="/feed/list?pageNo=${i}">${i}</a>
-                </li>
-            </c:forEach>
-
-            <c:if test="${maker.next}">
-                <li class="page-item"><a href="/issue/list?pageNo=${maker.end+1}" class="page-link">next</a></li>
-            </c:if>
-
-            <c:if test="${maker.page.pageNo != maker.finalPage}">
-                <li class="page-item"><a class="page-link" href="/issue/list?pageNo=${maker.finalPage}">&gt;&gt;</a>
-                </li>
-            </c:if>
+        <!-- 댓글 페이징 영역 -->
+        <ul class="pagination justify-content-center">
+            <!-- 
+                        < JS로 댓글 페이징 DIV삽입 > 
+                    -->
         </ul>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+
+    </section>
+
+
+    <!-- 페이지 버튼 영역 -->
+    <ul class="pagination">
+        <c:if test="${maker.page.pageNo != 1}">
+            <li class="page-item"><a class="page-link" href="/feed/list?pageNo=1">&lt;&lt;</a></li>
+        </c:if>
+
+        <c:if test="${maker.prev}">
+            <li class="page-item"><a href="/feed/list?pageNo=${maker.begin-1}" class="page-link">prev</a>
+            </li>
+        </c:if>
+
+        <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
+            <li data-page-num="${i}" class="page-item">
+                <a class="page-link" href="/feed/list?pageNo=${i}">${i}</a>
+            </li>
+        </c:forEach>
+
+        <c:if test="${maker.next}">
+            <li class="page-item"><a href="/issue/list?pageNo=${maker.end+1}" class="page-link">next</a></li>
+        </c:if>
+
+        <c:if test="${maker.page.pageNo != maker.finalPage}">
+            <li class="page-item"><a class="page-link" href="/issue/list?pageNo=${maker.finalPage}">&gt;&gt;</a>
+            </li>
+        </c:if>
+    </ul>
+    </div>
 
     </section>
 
@@ -136,27 +177,27 @@
 
         }
 
-        // 글자 수 제한
-        // title 요소 선택
-        const $contents = document.querySelectorAll('.text-content');
-        const $titles = document.querySelectorAll('.text-title');
+        // // 글자 수 제한
+        // // title 요소 선택
+        // const $contents = document.querySelectorAll('.text-content');
+        // const $titles = document.querySelectorAll('.text-title');
 
-        // title 생략 및 ... 추가 함수
-        function truncateTitle(titleElement, maxLength) {
-            const title = titleElement.textContent;
-            if (title.length > maxLength) {
-                titleElement.textContent = title.slice(0, maxLength) + '...';
-            }
-        }
+        // // title 생략 및 ... 추가 함수
+        // function truncateTitle(titleElement, maxLength) {
+        //     const title = titleElement.textContent;
+        //     if (title.length > maxLength) {
+        //         titleElement.textContent = title.slice(0, maxLength) + '...';
+        //     }
+        // }
 
-        // 각 title 요소에 대해 처리
-        $contents.forEach(content => {
-            truncateTitle(content, 50); // 최대 50글자로 제한
-        });
+        // // 각 title 요소에 대해 처리
+        // $contents.forEach(content => {
+        //     truncateTitle(content, 50); // 최대 50글자로 제한
+        // });
 
-        $titles.forEach(title => {
-            truncateTitle(title, 15); // 최대 15글자로 제한
-        });
+        // $titles.forEach(title => {
+        //     truncateTitle(title, 15); // 최대 15글자로 제한
+        // });
 
 
 
@@ -171,27 +212,27 @@
         const modal = document.getElementById('exampleModal');
 
         // 모달 내용을 채우는 함수
-        function fillModalContent(title, content, srcValue) {
-            console.log("fillModalContent의 srcValue : ",srcValue );
+        function fillModalContent(id, title, content, srcValue) {
+            console.log("fillModalContent의 srcValue : ", srcValue);
             // 모달 내용 영역을 선택
-            const modalBody = modal.querySelector('.modal-body');
+            const modalBody = modal.querySelector('.modal-main');
 
             // 모달 내용
             modalBody.innerHTML = `
-                <form>
-                    <div class="mb-3">
-                        <div class="feed-list">
+                        <div class="feed-detail">
                             <div class="list-img-wrapper">
-                                <img src="\${srcValue}" alt="" id="list-img">
+                                <img src="\${srcValue}" alt="" id="detail-img">
                             </div>
-                            <div class="list-text">
-                                <div class="text-title">\${title}</div>
-                                <div class="text-content">\${content}</div>
+                            <div class="detail-text">
+                                <div class="detail-title">\${title}</div>
+                                <div class="detail-content">\${content}</div>
                             </div>
                         </div>
-                    </div>
-                </form>
             `;
+            const modalTitle = document.querySelector('.modal-title');
+            if (modalTitle) {
+                modalTitle.textContent = "작성자 : " + id;
+            }
         }
 
         // 각 feed-list에 클릭 이벤트를 추가
@@ -203,17 +244,26 @@
                 console.log(srcValue);
 
 
+                const id = feedList.querySelector('.writer').dataset.id;
                 const title = feedList.querySelector('.text-title').textContent;
                 const content = feedList.querySelector('.text-content').textContent;
-
+                console.log("id : " + id);
                 // 모달 내용을 채웁니다.
-                fillModalContent(title, content, srcValue);
+                fillModalContent(id, title, content, srcValue);
 
                 // 모달을 활성화합니다.
                 const modalInstance = new bootstrap.Modal(modal);
                 modalInstance.show();
             });
         });
+
+        // 보류
+        const currentId = "${login.accountId}";
+        const title = document.querySelector('.modal-title');
+
+        if (currentId === null) {
+
+        }
     </script>
 </body>
 

@@ -71,7 +71,7 @@
 
 
         $feed.addEventListener('click', e => {
-            window.location.href = "/issue/list";
+            window.location.href = "/feed/list";
         });
 
         

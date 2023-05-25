@@ -88,7 +88,7 @@ public class FeedController {
         }else {
             log.info("이미지 등록 실패");
         }
-
+        System.out.println("dto = " + dto);
         boolean save = feedService.register(dto, savePath);
         if (save){
             log.info("파일 저장 성공");
