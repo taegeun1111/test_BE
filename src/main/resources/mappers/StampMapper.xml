@@ -18,9 +18,9 @@
     </update>
 
 
-<!--    해당 id가 작성한 게시물 개수 확인-->
-<!--    <update id="myBoard">
-    UPDATE stamp
+    <!--    해당 id가 오늘 작성한 게시물 개수 확인-->
+    <update id="myBoard">
+        UPDATE stamp
         SET board_count = (
         SELECT SUM(board_count) AS total_count
         FROM (
@@ -55,7 +55,7 @@
         WHERE account_id = #{accountId};
     </update>
 
-&lt;!&ndash;    날짜비교 게시판&ndash;&gt;
+    <!--    날짜비교 게시판-->
     <select id="myBoardTime" resultType="int">
         select stamp
         SET board_count = (
@@ -72,7 +72,8 @@
         SELECT feed_board_no FROM feed WHERE account_id = #{accountId}
         ) AS combined_table)
         WHERE account_id = #{accountId};
-    </select>-->
+    </select>
+
 
 
 

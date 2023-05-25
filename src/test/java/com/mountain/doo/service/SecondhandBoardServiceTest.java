@@ -1,7 +1,9 @@
 package com.mountain.doo.service;
 
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
+import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.repository.SecondhandBoardMapper;
@@ -18,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SecondhandBoardServiceTest {
     @Autowired
     SecondhandBoardMapper mapper;
+    SecondhandBoardService service;
 
 
 /*    @Test
@@ -44,7 +47,7 @@ class SecondhandBoardServiceTest {
         mapper.plusViewCount(10);
 
         System.out.println("one = " + one);
-        System.out.println("viewCount = "+one.getSecondhandView());
+        System.out.println("viewCount = "+one.getSecondhandViewCount());
 
     }
 */
@@ -65,4 +68,5 @@ class SecondhandBoardServiceTest {
 
         System.out.println("sc = " + sc);
     }
+
 }

@@ -36,7 +36,7 @@ public class StampController {
 
         log.info("Get Stamp 요청 accountId: "+accountId);
 
-        Stamp stamp = stampService.minjungTest(accountId);
+        Stamp stamp = stampService.stampCount(accountId);
 
 
         log.info("스탬프 : "+stamp.getAccountId());
@@ -105,11 +105,23 @@ public class StampController {
 //    }
     @PostMapping("/banner-count")
     @ResponseBody
-    public void handleBannerClick(@RequestBody StampAddConditionDTO stampAdd) {
+    public void handleBannerClick(
+            @RequestBody StampAddConditionDTO stampAdd
+            , HttpSession session) {
 
         log.info("스탬프 비동기 : "+stampAdd);
-        String userId = stampAdd.getAccountId();
+
+
+        AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
+        String accountId=loginUserData.getAccountId();
+
+        stampAdd.setAccountId(accountId);
+
+        System.out.println(stampAdd);
+
 //        boolean flag = (boolean) stampAdd.get();
+         stampService.update(stampAdd);
+
 
         // 클릭 횟수 증가 또는 저장 로직 구현
         incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount(), stampAdd);
@@ -122,7 +134,6 @@ public class StampController {
         log.info("스탬프 비동기 : "+stampAdd);
         String userId = stampAdd.getAccountId();
 //        boolean flag = (boolean) stampAdd.get();
-        Stamp stamp = stampService.stampCount(userId);
 
         }
 

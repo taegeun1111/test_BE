@@ -18,6 +18,7 @@ public class StampService {
 
     public Stamp stampCount(String accountId) {
 
+        mapper.myBoard(accountId);
 
         // 업데이트 된 정보 전달
         Stamp stampCount = mapper.stampCount(accountId);
@@ -61,9 +62,7 @@ public void boardBanner(StampAddConditionDTO dto) {
 //    boolean attendCount = dto.isAttendCount();
 
 
-    if (ac) {
-        mapper.bannerPlus(dto.getAccountId());
-    }
+    if (ac) mapper.bannerPlus(dto.getAccountId());
 
 //    mapper.isLogin(dto.isAttendCount(),dto.getAccountId());
 
@@ -71,8 +70,7 @@ public void boardBanner(StampAddConditionDTO dto) {
 
 
 public void plusStamp(StampAddConditionDTO dto){
-        int todayMyBoard = mapper.todayMyBoard(dto.getAccountId());
-    mapper.myBoard(dto.getAccountId());
+    int todayMyBoard = mapper.todayMyBoard(dto.getAccountId());
 
     System.out.println("todayMyBoard = " + todayMyBoard);
 
@@ -81,7 +79,7 @@ public void plusStamp(StampAddConditionDTO dto){
         System.out.println("!!!stamp = " + stamp);
 
         //오늘 쓴 게시물이 3개면 도장 찍기
-        if (todayMyBoard == 3) {
+        if (stamp.getBoardCount() == 3) {
             mapper.stampAdd(dto.getAccountId());
             mapper.currentAdd(dto.getAccountId());
         }

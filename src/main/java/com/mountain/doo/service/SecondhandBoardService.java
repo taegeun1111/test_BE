@@ -1,5 +1,6 @@
 package com.mountain.doo.service;
 
+import com.mountain.doo.dto.AccountResponseDTO;
 import com.mountain.doo.dto.SecondhandRewriteRequestDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardListDTO;
@@ -7,6 +8,7 @@ import com.mountain.doo.dto.SecondhandBoardWriteDTO;
 import com.mountain.doo.dto.page.SecondhandSearch;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.repository.SecondhandBoardMapper;
+import com.mountain.doo.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,9 +49,11 @@ public class SecondhandBoardService {
     //게시물작성
     public boolean handWriteData(SecondhandBoardWriteDTO dto, HttpSession session){
         SecondhandBoard board =new SecondhandBoard(dto);
+        AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
 
+        String accountId=loginUserData.getAccountId();
         //session에서 id 추가 필요
-//        board.setAccountId(LoginUtil.getCurrentLoginMemberAccount(session));;
+        board.setAccountId(accountId);;
 
         return repository.handWriteData(board);
 
