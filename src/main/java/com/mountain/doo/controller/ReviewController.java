@@ -62,7 +62,7 @@ public class ReviewController {
         log.info("detail에 접근한 User의 정보 : {}", request.getSession().getAttribute("login"));
         log.info("detail 게시물 정보 : {}",detail);
         ReviewLikeResponseDTO byAccountDTO = reviewService.findByAccount();
-
+        log.info("like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
         model.addAttribute("login", login);
         model.addAttribute("is", detail);
         model.addAttribute("l",byAccountDTO);
