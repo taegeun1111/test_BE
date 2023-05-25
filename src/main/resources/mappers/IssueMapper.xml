@@ -30,7 +30,7 @@
         SELECT
             issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id
         FROM issue
-        WHERE issue_board_no = #{issueboardNo}
+        WHERE issue_board_no = #{issueBoardNo}
     </select>
 
     <update id="modifyIssue">
@@ -69,21 +69,21 @@
 
     <insert id="plusLike">
         INSERT INTO issue_like_count
-        (account_id, issue_board_no)
-        VALUES (#{accountId}, #{issueBoardNo})
+        (account_id, issue_like_board_no)
+        VALUES (#{accountId}, #{issueLikeBoardNo})
     </insert>
 
     <delete id="minusLike">
         DELETE FROM issue_like_count
         WHERE account_id = #{accountId}
-        AND issue_board_no = #{issueBoardNo}
+        AND issue_like_board_no = #{issueLikeBoardNo}
     </delete>
 
     <select id="likeCount" resultType="int">
         SELECT count(issue_like_no)
         FROM issue_like_count
         WHERE account_id = #{accountId}
-        AND issue_board_no = #{issueBoardNo}
+        AND issue_like_board_no = #{issueLikeBoardNo}
 
     </select>
 
@@ -91,7 +91,7 @@
         UPDATE issue
         SET issue_like_count = (SELECT count(*)
         FROM issue_like_count
-        WHERE issue_board_no = #{issueBoardNo}
+        WHERE issue_like_board_no = #{issueLikeBoardNo}
         )
         WHERE issue_board_no = #{issueBoardNo}
     </update>
