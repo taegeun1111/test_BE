@@ -21,7 +21,7 @@ public interface FeedMapper {
     List<Feed> findAll(Page page);
 
     // 게시글 상세 조회
-    Feed findOne(long feedBoardNo);
+    Feed findOne(int feedBoardNo);
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가
