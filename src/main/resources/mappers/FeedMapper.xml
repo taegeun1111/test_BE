@@ -39,9 +39,9 @@
 
     <select id="findOne" resultType="feed">
         SELECT
-        feed_board_no, feed_title,feed_content, feed_view_count,feed_reg_date, account_id
+        feed_board_no, feed_title,feed_content, feed_view_count,feed_reg_date, account_id, feed_like_count
         FROM feed
-        WHERE feed_board_no = #{feedboardNo}
+        WHERE feed_board_no = #{feedBoardNo}
     </select>
 
     <update id="modifyFeed">

@@ -182,7 +182,7 @@
 
             // 현재 내가 보고 있는 페이지 넘버
             const curPageNum = '${maker.page.pageNo}';
-            console.log("현재페이지: ", curPageNum);
+            // console.log("현재페이지: ", curPageNum);
 
             // 페이지 li태그들을 전부 확인해서 
             // 현재 위치한 페이지 넘버와 텍스트컨텐츠가 일치하는
@@ -234,7 +234,7 @@
 
         // 모달 내용을 채우는 함수
         function fillModalContent(id, title, content, srcValue) {
-            console.log("fillModalContent의 srcValue : ", srcValue);
+            // console.log("fillModalContent의 srcValue : ", srcValue);
             // 모달 내용 영역을 선택
             const modalBody = modal.querySelector('.modal-main');
 
@@ -263,27 +263,27 @@
                 const currentAccount = '${login.accountId}';
 
                 if (!currentAccount) {
-                    console.log("currentAccount실패+", currentAccount);
+                    // console.log("currentAccount실패+", currentAccount);
                     alert('로그인 후 이용 가능한 서비스입니다!')
                 }
-                console.log("currentAccount성공+", currentAccount);
+                // console.log("currentAccount성공+", currentAccount);
                 // 해당 feed의 제목과 내용
                 const closestListImg = event.target.closest('.feed-list').querySelector('#list-img');
                 const srcValue = closestListImg.getAttribute('src');
-                console.log(srcValue);
+                // console.log(srcValue);
 
 
                 const id = feedList.querySelector('.writer').dataset.id;
                 const title = feedList.querySelector('.text-title').textContent;
                 const content = feedList.querySelector('.text-content').textContent;
-                console.log("id : " + id);
+                // console.log("id : " + id);
                 // 모달 내용을 채웁니다.
                 fillModalContent(id, title, content, srcValue);
 
                 // 댓글 영역
                 // -------------------------------------------------------------------
                 const bno = feedList.querySelector('.boardNo').dataset.bno;
-                console.log("bno : ", bno);
+                // console.log("bno : ", bno);
                 //댓글 요청 URI
                 const URL = '/feed-reply';
 
@@ -331,13 +331,13 @@
 
                     // ul에 마지막페이지 번호 저장.
                     $pageUl.dataset.fp = finalPage;
-                    console.log($pageUl.dataset.fp);
+                    // console.log($pageUl.dataset.fp);
 
                 }
 
                 // 페이지 클릭 이벤트 핸들러
                 function makePageButtonClickEvent() {
-                    console.log("페이지 클릭 이벤트");
+                    // console.log("페이지 클릭 이벤트");
                     // 페이지 버튼 클릭이벤트 처리
                     const $pageUl = document.querySelector('.pagination');
                     $pageUl.onclick = e => {
@@ -363,7 +363,7 @@
                     replyPage
                 }) {
                     document.getElementById('replyCnt').textContent = replyCount;
-                    console.log("replyCount = " + replyCount);
+                    // console.log("replyCount = " + replyCount);
                     // 댓글 내용 렌더링
                     // 각 댓글 하나의 태그
                     let tag = '';
@@ -392,8 +392,8 @@
                             if (profile !== null) {
                                 tag +=
                                     `<img class='reply-profile' src='/local\${profile}' alt='profile'>`;
-                                console.log("profile : " + profile);
-                                console.log("rep : " + rep);
+                                // console.log("profile : " + profile);
+                                // console.log("rep : " + rep);
                             }
 
 
@@ -439,7 +439,7 @@
                     fetch(`\${URL}/\${bno}/page/\${page}`)
                         .then(res => res.json())
                         .then(responseResult => {
-                            console.log(responseResult);
+                            // console.log(responseResult);
                             renderReplyList(responseResult);
                         })
                 }
@@ -449,7 +449,7 @@
                 function makeReplyRegisterClickEvent() {
 
                     const $regBtn = document.querySelector('.submit-btn');
-                    console.log("regBtn : " + $regBtn);
+                    // console.log("regBtn : " + $regBtn);
                     $regBtn.onclick = e => {
 
 
@@ -513,14 +513,14 @@
 
                         e.preventDefault();
 
-                        console.log('targer:', e.target);
+                        // console.log('targer:', e.target);
 
                         // 삭제할 댓글의 PK값 읽기
                         const rno = e.target.closest('#replyContent').dataset.replyId;
 
                         if (e.target.matches('#replyDelBtn')) {
                             // console.log('삭제버튼 클릭!!');
-                            console.log('rno : ' + rno);
+                            // console.log('rno : ' + rno);
                             // console.log(e.target.closest('#replyContent').dataset.replyid);
 
                             if (!confirm('정말 삭제합니까?')) return;
@@ -532,7 +532,7 @@
                                 method: 'DELETE'
                             }).then(res => {
                                 if (res.status === 200) {
-                                    console.log(URL + '/' + rno);
+                                    // console.log(URL + '/' + rno);
                                     alert('댓글이 정상 삭제됨!');
                                     return res.json();
                                 } else {
@@ -544,8 +544,8 @@
 
 
                         } else if (e.target.matches('#replyModBtn')) {
-                            console.log('수정 화면 진입!');
-                            console.log('e.target' + e.target);
+                            // console.log('수정 화면 진입!');
+                            // console.log('e.target' + e.target);
                             //교체대상 input
                             const $textSpan = e.target.closest('.comment-list').querySelector(
                                 '.comment-content');
@@ -577,7 +577,7 @@
                             const $modal = document.querySelector('.content-modify-wrapper');
                             $modal.dataset.rno = rno;
 
-                            console.log('modifyBtn = ' + modifyBtn);
+                            // console.log('modifyBtn = ' + modifyBtn);
                             // console.log($modal.dataset.rno);
                             replyModifyClickEvent()
                         }
@@ -589,7 +589,7 @@
 
                     const $modBtn = document.querySelector('.modify-btn');
                     if ($modBtn) {
-                        console.log($modBtn);
+                        // console.log($modBtn);
                         $modBtn.onclick = e => {
 
                             const payload = {
@@ -599,7 +599,7 @@
                                 content: document.querySelector('.modify-input').value
                             };
 
-                            console.log(payload);
+                            // console.log(payload);
 
                             fetch(URL, {
                                 method: 'PUT',
@@ -615,7 +615,7 @@
                                     alert('댓글 수정에 실패했습니다.');
                                 }
                             }).then(result => {
-                                console.log(result);
+                                // console.log(result);
                                 renderReplyList(result);
                             });
                         };
@@ -642,9 +642,14 @@
         });
 
 
+        const clickLike = document.querySelector('.like-it-count');
+        clickLike.addEventListener('click', e => {
+            // <div class="boardNo" data-bno="${f.boardNo}"></div>
+            const bno = e.target.closest('.boardNo').dataset.bno;
+            console.log("boardNo 클릭됨");
+            console.log(`bno : ${bno}`);
 
-        //--------------------------------------------------
-        //글번호
+        })
     </script>
 </body>
 

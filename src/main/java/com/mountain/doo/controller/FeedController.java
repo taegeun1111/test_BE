@@ -1,6 +1,7 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.feed.FeedDetailResponseDTO;
 import com.mountain.doo.dto.feed.FeedListResponseDTO;
 import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
 import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
@@ -68,6 +69,8 @@ public class FeedController {
     @GetMapping("/detail")
     public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
         log.info("feed detail GET");
+        FeedDetailResponseDTO detail = feedService.getDetail(boardNo);
+        log.info("detail : {}",detail);
         model.addAttribute("feed", feedService.getDetail(boardNo));
         return "";
     }
