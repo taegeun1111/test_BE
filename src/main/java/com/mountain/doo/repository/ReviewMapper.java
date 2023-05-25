@@ -24,7 +24,7 @@ public interface ReviewMapper {
     Review findOne(int reviewBoardNo);
 
     // 좋아요 누른 회원
-    ReviewLikeResponseDTO findOneByUser();
+    List<ReviewLikeResponseDTO> findOneByUser();
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가

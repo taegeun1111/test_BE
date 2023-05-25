@@ -94,7 +94,7 @@ public class ReviewService {
     }
 
     // 좋아요한 게시물 조회
-    public ReviewLikeResponseDTO findByAccount(){
+    public List<ReviewLikeResponseDTO> findByAccount(){
         return reviewRepository.findOneByUser();
     }
 }
