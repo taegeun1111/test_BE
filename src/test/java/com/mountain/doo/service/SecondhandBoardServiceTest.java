@@ -1,7 +1,9 @@
 package com.mountain.doo.service;
 
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.SecondhandBoardWriteDTO;
+import com.mountain.doo.dto.review.ReviewListResponseDTO;
 import com.mountain.doo.entity.SecondhandBoard;
 import com.mountain.doo.entity.SecondhandType;
 import com.mountain.doo.repository.SecondhandBoardMapper;
@@ -18,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SecondhandBoardServiceTest {
     @Autowired
     SecondhandBoardMapper mapper;
+    SecondhandBoardService service;
 
 
 /*    @Test
@@ -35,6 +38,7 @@ class SecondhandBoardServiceTest {
     }*/
 
 
+/*
     @Test
     @DisplayName("게시글 번호 입력하면 board 하나를 출력하고 조회수를 +1 시킨다")
     void findOneTest() {
@@ -43,9 +47,10 @@ class SecondhandBoardServiceTest {
         mapper.plusViewCount(10);
 
         System.out.println("one = " + one);
-        System.out.println("viewCount = "+one.getSecondhandView());
+        System.out.println("viewCount = "+one.getSecondhandViewCount());
 
     }
+*/
 
     @Test
     @DisplayName("아이디,제목,글,지역,글타입을 입력하면 하나의 게시글이 저장되어야 한다")
@@ -63,4 +68,5 @@ class SecondhandBoardServiceTest {
 
         System.out.println("sc = " + sc);
     }
+
 }

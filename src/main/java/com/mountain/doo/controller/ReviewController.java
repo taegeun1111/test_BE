@@ -2,6 +2,7 @@ package com.mountain.doo.controller;
 
 
 import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
@@ -13,12 +14,11 @@ import com.mountain.doo.repository.ReviewMapper;
 import com.mountain.doo.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -66,6 +66,15 @@ public class ReviewController {
         model.addAttribute("is", detail);
         return "review/reviewDetail";
     }
+//    @GetMapping("/detail")
+//    public ResponseEntity<?>modify(@Validated @RequestBody ReviewLikeResponseDTO like){
+//
+//        return ResponseEntity.ok().body(detail)
+//    }
+
+
+
+
     // 게시물 등록 화면 요청
     @GetMapping("/write")
     public String write(){

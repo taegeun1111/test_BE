@@ -91,7 +91,11 @@
         UPDATE issue
         SET issue_like_count = (SELECT count(*)
         FROM issue_like_count
-        WHERE issue_board_no = #{issueBoardNo})
+        WHERE issue_board_no = #{issueBoardNo}
+        )
+        WHERE issue_board_no = #{issueBoardNo}
     </update>
+
+
 
 </mapper>

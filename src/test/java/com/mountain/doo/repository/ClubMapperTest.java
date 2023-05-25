@@ -65,8 +65,8 @@ class ClubMapperTest {
 
     //given
         ClubWriteRequestDTO dto = ClubWriteRequestDTO.builder()
-                .accountId("먕먕먕")
-                .clubTitle("매주 토요일 등산 같이해요")
+                .accountId("mylbog0419")
+                .clubTitle("매주 asd 등산 같이해요")
                 .clubContent("매주 토요일 정기적으로 같이 등산 하실 분 모집합니다. 어디 산이든 좋아요")
                 .clubArea("원하는 산 입구")
                 .clubRecruitDeadline(LocalDateTime.of(2023, 06, 30, 8, 00))

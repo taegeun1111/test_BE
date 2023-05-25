@@ -11,9 +11,31 @@
         VALUES (#{accId},#{dto.offerType},#{dto.offerTitle1},#{dto.offerContent1},
         #{dto.offerTitle2},#{dto.offerContent2},#{dto.offerTitle3},#{dto.offerContent3},
         #{dto.offerTitle4},#{dto.offerContent4});
-
-<!--        insert into offer_image(offer_board_no,offer_img,image_number)-->
-
     </insert>
 
+    <select id="findBoardNo" resultType="int">
+        SELECT MAX(offer_board_no)
+        FROM offer
+        WHERE offer_type = #{offerType};
+    </select>
+    
+<!--    <select id="findRecentArticle" resultType="OfferResponseDTO">-->
+<!--        SELECT *-->
+<!--        FROM offer-->
+<!--        INNER JOIN offer_Image ON offer.offer_board_no = offer_Image.offer_board_no-->
+<!--        WHERE offer.offer_type = #{offerType}-->
+<!--        AND offer.offer_board_no = (SELECT MAX(offer_board_no) FROM offer WHERE offer.offer_type = #{offerType});-->
+<!--    </select>-->
+
+    <select id="findText" resultType="OfferResponseDTO">
+        SELECT *
+        FROM offer
+        WHERE offer_board_no = #{offerBoardNo};
+    </select>
+
+    <select id="findImage" resultType="OfferImageResponseDTO">
+        SELECT file_path as offerImage
+        FROM offer_image
+        WHERE offer_board_no = #{offerBoardNo};
+    </select>
 </mapper>

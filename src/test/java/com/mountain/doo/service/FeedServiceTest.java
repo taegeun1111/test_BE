@@ -1,6 +1,7 @@
 package com.mountain.doo.service;
 
 import com.mountain.doo.dto.feed.FeedListResponseDTO;
+import com.mountain.doo.dto.like.FeedLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.review.ReviewListResponseDTO;
@@ -30,9 +31,9 @@ class FeedServiceTest {
         page.setPageNo(1);
         page.setAmount(3);
 
-        ReviewLikeResponseDTO dto = new ReviewLikeResponseDTO();
+        FeedLikeResponseDTO dto = new FeedLikeResponseDTO();
         dto.setClickLike(true);
-        dto.setReviewBoardNo(2);
+        dto.setFeedBoardNo(1);
         dto.setAccountId("myblog0419");
 
         service.clickLike(dto);

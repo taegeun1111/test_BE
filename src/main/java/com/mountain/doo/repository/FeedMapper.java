@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 
+import com.mountain.doo.dto.like.FeedLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Page;
 import com.mountain.doo.dto.page.Search;
@@ -40,13 +41,13 @@ public interface FeedMapper {
     void upViewCount(int feedBoardNo);
 
     //좋아요 클릭시 count +1
-    void plusLike(ReviewLikeResponseDTO dto);
+    void plusLike(FeedLikeResponseDTO dto);
 
     // 좋아요 재 클릭시 delete
-    void minusLike(ReviewLikeResponseDTO dto);
+    void minusLike(FeedLikeResponseDTO dto);
 
     //해당 아이디로 해당 게시글에 좋아요 눌렀는지 안눌렀는지 확인
-    int likeCount(ReviewLikeResponseDTO dto);
+    int likeCount(FeedLikeResponseDTO dto);
 
     //해당 게시글에 있는 좋아요 개수 확인
     void updateLikeCount(int boardNo);

@@ -95,6 +95,8 @@
         UPDATE review
         SET review_like_count = (SELECT count(*)
         FROM review_like_count
-        WHERE review_board_no = #{reviewBoardNo})
+        WHERE review_board_no = #{reviewBoardNo}
+        )
+        WHERE review_board_no = #{reviewBoardNo}
     </update>
 </mapper>

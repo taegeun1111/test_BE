@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OfferWriteRequestDTO {
+public class OfferResponseDTO {
     private String offerType;
     private String offerTitle1;
     private String offerContent1;
@@ -22,5 +22,4 @@ public class OfferWriteRequestDTO {
     private String offerContent3;
     private String offerTitle4;
     private String offerContent4;
-    private List<MultipartFile> offerImage;
 }

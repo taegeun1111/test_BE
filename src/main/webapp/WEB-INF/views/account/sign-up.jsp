@@ -332,9 +332,9 @@
 
       
         $fileInput.onchange = e => {
-            
+
             const fileData = $fileInput.files[0];
-           
+
             const reader = new FileReader();
 
             reader.readAsDataURL(fileData);
