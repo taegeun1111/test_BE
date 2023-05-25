@@ -37,7 +37,7 @@
 
     <select id="findOne" resultType="review">
         SELECT
-            review_board_no, review_title, review_content, review_view_count, review_reg_date, account_id
+            review_board_no, review_title, review_content, review_view_count, review_reg_date, account_id,review_like_count
         FROM review
         WHERE review_board_no = #{reviewBoardNo}
     </select>
@@ -99,4 +99,6 @@
         )
         WHERE review_board_no = #{reviewBoardNo}
     </update>
+
+
 </mapper>

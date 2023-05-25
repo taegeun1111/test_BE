@@ -68,7 +68,7 @@ public class ReviewService {
 
 
     //클릭 시 좋아요 +1 재클릭시 좋아요 -1
-    public void clickLike(ReviewLikeResponseDTO dto) {
+    public ReviewDetailResponseDTO clickLike(ReviewLikeResponseDTO dto) {
         int islike = islike(dto);
 
         if (dto.isClickLike()) {
@@ -82,6 +82,9 @@ public class ReviewService {
             //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
             reviewRepository.updateLikeCount(dto.getReviewBoardNo());
         }
+        reviewRepository.upViewCount(dto.getReviewBoardNo());
+        return getDetail(dto.getReviewBoardNo());
+
     }
 
     //좋아요가 있나 없나 확인
