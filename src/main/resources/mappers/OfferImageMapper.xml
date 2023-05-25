@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mountain.doo.repository.OfferImageMapper">
+
+    <insert id="imageSave">
+        insert into offer_Image (offer_board_no,image_number,file_path)
+        VALUES (#{offerBoardNo},#{imageNumber},#{filePath});
+    </insert>
+
+</mapper>

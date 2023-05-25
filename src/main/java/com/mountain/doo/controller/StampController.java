@@ -136,5 +136,14 @@ public class StampController {
 //    incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount());
 
 
+    @PostMapping("/click-stamp")
+    @ResponseBody
+    public ResponseEntity<?> clickStampButton(@RequestBody boolean b){
+        log.info("/memebers/click-stamp");
+        if(b==true){
+
+        }
+        return ResponseEntity.ok().body(b); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
+    }
 
 }

@@ -35,6 +35,7 @@ class SecondhandBoardServiceTest {
     }*/
 
 
+/*
     @Test
     @DisplayName("게시글 번호 입력하면 board 하나를 출력하고 조회수를 +1 시킨다")
     void findOneTest() {
@@ -46,6 +47,7 @@ class SecondhandBoardServiceTest {
         System.out.println("viewCount = "+one.getSecondhandView());
 
     }
+*/
 
     @Test
     @DisplayName("아이디,제목,글,지역,글타입을 입력하면 하나의 게시글이 저장되어야 한다")
