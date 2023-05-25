@@ -135,10 +135,9 @@
             <div class="weather-today-wrapper">
               <a class="region">
                 <select name="weatherList" id="weather-list">
-<%--                  <option value="none">=== 선택 ===</option>--%>
+                  <option value="none">=== 선택 ===</option>
                 </select>
                   <%--지역을 고를 있게 해줌--%>
-
               </a>
               <div class="weather-main">
                 <div class="weather-icon"></div>
@@ -152,21 +151,23 @@
               </div>
               <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>
             </div>
-<%--            <div class="weather-mountain-wrapper">--%>
-<%--              <a class="region">북한산</a>--%>
-<%--              <div class="weather-main">--%>
-<%--                <div class="weather-icon"><img src="/assets/jpg/sunny.png" alt=""></div>--%>
-<%--                <div class="weather-now">24.0°</div>--%>
+            <div class="weather-mountain-wrapper">
+              <a class="region">북한산</a>
+              <div class="weather-main">
+                <div class="weather-icon">
+<%--                  <img src="/assets/jpg/sunny.png" alt="">--%>
+                </div>
+                <div class="weather-now">24.0°</div>
 
-<%--              </div>--%>
-<%--              <div class="weather-detail-wrapper">--%>
-<%--                <div class="weather-detail">바람 : 3</div>--%>
-<%--                <div class="weather-detail">현재습도 : 30°</div>--%>
-<%--                <div class="weather-detail">구름 : 0m/s</div>--%>
+              </div>
+              <div class="weather-detail-wrapper">
+                <div class="weather-detail">바람 : 3</div>
+                <div class="weather-detail">현재습도 : 30°</div>
+                <div class="weather-detail">구름 : 0m/s</div>
 
-<%--              </div>--%>
-<%--              <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>--%>
-<%--            </div>--%>
+              </div>
+              <div class="etc">※현재 온도는 기상청 1시간 기준으로 갱신됩니다.</div>
+            </div>
           </div>
         </section>
 
@@ -175,14 +176,13 @@
   </div>
 </body>
 <script>
-  // API 호출을 위한 요청 URL 구성
+  // 날씨 API 호출을 위한 요청 URL 구성
   const apiUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
   const apiUrl2 = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
+  <%--var serviceKey = '<%= getProperty("my.service.key") %>';--%>
   const serviceKey = "iSBb%2BDW08PMqwAwZinlDdlbrvSU2n7gZ7JrBaHIGaDn%2BPim3O8e3gT55tTJxfrPSofc2JdCYzPjPWOJ6xDVS8Q%3D%3D";
   const numOfRows = 1000;
   const pageNo = 1;
-
-
 
   //현재 날짜.시간을 바탕으로 날씨 정보
   //현재 날짜 구하는 함수
@@ -294,6 +294,8 @@
   ]
   // console.log(region);
   let nx, ny;
+  const baseUrl = apiUrl+`?serviceKey=`+serviceKey+`&pageNo=`+pageNo+`&numOfRows=`+numOfRows+`&dataType=JSON`+`&base_date=`+baseDate+`&base_time=`+baseTime;
+  const baseFcUrl = apiUrl2+`?serviceKey=`+serviceKey+`&pageNo=`+pageNo+`&numOfRows=`+numOfRows+`&dataType=JSON`+`&base_date=`+baseFcDate+`&base_time=`+baseFcTime;
 
   // select 엘리먼트를 가져옵니다.
   const selectElement = document.getElementById("weather-list");
@@ -304,47 +306,18 @@
 
     // <option> 요소에 value와 텍스트 설정
     optionElement.value = [item.nx , item.ny];
-    console.log(optionElement.value);
+    // console.log(optionElement.value);
 
     optionElement.textContent = item.area;
 
     // <option> 요소를 <select>에 추가
     selectElement.appendChild(optionElement);
   });
+  console.log(selectElement);
 
 
-  //웹페이지 로딩하면 랜덤으로 데이터 중 하나 골라서 날씨 보여줌
-  window.addEventListener("load", function (){
-    const randomRegion = Math.floor(Math.random() * 17); //0~16
-    console.log(region[randomRegion].area);
-
-   const regionOption = document.getElementsByTagName("option");
-
-  })
-
-
-
-  selectElement.addEventListener("change", function () {
-
-    let requestUrl;
-    let requestUrl2;
-
-    const selectedOption = this.options[this.selectedIndex];
-    console.log(selectedOption);
-    console.log(selectedOption.value);
-    const selectCoordinate = selectedOption.value.split(",");
-    console.log(selectCoordinate);
-
-    nx = +selectCoordinate[0];
-    console.log("x좌표: ", nx);
-
-    ny = +selectCoordinate[1];
-    console.log("y좌표: :", ny);
-    requestUrl = apiUrl+`?serviceKey=`+serviceKey+`&pageNo=`+pageNo+`&numOfRows=`+numOfRows+`&dataType=JSON`+`&base_date=`+baseDate+`&base_time=`+baseTime+`&nx=`+nx+`&ny=`+ny;
-    console.log(requestUrl)
-    requestUrl2 = apiUrl2+`?serviceKey=`+serviceKey+`&pageNo=`+pageNo+`&numOfRows=`+numOfRows+`&dataType=JSON`+`&base_date=`+baseFcDate+`&base_time=`+baseFcTime+`&nx=`+nx+`&ny=`+ny;
-    console.log(requestUrl2)
-
+  // api에서 fetch 하는 함수
+  function fetchAPI(requestUrl, requestUrl2){
     fetch(requestUrl)
             .then(response => response.json())
             .then(data => {
@@ -433,8 +406,71 @@
               // 에러 처리
               console.error("API 호출 중 에러가 발생했습니다:", error);
             });
-  })
+  }
+
+  // requestURL 저장하는 함수
 
 
+  //웹페이지 로딩하면 랜덤으로 데이터 중 하나 골라서 날씨 보여줌
+  window.addEventListener("load", function (){
+
+    let requestUrl;
+    let requestUrl2;
+    //서울 setAttribute
+    // (document.getElementById('weather-list').value = "60,127";
+    const defaultIndex = 1;
+    selectElement.options[defaultIndex].selected = true;
+    console.log(selectElement[defaultIndex].value);  //60,127
+
+    const selectCoordinate = selectElement[defaultIndex].value.split(",");
+    console.log(selectCoordinate);
+
+    nx = +selectCoordinate[0];
+    ny = +selectCoordinate[1];
+
+    // console.log("x좌표: ", nx);
+    // console.log("y좌표: :", ny);
+
+    requestUrl = baseUrl+`&nx=`+nx+`&ny=`+ny;
+    requestUrl2 = baseFcUrl+`&nx=`+nx+`&ny=`+ny;
+
+    // console.log(requestUrl)
+    // console.log(requestUrl2)
+
+   fetchAPI(requestUrl, requestUrl2);
+  });
+
+  selectElement.addEventListener("change", function () {
+
+    let requestUrl;
+    let requestUrl2;
+
+    const selectedOption = this.options[this.selectedIndex];
+    console.log(selectedOption);
+    console.log(selectedOption.value);
+    const selectCoordinate = selectedOption.value.split(",");
+    console.log(selectCoordinate);
+
+    nx = +selectCoordinate[0];
+    ny = +selectCoordinate[1];
+
+    // console.log("x좌표: ", nx);
+    // console.log("y좌표: :", ny);
+
+    requestUrl = baseUrl+`&nx=`+nx+`&ny=`+ny;
+    requestUrl2 = baseFcUrl+`&nx=`+nx+`&ny=`+ny;
+
+    // console.log(requestUrl)
+    // console.log(requestUrl2)
+
+    fetchAPI(requestUrl, requestUrl2);
+  });
+</script>
+<script>
+<%-- 산악기상 API  스크립트--%>
+
+const mountUrl = "http://apis.data.go.kr/1400377/mtweather/mountListSearch?serviceKey=인증키(URL Encode)&pageNo=1&numOfRows=10&_type=JSON";
+let localArea;
+// &localArea=1&obsid=1910&tm=202106301809";
 </script>
 </html>
