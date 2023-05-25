@@ -64,7 +64,7 @@ public class ReviewController {
         log.info("detail 게시물 정보 : {}",detail);
         List<ReviewLikeResponseDTO> byAccountDTO = reviewService.findByAccount();
 
-        log.info("like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
+        log.info("Review like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
         model.addAttribute("login", login);
         model.addAttribute("is", detail);
         model.addAttribute("l",byAccountDTO);

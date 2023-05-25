@@ -1,10 +1,8 @@
 package com.mountain.doo.controller;
 
 
-import com.mountain.doo.dto.feed.FeedDetailResponseDTO;
-import com.mountain.doo.dto.feed.FeedListResponseDTO;
-import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
-import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
+import com.mountain.doo.dto.feed.*;
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.entity.Feed;
@@ -57,10 +55,16 @@ public class FeedController {
         Object login = request.getSession().getAttribute("login");
         System.out.println("login333 = " + login);
         // 페이징 알고리즘 작동
+
+        List<FeedLikeUserResponseDTO> byAccountDTO = feedService.findByAccount();
+
+        log.info("Feed like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
+
         model.addAttribute("login",login);
         model.addAttribute("fList", responseDTO);
         model.addAttribute("maker", maker);
         model.addAttribute("s", page);
+        model.addAttribute("f",byAccountDTO);
 
         return "feed/feedList";
     };

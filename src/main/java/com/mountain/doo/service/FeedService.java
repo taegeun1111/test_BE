@@ -1,10 +1,7 @@
 package com.mountain.doo.service;
 
 
-import com.mountain.doo.dto.feed.FeedDetailResponseDTO;
-import com.mountain.doo.dto.feed.FeedListResponseDTO;
-import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
-import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
+import com.mountain.doo.dto.feed.*;
 import com.mountain.doo.dto.like.FeedLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.ClubSearch;
@@ -93,6 +90,11 @@ public class FeedService {
     public int islike(FeedLikeResponseDTO dto){
         int i = feedRepository.likeCount(dto);
         return i;
+    }
+
+    // 좋아요한 게시물 조회
+    public List<FeedLikeUserResponseDTO> findByAccount(){
+        return feedRepository.findOneByUser();
     }
 
 }
