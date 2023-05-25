@@ -8,7 +8,9 @@
 
     <select id="findAll" resultType="feed">
         SELECT
-        feed_board_no, account_id, feed_title, feed_content, feed_like_count, feed_view_count, feed_reg_date, feed_modify
+        feed_board_no, account_id, feed_title, feed_content,
+        feed_like_count, feed_view_count, feed_reg_date, feed_modify, feed_img
+
         FROM feed
         <if test="type == 'title'">
             WHERE feed_title LIKE CONCAT('%', #{keyword}, '%')
@@ -26,8 +28,8 @@
 
     <insert id="save">
         INSERT INTO feed
-            (account_id, feed_title, feed_content)
-        VALUES (#{accountId}, #{feedTitle}, #{feedContent})
+            (account_id, feed_title,feed_like_count, feed_content, feed_img)
+        VALUES (#{accountId}, #{feedTitle},0, #{feedContent}, #{feedImg})
     </insert>
 
     <delete id="deleteFeed">

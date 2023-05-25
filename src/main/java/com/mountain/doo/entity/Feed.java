@@ -38,12 +38,14 @@ public class Feed {
     private long feedViewCount;
     private LocalDateTime feedRegDate;
     private LocalDateTime feedModify;
+    private String feedImg;
 
-    public Feed(FeedWriteRequestDTO dto) {
+    public Feed(FeedWriteRequestDTO dto, String savePath) {
         this.accountId = dto.getId();
         this.feedTitle = dto.getTitle();
         this.feedContent = dto.getContent();
         this.feedRegDate = LocalDateTime.now();
+        this.feedImg = savePath;
     }
 
 

@@ -1,0 +1,155 @@
+body#bg-color {
+    background-color: rgb(240, 240, 240);
+}
+
+.feed-container {
+    margin: 120px auto 0;
+    width: 1200px;
+
+
+}
+
+.main-img img {
+    width: 1200px;
+    /* height: 430px; */
+}
+
+.list-container {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 10px 40px 30px;
+    /* margin-bottom: 50px; */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* overflow: scroll; */
+    /* height: 1300px; */
+
+}
+
+
+/* 좋아요, 댓글 */
+.like-it-count {
+    font-size: 13px;
+    margin-top: 6px;
+    display: flex;
+    align-items: end;
+    /* height: 50px; */
+}
+
+.heart,
+.comment {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.comment {
+    margin: 0 10px;
+}
+
+.user-id,
+.comment-id {
+    font-weight: 400;
+}
+
+/* 아이콘 */
+.heard-icon,
+.comment-icon {
+    width: 15px;
+    margin-right: 5px;
+}
+
+
+
+/* 피드 리스트 영역 */
+.feed-list {
+    width: 23.5%;
+    /* height: 370px; */
+    /* min-height: 370px; */
+    background: #1e1d21;
+    padding: 12px;
+    border-radius: 10px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.feed-list:nth-of-type(4n+1){
+    margin-right: 0 !important;
+}
+
+#list-img {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.text-content{
+    word-break: break-all;
+    min-height: 50px;
+    max-height: 50px;
+    overflow: auto;
+}
+/* 피드 텍스트 공통영역 */
+.list-text {
+    color: white;
+    font-size: 16px;
+}
+
+.text-title {
+    margin: 5px 0 4px;
+    font-weight: 500;
+}
+
+/* 글쓰기 버튼 */
+.writebtn-warpper {
+    width: 98%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+
+}
+.write-btn:hover{
+    color: white;
+}
+
+.write-btn {
+    padding: 7px 25px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #d5f462;
+    color: black;
+    font-weight: 400;
+    display: flex;
+
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    margin: 20px auto;
+    margin-bottom: 50px;
+    /* background-color: rgb(250, 250, 250); */
+    /* height: 150px; */
+    /* border-bottom: 1px solid #000; */
+    
+}
+.pagination li a{
+    font-size: 18px;
+    color: #1e1d21 !important;
+}
+
+.page-item.active .page-link{
+    font-size: 18px;
+    background-color: rgb(200, 200, 200) !important;
+    color: black !important;
+    border-color: rgb(200, 200, 200) !important;
+}

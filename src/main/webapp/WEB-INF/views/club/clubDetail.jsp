@@ -102,7 +102,7 @@
                         <div class="profile-box">
                             <c:choose>
                                 <c:when test="${login.profile != null}">
-                                    <img src="/local${login.profile}" alt="프사">
+                                    <img src="/local${login.profile}" alt="프사" id="profile-img">
                                 </c:when>
                                 <c:otherwise>
                                     <img src="https://cdn-icons-png.flaticon.com/128/7281/7281869.png" alt="프로필사진"

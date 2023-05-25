@@ -25,6 +25,7 @@
                         <option value="review">산악 후기</option>
                         <option value="issue">산악 이슈</option>
                     </select>
+                    <div class="file-upload"></div>
                     <textarea name="title" id="title" cols="30" rows="10" placeholder="제목을 입력해주세요"></textarea>
                     <textarea name="content" id="content" cols="30" rows="10" placeholder="내용을 입력해주세요"></textarea>
 
@@ -37,7 +38,37 @@
         </div>
     </form>
     <script>
-        
+        // selected에 일상이 선택되면 div태그에 파일 input을 추가해줘야 한다.
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectFeed = document.getElementById('categorySelect');
+            const fileUploadContainer = document.querySelector('.file-upload');
+            const changeForm = document.getElementById('write-porm');
+
+            function handleCategorySelect() {
+                if (selectFeed.value === 'feed') {
+                    const tag = `
+                    <div class= "image-form">
+                        <label for="image">
+                        <div class="btn-upload"></div>
+                        </label>
+                        <input type="file" name="image" id="image">
+                    </div>
+                    `;
+                    fileUploadContainer.innerHTML = tag;
+                    changeForm.enctype="multipart/form-data"
+
+                } else {
+                    fileUploadContainer.innerHTML = ''; // 선택 값이 'feed'가 아닐 경우 태그를 제거
+                    changeForm.enctype=""
+                }
+            }
+
+            selectFeed.addEventListener('change', handleCategorySelect);
+            handleCategorySelect(); // 초기 로딩 시에도 처리되도록 호출
+        });
+
+
+
         const $selected = document.getElementById('categorySelect');
         const $form = document.getElementById('write-porm');
 
