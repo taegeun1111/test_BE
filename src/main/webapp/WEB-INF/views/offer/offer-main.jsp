@@ -38,7 +38,7 @@
                 <ul class="category">
                     <li id="offern1"><a href="/offer/offer-main">이달의 산행 추천</a></li>
                     <li id="offern2"><a href="/offer/offer-eat">코스별 맛집 추천</a></li>
-                    <li id="offern3"><a href="">50대 명산 추천</a></li>
+                    <!-- <li id="offern3"><a href="">50대 명산 추천</a></li> -->
                 </ul>
             </div>
         </div>
@@ -62,8 +62,10 @@
                 <hr style="border: 1px solid #d0d0d0;">
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle1}</h2>
-                    <img src="https://t1.daumcdn.net/cfile/tistory/99F88E3B5FB9E7A418" alt="인왕산 이미지"
-                        class="article-image">
+
+                    <!-- <img src="https://t1.daumcdn.net/cfile/tistory/99F88E3B5FB9E7A418" alt="인왕산 이미지"> -->
+                    <img src="/local${image.get(0).offerImage}" alt="첫번째 이미지" class="article-image">
+
                     <p class="article-content">${text.offerContent1}</p>
                 </section>
 

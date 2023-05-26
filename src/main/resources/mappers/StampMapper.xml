@@ -195,3 +195,31 @@
 
 
 </mapper>
+
+
+    <!--   최근 작성 게시물 날짜 확인 -->
+    <update id="updateCount">
+        update stamp
+        set attend_count = 0,board_count = 0,banner_click_count =0
+        where account_id  = #{accountId};
+    </update>
+
+        <!-- 출석 스탬프 클릭 여부-->
+    <insert id="saveClickStamp">
+        insert into click_stamp (account_id)
+        values (#{accountId})
+    </insert>
+
+    <update id="updateClickStamp">
+        update click_stamp
+        set click =#{click}
+        where account_id  = #{accountId};
+    </update>
+
+    <select id="isClick" resultType="boolean">
+        select click from click_stamp
+        where account_id  = #{accountId};
+    </select>
+
+
+</mapper>

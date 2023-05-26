@@ -41,6 +41,11 @@ public class StampController {
         model.addAttribute("stamp",stamp);
 
 
+        boolean click = stampService.isClick(accountId);
+        log.info("/stamp click여부 : "+click);
+        model.addAttribute("isClick",click);
+
+
 
 //        stampService.loginStamp(StampAddConditionDTO,accountId);
 
@@ -121,7 +126,9 @@ public class StampController {
 
         log.info("스탬프 비동기1 stampAdd" + stampAdd);
 
+
         stampService.update(stampAdd);
+
 //        log.info("스탬프 비동기1 stampService.update(stampAdd) : " + );
 
         // 클릭 횟수 증가 또는 저장 로직 구현
@@ -162,7 +169,8 @@ public class StampController {
             stampService.isLogin(attendCount,accountId);
             stampService.stampAdd(accountId);
         }
-        Stamp stamp = stampService.stampCount(accountId);
+        //Stamp stamp = stampService.stampCount(accountId);
+
 
         return ResponseEntity.ok().body(b); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
     }

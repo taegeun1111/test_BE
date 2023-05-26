@@ -52,8 +52,6 @@
         <include refid="search" />
     </select>
 
-
-
     <sql id="search">
         <if test="type == 'title'">
             WHERE issue_title LIKE CONCAT('%', #{keyword}, '%')
