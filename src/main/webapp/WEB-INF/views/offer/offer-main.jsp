@@ -14,7 +14,7 @@
     <style>
         /* 추후 js 걸어야 함 */
         .offer-category-select li:nth-child(1) {
-            background: #959595;
+            background: #b7d15a;
         }
 
         .offer-category-select li:nth-child(1) a {
@@ -71,20 +71,20 @@
 
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle2}</h2>
-                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202203/28/6bd92c01-5fb4-46ac-8f94-525847271b1c.jpg"
+                    <img src="/local${image.get(1).offerImage}"
                         alt="응봉산 이미지" class="article-image">
                     <p class="article-content">${text.offerContent2}</p>
                 </section>
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle3}</h2>
-                    <img src="https://tong.visitkorea.or.kr/cms/resource/57/2661757_image2_1.jpg" alt="아차산 이미지"
+                    <img src="/local${image.get(2).offerImage}" alt="아차산 이미지"
                         class="article-image">
                     <p class="article-content">${text.offerContent3}</p>
                 </section>
 
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle4}</h2>
-                    <img src="https://mblogthumb-phinf.pstatic.net/MjAxOTA5MTJfODMg/MDAxNTY4MjUxNDQ5MTMw.dmj7Da0SA5vmZy_ECPIHt2UVOjIdDZxgNsBx_GI1rFAg.ZGzIQN7Sahaspid6b4dcxtYNrN3R5mPTxWv7-57OeJgg.JPEG.totaltax/190910_%EC%83%81%EC%A3%BC_%EC%B2%AD%EA%B3%84%EC%82%B0_(45).jpg?type=w800"
+                    <img src="/local${image.get(3).offerImage}"
                         alt="청계산 이미지" class="article-image">
                     <p class="article-content">${text.offerContent4}</p>
                 </section>

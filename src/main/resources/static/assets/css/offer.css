@@ -47,25 +47,28 @@
 
 .offer-category-select li{
     display: block;
-    width: 33.3%;
+    width: 50%;
     height: 50px;
     border: 1px solid #ddd;
     line-height: 50px;
     text-align: center;
     font-weight: normal;
-    color: #444;
-    background: #fff;
+    color: #ffffff;
+    background:#858585;
 }
 .offer-category-select li a {
-    text-decoration: none;
+    color: #fff;
 }
 
 /* js작업 예정! */
 .offer-category-select li a:active {
+    /* background:#b7d15a; */
    color: #ffffff;
 }
+
 .offer-category-select li:active{
-    background: #959595;
+    /* background:#b7d15a; */
+   color: #ffffff;
  }
  
 /* 추천 중앙부 */
