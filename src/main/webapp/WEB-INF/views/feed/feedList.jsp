@@ -198,28 +198,7 @@
 
         }
 
-        // // 글자 수 제한
-        // // title 요소 선택
-        // const $contents = document.querySelectorAll('.text-content');
-        // const $titles = document.querySelectorAll('.text-title');
-
-        // // title 생략 및 ... 추가 함수
-        // function truncateTitle(titleElement, maxLength) {
-        //     const title = titleElement.textContent;
-        //     if (title.length > maxLength) {
-        //         titleElement.textContent = title.slice(0, maxLength) + '...';
-        //     }
-        // }
-
-        // // 각 title 요소에 대해 처리
-        // $contents.forEach(content => {
-        //     truncateTitle(content, 50); // 최대 50글자로 제한
-        // });
-
-        // $titles.forEach(title => {
-        //     truncateTitle(title, 15); // 최대 15글자로 제한
-        // });
-
+       
 
 
 
@@ -713,15 +692,6 @@
             });
         });
 
-
-        // const clickLike = document.querySelector('.like-it-count');
-        // clickLike.addEventListener('click', e => {
-        //     // <div class="boardNo" data-bno="${f.boardNo}"></div>
-        //     const bno = e.target.closest('.boardNo').dataset.bno;
-        //     console.log("boardNo 클릭됨");
-        //     console.log(`bno : ${bno}`);
-
-        // })
     </script>
 </body>
 

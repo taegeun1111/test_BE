@@ -189,18 +189,6 @@
     <update id="updateCount">
         update stamp
         set attend_count = 0,board_count = 0,banner_click_count =0
-        where account_id  = #{accountId}
-        ;
-    </update>
-
-
-</mapper>
-
-
-    <!--   최근 작성 게시물 날짜 확인 -->
-    <update id="updateCount">
-        update stamp
-        set attend_count = 0,board_count = 0,banner_click_count =0
         where account_id  = #{accountId};
     </update>
 
