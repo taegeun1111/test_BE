@@ -28,7 +28,7 @@
 
     <select id="findOne" resultType="issue">
         SELECT
-            issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id
+            issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id, issue_like_count
         FROM issue
         WHERE issue_board_no = #{issueBoardNo}
     </select>
@@ -69,14 +69,14 @@
 
     <insert id="plusLike">
         INSERT INTO issue_like_count
-        (account_id, issue_like_board_no)
-        VALUES (#{accountId}, #{issueLikeBoardNo})
+        (account_id, issue_board_no)
+        VALUES (#{accountId}, #{issueBoardNo})
     </insert>
 
     <delete id="minusLike">
         DELETE FROM issue_like_count
         WHERE account_id = #{accountId}
-        AND issue_like_board_no = #{issueLikeBoardNo}
+        AND issue_board_no = #{issueBoardNo}
     </delete>
 
     <select id="likeCount" resultType="int">
@@ -90,15 +90,15 @@
         UPDATE issue
         SET issue_like_count = (SELECT count(*)
         FROM issue_like_count
-        WHERE issue_like_board_no = #{issueLikeBoardNo}
+        WHERE issue_board_no = #{issueBoardNo}
         )
         WHERE issue_board_no = #{issueBoardNo}
     </update>
 
     <select id="findOneByUser" resultType="issueByLikeOne">
-        SELECT DISTINCT A.account_id, A.like_board_no
+        SELECT DISTINCT A.account_id, A.issue_board_no
         FROM issue_like_count A
-        JOIN review B
+        JOIN issue B
         ON A.account_id = B.account_id;
     </select>
 

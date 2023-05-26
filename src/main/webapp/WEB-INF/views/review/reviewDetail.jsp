@@ -59,7 +59,20 @@
                 ${is.content}
 
             </div>
-            <div class="like-btn">좋아요 ${is.likeCount}</div>
+
+            <c:if test="${empty login}">
+                <div class="like-btn">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+            </c:if>
+
+            <c:if test="${not empty login}">
+                <c:if test="${l == true}">
+                    <div class="like-btn like-ative">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+                </c:if>
+
+                <c:if test="${l == false}">
+                    <div class="like-btn">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+                </c:if>
+            </c:if>
         </div>
 
         <!-- 댓글 비동기처리하기 -->
@@ -121,32 +134,31 @@
     </section>
 
     <script>
-        const $heart = document.querySelector('.heart');
+        const $heart = document.querySelector('.like-btn');
         // const originSrc = "/assets/jpg/heart(line).png";
         // const changeSrc = "/assets/jpg/heart(full).png";
-        let clickLike = false;
+        let clickLike = true;
 
         // 주소값 변경해야 함
         const URL2 = '/review-like';
 
         // jsp줘야함
         $heart.addEventListener('click', e => {
-
-            const heartIcon = document.querySelector('.like-btn');
+            // const heartIcon = document.querySelector('.heard-icon');
             const currentAccount = '${login.accountId}';
             const bno = '${is.boardNo}';
             if (!currentAccount) {
                 alert('로그인을 먼저 해주세요!');
             } else {
                 if (clickLike) {
-                    heartIcon.classList.toggle('like-ative');
+                    $heart.classList.toggle('like-ative');
                     // heartIcon.src = originSrc;
-                    clickLike = false;
+                    clickLike = true;
                 } else {
+                    $heart.classList.toggle('like-ative');
                     // heartIcon.src = changeSrc;
                     clickLike = true;
                 }
-
                 // 여기까지 3개 파라미터가 등록되어야 함
                 console.log(`아이디:\${currentAccount}, 클릭:\${clickLike}, 게시글번호:\${bno}`);
 
@@ -171,21 +183,19 @@
             };
 
             fetch(URL2, requestInfo)
-                .then(res => {
-                    if (res.status === 200) {
-                        console.log("좋아요 클릭됨");
-                        console.log("resTrue : " + res);
+                .then(response => response.json())
+                .then(data => {
+                    // JSON 응답 데이터 처리
+                    console.log('data : ' + data.likeCount);
 
-                    } else {
-                        alert("좋아요 클릭 실패");
-                        console.log("resFail : " + res);
-                    }
+                    document.querySelector('.currentLike').textContent = data.likeCount;
                 });
         };
 
 
 
         //--------------------------------------------------
+        console.log('${l}');
         //글번호
         const bno = '${is.boardNo}';
 
@@ -340,6 +350,7 @@
                 .then(responseResult => {
                     console.log(responseResult);
                     renderReplyList(responseResult);
+
                 })
         }
 
@@ -518,6 +529,7 @@
         }
 
 
+
         (function () {
             //첫 댓글 페이지 불러오기
             getReplyList();
@@ -525,6 +537,7 @@
             makeReplyRegisterClickEvent();
             replyRemoveClickEvent();
             replyModifyClickEvent();
+
         })();
     </script>
 </body>

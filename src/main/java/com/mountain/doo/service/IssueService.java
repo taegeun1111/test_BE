@@ -68,19 +68,21 @@ public class IssueService {
     //클릭 시 좋아요 +1 재클릭시 좋아요 -1
     public IssueDetailResponseDTO clickLike(IssueLikeResponseDTO dto) {
         int islike = isLike(dto);
-
+        System.out.println("islike = " + islike);
         if (dto.isClickLike()) {
             if (islike != 1) {   //클릭시 좋아요가 없다면
                 issueRepository.plusLike(dto);   //좋아요 +1
+                System.out.println("plusLike 발생");
             } else {
                 issueRepository.minusLike(dto);  //아니면 좋아요 -1
-
+                System.out.println("minusLike 발생");
             }
 
             //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
-            issueRepository.updateLikeCount(dto.getIssueLikeBoardNo());
+            boolean count = issueRepository.updateLikeCount(dto.getIssueBoardNo());
+            System.out.println("count = " + count);
         }
-            return getDetail(dto.getIssueLikeBoardNo());
+            return getDetail(dto.getIssueBoardNo());
     }
 
     //좋아요가 있나 없나 확인

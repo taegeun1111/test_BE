@@ -55,6 +55,20 @@
                 ${is.content}
 
             </div>
+
+            <c:if test="${empty login}">
+                <div class="like-btn">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+            </c:if>
+
+            <c:if test="${not empty login}">
+                <c:if test="${i == true}">
+                    <div class="like-btn like-ative">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+                </c:if>
+
+                <c:if test="${i == false}">
+                    <div class="like-btn">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+                </c:if>
+            </c:if>
         </div>
 
 
@@ -62,24 +76,64 @@
     </section>
 
     <script>
-        const $heart = document.querySelector('.heart');
+        const $heart = document.querySelector('.like-btn');
         const originSrc = "/assets/jpg/heart(line).png";
         const changeSrc = "/assets/jpg/heart(full).png";
-        let isLiked = false;
+        let clickLike = true;
+
+        // 주소값 변경해야 함
+        const URL2 = '/issue-like';
 
         // jsp줘야함
         $heart.addEventListener('click', e => {
-            console.log("클릭됨");
-            const heartIcon = document.querySelector('.heard-icon');
-
-            if (isLiked) {
-                heartIcon.src = originSrc;
-                isLiked = false;
+            // const heartIcon = document.querySelector('.heard-icon');
+            const currentAccount = '${login.accountId}';
+            const bno = '${is.boardNo}';
+            console.log('bno = '+bno);
+            if (!currentAccount) {
+                alert('로그인을 먼저 해주세요!');
             } else {
-                heartIcon.src = changeSrc;
-                isLiked = true;
+                if (clickLike) {
+                    $heart.classList.toggle('like-ative');
+                    // heartIcon.src = originSrc;
+                    clickLike = true;
+                } else {
+                    $heart.classList.toggle('like-ative');
+                    // heartIcon.src = changeSrc;
+                    clickLike = true;
+                }
+                // 여기까지 3개 파라미터가 등록되어야 함
+                console.log(`아이디:\${currentAccount}, 클릭:\${clickLike}, 게시글번호:\${bno}`);
+
+                likeClick(currentAccount, clickLike, bno);
             }
         });
+
+
+        function likeClick(currentAccount, clickLike, bno) {
+            const payload = {
+                accountId: currentAccount,
+                issueBoardNo: bno,
+                clickLike: clickLike
+            }
+
+            const requestInfo = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            };
+
+            fetch(URL2, requestInfo)
+                .then(response => response.json())
+                .then(data => {
+                    // JSON 응답 데이터 처리
+                    console.log('data : ' + data.likeCount);
+                    document.querySelector('.currentLike').textContent = data.likeCount;
+                });
+        };
+
 
 
         
