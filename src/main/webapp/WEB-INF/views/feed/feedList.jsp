@@ -37,14 +37,34 @@
                         <div class="text-title">${f.title}</div>
                         <div class="text-content">${f.content}</div>
                     </div>
-                    <div class="like-it-count">
-                        <div class="heart"><img src="/assets/jpg/heart(white).png" alt="좋아요" class="heard-icon">좋아요
-                            ${f.likeCount}</div>
 
-                        <!-- <div class="comment"><img src="/assets/jpg/bubble(white).png" alt="댓글" class="comment-icon">댓글
-                            <span id="replyCnt"></span>
-                        </div> -->
-                    </div>
+
+
+                    <c:if test="${empty login}">
+                        <div class="like-it-count">
+                            <div class="heart"><img src="/assets/jpg/heart(white).png" alt="좋아요" class="heard-icon">좋아요
+                                <span class="currentLike">${f.likeCount}</span></div>
+                        </div>
+                    </c:if>
+
+                    <c:if test="${not empty login}">
+                        <c:if test="${f.likeCount > 0}">
+                            <div class="like-it-count like-ative">
+                                <div class="heart"><img src="/assets/jpg/heart(white).png" alt="좋아요"
+                                        class="heard-icon">좋아요
+                                    <span class="currentLike">${f.likeCount}</span></div>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${f.likeCount == 0}">
+                            <div class="like-it-count">
+                                <div class="heart"><img src="/assets/jpg/heart(white).png" alt="좋아요"
+                                        class="heard-icon">좋아요
+                                    <span class="currentLike">${f.likeCount}</span></div>
+                            </div>
+                        </c:if>
+                    </c:if>
+                </div>
                 </div>
             </c:forEach>
 
@@ -198,7 +218,7 @@
 
         }
 
-       
+
 
 
 
@@ -240,22 +260,17 @@
             feedList.addEventListener('click', (e) => {
                 //로그인한 회원 id
                 const currentAccount = '${login.accountId}';
-                if (e.target.matches(".like-it-count")) {
-                    const $heart = document.querySelector('.heart');
-                    // const originSrc = "/assets/jpg/heart(line).png";
-                    // const changeSrc = "/assets/jpg/heart(full).png";
+                if (e.target.matches(".like-it-count") || e.target.matches(".heart")) {
+                    // const $heart = document.querySelector('.heart');
+                    const $heart = e.target.closest('.heart');
                     let clickLike = false;
 
                     // 주소값 변경해야 함
                     const URL2 = '/feed-like';
 
-                    // jsp줘야함
-
-                    const heartIcon = document.querySelector('.like-it-count');
+                    const heartIcon = e.target.closest('.like-it-count');
                     const currentAccount = '${login.accountId}';
-                    // console.log(e.target.closest('.feed-list').querySelector('.boardNo').dataset.bno);
-                    const bno =(e.target.closest('.feed-list').querySelector('.boardNo').dataset.bno);
-                    console.log(bno);
+                    const bno = (e.target.closest('.feed-list').querySelector('.boardNo').dataset.bno);
 
                     if (!currentAccount) {
                         alert('로그인을 먼저 해주세요!');
@@ -263,12 +278,12 @@
                         if (clickLike) {
                             heartIcon.classList.toggle('like-ative');
                             console.log("heart icon  = " + heartIcon);
-                            // heartIcon.src = originSrc;
                             clickLike = false;
                         } else {
-                            heartIcon.classList.toggle('like-ative');
+                            if (e.target.matches(".like-it-count") || e.target.matches(".heart")) {
+                                e.target.closest(".like-it-count").classList.toggle('like-ative');
+                            }
                             console.log("heart icon  = " + heartIcon);
-                            // heartIcon.src = changeSrc;
                             clickLike = true;
                         }
 
@@ -277,6 +292,7 @@
 
                         likeClick(currentAccount, clickLike, bno);
                     }
+
 
                     function likeClick(currentAccount, clickLike, bno) {
                         const payload = {
@@ -294,15 +310,12 @@
                         };
 
                         fetch(URL2, requestInfo)
-                            .then(res => {
-                                if (res.status === 200) {
-                                    console.log("좋아요 클릭됨");
-                                    console.log("resTrue : " + res);
-
-                                } else {
-                                    alert("좋아요 클릭 실패");
-                                    console.log("resFail : " + res);
-                                }
+                            .then(response => response.json())
+                            .then(data => {
+                                // JSON 응답 데이터 처리
+                                console.log('data : ' + data.likeCount);
+                                    
+                                e.target.closest('.feed-list').querySelector('.currentLike').textContent = data.likeCount;
                             });
                     };
                 } else {
@@ -316,7 +329,7 @@
                     // console.log("currentAccount성공+", currentAccount);
                     // 해당 feed의 제목과 내용
                     const closestListImg = event.target.closest('.feed-list').querySelector(
-                    '#list-img');
+                        '#list-img');
                     const srcValue = closestListImg.getAttribute('src');
                     // console.log(srcValue);
 
@@ -691,7 +704,6 @@
                 }
             });
         });
-
     </script>
 </body>
 
