@@ -224,29 +224,29 @@ public class AccountService {
         else return true;
     }
 
-    public List<Issue>  issueFindAll(String sessionId){
-        List<Issue> issue = mapper.issueFindAll(sessionId);
+    public List<Issue>  issueFindAll(String accountId){
+        List<Issue> issue = mapper.issueFindAll(accountId);
         return issue;
     }
 
-    public List<Feed> feedFindAll(String sessionId){
-        List<Feed> feed = mapper.feedFindAll(sessionId);
+    public List<Feed> feedFindAll(String accountId){
+        List<Feed> feed = mapper.feedFindAll(accountId);
         return feed;
     }
 
-    public List<Club> offerFindAll(String sessionId){
-        List<Club> club = mapper.clubFindAll(sessionId);
+    public List<Club> offerFindAll(String accountId){
+        List<Club> club = mapper.clubFindAll(accountId);
         return club;
     }
 
-    public List<Review> reviewFindAll(String sessionId){
-        List<Review> review = mapper.reviewFindAll(sessionId);
+    public List<Review> reviewFindAll(String accountId){
+        List<Review> review = mapper.reviewFindAll(accountId);
 
         return review;
     }
 
-    public List<SecondhandBoard> secondhandFindAll(String sessionId){
-        List<SecondhandBoard> board = mapper.secondhandFindAll(sessionId);
+    public List<SecondhandBoard> secondhandFindAll(String accountId){
+        List<SecondhandBoard> board = mapper.secondhandFindAll(accountId);
         return board;
     }
 

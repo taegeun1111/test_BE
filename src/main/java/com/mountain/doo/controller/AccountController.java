@@ -126,28 +126,12 @@ public class AccountController {
     }
 
     @GetMapping("/mypage")
-    public String mypage(Model model,  HttpServletRequest request) {
+    public String mypage(Model model,
+                         HttpServletRequest request) {
         //회원정보 마이페이지
 
         log.info("account mypage 요청");
         Account account = accountService.myInfo(request.getSession().getId());
-//        List<Issue> issues = accountService.issueFindAll(request.getSession().getId());
-//        List<Feed> feeds = accountService.feedFindAll(request.getSession().getId());
-//        List<Club> clubs = accountService.offerFindAll(request.getSession().getId());
-//        List<Review> reviews = accountService.reviewFindAll(request.getSession().getId());
-//        List<SecondhandBoard> secondhandBoards = accountService.secondhandFindAll(request.getSession().getId());
-//
-//    model.addAttribute("issues",issues);
-//    model.addAttribute("feeds",feeds);
-//    model.addAttribute("clubs",clubs);
-//    model.addAttribute("reviews",reviews);
-//    model.addAttribute("secondhandBoards",secondhandBoards);
-//
-//    log.info(issues.toString());
-//    log.info(feeds.toString());
-//    log.info(clubs.toString());
-//    log.info(reviews.toString());
-//    log.info(secondhandBoards.toString());
 
         model.addAttribute("mypage", account);
         return "account/mypage";

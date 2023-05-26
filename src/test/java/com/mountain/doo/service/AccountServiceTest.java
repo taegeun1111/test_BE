@@ -70,8 +70,13 @@ class AccountServiceTest {
         boolean b = accountService.modify(build.getAccountId(), build);
         System.out.println("b = " + b);
         assertTrue(b);
+    }
 
-
+    @Test
+    @DisplayName("myinfo")
+    void myinfo(){
+        Account account = accountService.myInfo("myblog0419");
+        System.out.println("account = " + account);
     }
 
 }
