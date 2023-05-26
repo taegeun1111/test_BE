@@ -1,9 +1,8 @@
 package com.mountain.doo.controller;
 
 
-import com.mountain.doo.dto.feed.FeedListResponseDTO;
-import com.mountain.doo.dto.feed.FeedRewriteRequestDTO;
-import com.mountain.doo.dto.feed.FeedWriteRequestDTO;
+import com.mountain.doo.dto.feed.*;
+import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.entity.Feed;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class FeedController {
     // ==Feed==
     // 전체 게시글 조회
     @GetMapping("/list")
-    public String list(Search page, Model model){
+    public String list(Search page, Model model, HttpServletRequest request){
         log.info("feed list GET");
 
 //        log.info(feed.getFeedTitle());
@@ -49,14 +49,22 @@ public class FeedController {
         List<FeedListResponseDTO> responseDTO = feedService.getList(page);
 
         PageMaker maker = new PageMaker(page, feedService.getCount(page));
-        System.out.println("responseDTO = " + responseDTO);
-        System.out.println("page = " + page);
-        System.out.println("maker = " + maker);
-
+//        System.out.println("responseDTO = " + responseDTO);
+//        System.out.println("page = " + page);
+//        System.out.println("maker = " + maker);
+        Object login = request.getSession().getAttribute("login");
+        System.out.println("login333 = " + login);
         // 페이징 알고리즘 작동
+
+        List<FeedLikeUserResponseDTO> byAccountDTO = feedService.findByAccount();
+
+        log.info("Feed like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
+
+        model.addAttribute("login",login);
         model.addAttribute("fList", responseDTO);
         model.addAttribute("maker", maker);
         model.addAttribute("s", page);
+        model.addAttribute("f",byAccountDTO);
 
         return "feed/feedList";
     };
@@ -65,6 +73,8 @@ public class FeedController {
     @GetMapping("/detail")
     public String detail(int boardNo, @ModelAttribute("s") Search search, Model model){
         log.info("feed detail GET");
+        FeedDetailResponseDTO detail = feedService.getDetail(boardNo);
+        log.info("detail : {}",detail);
         model.addAttribute("feed", feedService.getDetail(boardNo));
         return "";
     }

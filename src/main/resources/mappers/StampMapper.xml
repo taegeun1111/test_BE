@@ -22,73 +22,73 @@
     <update id="myBoard">
         UPDATE stamp
         SET board_count = (
-            SELECT SUM(board_count) AS total_count
-            FROM (
-                     SELECT COUNT(*) AS board_count
-                     FROM (
-                              SELECT *
-                              FROM review
-                              WHERE DATE(review_reg_date) = CURRENT_DATE()
+        SELECT SUM(board_count) AS total_count
+        FROM (
+        SELECT COUNT(*) AS board_count
+        FROM (
+        SELECT *
+        FROM review
+        WHERE DATE(review_reg_date) = CURRENT_DATE()
         AND account_id = #{accountId}
-                     UNION ALL
-                     SELECT *
-                     FROM issue
-                     WHERE DATE(issue_reg_date) = CURRENT_DATE()
-                       AND account_id = #{accountId}
-                     UNION ALL
-                     SELECT *
-                     FROM secondhand
-                     WHERE DATE(secondhand_reg_date) = CURRENT_DATE()
-                       AND account_id = #{accountId}
-                 ) AS boardC
-            UNION ALL
-            SELECT COUNT(*) AS board_count
-            FROM club
-            WHERE DATE(club_reg_date) = CURRENT_DATE()
-            AND account_id = #{accountId}
+        UNION ALL
+        SELECT *
+        FROM issue
+        WHERE DATE(issue_reg_date) = CURRENT_DATE()
+        AND account_id = #{accountId}
+        UNION ALL
+        SELECT *
+        FROM secondhand
+        WHERE DATE(secondhand_reg_date) = CURRENT_DATE()
+        AND account_id = #{accountId}
+        ) AS boardC
+        UNION ALL
+        SELECT COUNT(*) AS board_count
+        FROM club
+        WHERE DATE(club_reg_date) = CURRENT_DATE()
+        AND account_id = #{accountId}
         UNION ALL
         SELECT COUNT(*) AS board_count
         FROM feed
         WHERE DATE(feed_reg_date) = CURRENT_DATE()
-          AND account_id = #{accountId}
-            ) AS total_count_table
-            )
+        AND account_id = #{accountId}
+        ) AS total_count_table
+        )
         WHERE account_id = #{accountId};
     </update>
 
     <!--    날짜비교 게시판-->
-    <!--    <select id="myBoardTime" resultType="int">-->
-    <!--        SELECT SUM(board_count) AS total_count-->
-    <!--        FROM (-->
-    <!--        SELECT COUNT(*) AS board_count-->
-    <!--        FROM (-->
-    <!--        SELECT *-->
-    <!--        FROM review-->
-    <!--        WHERE DATE(review_reg_date) = CURRENT_DATE()-->
-    <!--        AND account_id = #{accountId}-->
-    <!--        UNION ALL-->
-    <!--        SELECT *-->
-    <!--        FROM issue-->
-    <!--        WHERE DATE(issue_reg_date) = CURRENT_DATE()-->
-    <!--        AND account_id = #{accountId}-->
-    <!--        UNION ALL-->
-    <!--        SELECT *-->
-    <!--        FROM secondhand-->
-    <!--        WHERE DATE(secondhand_reg_date) = CURRENT_DATE()-->
-    <!--        AND account_id = #{accountId}-->
-    <!--        ) AS boardC-->
-    <!--        UNION ALL-->
-    <!--        SELECT COUNT(*) AS board_count-->
-    <!--        FROM club-->
-    <!--        WHERE DATE(club_reg_date) = CURRENT_DATE()-->
-    <!--        AND account_id = #{accountId}-->
-    <!--        UNION ALL-->
-    <!--        SELECT COUNT(*) AS board_count-->
-    <!--        FROM feed-->
-    <!--        WHERE DATE(feed_reg_date) = CURRENT_DATE()-->
-    <!--        AND account_id = #{accountId}-->
-    <!--        ) AS total_count_table;-->
-    <!--    </select>-->
+<!--    <select id="myBoardTime" resultType="int">-->
+<!--        SELECT SUM(board_count) AS total_count-->
+<!--        FROM (-->
+<!--        SELECT COUNT(*) AS board_count-->
+<!--        FROM (-->
+<!--        SELECT *-->
+<!--        FROM review-->
+<!--        WHERE DATE(review_reg_date) = CURRENT_DATE()-->
+<!--        AND account_id = #{accountId}-->
+<!--        UNION ALL-->
+<!--        SELECT *-->
+<!--        FROM issue-->
+<!--        WHERE DATE(issue_reg_date) = CURRENT_DATE()-->
+<!--        AND account_id = #{accountId}-->
+<!--        UNION ALL-->
+<!--        SELECT *-->
+<!--        FROM secondhand-->
+<!--        WHERE DATE(secondhand_reg_date) = CURRENT_DATE()-->
+<!--        AND account_id = #{accountId}-->
+<!--        ) AS boardC-->
+<!--        UNION ALL-->
+<!--        SELECT COUNT(*) AS board_count-->
+<!--        FROM club-->
+<!--        WHERE DATE(club_reg_date) = CURRENT_DATE()-->
+<!--        AND account_id = #{accountId}-->
+<!--        UNION ALL-->
+<!--        SELECT COUNT(*) AS board_count-->
+<!--        FROM feed-->
+<!--        WHERE DATE(feed_reg_date) = CURRENT_DATE()-->
+<!--        AND account_id = #{accountId}-->
+<!--        ) AS total_count_table;-->
+<!--    </select>-->
 
 
 
@@ -151,38 +151,38 @@
     </insert>
 
     <!--   피드, 리뷰, 이슈, 중고, 클럽 오늘 쓴 날짜 조회-->
-    <select id="todayMyBoard" resultType="int">
-        SELECT SUM(board_count) AS total_count
-        FROM (
-                 SELECT COUNT(*) AS board_count
-                 FROM (
-                          SELECT *
-                          FROM review
-                          WHERE DATE(review_reg_date) = CURRENT_DATE()
+        <select id="todayMyBoard" resultType="int">
+            SELECT SUM(board_count) AS total_count
+            FROM (
+            SELECT COUNT(*) AS board_count
+            FROM (
+            SELECT *
+            FROM review
+            WHERE DATE(review_reg_date) = CURRENT_DATE()
             AND account_id = #{accountId}
-                 UNION ALL
-                 SELECT *
-                 FROM issue
-                 WHERE DATE(issue_reg_date) = CURRENT_DATE()
-                   AND account_id = #{accountId}
-                 UNION ALL
-                 SELECT *
-                 FROM secondhand
-                 WHERE DATE(secondhand_reg_date) = CURRENT_DATE()
-                   AND account_id = #{accountId}
-             ) AS boardC
-        UNION ALL
-        SELECT COUNT(*) AS board_count
-        FROM club
-        WHERE DATE(club_reg_date) = CURRENT_DATE()
-          AND account_id = #{accountId}
-        UNION ALL
-        SELECT COUNT(*) AS board_count
-        FROM feed
-        WHERE DATE(feed_reg_date) = CURRENT_DATE()
-          AND account_id = #{accountId}
+            UNION ALL
+            SELECT *
+            FROM issue
+            WHERE DATE(issue_reg_date) = CURRENT_DATE()
+            AND account_id = #{accountId}
+            UNION ALL
+            SELECT *
+            FROM secondhand
+            WHERE DATE(secondhand_reg_date) = CURRENT_DATE()
+            AND account_id = #{accountId}
+            ) AS boardC
+            UNION ALL
+            SELECT COUNT(*) AS board_count
+            FROM club
+            WHERE DATE(club_reg_date) = CURRENT_DATE()
+            AND account_id = #{accountId}
+            UNION ALL
+            SELECT COUNT(*) AS board_count
+            FROM feed
+            WHERE DATE(feed_reg_date) = CURRENT_DATE()
+            AND account_id = #{accountId}
             ) AS total_count_table;
-    </select>
+        </select>
 
 
     <!--   최근 작성 게시물 날짜 확인 -->

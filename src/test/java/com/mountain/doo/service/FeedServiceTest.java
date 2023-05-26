@@ -33,7 +33,7 @@ class FeedServiceTest {
 
         FeedLikeResponseDTO dto = new FeedLikeResponseDTO();
         dto.setClickLike(true);
-        dto.setFeedBoardNo(1);
+        dto.setFeedBoardNo(3);
         dto.setAccountId("myblog0419");
 
         service.clickLike(dto);

@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class IssueLikeResponseDTO {
     private String accountId;
-    private int issueBoardNo;
+    private int issueLikeBoardNo;
     private boolean clickLike;
 
 }

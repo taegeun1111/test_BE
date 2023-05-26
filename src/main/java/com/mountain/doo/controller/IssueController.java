@@ -1,10 +1,8 @@
 package com.mountain.doo.controller;
 
 
-import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
-import com.mountain.doo.dto.issue.IssueListResponseDTO;
-import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
-import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
+import com.mountain.doo.dto.feed.FeedLikeUserResponseDTO;
+import com.mountain.doo.dto.issue.*;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.entity.Issue;
@@ -63,8 +61,13 @@ public class IssueController {
         log.info("detail에 접근한 User의 정보 : {}", request.getSession().getAttribute("login"));
         log.info("detail 게시물 정보 : {}",detail);
 
+        List<IssueLikeUserResponseDTO> byAccountDTO = issueService.findByAccount();
+
+        log.info("Issue like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
+
         model.addAttribute("login",login);
         model.addAttribute("is", detail);
+        model.addAttribute("i",byAccountDTO);
         return "issue/issueDetail";
     }
 
@@ -110,6 +113,8 @@ public class IssueController {
         issueService.delete(bno);
         return  "redirect:/issue/list";
     }
+//    @PostMapping("/")
+
 
 
 
