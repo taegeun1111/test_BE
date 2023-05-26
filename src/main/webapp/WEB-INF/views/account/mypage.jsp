@@ -80,77 +80,64 @@
         </section>
 
         <section class="mypage-write">
-            <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">대체공휴일 기념 부산근교트레킹벙(오전9시)</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
-            </div>
 
+            <c:forEach var="i" items="${is}">
             <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 국민은 건강하고 쾌적한 환경에서 생활할 권리를 가지며, 국가와 국민은 환경보전을 위하여 노력하여야 한다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
+                <div class="board-boardNo">${i.issueBoardNo}</div>
+                <div class="board-title">${i.issueTitle}</div>
+                <div class="board-writer">${i.accountId}</div>
+                <div class="board-writen-date">${i.issueRegDate}</div>
+                <div class="board-view-count">${i.issueViewCount}</div>
+                <div class="division-like-it">${i.issueLikeCount}</div>
             </div>
+            </c:forEach>
 
+        <c:forEach var="f" items="${fd}">
             <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 권력은 국민으로부터 나온다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
+                <div class="board-boardNo">${f.feedBoardNo}</div>
+                <div class="board-title">${f.feedTitle}</div>
+                <div class="board-writer">${f.accountId}</div>
+                <div class="board-writen-date">${f.feedRegDate}</div>
+                <div class="board-view-count">${f.feedViewCount}</div>
+                <div class="division-like-it">${f.feedLikeCount}</div>
             </div>
+            </c:forEach>
 
+        <c:forEach var="r" items="${rv}">
             <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 권력은 국민으로부터 나온다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
+                <div class="board-boardNo">${r.reviewBoardNo}</div>
+                <div class="board-title">${r.reviewTitle}</div>
+                <div class="board-writer">${r.accountId}</div>
+                <div class="board-writen-date">${r.reviewRegDate}</div>
+                <div class="board-view-count">${r.reviewViewCount}</div>
+                <div class="division-like-it">${r.reviewLikeCount}</div>
             </div>
+            </c:forEach>
 
-            <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 권력은 국민으로부터 나온다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
-            </div>
+            <c:forEach var="c" items="${cb}">
+                            <div class="board-container">
+                                <div class="board-boardNo">${c.clubBoardNo}</div>
+                                <div class="board-title">${c.clubTitle}</div>
+                                <div class="board-writer">${c.accountId}</div>
+                                <div class="board-writen-date">${c.clubRegDate}</div>
+                                <div class="board-view-count">0</div>
+                                <div class="division-like-it">0</div>
+                            </div>
+                            </c:forEach>
 
-            <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 권력은 국민으로부터 나온다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
-            </div>
-            <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 권력은 국민으로부터 나온다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
-            </div>
-            <div class="board-container">
-                <div class="board-boardNo">9999</div>
-                <div class="board-title">모든 권력은 국민으로부터 나온다.</div>
-                <div class="board-writer">이동우</div>
-                <div class="board-writen-date">2023.04.30</div>
-                <div class="board-view-count">0</div>
-                <div class="division-like-it">25</div>
-            </div>
+                    <c:forEach var="s" items="${sb}">
+                        <div class="board-container">
+                            <div class="board-boardNo">${s.secondHandBoardNo}</div>
+                            <div class="board-title">${s.secondhandTitle}</div>
+                            <div class="board-writer">${s.accountId}</div>
+                            <div class="board-writen-date">${s.secondhandRegDate}</div>
+                            <div class="board-view-count">${s.secondhandViewCount}</div>
+                            <div class="division-like-it">0</div>
+                        </div>
+                        </c:forEach>
         </section>
     </section>
+
 
     <script>
         // 수정하기 버튼
