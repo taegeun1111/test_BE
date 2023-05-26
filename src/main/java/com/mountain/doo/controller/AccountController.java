@@ -2,6 +2,7 @@ package com.mountain.doo.controller;
 
 
 import com.mountain.doo.dto.AccountModifyDTO;
+import com.mountain.doo.dto.AccountResponseDTO;
 import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
@@ -127,11 +128,26 @@ public class AccountController {
 
     @GetMapping("/mypage")
     public String mypage(Model model,
+                         HttpServletResponse response,
                          HttpServletRequest request) {
         //회원정보 마이페이지
 
+        AccountResponseDTO loginUserData = (AccountResponseDTO)request.getSession().getAttribute(LoginUtil.LOGIN_KEY);
+        String accountId=loginUserData.getAccountId();
+
         log.info("account mypage 요청");
-        Account account = accountService.myInfo(request.getSession().getId());
+        Account account = accountService.myInfo(accountId);
+        List<SecondhandBoard> secondhandBoards = accountService.secondhandFindAll(accountId);
+        List<Issue> issues = accountService.issueFindAll(accountId);
+        List<Feed> feeds = accountService.feedFindAll(accountId);
+        List<Club> clubs = accountService.offerFindAll(accountId);
+        List<Review> reviews = accountService.reviewFindAll(accountId);
+
+        model.addAttribute("sb",secondhandBoards);
+        model.addAttribute("is",issues);
+        model.addAttribute("fd",feeds);
+        model.addAttribute("cb",clubs);
+        model.addAttribute("rv",reviews);
 
         model.addAttribute("mypage", account);
         return "account/mypage";
