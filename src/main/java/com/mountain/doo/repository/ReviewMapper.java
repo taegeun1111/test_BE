@@ -54,5 +54,5 @@ public interface ReviewMapper {
     int likeCount(ReviewLikeResponseDTO dto);
 
     //해당 게시글에 있는 좋아요 개수 확인
-    void updateLikeCount(int boardNo);
+    boolean updateLikeCount(int boardNo);
 }

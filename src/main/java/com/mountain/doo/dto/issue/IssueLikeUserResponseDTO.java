@@ -11,5 +11,5 @@ import lombok.ToString;
 public class IssueLikeUserResponseDTO {
 
     private String accountId;
-    private int feedBoardNo;
+    private int issueBoardNo;
 }

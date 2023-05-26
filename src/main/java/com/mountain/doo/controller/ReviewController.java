@@ -63,7 +63,7 @@ public class ReviewController {
         List<ReviewLikeUserResponseDTO> byAccountDTO = reviewService.findByAccount();
 
         boolean heartResult = isHeartResult(login, detail, byAccountDTO);
-
+        System.out.println("heartResult = " + heartResult);
         log.info("Review like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
         model.addAttribute("login", login);
         model.addAttribute("is", detail);
@@ -71,8 +71,7 @@ public class ReviewController {
         return "review/reviewDetail";
     }
 
-
-    private static boolean isHeartResult(Object login, ReviewDetailResponseDTO detail, List<ReviewLikeUserResponseDTO> byAccountDTO) {
+    private boolean isHeartResult(Object login, ReviewDetailResponseDTO detail, List<ReviewLikeUserResponseDTO> byAccountDTO) {
         boolean heartResult = false;
         if (login != null) {
             String accountId = ((AccountResponseDTO) login).getAccountId();
