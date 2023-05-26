@@ -34,7 +34,7 @@
     }
     /* 추후 js 걸어야 함 */
     .offer-category-select li:nth-child(2) {
-    background: #959595;
+        background: #b7d15a;
     }
 
     .offer-category-select li:nth-child(2) a {
@@ -57,8 +57,7 @@
             <div class="offer-category-select">
                 <ul class="category">
                     <li><a href="/offer/offer-main">이달의 산행 추천</a></li>
-                    <li><a href="offer-restaurant.jsp">코스별 맛집 추천</a></li>
-                    <li><a href="offer-top50.html">50대 명산 추천</a></li>
+                    <li><a href="/offer/offer-eat">코스별 맛집 추천</a></li>
                 </ul>
             </div>
         </div>
@@ -81,30 +80,30 @@
 
                 <!--resto article main -->
                 <section class="article-resto">
+
                     <h2 class="article-title">${text.offerTitle1}</h2>
-                    <img src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/573810_1589184647514037.jpg?fit=around|600:*&crop=600:*;*,*&output-format=jpg&output-quality=80"
+                    <img src="/local${image.get(0).offerImage}"
                     alt="원조할아버지 이미지" class="article-image">
-                            <p class="article-content">
-                                ${text.offerContent1}</p>
+                            <p class="article-content"> ${text.offerContent1}</p>
                 </section>
 
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle2}</h2>
-                    <img src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/2903/908827_1577469472107_1065968?fit=around|600:*&crop=600:*;*,*&output-format=jpg&output-quality=80"
+                    <img src="/local${image.get(1).offerImage}"
                         alt="응봉산 이미지" class="article-image">
                     <p class="article-content">${text.offerContent2}
                     </p>
                 </section>
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle3}</h2>
-                    <img src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/86993/pa13-xlazqls4e.jpg?fit=around|600:*&crop=600:*;*,*&output-format=jpg&output-quality=80"
+                    <img src="/local${image.get(2).offerImage}"
                         alt="아차산 이미지" class="article-image">
                     <p class="article-content">${text.offerContent3}</p>
                 </section>
 
                 <section class="article">
                     <h2 class="article-title">${text.offerTitle4}</h2>
-                    <img src="https://s3-ap-northeast-2.amazonaws.com/mp-seoul-image-production/651394_1591156264731419.jpg?fit=around|600:*&crop=600:*;*,*&output-format=jpg&output-quality=80"
+                    <img src="/local${image.get(3).offerImage}"
                         alt="청계산 이미지" class="article-image">
                     <p class="article-content">${text.offerContent4}</p>
                 </section>
