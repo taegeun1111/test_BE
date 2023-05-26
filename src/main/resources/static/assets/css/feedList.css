@@ -412,3 +412,7 @@ body#bg-color {
     border: none;
     color: black;
 }
+
+.currentLike{
+    margin-left: 3px;
+}

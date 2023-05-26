@@ -51,7 +51,6 @@ public class AccountController {
     @PostMapping("/sign-up")
     public String signUp(Account account, MultipartFile clientProfileImage) {
 
-
         log.info("가입처리요청");
         log.info("회원가입 비번  :" + account.getPassword());
 

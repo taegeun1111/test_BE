@@ -1,10 +1,13 @@
 package com.mountain.doo.controller;
 
 
+import com.mountain.doo.dto.AccountResponseDTO;
 import com.mountain.doo.dto.feed.*;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
 import com.mountain.doo.dto.page.PageMaker;
+import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
+import com.mountain.doo.dto.review.ReviewLikeUserResponseDTO;
 import com.mountain.doo.entity.Feed;
 import com.mountain.doo.repository.FeedMapper;
 import com.mountain.doo.service.FeedService;
@@ -60,14 +63,36 @@ public class FeedController {
 
         log.info("Feed like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
 
+        boolean heartResult = isHeartResult(login, byAccountDTO, responseDTO);
+
         model.addAttribute("login",login);
         model.addAttribute("fList", responseDTO);
         model.addAttribute("maker", maker);
         model.addAttribute("s", page);
-        model.addAttribute("f",byAccountDTO);
+        model.addAttribute("r",heartResult);
 
         return "feed/feedList";
     };
+
+    private boolean isHeartResult(Object login, List<FeedLikeUserResponseDTO> byAccountDTO,  List<FeedListResponseDTO> responseDTO) {
+        boolean heartResult = false;
+        if (login != null) {
+            String accountId = ((AccountResponseDTO) login).getAccountId();
+
+            for (FeedLikeUserResponseDTO heartList : byAccountDTO) {
+                if (heartList.getAccountId().equals(accountId)){
+                    heartResult = true;
+                    break;
+                }else {
+                    heartResult = false;
+                }
+            }
+        }
+        return heartResult;
+    }
+
+
+
 
     // 게시글 상세 조회
     @GetMapping("/detail")
