@@ -30,8 +30,11 @@ public class OfferController {
 
     @GetMapping("/offer-main")
     public String offer(Model model) {
-            log.info("산 추천");
-        int boardNo = offerService.findBoardNo("산 추천");
+        log.info("offer-main GET!!!!!!!!");
+            log.info("산추천");
+        int boardNo = offerService.findBoardNo("산추천");
+        log.info("boardNo = {}", boardNo);
+        System.out.println("boardNo = " + boardNo);
         OfferResponseDTO text = offerService.findText(boardNo);
         List<OfferImageResponseDTO> image = offerService.findImage(boardNo);
         log.info("산 추천 text : "+text);
