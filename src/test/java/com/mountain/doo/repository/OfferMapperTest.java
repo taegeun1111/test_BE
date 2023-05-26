@@ -51,6 +51,10 @@ class OfferMapperTest {
         int offerBoardNo=13;
         List<OfferImageResponseDTO> image = mapper.findImage(13);
             System.out.println("image 경로 : "+ image);
+        System.out.println("image.get(0) : "+image.get(0).getOfferImage());
     }
+
+//    @Test
+//    public void
 
 }

@@ -38,10 +38,12 @@ public class StampController {
 
         Stamp stamp = stampService.stampCount(accountId);
 
-
-        log.info("스탬프 : "+stamp.getAccountId());
-        System.out.println("스탬프 : "+stamp);
         model.addAttribute("stamp",stamp);
+
+        boolean click = stampService.isClick(accountId);
+        log.info("/stamp click여부 : "+click);
+        model.addAttribute("isClick",click);
+
 
 //        stampService.loginStamp(StampAddConditionDTO,accountId);
 
@@ -111,19 +113,19 @@ public class StampController {
             @RequestBody StampAddConditionDTO stampAdd
             , HttpSession session) {
 
-        log.info("스탬프 비동기 : "+stampAdd);
+        log.info("스탬프 비동기1 : "+stampAdd);
 
 
         AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
         String accountId=loginUserData.getAccountId();
+        log.info("스탬프 비동기1 accountId" + accountId);
 
         stampAdd.setAccountId(accountId);
 
-        System.out.println(stampAdd);
+        log.info("스탬프 비동기1 stampAdd" + stampAdd);
 
-//        boolean flag = (boolean) stampAdd.get();
          stampService.update(stampAdd);
-
+//        log.info("스탬프 비동기1 stampService.update(stampAdd) : " + );
 
         // 클릭 횟수 증가 또는 저장 로직 구현
         incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount(), stampAdd);
@@ -133,7 +135,8 @@ public class StampController {
             // 클릭 횟수를 저장하는 데이터베이스에 접근하여 클릭 횟수 증가 또는 저장 작업 수행
             // 예: 클릭 횟수 정보를 데이터베이스에서 조회하고, 증가시킨 후 다시 저장
 
-        log.info("스탬프 비동기 : "+stampAdd);
+        log.info("스탬프 비동기2 : "+stampAdd);
+
         String userId = stampAdd.getAccountId();
 //        boolean flag = (boolean) stampAdd.get();
 
@@ -151,12 +154,28 @@ public class StampController {
 
     @PostMapping("/click-stamp")
     @ResponseBody
-    public ResponseEntity<?> clickStampButton(@RequestBody boolean b){
-        log.info("/memebers/click-stamp");
-        if(b==true){
+    public ResponseEntity<?> clickStampButton(@RequestBody StampAddConditionDTO stampAdd,HttpSession session){
+        log.info("/memebers/click-stamp : " + stampAdd.isClickEvent());
+        boolean b = stampAdd.isClickEvent();
+        AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
+        String accountId=loginUserData.getAccountId();
 
+        if(b==false){
+            boolean attendCount = false;
+            stampService.isLogin(attendCount,accountId);
+            stampService.stampAdd(accountId);
         }
+
         return ResponseEntity.ok().body(b); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
     }
+
+//    public void accountTrueFalse(boolean b,String accountId){ //true이면 로그인 스탬프 +1
+//        stampMapper.isLogin(b,accountId);
+//        if(b==true){
+//            stampMapper.currentAdd(accountId);
+//            stampMapper.stampAdd(accountId);
+//        }
+////        log.info("AccountService에서 true/false : " + build.isAttendCount());
+//    }
 
 }

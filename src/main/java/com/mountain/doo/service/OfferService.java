@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,7 @@ public class OfferService {
 
         offerMapper.save(dto,accountId);
         int offerBoardNo = offerMapper.findBoardNo(dto.getOfferType());
+
         int imageNumber=0;
         if (filePathList.size() > 0) {
 
@@ -35,8 +37,8 @@ public class OfferService {
         }
     }
 
-    public int findBoardNo(String offerType) {
-        int boardNo = offerMapper.findBoardNo(offerType);
+    public Integer findBoardNo(String offerType) {
+        Integer boardNo = offerMapper.findBoardNo(offerType);
         return boardNo;
     }
 
@@ -49,6 +51,11 @@ public class OfferService {
     //이미지찾기
     public List<OfferImageResponseDTO> findImage(int offerBoardNo){
         List<OfferImageResponseDTO> dto = offerMapper.findImage(offerBoardNo);
+        return dto;
+    }
+
+    public  Integer findMountain(String s) {
+        Integer dto = offerMapper.isNull(s);
         return dto;
     }
 }

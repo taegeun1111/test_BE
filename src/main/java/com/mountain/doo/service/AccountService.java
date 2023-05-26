@@ -163,41 +163,46 @@ public class AccountService {
         //db에 저장된 로그인 시간과 현재 로그인된 시간과 비교해서
         Period period = Period.between(dbLoginTime, LocalDate.now());
         int days = period.getDays();
+        boolean click = stampMapper.isClick(accountId);
         //1보다 크면(하루가 지났다면)
         if(days>=1){
             //현재 로그인 시간을 db에 저장하고
             b = loginTimeMapper.updateLoginTime(accountId, currentLoginTime);
-
-
-            //로그인했다고 attendCount를 true셋팅
-            accountTrueFalse(b,accountId);
+            
             return;
         }
-        //아직 하루 안지났으면 flase
-        accountTrueFalse(b,accountId);
+        //아직 하루 안지났고 스탬프 버튼 안클릭 -> 버튼 계속 활성화되어 있어야 함
+        if(days<1&&click==false){
+            b=true;
+            stampMapper.isLogin(b,accountId);
+            return;
+        }
+        //아직 하루 안지났고 스탬프 버튼 클릭 했음
+        if(days<1&&click==true){
+            b=false;
+            stampMapper.isLogin(b,accountId);
+        }
+
 
     } else { //dbLoginTime테이블에 등록 안된 사람이면(아마도 처음 회원가입하고 들어온 사람이면)
         b = loginTimeMapper.saveLoginTime(accountId, currentLoginTime);
-
+        stampMapper.isLogin(b,accountId);
         //stamp테이블에도 추가
         stampMapper.addAccount(accountId);
-
-        accountTrueFalse(b,accountId);
+        //click_stamp테이블에도 추가
+        stampMapper.saveClickStamp(accountId);
     }
 
     }
 
-    public void accountTrueFalse(boolean b,String accountId){ //true이면 로그인 스탬프 +1
-//        StampAddConditionDTO build = StampAddConditionDTO.builder()
-//                .attendCount(b)
-//                .build();
-        stampMapper.isLogin(b,accountId);
-        if(b==true){
-            stampMapper.currentAdd(accountId);
-            stampMapper.stampAdd(accountId);
-        }
-//        log.info("AccountService에서 true/false : " + build.isAttendCount());
-    }
+//    public void accountTrueFalse(boolean b,String accountId){ //true이면 로그인 스탬프 +1
+//        stampMapper.isLogin(b,accountId);
+//        if(b==true){
+//            stampMapper.currentAdd(accountId);
+//            stampMapper.stampAdd(accountId);
+//        }
+////        log.info("AccountService에서 true/false : " + build.isAttendCount());
+//    }
 
     //자동로그인 해제
     public void autoLoginClear(HttpServletRequest request, HttpServletResponse response){

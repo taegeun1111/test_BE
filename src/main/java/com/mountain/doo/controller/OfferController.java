@@ -15,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,29 +32,51 @@ public class OfferController {
 
     @GetMapping("/offer-main")
     public String offer(Model model) {
-            log.info("산 추천");
-        int boardNo = offerService.findBoardNo("산 추천");
+        log.info("산 추천");
+
+        //게시글 없으면 바로 글쓰기 페이지로 이동
+        findOffer("산 추천");
+
+        Integer boardNo = offerService.findBoardNo("산 추천");
+        if(boardNo==null) return "offer/offer-writer";
+
         OfferResponseDTO text = offerService.findText(boardNo);
         List<OfferImageResponseDTO> image = offerService.findImage(boardNo);
         log.info("산 추천 text : "+text);
+        log.info("산 추천 image : "+image);
+
         model.addAttribute("text",text);
         model.addAttribute("image",image);
         return "offer/offer-main";
     }
 
-
-
     @GetMapping("offer-eat")
     public String offerEat(Model model) {
         log.info("맛집 추천");
-        int boardNo = offerService.findBoardNo("맛집 추천");
+
+        //게시글 없으면 바로 글쓰기 페이지로 이동
+        findOffer("맛집 추천");
+//        int isNull = offerService.findMountain("맛집 추천");
+//        if(isNull==0) return "offer/offer-writer";
+
+        Integer boardNo = offerService.findBoardNo("맛집 추천");
+        if(boardNo==null) return "offer/offer-writer";
+
         OfferResponseDTO text = offerService.findText(boardNo);
         List<OfferImageResponseDTO> image = offerService.findImage(boardNo);
         log.info("산 추천 text : "+text);
+
         model.addAttribute("text",text);
         model.addAttribute("image",image);
         return "offer/offer-restaurant";
     }
+
+    public String findOffer(String s){
+        Integer isNull = offerService.findMountain(s);
+        if(isNull==null) return "offer/offer-writer";
+        else return "true";
+    }
+
 
     //글쓰기 버튼 클릭
     @GetMapping("write")
@@ -72,6 +96,10 @@ public class OfferController {
         dto.getOfferImage().forEach(img -> {
             if (!img.isEmpty()) {
                 log.info("img-name: {}", img.getOriginalFilename());
+                //루트 디렉토리 생성
+                File root = new File(rootPath);
+                if (!root.exists()) root.mkdirs();
+
                 String filePath = FileUtil.uploadFile(img, rootPath);
                 log.info("file-patj: {}", filePath);
                 filePathList.add(filePath);

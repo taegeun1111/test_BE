@@ -30,6 +30,7 @@ public class StampService {
 
 
     public void update(StampAddConditionDTO dto){
+        log.info("stampService update : "+dto.getAccountId() );
         //조건별 데이터 전달
         stampAddCondition(dto);
 
@@ -38,9 +39,9 @@ public class StampService {
             clickEvent(dto);
         }
 
-
         // 업데이트 된 정보 전달
         Stamp stampCount = mapper.stampCount(dto.getAccountId());
+        log.info("StampService mapper : "+stampCount);
 //        return stampCount;
 
     }
@@ -96,29 +97,35 @@ public void plusStamp(StampAddConditionDTO dto){
             mapper.openEvent(dto.getAccountId());}
     }
 
-    public void loginStamp(String accountId, StampAddConditionDTO dto){
+//    public void loginStamp(String accountId, StampAddConditionDTO dto){
+//
+//        boolean currentAttendCount = dto.isAttendCount();
+//        log.info("dto.getAccountId() : "+dto.getAccountId());
+//        boolean dbAttendCount = mapper.findAccountCount(accountId);
+//
+//        log.info("currentAttendCount : "+currentAttendCount);
+//        log.info("dbAttendCount : "+dbAttendCount);
+//
+////        if(currentAttendCount!=dbAttendCount){
+////            mapper.isLogin(currentAttendCount, accountId);
+////        }
+//    }
 
-        boolean currentAttendCount = dto.isAttendCount();
-        log.info("dto.getAccountId() : "+dto.getAccountId());
-        boolean dbAttendCount = mapper.findAccountCount(accountId);
-
-        log.info("currentAttendCount : "+currentAttendCount);
-        log.info("dbAttendCount : "+dbAttendCount);
-
-//        if(currentAttendCount!=dbAttendCount){
-//            mapper.isLogin(currentAttendCount, accountId);
-//        }
+    public void stampAdd(String accountId){
+        log.info("stampAdd 진입" + accountId);
+        mapper.updateClickStamp(true,accountId);
+        mapper.currentAdd(accountId);
+        mapper.stampAdd(accountId);
     }
 
-    public Stamp minjungTest(String accountId){
-        Stamp stamp = mapper.stampCount(accountId);
-        return stamp;
+    public void isLogin(boolean attendCount,String accountId) {
+        mapper.isLogin(attendCount,accountId);
     }
 
-
-
-    //해당아이디로 오늘 쓴 게시글 수 count 확인
-
+    public boolean isClick(String accountId) {
+        boolean click = mapper.isClick(accountId);
+        return click;
+    }
 }
 
 

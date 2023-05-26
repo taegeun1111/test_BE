@@ -34,4 +34,11 @@ public interface StampMapper {
 
     void addAccount(String accountId);
     boolean findAccountCount(String accountId);
+    
+    //출석 스탬프 클릭 여부
+    void saveClickStamp(String accountId);
+    void updateClickStamp(boolean click, String accountId);
+
+    boolean isClick(String accountId);
+
 }

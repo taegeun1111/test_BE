@@ -141,6 +141,7 @@
         const attendanceButton = document.querySelector('.map-footer-login');
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
+
         } 
 
         // // 2) 출석하기 알아서 바뀌기
@@ -171,7 +172,7 @@
     });
 
         function sendStatus(status) {
-            fetch('/event/stamp', {
+            fetch('/event/click-stamp', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -180,6 +181,7 @@
             })
             .then(function(response) {
                 if (response.ok) {
+                console.log('클릭 들어옴!!!!!');
                     return response.text();
                 } else {
                     throw new Error("Error: " + response.status);

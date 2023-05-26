@@ -13,19 +13,11 @@
         #{dto.offerTitle4},#{dto.offerContent4});
     </insert>
 
-    <select id="findBoardNo" resultType="int">
+    <select id="findBoardNo" resultType="java.lang.Integer">
         SELECT MAX(offer_board_no)
         FROM offer
         WHERE offer_type = #{offerType};
     </select>
-    
-<!--    <select id="findRecentArticle" resultType="OfferResponseDTO">-->
-<!--        SELECT *-->
-<!--        FROM offer-->
-<!--        INNER JOIN offer_Image ON offer.offer_board_no = offer_Image.offer_board_no-->
-<!--        WHERE offer.offer_type = #{offerType}-->
-<!--        AND offer.offer_board_no = (SELECT MAX(offer_board_no) FROM offer WHERE offer.offer_type = #{offerType});-->
-<!--    </select>-->
 
     <select id="findText" resultType="OfferResponseDTO">
         SELECT *
@@ -38,4 +30,9 @@
         FROM offer_image
         WHERE offer_board_no = #{offerBoardNo};
     </select>
+    
+    <select id="isNull" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM offer where offer_type = #{offerType};
+    </select>
+
 </mapper>

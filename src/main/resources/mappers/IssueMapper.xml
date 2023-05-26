@@ -17,7 +17,7 @@
 
     <insert id="save">
         INSERT INTO issue
-            (account_id, issue_title, issue_content,issue_like_count,issue_view_count)
+            (account_id, issue_title, issue_content)
         VALUES (#{accountId}, #{issueTitle}, #{issueContent})
     </insert>
 
@@ -51,8 +51,6 @@
         FROM issue
         <include refid="search" />
     </select>
-
-
 
     <sql id="search">
         <if test="type == 'title'">
