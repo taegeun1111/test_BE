@@ -17,8 +17,8 @@
 
     <insert id="save">
         INSERT INTO issue
-            (account_id, issue_title, issue_content)
-        VALUES (#{accountId}, #{issueTitle}, #{issueContent})
+            (account_id, issue_title, issue_content,issue_like_count,issue_view_count)
+        VALUES (#{accountId}, #{issueTitle}, #{issueContent},0,0)
     </insert>
 
     <delete id="deleteIssue">
