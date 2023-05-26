@@ -28,7 +28,7 @@
 
     <select id="findOne" resultType="issue">
         SELECT
-            issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id
+            issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id, issue_like_count
         FROM issue
         WHERE issue_board_no = #{issueBoardNo}
     </select>
