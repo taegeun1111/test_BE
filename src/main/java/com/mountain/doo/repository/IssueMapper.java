@@ -1,6 +1,8 @@
 package com.mountain.doo.repository;
 
 
+import com.mountain.doo.dto.feed.FeedLikeUserResponseDTO;
+import com.mountain.doo.dto.issue.IssueLikeUserResponseDTO;
 import com.mountain.doo.dto.like.IssueLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
@@ -21,6 +23,9 @@ public interface IssueMapper {
 
     // 게시글 상세 조회
     Issue findOne(long issueBoardNo);
+
+    // 좋아요 누른 회원
+    List<IssueLikeUserResponseDTO> findOneByUser();
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가
@@ -49,5 +54,5 @@ public interface IssueMapper {
     int likeCount(IssueLikeResponseDTO dto);
 
     //해당 게시글에 있는 좋아요 개수 확인
-    void updateLikeCount(int boardNo);
+    boolean updateLikeCount(int boardNo);
 }

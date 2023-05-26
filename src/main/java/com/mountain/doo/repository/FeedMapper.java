@@ -1,6 +1,7 @@
 package com.mountain.doo.repository;
 
 
+import com.mountain.doo.dto.feed.FeedLikeUserResponseDTO;
 import com.mountain.doo.dto.like.FeedLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Page;
@@ -21,7 +22,10 @@ public interface FeedMapper {
     List<Feed> findAll(Page page);
 
     // 게시글 상세 조회
-    Feed findOne(long feedBoardNo);
+    Feed findOne(int feedBoardNo);
+
+    // 좋아요 누른 회원
+    List<FeedLikeUserResponseDTO> findOneByUser();
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가

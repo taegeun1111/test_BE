@@ -32,14 +32,16 @@ public class OfferController {
 
     @GetMapping("/offer-main")
     public String offer(Model model) {
+          log.info("offer-main GET!!!!!!!!");
+   
         log.info("산 추천");
 
         //게시글 없으면 바로 글쓰기 페이지로 이동
         findOffer("산 추천");
 
         Integer boardNo = offerService.findBoardNo("산 추천");
+       log.info("boardNo = {}", boardNo);
         if(boardNo==null) return "offer/offer-writer";
-
         OfferResponseDTO text = offerService.findText(boardNo);
         List<OfferImageResponseDTO> image = offerService.findImage(boardNo);
         log.info("산 추천 text : "+text);

@@ -104,7 +104,7 @@
 /* 내용 영역 */
 .content-wrapper {
     width: 100%;
-    padding: 20px 0 40px;
+    padding: 20px 0 20px;
     border-bottom: 1px solid rgb(200, 200, 200);
     font-size: 17px;
 }
@@ -334,4 +334,23 @@
 
 #replyCnt{
     margin-left: 5px;
+}
+
+/* 좋아요 버튼 추가 */
+.like-btn{
+    width: 100px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid rgb(150, 150, 150);
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 8px;
+    font-size: 16px;
+
+}
+
+.like-ative{
+    background-color: #d5f462 ;
+    border: none;
+    color: black;
 }

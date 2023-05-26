@@ -57,7 +57,7 @@ class StampServiceTest {
         dto.setAttendCount(false);
         dto.setBannerClickCount(true);
 
-        service.update(dto);
+//        service.update(dto);
         Stamp stamp2 = service.stampCount(dto.getAccountId());
         System.out.println("stamp2 = " + stamp2);
 

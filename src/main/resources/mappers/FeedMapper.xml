@@ -39,9 +39,9 @@
 
     <select id="findOne" resultType="feed">
         SELECT
-        feed_board_no, feed_title,feed_content, feed_view_count,feed_reg_date, account_id
+        feed_board_no, feed_title,feed_content, feed_view_count,feed_reg_date, account_id, feed_like_count
         FROM feed
-        WHERE feed_board_no = #{feedboardNo}
+        WHERE feed_board_no = #{feedBoardNo}
     </select>
 
     <update id="modifyFeed">
@@ -98,4 +98,11 @@
         WHERE feed_board_no = #{feedBoardNo})
         WHERE feed_board_no = #{feedBoardNo}
     </update>
+
+    <select id="findOneByUser" resultType="feedByLikeOne">
+        SELECT DISTINCT A.account_id, A.feed_board_no
+        FROM feed_like_count A
+        JOIN review B
+        ON A.account_id = B.account_id;
+    </select>
 </mapper>

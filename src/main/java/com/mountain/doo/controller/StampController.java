@@ -40,9 +40,11 @@ public class StampController {
 
         model.addAttribute("stamp",stamp);
 
+
         boolean click = stampService.isClick(accountId);
         log.info("/stamp click여부 : "+click);
         model.addAttribute("isClick",click);
+
 
 
 //        stampService.loginStamp(StampAddConditionDTO,accountId);
@@ -64,7 +66,7 @@ public class StampController {
 
     }
 
-        @PostMapping("/stamp")
+    @PostMapping("/stamp")
     public String myStampPage(Model model){
 
 
@@ -99,7 +101,7 @@ public class StampController {
 //    }
 
 
-//    @GetMapping("/banner-count")
+    //    @GetMapping("/banner-count")
 //    @ResponseBody
 //    public ResponseEntity<?> bannerCount(StampAddConditionDTO dto, Model model) {
 //        log.info("/stamp/banner-count?type={}&keyword={} ASYNC GET!");
@@ -124,23 +126,25 @@ public class StampController {
 
         log.info("스탬프 비동기1 stampAdd" + stampAdd);
 
-         stampService.update(stampAdd);
+
+        stampService.update(stampAdd);
+
 //        log.info("스탬프 비동기1 stampService.update(stampAdd) : " + );
 
         // 클릭 횟수 증가 또는 저장 로직 구현
         incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount(), stampAdd);
     }
 
-        private void incrementClickCount(String accountId, boolean bannerClickCount,  StampAddConditionDTO stampAdd) {
-            // 클릭 횟수를 저장하는 데이터베이스에 접근하여 클릭 횟수 증가 또는 저장 작업 수행
-            // 예: 클릭 횟수 정보를 데이터베이스에서 조회하고, 증가시킨 후 다시 저장
+    private void incrementClickCount(String accountId, boolean bannerClickCount,  StampAddConditionDTO stampAdd) {
+        // 클릭 횟수를 저장하는 데이터베이스에 접근하여 클릭 횟수 증가 또는 저장 작업 수행
+        // 예: 클릭 횟수 정보를 데이터베이스에서 조회하고, 증가시킨 후 다시 저장
 
         log.info("스탬프 비동기2 : "+stampAdd);
 
         String userId = stampAdd.getAccountId();
 //        boolean flag = (boolean) stampAdd.get();
 
-        }
+    }
 
 //        log.info("스탬프 비동기 : "+stampAdd);
 //        String userId = stampAdd.getAccountId();
@@ -148,7 +152,7 @@ public class StampController {
 //        stampService.update(stampAdd);
 
 
-        // 클릭 횟수 증가 또는 저장 로직 구현
+    // 클릭 횟수 증가 또는 저장 로직 구현
 //    incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount());
 
 
@@ -165,6 +169,8 @@ public class StampController {
             stampService.isLogin(attendCount,accountId);
             stampService.stampAdd(accountId);
         }
+        //Stamp stamp = stampService.stampCount(accountId);
+
 
         return ResponseEntity.ok().body(b); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
     }

@@ -3,6 +3,7 @@ package com.mountain.doo.repository;
 
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.review.ReviewLikeUserResponseDTO;
 import com.mountain.doo.entity.Review;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,8 +19,13 @@ public interface ReviewMapper {
     // 전체 게시글 조회
     List<Review> findAll(Search page);
 
+    // 한 게시물에대한 좋아요 찾기
+
     // 게시글 상세 조회
-    Review findOne(long reviewBoardNo);
+    Review findOne(int reviewBoardNo);
+
+    // 좋아요 누른 회원
+    List<ReviewLikeUserResponseDTO> findOneByUser();
 
     // 게시물 등록
     // 등록이 되었는가 안 됐는가
@@ -48,5 +54,5 @@ public interface ReviewMapper {
     int likeCount(ReviewLikeResponseDTO dto);
 
     //해당 게시글에 있는 좋아요 개수 확인
-    void updateLikeCount(int boardNo);
+    boolean updateLikeCount(int boardNo);
 }

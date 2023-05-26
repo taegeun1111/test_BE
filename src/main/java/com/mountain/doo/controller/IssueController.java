@@ -1,12 +1,13 @@
 package com.mountain.doo.controller;
 
 
-import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
-import com.mountain.doo.dto.issue.IssueListResponseDTO;
-import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
-import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
+import com.mountain.doo.dto.AccountResponseDTO;
+import com.mountain.doo.dto.feed.FeedLikeUserResponseDTO;
+import com.mountain.doo.dto.issue.*;
 import com.mountain.doo.dto.page.PageMaker;
 import com.mountain.doo.dto.page.Search;
+import com.mountain.doo.dto.review.ReviewDetailResponseDTO;
+import com.mountain.doo.dto.review.ReviewLikeUserResponseDTO;
 import com.mountain.doo.entity.Issue;
 import com.mountain.doo.repository.IssueMapper;
 import com.mountain.doo.service.IssueService;
@@ -63,9 +64,35 @@ public class IssueController {
         log.info("detail에 접근한 User의 정보 : {}", request.getSession().getAttribute("login"));
         log.info("detail 게시물 정보 : {}",detail);
 
+        List<IssueLikeUserResponseDTO> byAccountDTO = issueService.findByAccount();
+        boolean heartResult = isHeartResult(login, detail, byAccountDTO);
+
+        log.info("Issue like 누른 회원들 계정 정보 출력 : {}",byAccountDTO);
+
         model.addAttribute("login",login);
         model.addAttribute("is", detail);
+        model.addAttribute("i",heartResult);
         return "issue/issueDetail";
+    }
+
+    private boolean isHeartResult(Object login, IssueDetailResponseDTO detail, List<IssueLikeUserResponseDTO> byAccountDTO) {
+        boolean heartResult = false;
+        if (login != null) {
+            String accountId = ((AccountResponseDTO) login).getAccountId();
+
+            for (IssueLikeUserResponseDTO heartList : byAccountDTO) {
+                if (heartList.getAccountId().equals(accountId)){
+                    heartResult = true;
+                    break;
+                }else {
+                    heartResult = false;
+                }
+            }
+        }
+        if (detail.getLikeCount() == 0){
+            heartResult = false;
+        }
+        return heartResult;
     }
 
     // 게시물 등록 화면 요청
@@ -110,6 +137,8 @@ public class IssueController {
         issueService.delete(bno);
         return  "redirect:/issue/list";
     }
+//    @PostMapping("/")
+
 
 
 

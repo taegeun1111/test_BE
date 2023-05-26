@@ -70,25 +70,21 @@ public void boardBanner(StampAddConditionDTO dto) {
 }
 
 
-public void plusStamp(StampAddConditionDTO dto){
+public void plusStamp(StampAddConditionDTO dto) {
     int todayMyBoard = mapper.todayMyBoard(dto.getAccountId());
 
     System.out.println("todayMyBoard = " + todayMyBoard);
 
 
-        Stamp stamp = mapper.stampCount(dto.getAccountId());
-        System.out.println("!!!stamp = " + stamp);
+    Stamp stamp = mapper.stampCount(dto.getAccountId());
+    System.out.println("!!!stamp = " + stamp);
 
-        //오늘 쓴 게시물이 3개면 도장 찍기
-        if (stamp.getBoardCount() == 3) {
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
-        }
-        if (stamp.getBannerClickCount() == 3) {
-            mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
-        }
+    //오늘 쓴 게시물이 3개면 도장 찍기
+    if (stamp.getBoardCount() == 3 && stamp.getBannerClickCount() == 3) {
+        mapper.stampAdd(dto.getAccountId());
+        mapper.currentAdd(dto.getAccountId());
     }
+}
 
 
     public void clickEvent(StampAddConditionDTO dto){
@@ -122,10 +118,24 @@ public void plusStamp(StampAddConditionDTO dto){
         mapper.isLogin(attendCount,accountId);
     }
 
+
     public boolean isClick(String accountId) {
         boolean click = mapper.isClick(accountId);
         return click;
     }
+  
+    public void isLogin(boolean attendCount,String accountId) {
+        mapper.isLogin(attendCount,accountId);
+    }
+    public void stampAdd(String accountId){
+        log.info("stampAdd 진입" + accountId);
+//        mapper.updateClickStamp(true,accountId);
+        mapper.currentAdd(accountId);
+        mapper.stampAdd(accountId);
+    }
+
+    //해당아이디로 오늘 쓴 게시글 수 count 확인
+
 }
 
 

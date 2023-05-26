@@ -1,10 +1,8 @@
 package com.mountain.doo.service;
 
 
-import com.mountain.doo.dto.issue.IssueDetailResponseDTO;
-import com.mountain.doo.dto.issue.IssueListResponseDTO;
-import com.mountain.doo.dto.issue.IssueRewriteRequestDTO;
-import com.mountain.doo.dto.issue.IssueWriteRequestDTO;
+import com.mountain.doo.dto.feed.FeedLikeUserResponseDTO;
+import com.mountain.doo.dto.issue.*;
 import com.mountain.doo.dto.like.IssueLikeResponseDTO;
 import com.mountain.doo.dto.like.ReviewLikeResponseDTO;
 import com.mountain.doo.dto.page.Search;
@@ -68,26 +66,34 @@ public class IssueService {
 
 
     //클릭 시 좋아요 +1 재클릭시 좋아요 -1
-    public void clickLike(IssueLikeResponseDTO dto) {
-        int islike = islike(dto);
-
+    public IssueDetailResponseDTO clickLike(IssueLikeResponseDTO dto) {
+        int islike = isLike(dto);
+        System.out.println("islike = " + islike);
         if (dto.isClickLike()) {
             if (islike != 1) {   //클릭시 좋아요가 없다면
                 issueRepository.plusLike(dto);   //좋아요 +1
+                System.out.println("plusLike 발생");
             } else {
                 issueRepository.minusLike(dto);  //아니면 좋아요 -1
-
+                System.out.println("minusLike 발생");
             }
 
             //좋아요테이블에서 게시물 번호별 count 체크하고 게시물 테이블에 like_count 수정하기
-            issueRepository.updateLikeCount(dto.getIssueBoardNo());
+            boolean count = issueRepository.updateLikeCount(dto.getIssueBoardNo());
+            System.out.println("count = " + count);
         }
+            return getDetail(dto.getIssueBoardNo());
     }
 
     //좋아요가 있나 없나 확인
-    public int islike(IssueLikeResponseDTO dto){
+    public int isLike(IssueLikeResponseDTO dto){
         int i = issueRepository.likeCount(dto);
         return i;
+    }
+
+    // 좋아요한 게시물 조회
+    public List<IssueLikeUserResponseDTO> findByAccount(){
+        return issueRepository.findOneByUser();
     }
 
 }

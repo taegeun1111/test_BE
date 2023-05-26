@@ -45,7 +45,8 @@
                     <div class="heart"><img src="/assets/jpg/heart(line).png" alt="좋아요" class="heard-icon">좋아요
                         ${is.likeCount}</div>
 
-                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 <span id="replyCnt"></span>
+                    <div class="comment"><img src="/assets/jpg/bubble(line).png" alt="댓글" class="comment-icon">댓글 <span
+                            id="replyCnt"></span>
                     </div>
                 </div>
             </div>
@@ -58,6 +59,20 @@
                 ${is.content}
 
             </div>
+
+            <c:if test="${empty login}">
+                <div class="like-btn">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+            </c:if>
+
+            <c:if test="${not empty login}">
+                <c:if test="${l == true}">
+                    <div class="like-btn like-ative">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+                </c:if>
+
+                <c:if test="${l == false}">
+                    <div class="like-btn">좋아요 <span class="currentLike">${is.likeCount}</span></div>
+                </c:if>
+            </c:if>
         </div>
 
         <!-- 댓글 비동기처리하기 -->
@@ -119,29 +134,68 @@
     </section>
 
     <script>
-        const $heart = document.querySelector('.heart');
-        const originSrc = "/assets/jpg/heart(line).png";
-        const changeSrc = "/assets/jpg/heart(full).png";
-        let isLiked = false;
+        const $heart = document.querySelector('.like-btn');
+        // const originSrc = "/assets/jpg/heart(line).png";
+        // const changeSrc = "/assets/jpg/heart(full).png";
+        let clickLike = true;
+
+        // 주소값 변경해야 함
+        const URL2 = '/review-like';
 
         // jsp줘야함
         $heart.addEventListener('click', e => {
-            console.log("클릭됨");
-            const heartIcon = document.querySelector('.heard-icon');
-
-            if (isLiked) {
-                heartIcon.src = originSrc;
-                isLiked = false;
+            // const heartIcon = document.querySelector('.heard-icon');
+            const currentAccount = '${login.accountId}';
+            const bno = '${is.boardNo}';
+            if (!currentAccount) {
+                alert('로그인을 먼저 해주세요!');
             } else {
-                heartIcon.src = changeSrc;
-                isLiked = true;
+                if (clickLike) {
+                    $heart.classList.toggle('like-ative');
+                    // heartIcon.src = originSrc;
+                    clickLike = true;
+                } else {
+                    $heart.classList.toggle('like-ative');
+                    // heartIcon.src = changeSrc;
+                    clickLike = true;
+                }
+                // 여기까지 3개 파라미터가 등록되어야 함
+                console.log(`아이디:\${currentAccount}, 클릭:\${clickLike}, 게시글번호:\${bno}`);
+
+                likeClick(currentAccount, clickLike, bno);
             }
         });
 
 
+        function likeClick(currentAccount, clickLike, bno) {
+            const payload = {
+                accountId: currentAccount,
+                reviewBoardNo: bno,
+                clickLike: clickLike
+            }
+
+            const requestInfo = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            };
+
+            fetch(URL2, requestInfo)
+                .then(response => response.json())
+                .then(data => {
+                    // JSON 응답 데이터 처리
+                    console.log('data : ' + data.likeCount);
+
+                    document.querySelector('.currentLike').textContent = data.likeCount;
+                });
+        };
+
 
 
         //--------------------------------------------------
+        console.log('${l}');
         //글번호
         const bno = '${is.boardNo}';
 
@@ -243,14 +297,15 @@
 
                     <div id='replyContent' class='comment-list' data-reply-id='\${replyNo}'>
                         <div class="comment-profile">`;
-                            if(profile === null){
-                                tag += `<img class='reply-profile' src='https://cdn-icons-png.flaticon.com/128/7281/7281869.png' alt='profile'>`;
-                            }
-                            if(profile !== null){
-                                tag+= `<img class='reply-profile' src='/local\${profile}' alt='profile'>`;
-                            }
-                           
-                            
+                    if (profile === null) {
+                        tag +=
+                            `<img class='reply-profile' src='https://cdn-icons-png.flaticon.com/128/7281/7281869.png' alt='profile'>`;
+                    }
+                    if (profile !== null) {
+                        tag += `<img class='reply-profile' src='/local\${profile}' alt='profile'>`;
+                    }
+
+
                     tag += `</div>
                         <div class="text-wrapper">
                             <div class="comment-info">
@@ -295,6 +350,7 @@
                 .then(responseResult => {
                     console.log(responseResult);
                     renderReplyList(responseResult);
+
                 })
         }
 
@@ -473,6 +529,7 @@
         }
 
 
+
         (function () {
             //첫 댓글 페이지 불러오기
             getReplyList();
@@ -480,6 +537,7 @@
             makeReplyRegisterClickEvent();
             replyRemoveClickEvent();
             replyModifyClickEvent();
+
         })();
     </script>
 </body>

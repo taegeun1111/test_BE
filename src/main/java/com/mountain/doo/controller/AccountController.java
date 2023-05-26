@@ -5,8 +5,7 @@ import com.mountain.doo.dto.AccountModifyDTO;
 import com.mountain.doo.dto.AutoLoginDTO;
 import com.mountain.doo.dto.LoginRequestDTO;
 import com.mountain.doo.dto.stamp.StampAddConditionDTO;
-import com.mountain.doo.entity.Account;
-import com.mountain.doo.entity.LoginBoolean;
+import com.mountain.doo.entity.*;
 import com.mountain.doo.service.AccountService;
 import com.mountain.doo.util.FileUtil;
 import com.mountain.doo.util.LoginUtil;
@@ -28,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.File;
+import java.util.List;
 
 import static com.mountain.doo.util.LoginUtil.*;
 
@@ -126,10 +126,13 @@ public class AccountController {
     }
 
     @GetMapping("/mypage")
-    public String mypage(Model model, String accountId) {
+    public String mypage(Model model,
+                         HttpServletRequest request) {
         //회원정보 마이페이지
+
         log.info("account mypage 요청");
-        Account account = accountService.myInfo(accountId);
+        Account account = accountService.myInfo(request.getSession().getId());
+
         model.addAttribute("mypage", account);
         return "account/mypage";
     }

@@ -17,8 +17,8 @@
 
     <insert id="save">
         INSERT INTO issue
-            (account_id, issue_title, issue_content)
-        VALUES (#{accountId}, #{issueTitle}, #{issueContent})
+            (account_id, issue_title, issue_content,issue_like_count,issue_view_count)
+        VALUES (#{accountId}, #{issueTitle}, #{issueContent},0,0)
     </insert>
 
     <delete id="deleteIssue">
@@ -28,9 +28,9 @@
 
     <select id="findOne" resultType="issue">
         SELECT
-            issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id
+            issue_board_no, issue_title, issue_content, issue_view_count, issue_reg_date, account_id, issue_like_count
         FROM issue
-        WHERE issue_board_no = #{issueboardNo}
+        WHERE issue_board_no = #{issueBoardNo}
     </select>
 
     <update id="modifyIssue">
@@ -82,7 +82,6 @@
         FROM issue_like_count
         WHERE account_id = #{accountId}
         AND issue_board_no = #{issueBoardNo}
-
     </select>
 
     <update id="updateLikeCount">
@@ -94,6 +93,11 @@
         WHERE issue_board_no = #{issueBoardNo}
     </update>
 
-
+    <select id="findOneByUser" resultType="issueByLikeOne">
+        SELECT DISTINCT A.account_id, A.issue_board_no
+        FROM issue_like_count A
+        JOIN issue B
+        ON A.account_id = B.account_id;
+    </select>
 
 </mapper>

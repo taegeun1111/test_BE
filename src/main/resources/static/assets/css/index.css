@@ -142,6 +142,9 @@ background-position-y: -350px !important;
 }
 
 /* 오늘의 날씨 박스 영역 공통 부분 */
+.sec1-container .weather-wrap{
+    display: flex;
+}
 .weather-today-wrapper,
 .weather-mountain-wrapper {
     width: 430px;
@@ -172,6 +175,7 @@ background-position-y: -350px !important;
     border-radius: 20px;
     width: fit-content;
     margin: 0 auto;
+    font-weight: 700;
 }
 
 .weather-icon img {
