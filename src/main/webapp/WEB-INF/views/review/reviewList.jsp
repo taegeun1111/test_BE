@@ -46,8 +46,9 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-
-                <a href="/issue/write" class="write-btn">글쓰기</a>
+                <c:if test="${not empty login}">
+                    <a href="/issue/write" class="write-btn">글쓰기</a>
+                </c:if>
             </div>
 
         </section>
@@ -161,17 +162,18 @@
                     $opt.setAttribute('selected', 'selected');
                     break;
                 }
-            } 
+            }
         }
 
         const clickBoards = document.querySelectorAll('.board-container');
-        
+
         for (const clickBoard of clickBoards) {
-            clickBoard.addEventListener('click',e =>{
+            clickBoard.addEventListener('click', e => {
                 console.log(clickBoard);
                 const bno = clickBoard.querySelector('.board-boardNo').dataset.bno;
-                window.location.href = '/review/detail?bno='+bno+'&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
-            })    
+                window.location.href = '/review/detail?bno=' + bno +
+                    '&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}';
+            })
         };
 
         appendPageActive();

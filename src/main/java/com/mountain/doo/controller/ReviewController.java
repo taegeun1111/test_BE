@@ -78,7 +78,7 @@ public class ReviewController {
 
             for (ReviewLikeUserResponseDTO heartList : byAccountDTO) {
                 if (heartList.getAccountId().equals(accountId)){
-                    heartResult = true;ㅁ
+                    heartResult = true;
                     break;
                 }else {
                     heartResult = false;
