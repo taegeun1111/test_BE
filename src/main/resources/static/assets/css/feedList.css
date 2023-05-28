@@ -416,3 +416,7 @@ body#bg-color {
 .currentLike{
     margin-left: 3px;
 }
+
+.comment{
+    color: black;
+}

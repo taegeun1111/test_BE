@@ -53,8 +53,9 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-
-                <a href="/board/write" class="write-btn">글쓰기</a>
+                <c:if test="${not empty login}">
+                    <a href="/board/write" class="write-btn">글쓰기</a>
+                </c:if>
             </div>
 
         </section>
@@ -105,23 +106,27 @@
         <ul class="pagination">
             <c:if test="${maker.page.pageNo != 1}">
                 <li class="page-item"><a class="page-link"
-                        href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">&lt;&lt;</a></li>
+                        href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">&lt;&lt;</a>
+                </li>
             </c:if>
 
             <c:if test="${maker.prev}">
-                <li class="page-item"><a href="/board/list?pageNo=${maker.begin-1}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}"
+                <li class="page-item"><a
+                        href="/board/list?pageNo=${maker.begin-1}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}"
                         class="page-link">prev</a>
                 </li>
             </c:if>
 
             <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
                 <li data-page-num="${i}" class="page-item">
-                    <a class="page-link" href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">${i}</a>
+                    <a class="page-link"
+                        href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}">${i}</a>
                 </li>
             </c:forEach>
 
             <c:if test="${maker.next}">
-                <li class="page-item"><a href="/board/list?pageNo=${maker.end+1}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}"
+                <li class="page-item"><a
+                        href="/board/list?pageNo=${maker.end+1}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}"
                         class="page-link">next</a></li>
             </c:if>
 
@@ -176,23 +181,23 @@
         }
 
 
-        
-            const clickBoards = document.querySelectorAll('.board-container');
 
-            for (const clickBoard of clickBoards) {
-                clickBoard.addEventListener('click', e => {
-                    console.log(clickBoard);
-                    const bno = clickBoard.querySelector('.board-boardNo').dataset.bno;
-                    window.location.href = '/board/detail?bno=' + bno +
-                        '&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}';
-                })
-            };
+        const clickBoards = document.querySelectorAll('.board-container');
+
+        for (const clickBoard of clickBoards) {
+            clickBoard.addEventListener('click', e => {
+                console.log(clickBoard);
+                const bno = clickBoard.querySelector('.board-boardNo').dataset.bno;
+                window.location.href = '/board/detail?bno=' + bno +
+                    '&pageNo=${s.pageNo}&type=${s.type}&keyword=${s.keyword}&secondhandType=${s.secondhandType}';
+            })
+        };
 
 
 
-            appendPageActive();
-            fixSearchOption();
-            fixSearchType();
+        appendPageActive();
+        fixSearchOption();
+        fixSearchType();
     </script>
 </body>
 
