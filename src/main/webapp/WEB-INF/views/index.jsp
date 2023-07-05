@@ -184,7 +184,7 @@
   const apiUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; //초단기실황
   const apiUrl2 = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"; //단기예보조회
   <%--var serviceKey = '<%= getProperty("my.service.key") %>';--%>
-  const serviceKey = "iSBb%2BDW08PMqwAwZinlDdlbrvSU2n7gZ7JrBaHIGaDn%2BPim3O8e3gT55tTJxfrPSofc2JdCYzPjPWOJ6xDVS8Q%3D%3D";
+  const serviceKey = "서비스키를 입력하세요 (JP)";
   const numOfRows = 1000;
   const pageNo = 1;
 
@@ -486,7 +486,7 @@
     ;
   }
 
-  const mountServiceKey = "5IbnUN%2FNAP5rYLQ9UcG5fjU3yoQQyCeagSv%2FmkPaqVFb7k7dWEjunyosefC0u1ENQ3NOURapdeXeYCQWCF%2BsPw%3D%3D";
+  const mountServiceKey = "서비스키를 입력하세요 (JP)";
   // let localArea=1;
   let mountTime=currentMtTime();
 
