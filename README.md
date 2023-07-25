@@ -6,7 +6,7 @@
   * 김태근 : 커뮤니티 게시글/club/secondhand구현/메인페이지 캐러셀/기능 디자인 전반 <br>
   * 신지송 : 로그인/회원가입/회원수정&마이페이지/추천메뉴/스탬프 프론트/PPT <br>
   * 이동우 : stamp/secondhand/like-count/mypage/stamp 백엔드 <br>
-  * 이민정 : 파일 업로드/회원가입/아이디 중복 확인/모임 페이지/세션 <br>
+  * 이민정 : 파일 업로드/회원가입/아이디 중복 확인/모임 페이지/세션/ 로그인 스탬프 <br>
   * 이재필 : DB 설계/API/feed/review/issue/reply 백엔드/프로젝트 발표 <br>
 <hr> 
 
