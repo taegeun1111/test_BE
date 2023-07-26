@@ -62,19 +62,21 @@
                                 <p>3</p>
                             </div>
                         </li>
+                        
                         <li class="stamp-3rd">배너
                             <div>
-
-                                <c:if test="${login == null || stamp.bannerClickCount == null }">
-                                    <p>0</p>
+                                <c:if test="${login == null || stamp.bannerClickCount == null}">
+                                    <p id="clickCount">0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${stamp.bannerClickCount}</p>
+                                    <p id="clickCount">
+                                        <c:out value="${stamp.bannerClickCount}" />
+                                    </p>
                                 </c:if>
-
                                 <p>3</p>
                             </div>
                         </li>
+
                         <li>누적 스탬프
                             <div>
 
@@ -85,7 +87,6 @@
                                     <p id="count-stamp">${stamp.totalStampCount}</p>
                                 </c:if>
                             </div>
-
                         </li>
                     </ul>
                 </div>
@@ -138,21 +139,23 @@
             attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
         }
 
+        localStorage.setItem('attendanceDone', 'true');
+
         const attendanceButton = document.querySelector('.map-footer-login');
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
 
         } 
 
-        // // 2) 출석하기 알아서 바뀌기
-        // var stampCheck = `${stamp.attendCount}`;
+        // 2) 출석하기 알아서 바뀌기
+        var stampCheck = localStorage.getItem('attendanceDone');
 
-        // if (stampCheck) {
-        // var myStampCheck = document.getElementById('myStampCheck');
-        // var image = myStampCheck.querySelector('img');
-        // image.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-        // image.alt = 'Check Done';
-        // }
+        if (stampCheck) {
+        var myStampCheck = document.getElementById('myStampCheck');
+        var image = myStampCheck.querySelector('img');
+        image.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+        image.alt = 'Check Done';
+        }
 
         // 비회원 - 로그인 요청
         function goToSignInPage() {
@@ -198,19 +201,25 @@
        
 
         // 배너 클릭 횟수 카운트 비동기 처리
-        var bannerClickCount = 0;
-        var clickSideBars = document.querySelectorAll('.side-banner');
+        var bannerClickCount = ${stamp.bannerClickCount};
+        var clickCountElement = document.getElementById('clickCount');
+        
+
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
                 bannerClickCount++;
                 console.log('클릭 횟수:', bannerClickCount);
 
-                if (bannerClickCount === 3) {
-                    alert('클릭 횟수가 3번에 도달했습니다!');
-                }
-
+                if (clickCountElement) {
+              clickCountElement.textContent = bannerClickCount;
+        }
+                // if (bannerClickCount === 3) {
+                //     alert('클릭 횟수가 3번에 도달했습니다!');
+                // }
+                // 서버에 클릭 횟수를 비동기적으로 전송
                 sendClickCountToServer(bannerClickCount);
+
             });
         });
       
@@ -219,36 +228,36 @@
         fetch('/event/banner-count', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            bannerClickCount: bannerClickCount
-            
+                bannerClickCount: bannerClickCount
             })
         })
         .then(response => {
-            if (response.ok) {
+        if (response.ok) {
             console.log('클릭 횟수 전송 성공');
-            } else {
+        } else {
             console.log('클릭 횟수 전송 실패');
-            }
-        })
-        .catch(error => {
-            console.error('클릭 횟수 전송 중 에러 발생:', error);
-        });
+        }
+    })
+    .catch(error => {
+        console.error('클릭 횟수 전송 중 에러 발생:', error);
+    });
         }
 
 
-        // // 스탬프 찍기
-        // const mapMainImg = document.querySelector('.map-main');
-        // const n = 3;
-        // const divElements = mapMain.querySelector('.stamp-map .stamp-shape');
-        // console.log(divElements);
-        // for (let i = 0; i < n; i++) {
-        // const divElement = divElements[i];
+
+        // 스탬프 찍기
+        const mapMainImg = document.querySelector('.map-main');
+        const n = 3;
+        const divElements = mapMain.querySelector('.stamp-map .stamp-shape');
+        console.log(divElements);
+        for (let i = 0; i < n; i++) {
+        const divElement = divElements[i];
         
-        // divElement.style.backgroundColor = 'green';
-        // }
+        divElement.style.backgroundColor = 'green';
+        }
 
         // // 스탬프 수에 맞춰 카드 활성화 시키기
         // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');
@@ -267,7 +276,7 @@
         // targetDiv.addEventListener('mouseleave', function() {
         //     targetDiv.style.cursor = 'default'; // 원래 커서로 변경
         //     targetDiv.style.backgroundColor = 'gray'; // 배경색을 다시 빨간색으로 변경
-        // });
+        // }); 
         
         // // 링크 추가
         // const linkElement = document.createElement('a');
