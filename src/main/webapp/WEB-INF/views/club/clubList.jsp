@@ -26,7 +26,10 @@
                             <option value="소모임">소모임</option>
                         </select>
                     </div>
-                    <a href="/club/write" class="write-btn">글쓰기</a>
+                    
+                    <c:if test="${not empty login}">
+                        <a href="/club/write" class="write-btn">글쓰기</a>
+                    </c:if>
                     <!-- <button ></button> -->
                 </div>
         </form>

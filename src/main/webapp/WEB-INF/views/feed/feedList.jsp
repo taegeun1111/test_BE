@@ -17,14 +17,15 @@
     <!-- 글 영역 -->
     <section class="feed-container">
         <div class="main-img">
-            <img src="/assets/jpg/feed이미지.jpg" alt="">
+            <img src="/assets/jpg/feedImg.jpg" alt="">
         </div>
         <section class="list-container">
 
-            <div class="writebtn-warpper">
-
-                <a href="/issue/write" class="write-btn">글쓰기</a>
-            </div>
+            <c:if test="${not empty login}">
+                <div class="writebtn-warpper">
+                    <a href="/issue/write" class="write-btn">글쓰기</a>
+                </div>
+            </c:if>
 
             <c:forEach var="f" items="${fList}">
                 <div class="feed-list">
@@ -314,8 +315,9 @@
                             .then(data => {
                                 // JSON 응답 데이터 처리
                                 console.log('data : ' + data.likeCount);
-                                    
-                                e.target.closest('.feed-list').querySelector('.currentLike').textContent = data.likeCount;
+
+                                e.target.closest('.feed-list').querySelector('.currentLike')
+                                    .textContent = data.likeCount;
                             });
                     };
                 } else {
