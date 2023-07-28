@@ -17,7 +17,7 @@
 
 <body>
     <%@ include file="../include/header.jsp" %>
-    <div class="side-banner"> 배너광고 </div>
+    <div class="side-banner side-banner1"> </div>
 
     <div class="event-container">
         <div class="event-wrap">
@@ -65,14 +65,14 @@
                         
                         <li class="stamp-3rd">배너
                             <div>
-                                <c:if test="${login == null || stamp.bannerClickCount == null}">
-                                    <p id="clickCount">0</p>
-                                </c:if>
-                                <c:if test="${login != null}">
-                                    <p id="clickCount">
-                                        <c:out value="${stamp.bannerClickCount}" />
-                                    </p>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${login == null || stamp.bannerClickCount == null}">
+                                        <p>0</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p id="clickCount">${stamp.bannerClickCount}</p>
+                                    </c:otherwise>
+                                </c:choose>
                                 <p>3</p>
                             </div>
                         </li>
@@ -101,16 +101,22 @@
         </div>
     </div>
 
-    <div class="side-banner"> 배너광고 </div>
+    <div class="side-banner side-banner2"></div>
     <script>
-
+        
         // 스탬프 맵 생성
         const mapMain = document.querySelector('.map-main');
-
+        const n = `${stamp.totalStampCount}`;
         for (let i = 0; i < 18; i++) {
             const stampShape = document.createElement('div');
             stampShape.classList.add('stamp-shape');
             mapMain.appendChild(stampShape);
+        }
+
+        const stampShapes = document.querySelectorAll('.stamp-shape');
+
+        for (let i = 0; i < n; i++) {
+        stampShapes[i].classList.add('stamp-img-shape');
         }
 
 
@@ -140,11 +146,10 @@
         }
 
         localStorage.setItem('attendanceDone', 'true');
-
+        
         const attendanceButton = document.querySelector('.map-footer-login');
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
-
         } 
 
         // 2) 출석하기 알아서 바뀌기
@@ -200,64 +205,68 @@
 
        
 
-        // 배너 클릭 횟수 카운트 비동기 처리
-        var bannerClickCount = ${stamp.bannerClickCount};
+        // 배너 클릭 횟수 카운트 비동기 
+        var bannerClickCount = `${stamp.bannerClickCount}`;
+        var clickSideBars = document.querySelectorAll('.side-banner');
         var clickCountElement = document.getElementById('clickCount');
-        
-
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
+                if (bannerClickCount < 3) {
                 bannerClickCount++;
                 console.log('클릭 횟수:', bannerClickCount);
 
+                // 화면에 클릭 수 업데이트
                 if (clickCountElement) {
-              clickCountElement.textContent = bannerClickCount;
-        }
-                // if (bannerClickCount === 3) {
-                //     alert('클릭 횟수가 3번에 도달했습니다!');
-                // }
-                // 서버에 클릭 횟수를 비동기적으로 전송
-                sendClickCountToServer(bannerClickCount);
+                    clickCountElement.textContent = bannerClickCount;
+                }
 
+                // 서버에 클릭 횟수를 비동기
+                sendClickCountToServer(bannerClickCount);
+            } else {
+                alert('오늘의 광고확인을 달성하셨습니다!')
+            }
             });
         });
-      
-        
-        function sendClickCountToServer(bannerClickCount) {
-        fetch('/event/banner-count', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                bannerClickCount: bannerClickCount
-            })
-        })
-        .then(response => {
-        if (response.ok) {
-            console.log('클릭 횟수 전송 성공');
-        } else {
-            console.log('클릭 횟수 전송 실패');
-        }
-    })
-    .catch(error => {
-        console.error('클릭 횟수 전송 중 에러 발생:', error);
-    });
-        }
 
+        function sendClickCountToServer(bannerClickCount) {
+            fetch('/event/banner-count', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    bannerClickCount: bannerClickCount
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('클릭 횟수 전송 성공');
+                } else {
+                    console.log('클릭 횟수 전송 실패');
+                }
+            })
+            .catch(error => {
+                console.error('클릭 횟수 전송 중 에러 발생:', error);
+            });
+        }
 
 
         // 스탬프 찍기
-        const mapMainImg = document.querySelector('.map-main');
-        const n = 3;
-        const divElements = mapMain.querySelector('.stamp-map .stamp-shape');
-        console.log(divElements);
-        for (let i = 0; i < n; i++) {
-        const divElement = divElements[i];
-        
-        divElement.style.backgroundColor = 'green';
-        }
+        // const mapMainImg = document.querySelector('.map-main');
+        // const n = `${stamp.totalStampCount}`;
+        // console.log("n", n);
+        // // const stampShapes = document.querySelectorAll('.stamp-shape');
+
+        // const greenStamps = [];
+
+        // for (let i = 0; i < n; i++) {
+        // greenStamps.push(stampShapes[i]);
+        // }
+
+        // for (const greenStamp of greenStamps) {
+        // greenStamp.style.backgroundColor = 'green';
+        // }
 
         // // 스탬프 수에 맞춰 카드 활성화 시키기
         // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');

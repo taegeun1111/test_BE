@@ -56,10 +56,20 @@ body {
     margin: 15px;
     border-radius: 50%;
     background: linear-gradient(to bottom, #D9D9D9, #FFFFFF);
-    /* background-image: url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png"); */
     background-size: contain;
+    
 }
 
+.stamp-map .stamp-img-shape {
+    width: 85px;
+    height: 85px;
+    margin: 15px;
+    border-radius: 50%;
+    background-image: url("https://cdn-icons-png.flaticon.com/128/8610/8610016.png");
+    /* background: green; */
+    background-size: contain;
+    
+}
 .mf {
     margin: 20px auto;
     box-shadow: 1px 1px 3px 1px rgba(60, 60, 60, 0.2);
@@ -162,11 +172,11 @@ body {
     color:#dad60a;
     box-shadow: 2px 3px 3px 1px rgba(255, 255, 255, 0.3);
 } */
-.card-wrap .stamp-card ul li:hover{
+/* .card-wrap .stamp-card ul li:hover{
     background: #dad60a;
     color:#dad60a;
     box-shadow: 2px 3px 3px 1px rgba(255, 255, 255, 0.3);
-}
+} */
 .card-wrap .stamp-card ul li div{
     width: 80px;
     height: 90px;
@@ -194,10 +204,19 @@ body {
     text-align: center;
     line-height: 1.4;
 }
-.side-banner {
-    width: 200px;
-    height: 900px;
-    margin-top: 100px;
-    background: url('../img/sideBanner.png') no-repeat center ;
+.side-banner1 {
+    width: 400px;
+    height: 1200px;
+    margin-top: 140px;
+    margin-left: 150px;
+    background: url('../img/banner1.png') no-repeat center ;
+    background-size: cover;
+}
+.side-banner2 {
+    width: 400px;
+    height: 1200px;
+    margin-top: 140px;
+    margin-right: 150px;
+    background: url('../img/banner2.png') no-repeat center ;
     background-size: cover;
 }
