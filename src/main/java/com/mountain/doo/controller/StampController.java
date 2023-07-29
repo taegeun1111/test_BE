@@ -45,23 +45,6 @@ public class StampController {
         log.info("/stamp click여부 : "+click);
         model.addAttribute("isClick",click);
 
-
-
-//        stampService.loginStamp(StampAddConditionDTO,accountId);
-
-/*
-        dto.setAccountId(loginUserData.getAccountId());
-
-        //id가 가지고 있는 총 스탬프 수
-        Stamp stampCount = stampService.stampCount(dto);
-        stampService.boardBanner(dto);
-
-// 민정님꺼
-/*
-        StampAddConditionDTO dto;
-        model.addAttribute("sc",dto);
-        */
-
         return "/event/stamp";
 
     }
@@ -72,43 +55,7 @@ public class StampController {
 
         return "/event/stamp";
     }
-/*
-    @GetMapping("/banner-count")
-    @ResponseBody
-    public ResponseEntity<?> bannerCount(StampAddConditionDTO dto, Model model) {
-        log.info("/stamp/banner-count?type={}&keyword={} ASYNC GET!");
-        stampService.boardBanner(dto);
-        return ResponseEntity.ok().body();
 
-    }
-    @PostMapping("/banner-count")
-    @ResponseBody
-    public ResponseEntity<?> handleBannerClick(
-            @RequestBody StampAddConditionDTO stampAdd
-            , BindingResult result
-            , HttpSession session) {
-
-        String id = session.getId();
-        stampAdd.setAccountId(id);
-*/
-//---------------------------------------------------
-
-//        model.addAttribute("stamp",stampCount);
-
-
-//        return "/event/stamp";
-//
-//    }
-
-
-    //    @GetMapping("/banner-count")
-//    @ResponseBody
-//    public ResponseEntity<?> bannerCount(StampAddConditionDTO dto, Model model) {
-//        log.info("/stamp/banner-count?type={}&keyword={} ASYNC GET!");
-//        stampService.boardBanner(dto);
-//        return ResponseEntity.ok().body();
-//
-//    }
     @PostMapping("/banner-count")
     @ResponseBody
     public void handleBannerClick(
@@ -142,18 +89,7 @@ public class StampController {
         log.info("스탬프 비동기2 : "+stampAdd);
 
         String userId = stampAdd.getAccountId();
-//        boolean flag = (boolean) stampAdd.get();
-
     }
-
-//        log.info("스탬프 비동기 : "+stampAdd);
-//        String userId = stampAdd.getAccountId();
-//        boolean flag = (boolean) stampAdd.get();
-//        stampService.update(stampAdd);
-
-
-    // 클릭 횟수 증가 또는 저장 로직 구현
-//    incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount());
 
 
     @PostMapping("/click-stamp")
@@ -169,19 +105,9 @@ public class StampController {
             stampService.isLogin(attendCount,accountId);
             stampService.stampAdd(accountId);
         }
-        //Stamp stamp = stampService.stampCount(accountId);
 
 
         return ResponseEntity.ok().body(b); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
     }
-
-//    public void accountTrueFalse(boolean b,String accountId){ //true이면 로그인 스탬프 +1
-//        stampMapper.isLogin(b,accountId);
-//        if(b==true){
-//            stampMapper.currentAdd(accountId);
-//            stampMapper.stampAdd(accountId);
-//        }
-////        log.info("AccountService에서 true/false : " + build.isAttendCount());
-//    }
 
 }
