@@ -25,5 +25,7 @@ public class Stamp {
     private int currentStampCount;   //현재 스탬프 개수
     private int totalStampCount;  //총 스탬프 개수
     private LocalDateTime stampTime;
+    private int checkBoardStamp;
+    private int checkBannerStamp;
 
 }
