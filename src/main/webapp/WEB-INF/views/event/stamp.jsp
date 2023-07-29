@@ -216,10 +216,10 @@
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
-                // if (bannerClickCount < 3) {
+                if (bannerClickCount < 3) {
                 sendTrueToServer();
 
-                // }
+                }
                 });
                 });
 
