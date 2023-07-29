@@ -240,7 +240,7 @@
                     console.log('res: ', res);
                 
                     bannerClickCount=res.bannerClickCount;
-                    
+
                     clickCountElement.textContent = bannerClickCount;
                     var accountId = res.accountId;
                     console.log('accountId: ', accountId);
@@ -270,6 +270,10 @@
                 })
                 
             }
+
+            var accountId = 'asdasd';
+            StampNumber(accountId);
+
         // // 스탬프 수에 맞춰 카드 활성화 시키기
         // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');
         // const receivedValue = 18; // 서버에서 받은 값

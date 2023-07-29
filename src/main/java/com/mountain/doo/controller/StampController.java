@@ -49,12 +49,7 @@ public class StampController {
 
     }
 
-    @PostMapping("/stamp")
-    public String myStampPage(Model model){
 
-
-        return "/event/stamp";
-    }
 
     @PostMapping("/banner-count")
     @ResponseBody

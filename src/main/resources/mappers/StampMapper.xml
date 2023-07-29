@@ -5,7 +5,7 @@
 <mapper namespace="com.mountain.doo.repository.StampMapper">
 
     <select id="stampCount" resultType="Stamp">
-        SELECT account_id,attend_count,board_count,banner_click_count,current_stamp_count,total_stamp_count
+        SELECT account_id,attend_count,board_count,banner_click_count,current_stamp_count,total_stamp_count,check_board_stamp,check_banner_stamp
         FROM stamp
         WHERE account_id = #{accountId}
     </select>
@@ -202,6 +202,18 @@
         update click_stamp
         set click =#{click}
         where account_id  = #{accountId};
+    </update>
+
+    <update id="checkBoardStamp">
+        UPDATE stamp
+        SET check_board_stamp = check_board_stamp+1
+        WHERE account_id = #{accountId}
+    </update>
+
+    <update id="checkBannerStamp">
+        UPDATE stamp
+        SET check_banner_stamp = check_banner_stamp+1
+        WHERE account_id = #{accountId}
     </update>
 
     <select id="isClick" resultType="boolean">

@@ -41,4 +41,9 @@ public interface StampMapper {
 
     boolean isClick(String accountId);
 
+    void checkBoardStamp(String accountId);
+
+    void checkBannerStamp(String accountId);
+
+
 }

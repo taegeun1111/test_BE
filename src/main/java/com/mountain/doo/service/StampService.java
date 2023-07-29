@@ -87,12 +87,21 @@ public class StampService {
         Stamp stamp = mapper.stampCount(dto.getAccountId());
         System.out.println("!!!stamp = " + stamp);
 
+        int checkBannerStamp = stamp.getCheckBannerStamp();
+        int checkBoardStamp = stamp.getCheckBoardStamp();
+
         //오늘 쓴 게시물이 3개면 도장 찍기
+        if(checkBoardStamp==0){
         if (stamp.getBoardCount() == 3)  {
             mapper.stampAdd(dto.getAccountId());
+            mapper.checkBoardStamp(dto.getAccountId());
         }
-        if(stamp.getBannerClickCount() ==3) {
-            mapper.stampAdd(dto.getAccountId());
+        }
+        if(checkBannerStamp==0) {
+            if (stamp.getBannerClickCount() == 3) {
+                mapper.stampAdd(dto.getAccountId());
+                mapper.checkBannerStamp(dto.getAccountId());
+            }
         }
     }
 
