@@ -56,7 +56,7 @@
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${stamp.boardCount}</p>
+                                    <p id="post">${stamp.boardCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -207,7 +207,6 @@
             });
         }
 
-       
 
         // 배너 클릭 횟수 카운트 비동기 
         var bannerClickCount = `${stamp.bannerClickCount}`;
@@ -217,7 +216,9 @@
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
                 if (bannerClickCount < 3) {
-                bannerClickCount++;
+                sendTrueToServer();
+                // bannerClickCount++;
+
                 console.log('클릭 횟수:', bannerClickCount);
 
                 // 화면에 클릭 수 업데이트
@@ -225,35 +226,63 @@
                     clickCountElement.textContent = bannerClickCount;
                 }
 
-                // 서버에 클릭 횟수를 비동기
+                // 서버에 클릭 횟수를 비동기로 전송
                 sendClickCountToServer(bannerClickCount);
-            } else {
-                alert('오늘의 광고확인을 달성하셨습니다!')
-            }
-            });
-        });
 
-        function sendClickCountToServer(bannerClickCount) {
-            fetch('/event/banner-count', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    bannerClickCount: bannerClickCount
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('클릭 횟수 전송 성공');
-                } else {
-                    console.log('클릭 횟수 전송 실패');
+                // bannerClickCount가 3이 되면 서버에 true 값을 보내도록 추가
+                if (bannerClickCount === 3) {
+                    console.log("3왔쥬 서버 보내쥬");
                 }
-            })
-            .catch(error => {
-                console.error('클릭 횟수 전송 중 에러 발생:', error);
-            });
-        }
+                } else {
+                alert('오늘의 광고확인을 달성하셨습니다!');
+                }
+                });
+                });
+
+                function sendClickCountToServer(bannerClickCount) {
+                fetch('/event/banner-count', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        bannerClickCount: bannerClickCount
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('클릭 횟수 전송 성공');
+                    } else {
+                        console.log('클릭 횟수 전송 실패');
+                    }
+                })
+                .catch(error => {
+                    console.error('클릭 횟수 전송 중 에러 발생:', error);
+                });
+            }
+
+            function sendTrueToServer() {
+                fetch('/event/banner-count', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        bannerClickCount : true
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('true 값 전송 성공');
+                    } else {
+                        console.log('true 값 전송 실패');
+                    }
+                })
+                .catch(error => {
+                    console.error('true 값 전송 중 에러 발생:', error);
+                });
+            }
+
 
 
 
