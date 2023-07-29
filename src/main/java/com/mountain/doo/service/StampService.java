@@ -29,6 +29,14 @@ public class StampService {
 
     }
 
+    public StampResponseDTO stampResponseDTO(String accountId){
+        Stamp stamp = mapper.stampCount(accountId);
+
+        StampResponseDTO dto = new StampResponseDTO(stamp);
+        System.out.println("dto = " + dto);
+        return dto;
+    }
+
 
     public void update(StampAddConditionDTO dto) {
         log.info("stampService update : " + dto.getAccountId());
@@ -80,9 +88,11 @@ public class StampService {
         System.out.println("!!!stamp = " + stamp);
 
         //오늘 쓴 게시물이 3개면 도장 찍기
-        if (stamp.getBoardCount() == 3 && stamp.getBannerClickCount() == 3) {
+        if (stamp.getBoardCount() == 3)  {
             mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
+        }
+        if(stamp.getBannerClickCount() ==3) {
+            mapper.stampAdd(dto.getAccountId());
         }
     }
 

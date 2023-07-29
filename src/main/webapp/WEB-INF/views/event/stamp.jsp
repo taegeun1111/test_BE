@@ -56,7 +56,7 @@
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${stamp.boardCount}</p>
+                                    <p id="post">${stamp.boardCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -207,53 +207,48 @@
             });
         }
 
-       
 
         // 배너 클릭 횟수 카운트 비동기 
         var bannerClickCount = `${stamp.bannerClickCount}`;
         var clickSideBars = document.querySelectorAll('.side-banner');
         var clickCountElement = document.getElementById('clickCount');
+        var stampCount = document.getElementById('count-stamp');
+        var totalStamp=`${stamp.totalStampCount}`;
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
                 if (bannerClickCount < 3) {
-                bannerClickCount++;
-                console.log('클릭 횟수:', bannerClickCount);
+                sendTrueToServer();
 
-                // 화면에 클릭 수 업데이트
-                if (clickCountElement) {
-                    clickCountElement.textContent = bannerClickCount;
                 }
+                });
+                });
 
-                // 서버에 클릭 횟수를 비동기
-                sendClickCountToServer(bannerClickCount);
-            } else {
-                alert('오늘의 광고확인을 달성하셨습니다!')
-            }
-            });
-        });
+               
 
-        function sendClickCountToServer(bannerClickCount) {
-            fetch('/event/banner-count', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    bannerClickCount: bannerClickCount
+            function sendTrueToServer() {
+                fetch('/event/banner-count', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        bannerClickCount : true
+                    })
                 })
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('클릭 횟수 전송 성공');
-                } else {
-                    console.log('클릭 횟수 전송 실패');
-                }
-            })
-            .catch(error => {
-                console.error('클릭 횟수 전송 중 에러 발생:', error);
-            });
-        }
+                .then(response => response.json())
+                .then(res => {
+                    console.log('resㅎㅎㅎ: ', res);
+                
+                    bannerClickCount=res.bannerClickCount;
+                    totalStamp=res.totalStampCount;
+                    clickCountElement.textContent = bannerClickCount;
+                    stampCount.textContent = totalStamp;
+
+                })
+                
+            }
+
 
 
 

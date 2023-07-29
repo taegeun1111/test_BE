@@ -58,11 +58,12 @@ public class StampController {
 
     @PostMapping("/banner-count")
     @ResponseBody
-    public void handleBannerClick(
+    public ResponseEntity<?> bannerCountUpdate(
             @RequestBody StampAddConditionDTO stampAdd
             , HttpSession session) {
 
         log.info("스탬프 비동기1 : "+stampAdd);
+
 
 
         AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
@@ -73,13 +74,16 @@ public class StampController {
 
         log.info("스탬프 비동기1 stampAdd" + stampAdd);
 
-
         stampService.update(stampAdd);
 
-//        log.info("스탬프 비동기1 stampService.update(stampAdd) : " + );
+        StampResponseDTO responseDTO = stampService.stampResponseDTO(accountId);
 
-        // 클릭 횟수 증가 또는 저장 로직 구현
-        incrementClickCount(stampAdd.getAccountId(), stampAdd.isBannerClickCount(), stampAdd);
+        log.info("스탬프 responseDTO : " + responseDTO);
+
+        return ResponseEntity
+                .ok()
+                .body(responseDTO);
+
     }
 
     private void incrementClickCount(String accountId, boolean bannerClickCount,  StampAddConditionDTO stampAdd) {
