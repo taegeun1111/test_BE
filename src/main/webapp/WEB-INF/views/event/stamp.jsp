@@ -212,54 +212,18 @@
         var bannerClickCount = `${stamp.bannerClickCount}`;
         var clickSideBars = document.querySelectorAll('.side-banner');
         var clickCountElement = document.getElementById('clickCount');
+        var stampCount = document.getElementById('count-stamp');
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
-                if (bannerClickCount < 3) {
+                // if (bannerClickCount < 3) {
                 sendTrueToServer();
-                // bannerClickCount++;
 
-                console.log('클릭 횟수:', bannerClickCount);
-
-                // 화면에 클릭 수 업데이트
-                if (clickCountElement) {
-                    clickCountElement.textContent = bannerClickCount;
-                }
-
-                // 서버에 클릭 횟수를 비동기로 전송
-                sendClickCountToServer(bannerClickCount);
-
-                // bannerClickCount가 3이 되면 서버에 true 값을 보내도록 추가
-                if (bannerClickCount === 3) {
-                    console.log("3왔쥬 서버 보내쥬");
-                }
-                } else {
-                alert('오늘의 광고확인을 달성하셨습니다!');
-                }
+                // }
                 });
                 });
 
-                function sendClickCountToServer(bannerClickCount) {
-                fetch('/event/banner-count', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        bannerClickCount: bannerClickCount
-                    })
-                })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('클릭 횟수 전송 성공');
-                    } else {
-                        console.log('클릭 횟수 전송 실패');
-                    }
-                })
-                .catch(error => {
-                    console.error('클릭 횟수 전송 중 에러 발생:', error);
-                });
-            }
+               
 
             function sendTrueToServer() {
                 fetch('/event/banner-count', {
@@ -271,21 +235,41 @@
                         bannerClickCount : true
                     })
                 })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('true 값 전송 성공');
-                    } else {
-                        console.log('true 값 전송 실패');
-                    }
+                .then(response => response.json())
+                .then(res => {
+                    console.log('res: ', res);
+                
+                    bannerClickCount=res.bannerClickCount;
+                    
+                    clickCountElement.textContent = bannerClickCount;
+                    var accountId = res.accountId;
+                    console.log('accountId: ', accountId);
+
+                    StampNumber(accountId);
+
                 })
-                .catch(error => {
-                    console.error('true 값 전송 중 에러 발생:', error);
-                });
+                
             }
 
+            function StampNumber(accountId){
+                fetch('/event/stamp-count', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        accountId : accountId
+                    })
+                })
+                .then(response => response.json())
+                .then(res => {
+                    console.log('res가숫자제대로뜨려나: ', res);
+                
+                    stampCount.innerHTML = res;
 
-
-
+                })
+                
+            }
         // // 스탬프 수에 맞춰 카드 활성화 시키기
         // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');
         // const receivedValue = 18; // 서버에서 받은 값
