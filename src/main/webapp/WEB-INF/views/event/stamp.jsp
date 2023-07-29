@@ -271,7 +271,7 @@
                 
             }
 
-            var accountId = 'asdasd';
+            var accountId = 'aaaaaa';
             StampNumber(accountId);
 
         // // 스탬프 수에 맞춰 카드 활성화 시키기
