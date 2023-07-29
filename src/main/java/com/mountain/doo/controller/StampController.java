@@ -64,8 +64,6 @@ public class StampController {
 
         log.info("스탬프 비동기1 : "+stampAdd);
 
-
-
         AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
         String accountId=loginUserData.getAccountId();
         log.info("스탬프 비동기1 accountId" + accountId);
@@ -74,15 +72,35 @@ public class StampController {
 
         log.info("스탬프 비동기1 stampAdd" + stampAdd);
 
+
         stampService.update(stampAdd);
 
-        StampResponseDTO responseDTO = stampService.stampResponseDTO(accountId);
+//        log.info("스탬프 비동기1 stampService.update(stampAdd) : " + );
 
-        log.info("스탬프 responseDTO : " + responseDTO);
+        StampResponseDTO responseDTO = stampService.stampResponseDTO(accountId);
 
         return ResponseEntity
                 .ok()
                 .body(responseDTO);
+
+    }
+
+    @PostMapping("/stamp-count")
+    @ResponseBody
+    public ResponseEntity<?> stampCountUpdate(
+            @RequestBody StampAddConditionDTO stampAdd
+            ) {
+        String accountId = stampAdd.getAccountId();
+        log.info("스탬프 비동기1 : "+accountId);
+
+        StampResponseDTO responseDTO = stampService.stampResponseDTO(accountId);
+        int totalStampCount = responseDTO.getTotalStampCount();
+
+
+
+        return ResponseEntity
+                .ok()
+                .body(totalStampCount);
 
     }
 

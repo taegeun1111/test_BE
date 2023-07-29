@@ -213,14 +213,13 @@
         var clickSideBars = document.querySelectorAll('.side-banner');
         var clickCountElement = document.getElementById('clickCount');
         var stampCount = document.getElementById('count-stamp');
-        var totalStamp=`${stamp.totalStampCount}`;
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
-                if (bannerClickCount < 3) {
+                // if (bannerClickCount < 3) {
                 sendTrueToServer();
 
-                }
+                // }
                 });
                 });
 
@@ -238,20 +237,39 @@
                 })
                 .then(response => response.json())
                 .then(res => {
-                    console.log('resㅎㅎㅎ: ', res);
+                    console.log('res: ', res);
                 
                     bannerClickCount=res.bannerClickCount;
-                    totalStamp=res.totalStampCount;
+                    
                     clickCountElement.textContent = bannerClickCount;
-                    stampCount.textContent = totalStamp;
+                    var accountId = res.accountId;
+                    console.log('accountId: ', accountId);
+
+                    StampNumber(accountId);
 
                 })
                 
             }
 
+            function StampNumber(accountId){
+                fetch('/event/stamp-count', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        accountId : accountId
+                    })
+                })
+                .then(response => response.json())
+                .then(res => {
+                    console.log('res가숫자제대로뜨려나: ', res);
+                
+                    stampCount.innerHTML = res;
 
-
-
+                })
+                
+            }
         // // 스탬프 수에 맞춰 카드 활성화 시키기
         // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');
         // const receivedValue = 18; // 서버에서 받은 값
