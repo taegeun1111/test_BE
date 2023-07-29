@@ -139,28 +139,32 @@
             cardMain.appendChild(cardShape);
         }
 
-        // 1) 출석하기 클릭
-        function changeAttendanceImage() {
-            const attendanceImage = document.querySelector('.my-stamp li:first-child img');
-            attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-        }
-
-        localStorage.setItem('attendanceDone', 'true');
+        // 출석하기 클릭
         
         const attendanceButton = document.querySelector('.map-footer-login');
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
         } 
-
-        // 2) 출석하기 알아서 바뀌기
-        var stampCheck = localStorage.getItem('attendanceDone');
-
-        if (stampCheck) {
-        var myStampCheck = document.getElementById('myStampCheck');
-        var image = myStampCheck.querySelector('img');
-        image.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-        image.alt = 'Check Done';
+        function changeAttendanceImage() {
+            const attendanceImage = document.querySelector('.my-stamp li:first-child img');
+            attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+            attendanceImage.alt = 'Check Done';
+            
+            localStorage.setItem('attendanceDone', 'true');
+        
+            attendanceButton.classList.add('map-footer-loginCK');
         }
+
+
+        // // 출석하기 알아서 바뀌기
+        // var stampCheck = localStorage.getItem('attendanceDone');
+
+        // if (stampCheck) {
+        // var myStampCheck = document.getElementById('myStampCheck');
+        // var image = myStampCheck.querySelector('img');
+        // image.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+        // image.alt = 'Check Done';
+        // }
 
         // 비회원 - 로그인 요청
         function goToSignInPage() {
@@ -252,21 +256,6 @@
         }
 
 
-        // 스탬프 찍기
-        // const mapMainImg = document.querySelector('.map-main');
-        // const n = `${stamp.totalStampCount}`;
-        // console.log("n", n);
-        // // const stampShapes = document.querySelectorAll('.stamp-shape');
-
-        // const greenStamps = [];
-
-        // for (let i = 0; i < n; i++) {
-        // greenStamps.push(stampShapes[i]);
-        // }
-
-        // for (const greenStamp of greenStamps) {
-        // greenStamp.style.backgroundColor = 'green';
-        // }
 
         // // 스탬프 수에 맞춰 카드 활성화 시키기
         // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');

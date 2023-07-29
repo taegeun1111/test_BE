@@ -87,7 +87,7 @@ body {
     cursor: pointer;
 }
 .map-footer-login {
-    background: rgb(182, 82, 82) !important;
+    background: rgb(182, 82, 82);
 }
 
 .map-footer-loginCK{
