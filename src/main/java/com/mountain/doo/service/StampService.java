@@ -22,6 +22,9 @@ public class StampService {
 
         // 업데이트 된 정보 전달
         Stamp stampCount = mapper.stampCount(accountId);
+        StampAddConditionDTO dto = new StampAddConditionDTO();
+        dto.setAccountId(accountId);
+        update(dto);
         return stampCount;
 
     }
