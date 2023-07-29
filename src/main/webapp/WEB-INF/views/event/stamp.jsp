@@ -24,7 +24,7 @@
             <div class="stamp-map">
                 <div class="map-header">
 
-                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP</h1>
+                    <h1><span id="account_id">${stamp.accountId}</span>&nbsp;님의 STAMP MAP</h1>
                     <hr>
                 </div>
 
@@ -216,10 +216,10 @@
 
         clickSideBars.forEach(function(clickSideBar) {
             clickSideBar.addEventListener('click', function() {
-                if (bannerClickCount < 3) {
+                // if (bannerClickCount < 3) {
                 sendTrueToServer();
 
-                }
+                // }
                 });
                 });
 
@@ -270,8 +270,8 @@
                 })
                 
             }
-
-            var accountId = 'aaaaaa';
+            const sessionId = document.getElementById('account_id');
+            const accountId = sessionId.innerText;
             StampNumber(accountId);
 
         // // 스탬프 수에 맞춰 카드 활성화 시키기
