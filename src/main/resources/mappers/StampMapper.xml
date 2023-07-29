@@ -205,7 +205,7 @@
     </update>
 
     <select id="isClick" resultType="boolean">
-        select click from click_stamp
+        select count(*) from stamp
         where account_id  = #{accountId};
     </select>
 
