@@ -223,7 +223,7 @@
                 });
                 });
 
-               
+    
 
             function sendTrueToServer() {
                 fetch('/event/banner-count', {
