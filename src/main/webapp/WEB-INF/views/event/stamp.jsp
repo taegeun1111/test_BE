@@ -10,7 +10,7 @@
 
     <%@ include file="../include/account-static-head.jsp" %>
     <link rel="stylesheet" href="/assets/css/stamp.css">
-    
+
     <title>Mountain-Do</title>
 
 </head>
@@ -24,7 +24,7 @@
             <div class="stamp-map">
                 <div class="map-header">
 
-                    <h1><span>${login == null ? '비회원' : login.name}</span>&nbsp;님의 STAMP MAP</h1>
+                    <h1><span id="account_id">${stamp.accountId}</span>&nbsp;님의 STAMP MAP</h1>
                     <hr>
                 </div>
 
@@ -56,7 +56,7 @@
                                     <p>0</p>
                                 </c:if>
                                 <c:if test="${login != null}">
-                                    <p>${stamp.boardCount}</p>
+                                    <p id="post">${stamp.boardCount}</p>
                                 </c:if>
 
                                 <p>3</p>
@@ -91,7 +91,6 @@
                     </ul>
                 </div>
             </div>
-            
             <div class="card-wrap">
                 <div class="stamp-card">
                     <ul class="card-main">
@@ -119,11 +118,10 @@
         for (let i = 0; i < n; i++) {
         stampShapes[i].classList.add('stamp-img-shape');
         }
-       
+
 
         // 럭키카드 생성
         const cardMain = document.querySelector('.card-main');
-        const stampCards = [];
 
         for (let i = 0; i < 6; i++) {
             const cardShape = document.createElement('li');
@@ -133,6 +131,7 @@
             const cardImage = document.createElement('img');
             const cardText = document.createElement('span');
             cardText.textContent = 'LUCKY CARD';
+            // cardImage.src = 'https://cdn-icons-png.flaticon.com/128/3888/3888666.png';
             cardImage.src = 'https://cdn-icons-png.flaticon.com/128/4714/4714846.png';
             cardImageDiv.appendChild(cardImage);
             cardShape.appendChild(cardImageDiv);
@@ -142,8 +141,8 @@
             stampCards.push(cardShape);
         }
 
-        
-        const receivedValue = `${stamp.totalStampCount}`; 
+
+        const receivedValue = `${stamp.totalStampCount}`;
         console.log("스탬프 친구 몇개?", receivedValue);
 
         function activateLuckyCard(card) {
@@ -208,8 +207,9 @@
                 deactivateLuckyCard(card);
             });
         }
-        
+
         // 출석하기 클릭
+        
         const attendanceButton = document.querySelector('.map-footer-login');
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
@@ -276,7 +276,6 @@
             });
         }
 
-       
 
         // 배너 클릭 횟수 카운트 비동기 
         var bannerClickCount = `${stamp.bannerClickCount}`;
@@ -293,7 +292,7 @@
                 });
                 });
 
-
+               
 
             function sendTrueToServer() {
                 fetch('/event/banner-count', {
@@ -308,13 +307,17 @@
                 .then(response => response.json())
                 .then(res => {
                     console.log('res: ', res);
+                
                     bannerClickCount=res.bannerClickCount;
+
                     clickCountElement.textContent = bannerClickCount;
                     var accountId = res.accountId;
                     console.log('accountId: ', accountId);
 
                     StampNumber(accountId);
+
                 })
+                
             }
 
             function StampNumber(accountId){
@@ -330,14 +333,42 @@
                 .then(response => response.json())
                 .then(res => {
                     console.log('res가숫자제대로뜨려나: ', res);
+                
                     stampCount.innerHTML = res;
-                })
 
+                })
+                
             }
             const sessionId = document.getElementById('account_id');
             const accountId = sessionId.innerText;
             StampNumber(accountId);
+
+        // // 스탬프 수에 맞춰 카드 활성화 시키기
+        // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');
+        // const receivedValue = 18; // 서버에서 받은 값
+
+        // console.log(targetDiv);
+
+        // if (receivedValue === 18) {
         
+        // // hover 효과
+        // targetDiv.addEventListener('mouseenter', function() {
+        //     targetDiv.style.cursor = 'pointer'; 
+        //     targetDiv.style.backgroundColor = 'lemonchiffon'; // 배경색을 레몬색상으로 변경
+        // });
+        
+        // targetDiv.addEventListener('mouseleave', function() {
+        //     targetDiv.style.cursor = 'default'; // 원래 커서로 변경
+        //     targetDiv.style.backgroundColor = 'gray'; // 배경색을 다시 빨간색으로 변경
+        // }); 
+        
+        // // 링크 추가
+        // const linkElement = document.createElement('a');
+        // linkElement.href = 'https://example.com'; // 링크 URL 설정
+        // linkElement.textContent = 'Click Here'; // 링크 텍스트 설정
+        // targetDiv.appendChild(linkElement); // <div> 내부에 링크 요소 추가
+        // }
+
     </script>
 
 </body>
