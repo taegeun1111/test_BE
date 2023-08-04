@@ -103,22 +103,29 @@
 
     <div class="side-banner side-banner2"></div>
     <script>
+
+        const sessionId = document.getElementById('account_id');
+        const accountId = sessionId.innerText;
         
         // 스탬프 맵 생성
+        const totalStampCount = `${stamp.totalStampCount}`;
+    
         const mapMain = document.querySelector('.map-main');
-        const n = `${stamp.totalStampCount}`;
+        
         for (let i = 0; i < 18; i++) {
             const stampShape = document.createElement('div');
             stampShape.classList.add('stamp-shape');
             mapMain.appendChild(stampShape);
         }
-
-        const stampShapes = document.querySelectorAll('.stamp-shape');
-
-        for (let i = 0; i < n; i++) {
-        stampShapes[i].classList.add('stamp-img-shape');
+        
+        function createStampShapes(totalStampCount) {
+            console.log("createStampShapes 들어왔따요!!! / "+totalStampCount);
+            const stampShapes = document.querySelectorAll('.stamp-shape');
+            
+            for (let i = 0; i < totalStampCount; i++) {
+                stampShapes[i].classList.add('stamp-img-shape');
+            }
         }
-
 
         // 럭키카드 생성
         const cardMain = document.querySelector('.card-main');
@@ -201,6 +208,7 @@
             })
             .then(function(data) {
                 console.log('클릭 들어옴!');
+                StampNumber(accountId);
             })
             .catch(function(error) {
                 console.error('클릭 실패');
@@ -266,12 +274,11 @@
                     console.log('res가숫자제대로뜨려나: ', res);
                 
                     stampCount.innerHTML = res;
-
+                    createStampShapes(res);
                 })
                 
             }
-            const sessionId = document.getElementById('account_id');
-            const accountId = sessionId.innerText;
+
             StampNumber(accountId);
 
         // // 스탬프 수에 맞춰 카드 활성화 시키기
