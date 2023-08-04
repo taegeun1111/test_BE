@@ -136,8 +136,10 @@
             }
         }
 
+
         // 럭키카드 생성
         const cardMain = document.querySelector('.card-main');
+        const stampCards = [];
 
         for (let i = 0; i < 6; i++) {
             const cardShape = document.createElement('li');
@@ -147,19 +149,88 @@
             const cardImage = document.createElement('img');
             const cardText = document.createElement('span');
             cardText.textContent = 'LUCKY CARD';
-            // cardImage.src = 'https://cdn-icons-png.flaticon.com/128/3888/3888666.png';
             cardImage.src = 'https://cdn-icons-png.flaticon.com/128/4714/4714846.png';
             cardImageDiv.appendChild(cardImage);
             cardShape.appendChild(cardImageDiv);
             cardShape.appendChild(cardText);
             cardMain.appendChild(cardShape);
+
+            stampCards.push(cardShape);
         }
+
+
+        const receivedValue = `${stamp.totalStampCount}`;
+        console.log("스탬프 친구 몇개?", receivedValue);
+
+        function activateLuckyCard(card) {
+        card.addEventListener('mouseenter', function() {
+            if (!card.classList.contains('disabled')) {
+                card.style.cursor = 'pointer';
+                card.style.backgroundColor = 'lemonchiffon';
+            }
+        });
+
+        card.addEventListener('mouseleave', function() {
+            if (!card.classList.contains('disabled')) {
+                card.style.cursor = 'default';
+                card.style.backgroundColor = 'lightgray';
+            }
+        });
+
+        card.addEventListener('click', function() {
+            if (!card.classList.contains('disabled')) {
+                // 현재 카드가 이미 활성화된 카드일 경우에만 실행
+                if (card === activatedCard) {
+                    alert('🎁축하합니다! 경품에 당첨되셨습니다!');
+                } else {
+                    alert('아쉽지만 꽝입니다.');
+                }
+
+                deactivateAllCardsExcept(card); // 클릭된 카드를 제외하고 모든 카드를 비활성화하는 함수 호출
+            }
+        });
+    }
+
+    function deactivateLuckyCard(card) {
+        card.classList.add('disabled');
+        card.style.cursor = 'default';
+        card.style.backgroundColor = 'gray';
+        card.removeEventListener('mouseenter', null);
+        card.removeEventListener('mouseleave', null);
+        card.removeEventListener('click', null);
+    }
+
+    function deactivateAllCardsExcept(exceptCard) {
+        stampCards.forEach(card => {
+            if (card !== exceptCard) {
+                deactivateLuckyCard(card);
+            }
+        });
+    }
+
+        let activatedCard;
+
+        if (receivedValue >= 18) {
+            stampCards.forEach(card => {
+                activateLuckyCard(card);
+            });
+
+            const randomIndex = Math.floor(Math.random() * stampCards.length);
+            activatedCard = stampCards[randomIndex];
+            console.log("랜덤인덱:", randomIndex);
+
+        } else {
+            stampCards.forEach(card => {
+                deactivateLuckyCard(card);
+            });
+        }
+
 
         //card 클릭시 스탬프 차감
         cardMain.addEventListener("click",function(){
             minusStamp(true);
         });
-        
+
             function minusStamp(status){
                 fetch('/event/minus-stamp',{
                     method:"POST",
@@ -187,27 +258,16 @@
             attendanceButton.addEventListener('click', changeAttendanceImage);
         } 
         function changeAttendanceImage() {
-            attendanceButton.classList.add('map-footer-loginCK');
-            const attendanceImage = document.querySelector('.my-stamp li:first-child img');
-            attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-            attendanceImage.alt = 'Check Done';
-            
-            localStorage.setItem('attendanceDone', 'true');
-            const attendanceChkButton = document.querySelector('.none-check');
-            attendanceChkButton.classList.add('done-check');
-        
-        }
+                    attendanceButton.classList.add('map-footer-loginCK');
+                    const attendanceImage = document.querySelector('.my-stamp li:first-child img');
+                    attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
+                    attendanceImage.alt = 'Check Done';
 
+                    localStorage.setItem('attendanceDone', 'true');
+                    const attendanceChkButton = document.querySelector('.none-check');
+                    attendanceChkButton.classList.add('done-check');
 
-        // // 출석하기 알아서 바뀌기
-        // var stampCheck = localStorage.getItem('attendanceDone');
-
-        // if (stampCheck) {
-        // var myStampCheck = document.getElementById('myStampCheck');
-        // var image = myStampCheck.querySelector('img');
-        // image.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
-        // image.alt = 'Check Done';
-        // }
+         }
 
         // 비회원 - 로그인 요청
         function goToSignInPage() {
@@ -317,31 +377,6 @@
 
             StampNumber(accountId);
 
-        // // 스탬프 수에 맞춰 카드 활성화 시키기
-        // const targetDiv = document.querySelector('.card-wrap .stamp-card ul li');
-        // const receivedValue = 18; // 서버에서 받은 값
-
-        // console.log(targetDiv);
-
-        // if (receivedValue === 18) {
-        
-        // // hover 효과
-        // targetDiv.addEventListener('mouseenter', function() {
-        //     targetDiv.style.cursor = 'pointer'; 
-        //     targetDiv.style.backgroundColor = 'lemonchiffon'; // 배경색을 레몬색상으로 변경
-        // });
-        
-        // targetDiv.addEventListener('mouseleave', function() {
-        //     targetDiv.style.cursor = 'default'; // 원래 커서로 변경
-        //     targetDiv.style.backgroundColor = 'gray'; // 배경색을 다시 빨간색으로 변경
-        // }); 
-        
-        // // 링크 추가
-        // const linkElement = document.createElement('a');
-        // linkElement.href = 'https://example.com'; // 링크 URL 설정
-        // linkElement.textContent = 'Click Here'; // 링크 텍스트 설정
-        // targetDiv.appendChild(linkElement); // <div> 내부에 링크 요소 추가
-        // }
 
     </script>
 
