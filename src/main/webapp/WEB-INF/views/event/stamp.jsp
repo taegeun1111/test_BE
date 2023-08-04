@@ -161,7 +161,7 @@
         if (attendanceButton) {
             attendanceButton.addEventListener('click', changeAttendanceImage);
         } 
-        function changeAttendanceImage() {
+ function changeAttendanceImage() {
             attendanceButton.classList.add('map-footer-loginCK');
             const attendanceImage = document.querySelector('.my-stamp li:first-child img');
             attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
