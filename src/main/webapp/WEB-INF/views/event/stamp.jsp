@@ -45,7 +45,16 @@
                     <ul>
                         <li>출석
                             <div id="myStampCheck">
-                                <img src="https://cdn-icons-png.flaticon.com/128/7543/7543187.png">
+                                <c:if test="${stamp.attendCount==true}">
+                                    <div class="none-check">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/7543/7543187.png" class="none-check">
+                                    </div>  
+                                </c:if>
+                                <c:if test="${stamp.attendCount==false}">
+                                    <div class="none-check">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/753/753344.png" class="none-check">
+                                    </div>
+                                </c:if>
                             </div>
                         </li>
                         <li class="stamp-3rd">
@@ -153,13 +162,15 @@
             attendanceButton.addEventListener('click', changeAttendanceImage);
         } 
         function changeAttendanceImage() {
+            attendanceButton.classList.add('map-footer-loginCK');
             const attendanceImage = document.querySelector('.my-stamp li:first-child img');
             attendanceImage.src = 'https://cdn-icons-png.flaticon.com/128/753/753344.png';
             attendanceImage.alt = 'Check Done';
             
             localStorage.setItem('attendanceDone', 'true');
+            const attendanceChkButton = document.querySelector('.none-check');
+            attendanceChkButton.classList.add('done-check');
         
-            attendanceButton.classList.add('map-footer-loginCK');
         }
 
 
