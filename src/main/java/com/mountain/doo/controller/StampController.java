@@ -127,4 +127,24 @@ public class StampController {
         return ResponseEntity.ok().body(b); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
     }
 
+    @PostMapping("/minus-stamp")
+    @ResponseBody
+    public ResponseEntity<?> minusStamp(@RequestBody StampAddConditionDTO stampAdd,HttpSession session){
+        AccountResponseDTO loginUserData = (AccountResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
+        String accountId=loginUserData.getAccountId();
+        log.info("accountId1111 : " + accountId);
+        log.info("stampAdd1111 : " + stampAdd);
+
+
+        stampAdd.setAccountId(accountId);
+        stampService.clickEvent(stampAdd);
+        Stamp stamp = stampService.stampCount(accountId);
+        StampResponseDTO dto = new StampResponseDTO(stamp);
+        log.info("dto1111 : " + dto);
+
+
+        return ResponseEntity.ok().body(dto);
+    }
+
+
 }

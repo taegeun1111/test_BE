@@ -27,5 +27,4 @@ public class Stamp {
     private LocalDateTime stampTime;
     private int checkBoardStamp;
     private int checkBannerStamp;
-
 }

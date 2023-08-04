@@ -18,7 +18,7 @@ public interface StampMapper {
     void stampAdd(String accountId);
 
     void currentAdd(String accountId);
-    int currentCount(String accountId);
+    int totalCount(String accountId);
 
     void openEvent(String accountId);
 
