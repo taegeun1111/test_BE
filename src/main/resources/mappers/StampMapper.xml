@@ -116,8 +116,8 @@
     </update>
 
     <!--    현재 스탬스개수 count-->
-    <select id="currentCount" resultType="int">
-        SELECT current_stamp_count
+    <select id="totalCount" resultType="int">
+        SELECT total_stamp_count
         from stamp
         WHERE account_id = #{accountId}
 
@@ -126,7 +126,7 @@
     <!--    응모권사용 현재 스탬프 -18-->
     <update id="openEvent">
         UPDATE stamp
-        SET current_stamp_count = current_stamp_count-18
+        SET total_stamp_count = total_stamp_count-18
         WHERE account_id = #{accountId}
     </update>
 

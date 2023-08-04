@@ -155,6 +155,31 @@
             cardMain.appendChild(cardShape);
         }
 
+        //card 클릭시 스탬프 차감
+        cardMain.addEventListener("click",function(){
+            minusStamp(true);
+        });
+        
+            function minusStamp(status){
+                fetch('/event/minus-stamp',{
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body:JSON.stringify({
+                        clickEvent:status
+                    })
+                })
+                .then(response =>response.json())
+                .then(res => {
+                    console.log('res',res);
+                    stampCount.innerHTML = res.totalStampCount;
+
+                })
+            }
+
+
+
         // 출석하기 클릭
         
         const attendanceButton = document.querySelector('.map-footer-login');

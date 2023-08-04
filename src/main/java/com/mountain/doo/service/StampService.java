@@ -36,7 +36,18 @@ public class StampService {
         System.out.println("dto = " + dto);
         return dto;
     }
+    public void clickEvent(StampAddConditionDTO dto) {
+        if(dto.isClickEvent()==true) {
+            System.out.println("dto2222 = " + dto);
+            int stampTotal = mapper.totalCount(dto.getAccountId());
+            System.out.println("stampTotal = " + stampTotal);
+            // 스탬프 18개 이상일때만 동작
+            if (stampTotal >= 18) {
+                mapper.openEvent(dto.getAccountId());
 
+            }
+        }
+    }
 
     public void update(StampAddConditionDTO dto) {
         log.info("stampService update : " + dto.getAccountId());
@@ -106,26 +117,9 @@ public class StampService {
     }
 
 
-    public void clickEvent(StampAddConditionDTO dto) {
-        // 스탬프 18개 이상일때만 동작
-        if (mapper.currentCount(dto.getAccountId()) >= 18) {
-            mapper.openEvent(dto.getAccountId());
-        }
-    }
 
-//    public void loginStamp(String accountId, StampAddConditionDTO dto){
-//
-//        boolean currentAttendCount = dto.isAttendCount();
-//        log.info("dto.getAccountId() : "+dto.getAccountId());
-//        boolean dbAttendCount = mapper.findAccountCount(accountId);
-//
-//        log.info("currentAttendCount : "+currentAttendCount);
-//        log.info("dbAttendCount : "+dbAttendCount);
-//
-////        if(currentAttendCount!=dbAttendCount){
-////            mapper.isLogin(currentAttendCount, accountId);
-////        }
-//    }
+
+
 
     public void stampAdd(String accountId) {
         log.info("stampAdd 진입" + accountId);
