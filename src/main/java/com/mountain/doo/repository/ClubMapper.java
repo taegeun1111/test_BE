@@ -30,6 +30,7 @@ public interface ClubMapper {
     // 수정이 됐는가 안 됐는가
     // boolean modifyClub(Club club);
 
+    //
 
     //전체 글 개수 count
     int count(ClubSearch search);

@@ -5,7 +5,7 @@
 <mapper namespace="com.mountain.doo.repository.StampMapper">
 
     <select id="stampCount" resultType="Stamp">
-        SELECT account_id,attend_count,board_count,banner_click_count,current_stamp_count,total_stamp_count
+        SELECT account_id,attend_count,board_count,banner_click_count,current_stamp_count,total_stamp_count,check_board_stamp,check_banner_stamp
         FROM stamp
         WHERE account_id = #{accountId}
     </select>
@@ -116,8 +116,8 @@
     </update>
 
     <!--    현재 스탬스개수 count-->
-    <select id="currentCount" resultType="int">
-        SELECT current_stamp_count
+    <select id="totalCount" resultType="int">
+        SELECT total_stamp_count
         from stamp
         WHERE account_id = #{accountId}
 
@@ -126,7 +126,7 @@
     <!--    응모권사용 현재 스탬프 -18-->
     <update id="openEvent">
         UPDATE stamp
-        SET current_stamp_count = current_stamp_count-18
+        SET total_stamp_count = total_stamp_count-18
         WHERE account_id = #{accountId}
     </update>
 
@@ -204,8 +204,20 @@
         where account_id  = #{accountId};
     </update>
 
+    <update id="checkBoardStamp">
+        UPDATE stamp
+        SET check_board_stamp = check_board_stamp+1
+        WHERE account_id = #{accountId}
+    </update>
+
+    <update id="checkBannerStamp">
+        UPDATE stamp
+        SET check_banner_stamp = check_banner_stamp+1
+        WHERE account_id = #{accountId}
+    </update>
+
     <select id="isClick" resultType="boolean">
-        select click from click_stamp
+        select count(*) from stamp
         where account_id  = #{accountId};
     </select>
 

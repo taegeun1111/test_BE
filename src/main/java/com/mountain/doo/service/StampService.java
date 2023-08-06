@@ -22,10 +22,32 @@ public class StampService {
 
         // 업데이트 된 정보 전달
         Stamp stampCount = mapper.stampCount(accountId);
+        StampAddConditionDTO dto = new StampAddConditionDTO();
+        dto.setAccountId(accountId);
+        update(dto);
         return stampCount;
 
     }
 
+    public StampResponseDTO stampResponseDTO(String accountId){
+        Stamp stamp = mapper.stampCount(accountId);
+
+        StampResponseDTO dto = new StampResponseDTO(stamp);
+        System.out.println("dto = " + dto);
+        return dto;
+    }
+    public void clickEvent(StampAddConditionDTO dto) {
+        if(dto.isClickEvent()==true) {
+            System.out.println("dto2222 = " + dto);
+            int stampTotal = mapper.totalCount(dto.getAccountId());
+            System.out.println("stampTotal = " + stampTotal);
+            // 스탬프 18개 이상일때만 동작
+            if (stampTotal >= 18) {
+                mapper.openEvent(dto.getAccountId());
+
+            }
+        }
+    }
 
     public void update(StampAddConditionDTO dto) {
         log.info("stampService update : " + dto.getAccountId());
@@ -76,34 +98,28 @@ public class StampService {
         Stamp stamp = mapper.stampCount(dto.getAccountId());
         System.out.println("!!!stamp = " + stamp);
 
+        int checkBannerStamp = stamp.getCheckBannerStamp();
+        int checkBoardStamp = stamp.getCheckBoardStamp();
+
         //오늘 쓴 게시물이 3개면 도장 찍기
-        if (stamp.getBoardCount() == 3 && stamp.getBannerClickCount() == 3) {
+        if(checkBoardStamp==0){
+        if (stamp.getBoardCount() == 3)  {
             mapper.stampAdd(dto.getAccountId());
-            mapper.currentAdd(dto.getAccountId());
+            mapper.checkBoardStamp(dto.getAccountId());
+        }
+        }
+        if(checkBannerStamp==0) {
+            if (stamp.getBannerClickCount() == 3) {
+                mapper.stampAdd(dto.getAccountId());
+                mapper.checkBannerStamp(dto.getAccountId());
+            }
         }
     }
 
 
-    public void clickEvent(StampAddConditionDTO dto) {
-        // 스탬프 18개 이상일때만 동작
-        if (mapper.currentCount(dto.getAccountId()) >= 18) {
-            mapper.openEvent(dto.getAccountId());
-        }
-    }
 
-//    public void loginStamp(String accountId, StampAddConditionDTO dto){
-//
-//        boolean currentAttendCount = dto.isAttendCount();
-//        log.info("dto.getAccountId() : "+dto.getAccountId());
-//        boolean dbAttendCount = mapper.findAccountCount(accountId);
-//
-//        log.info("currentAttendCount : "+currentAttendCount);
-//        log.info("dbAttendCount : "+dbAttendCount);
-//
-////        if(currentAttendCount!=dbAttendCount){
-////            mapper.isLogin(currentAttendCount, accountId);
-////        }
-//    }
+
+
 
     public void stampAdd(String accountId) {
         log.info("stampAdd 진입" + accountId);

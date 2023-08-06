@@ -97,10 +97,20 @@
                 <div class="main-logo"><img src="/assets/jpg/logo(white).png" alt=""></div>
                 <div class="main-title-wrapper">
                   <h1 class="main-title">이벤트를 통해<br>상품에 응모해보세요</h1>
-                  <a href="/event/stamp" class="gobtn">
-                    스탬프 찍으러 가기
-                    <img src="/assets/jpg/than.png" alt="">
-                  </a>
+                  <c:if test="${login == null}">
+                    <a href="/account/sign-in" class="gobtn">
+                      스탬프 찍으러 가기
+                      <img src="/assets/jpg/than.png" alt="">
+                    </a>
+                  </c:if>
+                  <c:if test="${login != null}">
+                    <a href="/event/stamp" class="gobtn">
+                      스탬프 찍으러 가기
+                      <img src="/assets/jpg/than.png" alt="">
+                    </a>
+                  </c:if>
+
+                
                 </div>
                 <h2 class="sub-title">Mountain Climbing Together</h2>
               </div>

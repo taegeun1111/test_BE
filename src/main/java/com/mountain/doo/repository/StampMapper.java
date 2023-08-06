@@ -18,7 +18,7 @@ public interface StampMapper {
     void stampAdd(String accountId);
 
     void currentAdd(String accountId);
-    int currentCount(String accountId);
+    int totalCount(String accountId);
 
     void openEvent(String accountId);
 
@@ -40,5 +40,10 @@ public interface StampMapper {
     void updateClickStamp(boolean click, String accountId);
 
     boolean isClick(String accountId);
+
+    void checkBoardStamp(String accountId);
+
+    void checkBannerStamp(String accountId);
+
 
 }

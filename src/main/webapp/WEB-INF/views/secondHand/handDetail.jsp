@@ -117,6 +117,9 @@
 
 
     <script>
+        console.log('로그인 : ${login}');
+        console.log('넘어오는 값 : ${is}')
+
           //--------------------------------------------------
         //글번호
         const bno = '${is.secondHandBoardNo}';
