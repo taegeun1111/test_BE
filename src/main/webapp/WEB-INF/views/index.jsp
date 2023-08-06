@@ -184,7 +184,7 @@
   const apiUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; //초단기실황
   const apiUrl2 = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"; //단기예보조회
   <%--var serviceKey = '<%= getProperty("my.service.key") %>';--%>
-  const serviceKey = "iSBb%2BDW08PMqwAwZinlDdlbrvSU2n7gZ7JrBaHIGaDn%2BPim3O8e3gT55tTJxfrPSofc2JdCYzPjPWOJ6xDVS8Q%3D%3D";
+  const serviceKey = "서비스키를 입력하세요 (JP)";
   const numOfRows = 1000;
   const pageNo = 1;
 
@@ -213,14 +213,14 @@
     //   hour-=1;
     //   fixMinute+=60;
     // }
-    console.log("fixHour: " , fixHour);
+    // console.log("fixHour: " , fixHour);
     return fixHour.toString().padStart(2,"0")+"00";
   }
 
   let baseDate = currentDate();
-  console.log("baseDate : ", baseDate);
+  // console.log("baseDate : ", baseDate);
   let baseTime = currentTime();
-  console.log("baseTime: ", baseTime);
+  // console.log("baseTime: ", baseTime);
 
   // 단기예보 적용하는 시각 구하는 함수
   function forecastTime(){
@@ -230,7 +230,7 @@
     let hour = currentTime.getHours().toString().padStart(2,"0");
 
     // let hour = "00";
-    console.log("currenthour : ", hour);
+    // console.log("currenthour : ", hour);
     switch (hour){
       case  "00":        case  "01":        case "02" :
         hour = timeArray[7]; //전날 23시 타임을 기준으로
@@ -257,7 +257,7 @@
         hour = timeArray[6];
         break;
     }
-    console.log("forecastTime : ", hour);
+    // console.log("forecastTime : ", hour);
     return hour+"00";
   }
 
@@ -271,9 +271,9 @@
   }
 
   let baseFcDate = forecastDate();
-  console.log("baseFcDate : ", baseFcDate);
+  // console.log("baseFcDate : ", baseFcDate);
   let baseFcTime = forecastTime();
-  console.log("baseFcTime", baseFcTime);
+  // console.log("baseFcTime", baseFcTime);
 
   // console.log(requestUrl);
   // 지역을 골라 좌푯값을 얻는 함수
@@ -424,10 +424,10 @@
     // (document.getElementById('weather-list').value = "60,127";
     const defaultIndex = 1;
     selectElement.options[defaultIndex].selected = true;
-    console.log(selectElement[defaultIndex].value);  //60,127
+    // console.log(selectElement[defaultIndex].value);  //60,127
 
     const selectCoordinate = selectElement[defaultIndex].value.split(",");
-    console.log(selectCoordinate);
+    // console.log(selectCoordinate);
 
     nx = +selectCoordinate[0];
     ny = +selectCoordinate[1];
@@ -450,10 +450,10 @@
     let requestUrl2;
 
     const selectedOption = this.options[this.selectedIndex];
-    console.log(selectedOption);
-    console.log(selectedOption.value);
+    // console.log(selectedOption);
+    // console.log(selectedOption.value);
     const selectCoordinate = selectedOption.value.split(",");
-    console.log(selectCoordinate);
+    // console.log(selectCoordinate);
 
     nx = +selectCoordinate[0];
     ny = +selectCoordinate[1];
@@ -486,7 +486,7 @@
     ;
   }
 
-  const mountServiceKey = "5IbnUN%2FNAP5rYLQ9UcG5fjU3yoQQyCeagSv%2FmkPaqVFb7k7dWEjunyosefC0u1ENQ3NOURapdeXeYCQWCF%2BsPw%3D%3D";
+  const mountServiceKey = "서비스키를 입력하세요 (JP)";
   // let localArea=1;
   let mountTime=currentMtTime();
 
@@ -494,7 +494,7 @@
   const mountUrl = "http://apis.data.go.kr/1400377/mtweather/mountListSearch?serviceKey="
           +mountServiceKey+"&_type=json&pageNo=1&numOfRows=1000&tm="+mountTime;
 
-  console.log(mountUrl);
+  // console.log(mountUrl);
 
 
   // const mtWeather =document.querySelector('.weather-mountain-wrapper');
