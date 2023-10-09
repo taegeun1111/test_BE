@@ -45,19 +45,13 @@ public class FeedController {
     public String list(Search page, Model model, HttpServletRequest request){
         log.info("feed list GET");
 
-//        log.info(feed.getFeedTitle());
         page.setAmount(8);
         page.setType("");
         page.setKeyword("");
         List<FeedListResponseDTO> responseDTO = feedService.getList(page);
 
         PageMaker maker = new PageMaker(page, feedService.getCount(page));
-//        System.out.println("responseDTO = " + responseDTO);
-//        System.out.println("page = " + page);
-//        System.out.println("maker = " + maker);
         Object login = request.getSession().getAttribute("login");
-        System.out.println("login333 = " + login);
-        // 페이징 알고리즘 작동
 
         List<FeedLikeUserResponseDTO> byAccountDTO = feedService.findByAccount();
 
