@@ -27,13 +27,29 @@ import java.util.List;
 @CrossOrigin
 public class feedApiController {
     private final FeedService feedService;
-    @GetMapping("/list")
-    public ResponseEntity<?> list(HttpServletRequest request) throws IOException{
+    @GetMapping("/login")
+    public ResponseEntity<?> login(HttpServletRequest request) throws IOException{
         log.info("api요청");
         HttpSession session = request.getSession();
         Object loginInfo = session.getAttribute("login");
         log.info("loginInfo : {}",loginInfo);
 
         return ResponseEntity.ok().body(loginInfo);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<?> list(Search page){
+        log.info("list api 요청");
+
+        page.setAmount(8);
+        page.setType("");
+        page.setKeyword("");
+        List<FeedListResponseDTO> responseDTO = feedService.getList(page);
+
+        PageMaker maker = new PageMaker(page, feedService.getCount(page));
+        log.info("responseDTO : {}",responseDTO);
+        log.info("maker : {}",maker);
+
+        return ResponseEntity.ok().body(responseDTO);
     }
 }
