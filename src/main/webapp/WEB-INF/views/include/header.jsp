@@ -14,7 +14,7 @@
             </c:if>   
         </ul>
 
-        <a href="/" class="logo-home">
+        <a href="http://admin.ddamddamclub.shop/" class="logo-home">
             <img src="/assets/jpg/logo(white).png" alt="" class="logo">
         </a>
         <c:if test="${login == null}">
