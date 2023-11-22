@@ -88,7 +88,15 @@ public class AccountController {
         log.info("sessionId : " + request.getSession().getId());
         log.info("-----------------------------------{}", dto);
 
-        LoginBoolean login = accountService.login(dto, request.getSession(), response);
+        // 기존 세션을 무효화하고 새로운 세션을 생성하여 할당
+        HttpSession oldSession = request.getSession(false);
+        if (oldSession != null) {
+            oldSession.invalidate(); // 기존 세션 무효화
+        }
+
+        HttpSession newSession = request.getSession(true); // 새로운 세션 생성
+
+        LoginBoolean login = accountService.login(dto, newSession, response);
 
         ra.addFlashAttribute("msg", login);
 
@@ -158,19 +166,22 @@ public class AccountController {
                          HttpServletResponse response) {
 
         HttpSession session = request.getSession();
+        log.info("로그아웃 진입");
+        log.info("세션 ID: {}",session.getId());
+        log.info("세션 ID: {}",session.getAttribute("login"));
 
         if (isLogin(session)) { //로그인 되어있으면
             if (isAutoLogin(request)) {
                 //자동 로그인 해제
                 accountService.autoLoginClear(request, response);
             }
-
+            log.info("로그아웃 되어있음");
             session.removeAttribute("login");
-
             session.invalidate();
             return "redirect:/";
         }
-//        로그인이 안되어 있다면
+        session.removeAttribute("login");
+        session.invalidate();
         return "redirect:/account/login";
     }
 

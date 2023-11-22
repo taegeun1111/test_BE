@@ -190,6 +190,20 @@
   </div>
 </body>
 <script>
+  // 쿠키 문자열을 가져옴
+  const cookieString = document.cookie;
+  console.log(cookieString)
+  // 쿠키를 파싱하여 객체로 변환
+  const cookies = cookieString
+          .split(';')
+          .map(cookie => cookie.trim().split('='))
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+
+  // 특정 쿠키의 값을 가져오기
+  const sessionId = cookies.SESSIONID; // 여기서 'SESSIONID'는 예시일 수 있으며 실제 사용 중인 쿠키의 키여야 합니다.
+
+  console.log(sessionId);
+
   // 날씨 API 호출을 위한 요청 URL 구성
   const apiUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"; //초단기실황
   const apiUrl2 = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"; //단기예보조회

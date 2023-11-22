@@ -88,6 +88,9 @@
             alert('회원가입을 진행해주세요.');
         } else if (loginMsg === 'FALSE_PW') {
             alert('비밀번호가 틀렸습니다.');
+        }else{
+          const sessionId = '<%= request.getSession().getId() %>';
+          console.log(sessionId)
         }
     </script>
     
